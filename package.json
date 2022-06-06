@@ -13,7 +13,6 @@
     "react-bootstrap-validation": "^0.1.11",
     "react-dom": "^18.1.0",
     "react-multi-carousel": "^2.8.0",
-    "react-multilevel-dropdown": "^3.0.3",
     "react-router-dom": "^6.3.0",
     "react-scripts": "^5.0.1",
     "react-slick": "^0.29.0",
@@ -48,6 +47,6 @@
   "devDependencies": {
     "sass": "^1.52.1"
   },
-  
+
   "proxy": "https://betaapi.koovs.com"
 }
