@@ -48,5 +48,6 @@
   "devDependencies": {
     "sass": "^1.52.1"
   },
+  
   "proxy": "https://betaapi.koovs.com"
 }
