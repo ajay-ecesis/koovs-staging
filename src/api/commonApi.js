@@ -14,7 +14,7 @@ export const loadHeaderCategory = async () => {
 
             }
         };
-        let { data } = await axios.get("/api/jarvis-home-service/v1/home/header/template", config)
+        let { data } = await axios.get(clentServer+"/jarvis-home-service/v1/home/header/template", config)
 
         console.log("data", data.data.items)
         data = data.data.items
