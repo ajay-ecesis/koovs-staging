@@ -66,8 +66,8 @@ class SocialMedia extends React.Component {
             },
             mobile: {
               breakpoint: { max: 464, min: 0 },
-              items: 3,
-              partialVisibilityGutter: 10,
+              items: 2,
+              partialVisibilityGutter: 90,
               slidesToSlide: 1 // optional, default to 1.
             }
           };
@@ -78,7 +78,7 @@ class SocialMedia extends React.Component {
                 <div className="row">
                     <div className="col-12 col-lg-6">
                         <div className="future-collaboration pb-5 d-none d-lg-block">
-                            <h5><b>Future <i>collaborations</i></b></h5>
+                        <h5><b>Future <i>collaborations</i></b></h5><br/>
                             <div className="d-flex gap-4 align-items-center">
                                 <h5>28/04</h5>   
                                 <h5>Ira Voo</h5> 
@@ -107,8 +107,8 @@ class SocialMedia extends React.Component {
                         <div className="future-collaboration d-block d-lg-none pb-5">
                             <h5><b>Future <i>collaborations</i></b></h5>
                             <p>Collections you can't afford to miss</p>
-                            <div className="row" id="carousel-slide">
-                                <Carousel partialVisible={true} interval={3000} touch={true} arrows={false} responsive={responsive} renderButtonGroupOutside={true}  swipeable={true} draggable={false} autoPlay={true}
+                            <div className="row  ms-2 ms-lg-0 g-5" id="carousel-slide">
+                                <Carousel infinite="true" partialVisible={true} interval={3000} touch={true} arrows={false} responsive={responsive} renderButtonGroupOutside={true}  swipeable={true} draggable={false} autoPlay={true}
             autoPlaySpeed={2000}>
                                     <div className="cards overflow-hidden">
                                         <div className="img-content">
@@ -150,8 +150,8 @@ class SocialMedia extends React.Component {
                                 </button>
                             </div>
                             <div className="col-12 col-lg-6">
-                                <div className="px-0 py-4 p-lg-4">
-                                    <h5 className="fw-bold">Live with Hannie</h5>   
+                            <div className="px-0 py-4 py-lg-0 px-lg-4">
+                                                                    <h5 className="fw-bold">Live with Hannie</h5>   
                                     <p className="py-4">
                                     Spend the afternoon with photographer, Hannie as he lorem ipsum dolor sit amet, consectetur adipiscing elit, 
                                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 

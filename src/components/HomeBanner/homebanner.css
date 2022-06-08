@@ -12,8 +12,10 @@
 }
 .carousel-indicators {
     margin-right: 0;
-    margin-bottom: -10px;
+    margin-bottom: 0px;
     margin-left: 0;
+    border: 2px solid #fff;
+    background-color: #fff;
 }
 .carousel-indicators [data-bs-target]{
     width: 100%;
@@ -23,7 +25,7 @@
     opacity: .2;
 }
 .carousel.slide{
-    margin: 1rem 0;
+    margin: 2rem 0 0;
     height: 885px;
     overflow: hidden;
 }
@@ -38,8 +40,10 @@
 }
 .carousel-control-prev-icon, .carousel-control-next-icon{
     background-color: #fff;
-    height: 3rem;
-    width: 3rem;
+    height: 4%;
+    width: 80%;
+    position: absolute;
+    bottom: 15rem;
 }
 .carousel-control-next-icon {
     background-image: url(../../assets/images/right-arrow.png);
@@ -60,3 +64,12 @@
 .toast-header{
     height:80px;
 }
+
+.carousel-indicators .active {
+    opacity: 1;
+    background-color: #000;
+}
+.carousel-indicators [data-bs-target] {
+    border-top:0 solid transparent;
+    border-bottom: 0 solid transparent;
+} 

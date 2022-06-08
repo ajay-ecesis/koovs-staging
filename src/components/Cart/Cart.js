@@ -9,7 +9,7 @@ class Cart extends React.Component {
         <section className="cart">
             <div className="container-fluid">
                 <div className="col-12">
-                    <h5 className="py-4">Shopping Cart</h5>
+                    <h5 className="py-4"><b>Shopping Cart</b></h5>
                     <div className="w-75 mx-auto">
                         <p>
                             It appears that your cart is currently empty!<br/>

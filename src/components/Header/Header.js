@@ -57,7 +57,7 @@ function Header() {
                             mainMenu.children.map((subMenu) => {
                               return (
                                 <>
-                                  {subMenu.action == "DROP_DOWN" ? (
+                                  {subMenu.action === "DROP_DOWN" ? (
                                     <>
                                       {" "}
                                       <li
@@ -387,7 +387,7 @@ function Header() {
           </li>
         </ul>
         <div className="nav-brand">
-          <img src={koovslogo} alt="Koovs Logo" />
+        <Link to="/"><img src={koovslogo} alt="Koovs Logo"/></Link>
         </div>
         <div className="d-flex align-items-center gap-4">
           <img

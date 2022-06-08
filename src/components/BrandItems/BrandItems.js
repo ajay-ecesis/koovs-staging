@@ -2,7 +2,6 @@ import React from "react";
 import './branditems.css';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import storiesimg from '../../assets/images/Screenshot.png';
 import sneakersimg from '../../assets/images/sneakers.png';
 class BrandItems extends React.Component {
     render()
@@ -24,7 +23,7 @@ class BrandItems extends React.Component {
             mobile: {
               breakpoint: { max: 464, min: 0 },
               items: 1,
-              partialVisibilityGutter: 140,
+              partialVisibilityGutter: 100,
               slidesToSlide: 1 // optional, default to 1.
             }
           };
@@ -34,29 +33,29 @@ class BrandItems extends React.Component {
             <div className="container px-0">
                 <div className="row g-1">
                     <div className="row" id="carousel-slide">
-                        <Carousel infinite={true} partialVisible={true} interval={3000} touch={true} arrows={false} responsive={responsive} renderButtonGroupOutside={true}  swipeable={true} draggable={false} autoPlay={true}
+                        <Carousel infinite={true} partialVisible={true} interval={2000} touch={true} arrows={false} responsive={responsive} renderButtonGroupOutside={true}  swipeable={true} draggable={false} autoPlay={true}
     autoPlaySpeed={2000}>
                             <div className="cards overflow-hidden">
                                 <div className="img-content">
-                                    <img src={sneakersimg} className="img-fluid" alt="Koovs image"/>
+                                    <img src={sneakersimg} className="img-fluid" alt="Koovs "/>
                                     <p>Sneakers</p>
                                 </div>
                             </div>
                             <div className="cards overflow-hidden">
                                 <div className="img-content">
-                                    <img src={sneakersimg} className="img-fluid" alt="Koovs image"/>
+                                    <img src={sneakersimg} className="img-fluid" alt="Koovs "/>
                                     <p>PULL & BEAR</p>
                                 </div>
                             </div>
                             <div className="cards overflow-hidden">
                                 <div className="img-content">
-                                    <img src={sneakersimg} className="img-fluid" alt="Koovs image"/>
+                                    <img src={sneakersimg} className="img-fluid" alt="Koovs "/>
                                     <p>COSMETICS</p>
                                 </div>
                             </div>
                             <div className="cards overflow-hidden">
                                 <div className="img-content">
-                                    <img src={sneakersimg} className="img-fluid" alt="Koovs image"/>
+                                    <img src={sneakersimg} className="img-fluid" alt="Koovs "/>
                                     <p>SANDALS</p>
                                 </div>
                             </div>

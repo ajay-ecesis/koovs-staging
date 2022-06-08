@@ -13,7 +13,7 @@ function WomenFashion() {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
       items: 5,
-      partialVisibilityGutter: 30,
+      partialVisibilityGutter: 0,
       slidesToSlide: 1, // optional, default to 1.
     },
     tablet: {
@@ -24,8 +24,8 @@ function WomenFashion() {
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 1,
-      partialVisibilityGutter: 140,
+      items: 2,
+      partialVisibilityGutter: 30,
       slidesToSlide: 1, // optional, default to 1.
     },
   };
@@ -42,19 +42,19 @@ function WomenFashion() {
     setFashionItems(data[0].data);
   };
 
+
   return (
-    <section className="women-fashion py-5">
-      <div className="bg-light-blue"></div>
+    <section className="women-fashion py-lg-5 pt-4">
+    <div className="bg-light-blue"></div>
       <div className="container-fluid">
         <div className="row">
           <div className="d-flex justify-content-between">
             <h5 className="fw-bold">Women</h5>
-            <p>
-              <u>View All</u>
-            </p>
+            <p className="fw-bold"><u>View All</u></p>
           </div>
           <div className="row" id="carousel-slide">
             <Carousel
+             infinite={true}
               partialVisible={true}
               interval={3000}
               touch={true}
@@ -70,18 +70,20 @@ function WomenFashion() {
                 fashionItems.map((item) => {
                   return (
                     <>
-                      <div className="cards overflow-hidden">
+                      <div className="cards overflow-hidden" id={item.id}>
                         <div className="bg-grey">
                           <img
                             src={item.imageSmallUrl}
                             className="img-fluid"
                             alt="Koovs product Front image"
+                         
+
                           />
-                          {/* <img
-                            src={headbandimg}
+                          <img
+                            src={item.imageSmallUrl}
                             className="img-fluid rear-img"
                             alt="Koovs rear product image"
-                          /> */}
+                          />
                           <p className="fw-bold">{item.productName}</p>
                           <p>{item.brandName}</p>
                           <p>{item.price} €</p>

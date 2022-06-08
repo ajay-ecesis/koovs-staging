@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const clentServer=process.env.REACT_APP_CLIENT_SERVER
+const clentServer = process.env.REACT_APP_CLIENT_SERVER
 
 export const loadHeaderCategory = async () => {
 
@@ -14,7 +14,7 @@ export const loadHeaderCategory = async () => {
 
             }
         };
-        let { data } = await axios.get(clentServer+"/jarvis-home-service/v1/home/header/template", config)
+        let { data } = await axios.get(clentServer + "/jarvis-home-service/v1/home/header/template", config)
 
         console.log("data", data.data.items)
         data = data.data.items
@@ -61,13 +61,12 @@ export const loadProductByCategoryApi = async (category, subCategory,) => {
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Credentials': true,
             'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-
         }
     };
-    
-                                      //https://betaapi.koovs.com/search-service/v1/products/listing/complete?href=https://www.koovs.com/men/shirts&page-size=4&sort=relevance&page=0
+
+    //https://betaapi.koovs.com/search-service/v1/products/listing/complete?href=https://www.koovs.com/men/shirts&page-size=4&sort=relevance&page=0
     try {
-        console.log("categggg",category,subCategory)
+        console.log("categggg", category, subCategory)
         let { data } = await axios.get(`${clentServer}/search-service/v1/products/listing/complete?href=https://www.koovs.com/${category}/${subCategory}&page-size=8&sort=relevance&page=0`, config)
 
 

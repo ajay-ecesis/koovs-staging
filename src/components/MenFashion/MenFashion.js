@@ -13,19 +13,19 @@ function MenFashion() {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
       items: 5,
-      partialVisibilityGutter: 30,
+      partialVisibilityGutter: 0,
       slidesToSlide: 1, // optional, default to 1.
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
       items: 2,
-      partialVisibilityGutter: 60,
+              partialVisibilityGutter: 0,
       slidesToSlide: 2, // optional, default to 1.
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 1,
-      partialVisibilityGutter: 140,
+      items: 2,
+      partialVisibilityGutter: 30,
       slidesToSlide: 1, // optional, default to 1.
     },
   };
@@ -48,9 +48,7 @@ function MenFashion() {
         <div className="row">
           <div className="d-flex justify-content-between">
             <h5 className="fw-bold">Men</h5>
-            <p>
-              <u>View All</u>
-            </p>
+            <p className="fw-bold"><u>View All</u></p>
           </div>
           <div className="row" id="carousel-slide">
             <Carousel
@@ -64,6 +62,7 @@ function MenFashion() {
               draggable={false}
               autoPlay={true}
               autoPlaySpeed={2000}
+              infinite={true}
             >
                {menItems?.length > 0 &&
                 menItems.map((item) => {
@@ -76,11 +75,11 @@ function MenFashion() {
                             className="img-fluid"
                             alt="Koovs product Front image"
                           />
-                          {/* <img
-                            src={headbandimg}
+                         <img
+                            src={item.imageSmallUrl}
                             className="img-fluid rear-img"
                             alt="Koovs rear product image"
-                          /> */}
+                          />
                           <p className="fw-bold">{item.productName}</p>
                           <p>{item.brandName}</p>
                           <p>{item.price} €</p>
