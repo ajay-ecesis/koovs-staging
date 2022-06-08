@@ -53,6 +53,7 @@ function Header() {
                       >
                         {mainMenu.title}
                         <ul>
+                          
                           {mainMenu?.children.length > 0 &&
                             mainMenu.children.map((subMenu) => {
                               return (
@@ -63,7 +64,7 @@ function Header() {
                                       <li
                                         className="nav-sub-menu"
                                         onClick={(e) => toggleSubClass(e)}
-                                        style={{fontWeight:"700"}}
+                                        style={{fontWeight:"700",textTransform:"capitalize"}}
                                       >
                                       {subMenu.title}
                                         <ul>
@@ -96,7 +97,8 @@ function Header() {
                                           className="nav-link"
                                           to="/view-all"
                                         >
-                                          {subMenu.title}
+                                          {subMenu.title=="NEW ARRIVALS:FOOTWEAR & ACCESSORIES"?<>NEW ARRIVAL:FOOTWEAR</>:<>{subMenu.title}</>}
+                                          
                                         </Link>
                                       </li>
                                     </>

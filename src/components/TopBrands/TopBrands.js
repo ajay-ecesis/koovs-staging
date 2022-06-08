@@ -1,5 +1,6 @@
 import React from "react";
 import './topbrands.css';
+import { Link } from "react-router-dom";
 
 class TopBrands extends React.Component {
     render()
@@ -14,9 +15,9 @@ class TopBrands extends React.Component {
                 </div>
             </div>
             <div className="container">
-                <div className="top-brand-content py-0 py-lg-5">
-                    361 Degree, AMON, 
-                    ATTIC SALT, Blue Saint, Bollywoo, DIWAAH, Freakins, Good Stuff, KOOVS, LC Waikiki, New Look, Oxolloxo, ONE / ZERO BY KOOVS, Peak. 
+                <div className="top-brand-content py-0 py-lg-5" style={{cursor:"pointer"}}>
+                 <Link to="/brand" style={{color:"white", textDecoration:"none"}}> 361 Degree,</Link>      <Link to="/" style={{color:"white", textDecoration:"none"}}> AMON, </Link>
+                 <Link to="/bar4nd" style={{color:"white", textDecoration:"none"}}> ATTIC SALT,</Link>   Blue Saint, Bollywoo, DIWAAH, Freakins, Good Stuff, KOOVS, LC Waikiki, New Look, Oxolloxo, ONE / ZERO BY KOOVS, Peak. 
                 </div>
             </div>
         </section>

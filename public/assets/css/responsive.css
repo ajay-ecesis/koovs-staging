@@ -1,12 +1,14 @@
 
 @media only screen and (max-width: 1440px) {
-
+  .carousel-control-prev-icon, .carousel-control-next-icon{
+    height: 3rem !important;
+    width: 100% !important;
+}
 }
 @media only screen and (max-width: 1200px) {
 
 }
 @media only screen and (max-width: 1024px){
-
 }
 @media only screen and (max-width: 992px) {
 
@@ -49,12 +51,12 @@
   bottom: 0;
   z-index: 1;
   background: #fff;
-  top: 40%;
-  right: 52%;
-  width: 340px;
-  height: 52px;
+  top: 43%;
+  right: 44%;
+  width: 100%;
+  height: 55px;
   background: #fff;
-  padding: 1rem;
+  padding: 1rem 2rem;
 }
 .stories {
   padding: 5px 0 !important; 
@@ -84,9 +86,9 @@
   color: #000;
   width: 60%;
 }
-.BrandItem .react-multi-carousel-item{
+/* .BrandItem .react-multi-carousel-item{
   width: 230px !important;
-}
+} */
 .women-fashion h5, .men-fashion h5{
   font-size: 16px;
 }
@@ -110,10 +112,43 @@
 .nav-main-menu ul{
   margin-left: 1.5rem;
 }
+.women-fashion .container-fluid #carousel-slide, .men-fashion .container-fluid #carousel-slide, .stories .container-fluid #carousel-slide{
+  padding-left: 1rem !important;
+}
+.future-collaboration{
+  overflow: hidden;
+}
+.future-collaboration .row{
+  overflow: hidden;
+}
+.b-height{
+  margin-bottom: 4rem;
+}
+.MobileStart .mx-2 .fs-14{
+  font-size: 12px !important;
+}
+.carousel-control-prev-icon, .carousel-control-next-icon {
+  bottom: 8rem !important;
+}
+.carousel.slide {
+  margin: 1rem 0 !important;
+}
+.container-fluid{
+  padding-right: var(--bs-gutter-x,.75rem) !important;
+  padding-left: var(--bs-gutter-x,.75rem) !important;
+}
+.carousel-control-prev-icon, .carousel-control-next-icon {
+  background-color: #fff;
+  height: 9% !important;
+  width: 85% !important;
+}
+.cart {
+  padding: 30px 0 !important;
+}
 }
 @media only screen and (max-width: 576px) {
   .p-3.fs-30.fw-bold{
-    font-size: 14px;
+    font-size: 12px;
   }
   h5{
     font-size: 16px;
