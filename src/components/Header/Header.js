@@ -64,7 +64,6 @@ function Header() {
                                       <li
                                         className="nav-sub-menu"
                                         onClick={(e) => toggleSubClass(e)}
-                                        style={{fontWeight:"700",textTransform:"capitalize"}}
                                       >
                                       {subMenu.title}
                                         <ul>

@@ -7,6 +7,8 @@ import dressimg from "../../assets/images/dress.png";
 import sandalimg from "../../assets/images/sandal.png";
 import shoeimg from "../../assets/images/shoe.png";
 import { loadProductByCategoryApi } from "../../api/commonApi";
+import ContentLoader from "react-content-loader"
+import { Card, Placeholder } from "react-bootstrap";
 
 function WomenFashion() {
   const responsive = {
@@ -36,16 +38,54 @@ function WomenFashion() {
   }, []);
 
   const loadWomenCategoryItems = async () => {
-    let data = await loadProductByCategoryApi("women","tops");
+    let data = await loadProductByCategoryApi("women", "tops");
 
     console.log("data from women page", data[0].data);
     setFashionItems(data[0].data);
   };
 
 
+  const loader = () => {
+
+    return (<>
+      <Carousel
+        infinite={true}
+        partialVisible={true}
+        interval={3000}
+        touch={true}
+        arrows={false}
+        responsive={responsive}
+        renderButtonGroupOutside={true}
+        swipeable={true}
+        draggable={false}
+        autoPlay={true}
+        autoPlaySpeed={2000}
+      >
+        <Card style={{ width: '18rem',border:"none" }}>
+          <Card.Body>
+            <Placeholder as={Card.Title} animation="glow">
+              <Placeholder xs={4} >&nbsp &nbsp &nbsp </Placeholder>
+            </Placeholder>
+            <Placeholder as={Card.Text} animation="glow">
+              <Placeholder xs={2} /> 
+              <Placeholder xs={2} /> <Placeholder xs={8} />
+            </Placeholder>
+          </Card.Body>
+        </Card>
+
+      </Carousel>
+
+
+
+
+    </>)
+
+  }
+
+
   return (
     <section className="women-fashion py-lg-5 pt-4">
-    <div className="bg-light-blue"></div>
+      <div className="bg-light-blue"></div>
       <div className="container-fluid">
         <div className="row">
           <div className="d-flex justify-content-between">
@@ -53,8 +93,10 @@ function WomenFashion() {
             <p className="fw-bold"><u>View All</u></p>
           </div>
           <div className="row" id="carousel-slide">
+
+            {/* {loader()} */}
             <Carousel
-             infinite={true}
+              infinite={true}
               partialVisible={true}
               interval={3000}
               touch={true}
@@ -76,7 +118,7 @@ function WomenFashion() {
                             src={item.imageSmallUrl}
                             className="img-fluid"
                             alt="Koovs product Front image"
-                         
+
 
                           />
                           <img

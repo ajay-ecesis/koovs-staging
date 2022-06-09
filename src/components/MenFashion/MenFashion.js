@@ -19,7 +19,7 @@ function MenFashion() {
     tablet: {
       breakpoint: { max: 1024, min: 464 },
       items: 2,
-              partialVisibilityGutter: 0,
+      partialVisibilityGutter: 0,
       slidesToSlide: 2, // optional, default to 1.
     },
     mobile: {
@@ -36,9 +36,8 @@ function MenFashion() {
   }, []);
 
   const loadWomenCategoryItems = async () => {
-    let data = await loadProductByCategoryApi("men","shirts");
+    let data = await loadProductByCategoryApi("men", "shirts");
 
-    console.log("data from women page", data[0].data);
     setMenItems(data[0].data);
   };
   return (
@@ -64,7 +63,7 @@ function MenFashion() {
               autoPlaySpeed={2000}
               infinite={true}
             >
-               {menItems?.length > 0 &&
+              {menItems?.length > 0 &&
                 menItems.map((item) => {
                   return (
                     <>
@@ -75,7 +74,7 @@ function MenFashion() {
                             className="img-fluid"
                             alt="Koovs product Front image"
                           />
-                         <img
+                          <img
                             src={item.imageSmallUrl}
                             className="img-fluid rear-img"
                             alt="Koovs rear product image"
