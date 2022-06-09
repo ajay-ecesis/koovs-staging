@@ -7,8 +7,8 @@ import dressimg from "../../assets/images/dress.png";
 import sandalimg from "../../assets/images/sandal.png";
 import shoeimg from "../../assets/images/shoe.png";
 import { loadProductByCategoryApi } from "../../api/commonApi";
-import ContentLoader from "react-content-loader"
 import { Card, Placeholder } from "react-bootstrap";
+
 
 function WomenFashion() {
   const responsive = {
@@ -33,19 +33,22 @@ function WomenFashion() {
   };
   const [fashionItems, setFashionItems] = useState([]);
 
+  const [loading, setLoading] = useState(false)
   useEffect(() => {
     loadWomenCategoryItems();
   }, []);
 
   const loadWomenCategoryItems = async () => {
+    setLoading(true)
     let data = await loadProductByCategoryApi("women", "tops");
 
     console.log("data from women page", data[0].data);
     setFashionItems(data[0].data);
+    setLoading(false)
   };
 
 
-  const loader = () => {
+  const loadingPlaceholder = () => {
 
     return (<>
       <Carousel
@@ -61,14 +64,54 @@ function WomenFashion() {
         autoPlay={true}
         autoPlaySpeed={2000}
       >
-        <Card style={{ width: '18rem',border:"none" }}>
+
+
+        <Card style={{ width: '18rem', border: "none" }}>
           <Card.Body>
             <Placeholder as={Card.Title} animation="glow">
-              <Placeholder xs={4} >&nbsp &nbsp &nbsp </Placeholder>
+              <Placeholder xs={12} className="image_placeholder" >&nbsp &nbsp &nbsp </Placeholder>
             </Placeholder>
             <Placeholder as={Card.Text} animation="glow">
-              <Placeholder xs={2} /> 
-              <Placeholder xs={2} /> <Placeholder xs={8} />
+              <Placeholder xs={3} /> <br /><Placeholder xs={2} />
+            </Placeholder>
+          </Card.Body>
+        </Card>
+        <Card style={{ width: '18rem', border: "none" }}>
+          <Card.Body>
+            <Placeholder as={Card.Title} animation="glow">
+              <Placeholder xs={12} className="image_placeholder" >&nbsp &nbsp &nbsp </Placeholder>
+            </Placeholder>
+            <Placeholder as={Card.Text} animation="glow">
+              <Placeholder xs={3} /> <br /><Placeholder xs={2} />
+            </Placeholder>
+          </Card.Body>
+        </Card>
+        <Card style={{ width: '18rem', border: "none" }}>
+          <Card.Body>
+            <Placeholder as={Card.Title} animation="glow">
+              <Placeholder xs={12} className="image_placeholder" >&nbsp &nbsp &nbsp </Placeholder>
+            </Placeholder>
+            <Placeholder as={Card.Text} animation="glow">
+              <Placeholder xs={3} /> <br /><Placeholder xs={2} />
+            </Placeholder>
+          </Card.Body>
+        </Card>
+        <Card style={{ width: '18rem', border: "none" }}>
+          <Card.Body>
+            <Placeholder as={Card.Title} animation="glow">
+              <Placeholder xs={12} className="image_placeholder" >&nbsp &nbsp &nbsp </Placeholder>
+            </Placeholder>
+            <Placeholder as={Card.Text} animation="glow">
+              <Placeholder xs={3} /> <br /><Placeholder xs={2} />
+            </Placeholder>
+          </Card.Body>
+        </Card><Card style={{ width: '18rem', border: "none" }}>
+          <Card.Body>
+            <Placeholder as={Card.Title} animation="glow">
+              <Placeholder xs={12} className="image_placeholder" >&nbsp &nbsp &nbsp </Placeholder>
+            </Placeholder>
+            <Placeholder as={Card.Text} animation="glow">
+              <Placeholder xs={3} /> <br /><Placeholder xs={2} />
             </Placeholder>
           </Card.Body>
         </Card>
@@ -94,7 +137,8 @@ function WomenFashion() {
           </div>
           <div className="row" id="carousel-slide">
 
-            {/* {loader()} */}
+            {loading && loadingPlaceholder()}
+
             <Carousel
               infinite={true}
               partialVisible={true}

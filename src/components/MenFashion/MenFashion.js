@@ -7,6 +7,7 @@ import dressimg from "../../assets/images/dress.png";
 import sandalimg from "../../assets/images/sandal.png";
 import shoeimg from "../../assets/images/shoe.png";
 import { loadProductByCategoryApi } from "../../api/commonApi";
+import { Card, Placeholder } from "react-bootstrap";
 
 function MenFashion() {
   const responsive = {
@@ -30,16 +31,105 @@ function MenFashion() {
     },
   };
   const [menItems, setMenItems] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     loadWomenCategoryItems();
   }, []);
 
   const loadWomenCategoryItems = async () => {
+    setLoading(true);
     let data = await loadProductByCategoryApi("men", "shirts");
-
+    setLoading(false);
     setMenItems(data[0].data);
   };
+
+  const loadingPlaceholder = () => {
+    return (
+      <>
+        <Carousel
+          infinite={true}
+          partialVisible={true}
+          interval={3000}
+          touch={true}
+          arrows={false}
+          responsive={responsive}
+          renderButtonGroupOutside={true}
+          swipeable={true}
+          draggable={false}
+          autoPlay={true}
+          autoPlaySpeed={2000}
+        >
+          <Card style={{ width: "18rem", border: "none" }}>
+            <Card.Body>
+              <Placeholder as={Card.Title} animation="glow">
+                <Placeholder xs={12} className="image_placeholder">
+                  &nbsp &nbsp &nbsp{" "}
+                </Placeholder>
+              </Placeholder>
+              <Placeholder as={Card.Text} animation="glow">
+                <Placeholder xs={3} /> <br />
+                <Placeholder xs={2} />
+              </Placeholder>
+            </Card.Body>
+          </Card>
+          <Card style={{ width: "18rem", border: "none" }}>
+            <Card.Body>
+              <Placeholder as={Card.Title} animation="glow">
+                <Placeholder xs={12} className="image_placeholder">
+                  &nbsp &nbsp &nbsp{" "}
+                </Placeholder>
+              </Placeholder>
+              <Placeholder as={Card.Text} animation="glow">
+                <Placeholder xs={3} /> <br />
+                <Placeholder xs={2} />
+              </Placeholder>
+            </Card.Body>
+          </Card>
+          <Card style={{ width: "18rem", border: "none" }}>
+            <Card.Body>
+              <Placeholder as={Card.Title} animation="glow">
+                <Placeholder xs={12} className="image_placeholder">
+                  &nbsp &nbsp &nbsp{" "}
+                </Placeholder>
+              </Placeholder>
+              <Placeholder as={Card.Text} animation="glow">
+                <Placeholder xs={3} /> <br />
+                <Placeholder xs={2} />
+              </Placeholder>
+            </Card.Body>
+          </Card>
+          <Card style={{ width: "18rem", border: "none" }}>
+            <Card.Body>
+              <Placeholder as={Card.Title} animation="glow">
+                <Placeholder xs={12} className="image_placeholder">
+                  &nbsp &nbsp &nbsp{" "}
+                </Placeholder>
+              </Placeholder>
+              <Placeholder as={Card.Text} animation="glow">
+                <Placeholder xs={3} /> <br />
+                <Placeholder xs={2} />
+              </Placeholder>
+            </Card.Body>
+          </Card>
+          <Card style={{ width: "18rem", border: "none" }}>
+            <Card.Body>
+              <Placeholder as={Card.Title} animation="glow">
+                <Placeholder xs={12} className="image_placeholder">
+                  &nbsp &nbsp &nbsp{" "}
+                </Placeholder>
+              </Placeholder>
+              <Placeholder as={Card.Text} animation="glow">
+                <Placeholder xs={3} /> <br />
+                <Placeholder xs={2} />
+              </Placeholder>
+            </Card.Body>
+          </Card>
+        </Carousel>
+      </>
+    );
+  };
+
   return (
     <section className="men-fashion py-5">
       <div className="bg-light-blue"></div>
@@ -47,9 +137,12 @@ function MenFashion() {
         <div className="row">
           <div className="d-flex justify-content-between">
             <h5 className="fw-bold">Men</h5>
-            <p className="fw-bold"><u>View All</u></p>
+            <p className="fw-bold">
+              <u>View All</u>
+            </p>
           </div>
           <div className="row" id="carousel-slide">
+            {loading && loadingPlaceholder()}
             <Carousel
               partialVisible={true}
               interval={3000}

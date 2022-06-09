@@ -1,8 +1,8 @@
 import "./App.css";
-import React from "react";
-import Home from "./pages/Home";
-import ProductCart from "./pages/ProductCart";
+import React, { Suspense } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+const Home = React.lazy(() => import("./pages/Home"));
+const ProductCart = React.lazy(() => import("./pages/ProductCart"));
 
 class App extends React.Component {
   render() {

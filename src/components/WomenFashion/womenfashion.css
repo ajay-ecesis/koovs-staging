@@ -34,3 +34,9 @@
 .react-multi-carousel-list{
     padding-left: 0;
 } 
+
+
+.image_placeholder{
+    height: 15rem;
+    width: 15rem;
+}

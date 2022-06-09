@@ -4,16 +4,23 @@ import { Link } from "react-router-dom";
 import koovslogo from "../../assets/images/KoovsLogo.png";
 import koovsicon from "../../assets/images/Icon.png";
 import { loadHeaderCategory } from "../../api/commonApi";
+import { Card, Placeholder } from "react-bootstrap";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 function Header() {
   const [menu, setMenu] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     loadHeaderItems();
   }, []);
+
   const loadHeaderItems = async () => {
+    setLoading(true);
     let data = await loadHeaderCategory();
-    console.log("final data", data);
     setMenu(data);
+    setLoading(false);
   };
 
   const toggleMainMenus = (e) => {
@@ -25,6 +32,36 @@ function Header() {
 
   const toggleSubClass = (e) => {
     e.target.classList.toggle("open-sub");
+  };
+
+  const loadingPlaceholder = () => {
+    let temp = [1, 2, 3, 4, 5];
+    return (
+      <>
+        {temp.map((count) => {
+          return (
+            <>
+              <li className="main-menu">
+                <ul className="nav-menu">
+                  <li
+                    className="nav-main-menu w-100"
+                    onClick={(e) => this.toggleMainMenus(e)}
+                  >
+                    {" "}
+                    <Skeleton count={10} />
+                    <ul>
+                      <li>
+                        <Card style={{ width: "14rem", border: "none" }}></Card>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </>
+          );
+        })}
+      </>
+    );
   };
 
   return (
@@ -40,8 +77,10 @@ function Header() {
               SEARCH
             </button>
           </li>
+          {loading && loadingPlaceholder()}
 
-          {menu?.length > 0 &&
+          {
+            menu?.length > 0 &&
             menu.map((mainMenu) => {
               return (
                 <>
@@ -53,7 +92,6 @@ function Header() {
                       >
                         {mainMenu.title}
                         <ul>
-                          
                           {mainMenu?.children.length > 0 &&
                             mainMenu.children.map((subMenu) => {
                               return (
@@ -65,7 +103,7 @@ function Header() {
                                         className="nav-sub-menu"
                                         onClick={(e) => toggleSubClass(e)}
                                       >
-                                      {subMenu.title}
+                                        {subMenu.title}
                                         <ul>
                                           {subMenu?.children?.length > 0 &&
                                             subMenu.children.map(
@@ -96,83 +134,19 @@ function Header() {
                                           className="nav-link"
                                           to="/view-all"
                                         >
-                                          {subMenu.title=="NEW ARRIVALS:FOOTWEAR & ACCESSORIES"?<>NEW ARRIVAL:FOOTWEAR</>:<>{subMenu.title}</>}
-                                          
+                                          {subMenu.title ==
+                                          "NEW ARRIVALS:FOOTWEAR & ACCESSORIES" ? (
+                                            <>NEW ARRIVAL:FOOTWEAR</>
+                                          ) : (
+                                            <>{subMenu.title}</>
+                                          )}
                                         </Link>
                                       </li>
                                     </>
                                   )}
-
-                                  {/* <li
-                                    className="nav-sub-menu"
-                                    onClick={(e) => toggleSubClass(e)}
-                                  >
-                                    Clothing
-                                    <ul>
-                                      <li>
-                                        <Link className="nav-link" to="/">
-                                          All clothingww{" "}
-                                        </Link>
-                                      </li>
-                                      <li>
-                                        <Link className="nav-link" to="/">
-                                          T-shirts, Tops, Shirts{" "}
-                                        </Link>
-                                      </li>
-                                      <li>
-                                        <Link className="nav-link" to="/">
-                                          Sweatshirts
-                                        </Link>
-                                      </li>
-                                      <li>
-                                        <Link className="nav-link" to="/">
-                                          Dresses, Skirts
-                                        </Link>
-                                      </li>
-                                      <li>
-                                        <Link className="nav-link" to="/">
-                                          Knitwear
-                                        </Link>
-                                      </li>
-                                      <li>
-                                        <Link className="nav-link" to="/">
-                                          Coats, Jackets{" "}
-                                        </Link>
-                                      </li>
-                                      <li>
-                                        <Link className="nav-link" to="/">
-                                          Trousers, Jeans, Shorts
-                                        </Link>{" "}
-                                      </li>
-                                      <li>
-                                        <Link className="nav-link" to="/">
-                                          Underwear, Swimwear, Activewear
-                                        </Link>
-                                      </li>
-                                    </ul>
-                                  </li> */}
                                 </>
                               );
                             })}
-
-                          {/* <li>
-                            {" "}
-                            <Link className="nav-link" to="/new-arrivals">
-                              New arrivals
-                            </Link>
-                          </li>
-                         
-                          <li>
-                            <Link className="nav-link" to="/">
-                              Footwear
-                            </Link>
-                          </li>
-                          <li>
-                            {" "}
-                            <Link className="nav-link" to="/">
-                              Accessories
-                            </Link>
-                          </li> */}
                         </ul>
                       </li>
                     </ul>
@@ -180,186 +154,6 @@ function Header() {
                 </>
               );
             })}
-
-          {/* <li className="main-menu">
-            <ul className="nav-menu">
-              <li className="nav-main-menu" onClick={(e) => toggleMainMenus(e)}>
-                Women
-                <ul>
-                  <li>
-                    {" "}
-                    <Link className="nav-link" to="/view-all">
-                      View all
-                    </Link>
-                  </li>
-                  <li>
-                    {" "}
-                    <Link className="nav-link" to="/new-arrivals">
-                      New arrivals
-                    </Link>
-                  </li>
-                  <li
-                    className="nav-sub-menu"
-                    onClick={(e) => toggleSubClass(e)}
-                  >
-                    Clothing
-                    <ul>
-                      <li>
-                        <Link className="nav-link" to="/">
-                          All clothing{" "}
-                        </Link>
-                      </li>
-                      <li>
-                        <Link className="nav-link" to="/">
-                          T-shirts, Tops, Shirts{" "}
-                        </Link>
-                      </li>
-                      <li>
-                        <Link className="nav-link" to="/">
-                          Sweatshirts
-                        </Link>
-                      </li>
-                      <li>
-                        <Link className="nav-link" to="/">
-                          Dresses, Skirts
-                        </Link>
-                      </li>
-                      <li>
-                        <Link className="nav-link" to="/">
-                          Knitwear
-                        </Link>
-                      </li>
-                      <li>
-                        <Link className="nav-link" to="/">
-                          Coats, Jackets{" "}
-                        </Link>
-                      </li>
-                      <li>
-                        <Link className="nav-link" to="/">
-                          Trousers, Jeans, Shorts
-                        </Link>{" "}
-                      </li>
-                      <li>
-                        <Link className="nav-link" to="/">
-                          Underwear, Swimwear, Activewear
-                        </Link>
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    <Link className="nav-link" to="/">
-                      Footwear
-                    </Link>
-                  </li>
-                  <li>
-                    {" "}
-                    <Link className="nav-link" to="/">
-                      Accessories
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li className="main-menu">
-            <ul className="nav-menu">
-              <li className="nav-main-menu" onClick={(e) => toggleMainMenus(e)}>
-                Pre Loved
-                <ul>
-                  <li>
-                    {" "}
-                    <Link className="nav-link" to="/view-all">
-                      View all
-                    </Link>
-                  </li>
-                  <li>
-                    {" "}
-                    <Link className="nav-link" to="/new-arrivals">
-                      New arrivals
-                    </Link>
-                  </li>
-                  <li
-                    className="nav-sub-menu"
-                    onClick={(e) => toggleSubClass(e)}
-                  >
-                    Clothing
-                    <ul>
-                      <li>
-                        <Link className="nav-link" to="/">
-                          All clothing{" "}
-                        </Link>
-                      </li>
-                      <li>
-                        <Link className="nav-link" to="/">
-                          T-shirts, Tops, Shirts{" "}
-                        </Link>
-                      </li>
-                      <li>
-                        <Link className="nav-link" to="/">
-                          Sweatshirts
-                        </Link>
-                      </li>
-                      <li>
-                        <Link className="nav-link" to="/">
-                          Dresses, Skirts
-                        </Link>
-                      </li>
-                      <li>
-                        <Link className="nav-link" to="/">
-                          Knitwear
-                        </Link>
-                      </li>
-                      <li>
-                        <Link className="nav-link" to="/">
-                          Coats, Jackets{" "}
-                        </Link>
-                      </li>
-                      <li>
-                        <Link className="nav-link" to="/">
-                          Trousers, Jeans, Shorts
-                        </Link>{" "}
-                      </li>
-                      <li>
-                        <Link className="nav-link" to="/">
-                          Underwear, Swimwear, Activewear
-                        </Link>
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    <Link className="nav-link" to="/">
-                      Footwear
-                    </Link>
-                  </li>
-                  <li>
-                    {" "}
-                    <Link className="nav-link" to="/">
-                      Accessories
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li className="main-menu">
-            <ul>
-              <li>
-                <Link className="nav-link" to="/">
-                  Live shopping
-                </Link>
-              </li>
-              <li>
-                <Link className="nav-link" to="/">
-                  Influencer collaborations
-                </Link>
-              </li>
-              <li>
-                <Link className="nav-link" to="/">
-                  Mid season sale
-                </Link>
-              </li>
-            </ul>
-          </li> */}
           <li className="main-menu">
             <ul>
               <li>
@@ -388,7 +182,9 @@ function Header() {
           </li>
         </ul>
         <div className="nav-brand">
-        <Link to="/"><img src={koovslogo} alt="Koovs Logo"/></Link>
+          <Link to="/">
+            <img src={koovslogo} alt="Koovs Logo" />
+          </Link>
         </div>
         <div className="d-flex align-items-center gap-4">
           <img
