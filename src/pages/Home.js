@@ -11,27 +11,26 @@ import SocialMedia from '../components/SocialMedia/SocialMedia';
 import Footer from '../components/Footer/Footer';
 
 class Home extends React.Component {
-  render()
-  {
+  render() {
 
-    
-  return (
-    <div className="Home">
-      
-      <Header/>
-      <MobileStart/>
-      <HomeBanner/>
-      <BrandItems/>
-      <WomenFashion/>
-      <MenFashion/>
-      <TopBrands/>
-      <Stories/>
-      <SocialMedia/>
-      <Footer/>
-    
-    </div>
-  );
- }
+
+    return (
+      <div className="Home">
+
+        <Header />
+        <MobileStart />
+        <HomeBanner />
+        <BrandItems />
+        <WomenFashion />
+        <MenFashion />
+        <TopBrands />
+        <Stories />
+        <SocialMedia />
+        <Footer />
+
+      </div>
+    );
+  }
 }
 
 export default Home;

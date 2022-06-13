@@ -64,7 +64,6 @@
 .toast-header{
     height:80px;
 }
-
 .carousel-indicators .active {
     opacity: 1;
     background-color: #000;
@@ -72,4 +71,8 @@
 .carousel-indicators [data-bs-target] {
     border-top:0 solid transparent;
     border-bottom: 0 solid transparent;
-} 
+}
+.category-carousel .Men{
+    text-decoration: none;
+    color:#000;
+}

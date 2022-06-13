@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import koovslogo from "../../assets/images/KoovsLogo.png";
 import koovsicon from "../../assets/images/Icon.png";
 import { loadHeaderCategory } from "../../api/commonApi";
-import { Card, Placeholder } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
@@ -68,7 +68,7 @@ function Header() {
     <header>
       <div className="top-nav">
         <input id="menu-toggle" type="checkbox" />
-        <label className="menu-button-container" for="menu-toggle">
+        <label className="menu-button-container" htmlFor="menu-toggle">
           <div className="menu-button"></div>
         </label>
         <ul className="menu">
@@ -134,7 +134,7 @@ function Header() {
                                           className="nav-link"
                                           to="/view-all"
                                         >
-                                          {subMenu.title ==
+                                          {subMenu.title ===
                                           "NEW ARRIVALS:FOOTWEAR & ACCESSORIES" ? (
                                             <>NEW ARRIVAL:FOOTWEAR</>
                                           ) : (

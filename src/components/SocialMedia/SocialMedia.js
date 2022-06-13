@@ -2,8 +2,6 @@ import React from "react";
 import './socialmedia.css';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import storiesimg from '../../assets/images/Screenshot.png';
-import sneakersimg from '../../assets/images/sneakers.png';
 import videolink from '../../assets/images/video.mp4';
 import videoimage from '../../assets/images/thumbnail.png';
 import dmgvideoicon from '../../assets/images/playbutton.png';
@@ -83,25 +81,25 @@ class SocialMedia extends React.Component {
                                 <h5>28/04</h5>   
                                 <h5>Ira Voo</h5> 
                                 <span className="flex-grow-1 border-bottom"></span>
-                                <p><u>sign up</u></p>
+                                <p><a><u>sign up</u></a></p>
                             </div>
                             <div className="d-flex gap-4 align-items-center">
                                 <h5>03/05</h5>   
                                 <h5>MBW x KOOVS </h5> 
                                 <span className="flex-grow-1 border-bottom"></span>
-                                <p><u>sign up</u></p>
+                                <p><a><u>sign up</u></a></p>
                             </div>
                             <div className="d-flex gap-4 align-items-center">
                                 <h5>09/05</h5>   
                                 <h5>Caro Reinholdt </h5> 
                                 <span className="flex-grow-1 border-bottom"></span>
-                                <p><u>sign up</u></p>
+                                <p><a><u>sign up</u></a></p>
                             </div>
                             <div className="d-flex gap-4 align-items-center">
                                 <h5>22/05</h5>   
                                 <h5>Christopher </h5> 
                                 <span className="flex-grow-1 border-bottom"></span>
-                                <p><u>sign up</u></p>
+                                <p><a><u>sign up</u></a></p>
                             </div>
                         </div>
                         <div className="future-collaboration d-block d-lg-none pb-5">
@@ -114,28 +112,28 @@ class SocialMedia extends React.Component {
                                         <div className="img-content">
                                             <div className="green-card"><p>MBW x KOOVS </p> </div>
                                             <p>03/05</p> 
-                                            <p><u>sign up</u></p>
+                                            <p><a><u>sign up</u></a></p>
                                         </div>
                                     </div>
                                     <div className="cards overflow-hidden">
                                         <div className="img-content">
                                             <div className="green-card"><p>MBW x KOOVS </p> </div>
                                             <p>03/05</p> 
-                                            <p><u>sign up</u></p>
+                                            <p><a><u>sign up</u></a></p>
                                         </div>
                                     </div>
                                     <div className="cards overflow-hidden">
                                         <div className="img-content">
                                             <div className="green-card"><p>MBW x KOOVS </p> </div>
                                             <p>03/05</p> 
-                                            <p><u>sign up</u></p>
+                                            <p><a><u>sign up</u></a></p>
                                         </div>
                                     </div>
                                     <div className="cards overflow-hidden">
                                         <div className="img-content">
                                             <div className="green-card"><p>MBW x KOOVS </p> </div>
                                             <p>03/05</p> 
-                                            <p><u>sign up</u></p>
+                                            <p><a><u>sign up</u></a></p>
                                         </div>
                                     </div>
                                 </Carousel>
@@ -164,9 +162,9 @@ class SocialMedia extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 col-lg-6">
+                    <div className="insta-koovs col-12 col-lg-6">
                         <h5><b>KOOVS on Instagram </b></h5> <br/>
-                        <div className="row g-2">
+                        <div className="row g-1">
                             <div className="col-4 col-lg-4">
                                 <img src={insta1} className="img-fluid" alt="instagram photo"/>
                             </div>
@@ -180,7 +178,7 @@ class SocialMedia extends React.Component {
                                 <img src={insta4} className="img-fluid" alt="instagram photo"/>
                             </div>
                             <div className="col-4 col-lg-4 d-flex align-items-center">
-                                <p className="p-3 fs-30 fw-bold">Tag @Koovs + #KOOVS on IG for a chance to be featured.
+                                <p className="grid-text p-3  fw-bold mt-5">Tag @Koovs + #KOOVS on IG for a chance to be featured.
 
                                 </p>
                             </div>

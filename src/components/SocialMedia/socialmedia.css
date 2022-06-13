@@ -45,3 +45,8 @@
     margin-bottom: 0;
     font-size: 14px;
 }
+
+.react-multi-carousel-list{
+    position:relative !important;
+    left:-21px !important;
+}

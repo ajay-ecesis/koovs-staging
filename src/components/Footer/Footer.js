@@ -20,11 +20,11 @@ class Footer extends React.Component {
                                     <p>Account</p>  
                                 </div>
                                 <ul>
-                                    <li><a href="#">Orders and Returns</a></li>
-                                    <li><a href="#">My Information </a></li>
-                                    <li><a href="#">Wishlist </a></li>
-                                    <li><a href="#">Sign In</a></li>
-                                    <li><a href="#">Register</a></li>                                    
+                                    <li><a href="/#">Orders and Returns</a></li>
+                                    <li><a href="/#">My Information </a></li>
+                                    <li><a href="/#">Wishlist </a></li>
+                                    <li><a href="/#">Sign In</a></li>
+                                    <li><a href="/#">Register</a></li>                                    
                                 </ul>
                             </div>
                         </div>
@@ -34,14 +34,14 @@ class Footer extends React.Component {
                                     <p>Online support</p>  
                                 </div>
                                 <ul>
-                                    <li><a href="#">Contact </a></li>
-                                    <li><a href="#">Size Guide </a></li>
-                                    <li><a href="#">FAQs </a></li>
-                                    <li><a href="#">Shipping and Return </a></li>
-                                    <li><a href="#">Gift Card </a></li>     
-                                    <li><a href="#">Privacy Policy  </a></li>
-                                    <li><a href="#">Terms and Conditions </a></li>
-                                    <li><a href="#">Cookie Settings </a></li>                                 
+                                    <li><a href="/#">Contact </a></li>
+                                    <li><a href="/#">Size Guide </a></li>
+                                    <li><a href="/#">FAQs </a></li>
+                                    <li><a href="/#">Shipping and Return </a></li>
+                                    <li><a href="/#">Gift Card </a></li>     
+                                    <li><a href="/#">Privacy Policy  </a></li>
+                                    <li><a href="/#">Terms and Conditions </a></li>
+                                    <li><a href="/#">Cookie Settings </a></li>                                 
                                 </ul>
                             </div>
                         </div>
@@ -51,9 +51,9 @@ class Footer extends React.Component {
                                     <p>KOOVS</p>  
                                 </div>
                                 <ul>
-                                    <li><a href="#">About</a></li>
-                                    <li><a href="#">Careers </a></li>
-                                    <li><a href="#">Sustainability </a></li>                                   
+                                    <li><a href="/#">About</a></li>
+                                    <li><a href="/#">Careers </a></li>
+                                    <li><a href="/#">Sustainability </a></li>                                   
                                 </ul>
                             </div>
                         </div>
@@ -64,17 +64,17 @@ class Footer extends React.Component {
                                 </div>
                                 <div className="form-floating">
                                     <input type="password" className="form-control" id="floatingPassword" placeholder="Password" />
-                                    <label for="floatingPassword">Password</label>
+                                    <label htmlFor ="floatingPassword">Password</label>
                                 </div>
                             </div>
                             <div className="footer-widget d-block d-lg-none">
                                 <div className="footer-widget-heading d-flex justify-content-between align-items-center">
                                     <p className="mb-0">CONNECT WITH KOOVS</p> 
                                     <div className="d-flex gap-3 justify-content-center">
-                                        <img src={fbimg} className="img-fluid" alt="Koovs fb image"/>
-                                        <img src={instaimg} className="img-fluid" alt="Koovs instagram image"/>
-                                        <img src={twitterimg} className="img-fluid" alt="Koovs twitter image"/>
-                                        <img src={youtubeimg} className="img-fluid" alt="Koovs youtube image"/>
+                                        <img src={fbimg} className="img-fluid" alt="Koovs fb "/>
+                                        <img src={instaimg} className="img-fluid" alt="Koovs instagram "/>
+                                        <img src={twitterimg} className="img-fluid" alt="Koovs twitter "/>
+                                        <img src={youtubeimg} className="img-fluid" alt="Koovs youtube "/>
                                     </div> 
                                 </div>
                             </div>
@@ -87,14 +87,14 @@ class Footer extends React.Component {
                         </div>
                         <div className="col-xl-4 col-lg-4 col-md-12 order-lg-1">
                             <div className="d-none d-lg-flex gap-3 justify-content-center">
-                                <img src={fbimg} className="img-fluid" alt="Koovs fb image"/>
-                                <img src={instaimg} className="img-fluid" alt="Koovs instagram image"/>
-                                <img src={twitterimg} className="img-fluid" alt="Koovs twitter image"/>
-                                <img src={youtubeimg} className="img-fluid" alt="Koovs youtube image"/>
+                                <img src={fbimg} className="img-fluid" alt="Koovs fb "/>
+                                <img src={instaimg} className="img-fluid" alt="Koovs instagram "/>
+                                <img src={twitterimg} className="img-fluid" alt="Koovs twitter "/>
+                                <img src={youtubeimg} className="img-fluid" alt="Koovs youtube "/>
                             </div>
                         </div>
                         <div className="col-xl-4 col-lg-4 col-md-12 order-0 order-lg-2">
-                            <img src={cardsimg} className="img-fluid" alt="Koovs cards image"/>
+                            <img src={cardsimg} className="img-fluid" alt="Koovs cards "/>
                         </div>
                     </div>
                 </div>

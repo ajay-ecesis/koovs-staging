@@ -2,12 +2,9 @@ import React, { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import "./menfashion.css";
-import headbandimg from "../../assets/images/headband.png";
-import dressimg from "../../assets/images/dress.png";
-import sandalimg from "../../assets/images/sandal.png";
-import shoeimg from "../../assets/images/shoe.png";
 import { loadProductByCategoryApi } from "../../api/commonApi";
 import { Card, Placeholder } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 function MenFashion() {
   const responsive = {
@@ -32,6 +29,7 @@ function MenFashion() {
   };
   const [menItems, setMenItems] = useState([]);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     loadWomenCategoryItems();
@@ -40,8 +38,15 @@ function MenFashion() {
   const loadWomenCategoryItems = async () => {
     setLoading(true);
     let data = await loadProductByCategoryApi("men", "shirts");
-    setLoading(false);
     setMenItems(data[0].data);
+    setLoading(false);
+  };
+
+  //navigates to product detail page by making url friendly
+  const goToProductDetailPage = (title, id, lineId) => {
+    let slug = title.replace(/\s+/g, "-").toLowerCase();
+    console.log(slug); // "sonic-free-games"
+    navigate(`/product/${slug}/${id}/${lineId}`);
   };
 
   const loadingPlaceholder = () => {
@@ -138,7 +143,7 @@ function MenFashion() {
           <div className="d-flex justify-content-between">
             <h5 className="fw-bold">Men</h5>
             <p className="fw-bold">
-              <u>View All</u>
+            <a>  <u>View All</u></a>
             </p>
           </div>
           <div className="row" id="carousel-slide">
@@ -160,17 +165,26 @@ function MenFashion() {
                 menItems.map((item) => {
                   return (
                     <>
-                      <div className="cards overflow-hidden">
+                      <div
+                        className="cards overflow-hidden"
+                        onClick={() =>
+                          goToProductDetailPage(
+                            item.productName,
+                            item.id,
+                            item.lineId
+                          )
+                        }
+                      >
                         <div className="bg-grey">
                           <img
                             src={item.imageSmallUrl}
                             className="img-fluid"
-                            alt="Koovs product Front image"
+                            alt="Koovs product Front "
                           />
                           <img
                             src={item.imageSmallUrl}
                             className="img-fluid rear-img"
-                            alt="Koovs rear product image"
+                            alt="Koovs rear product "
                           />
                           <p className="fw-bold">{item.productName}</p>
                           <p>{item.brandName}</p>

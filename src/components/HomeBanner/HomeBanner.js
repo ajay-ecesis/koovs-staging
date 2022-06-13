@@ -21,7 +21,7 @@ function HomeBanner() {
                   <img
                     src={bannerimg}
                     className="w-100 img-fluid"
-                    alt="DMG banner Image"
+                    alt="DMG banner "
                   />
                 </div>
               </Carousel.Item>
@@ -29,7 +29,7 @@ function HomeBanner() {
                 <div className="banner-Image">
                   <img
                     src={storiesimg}
-                    alt="DMG banner Image"
+                    alt="DMG banner "
                     className="w-100 img-fluid"
                   />
                 </div>
@@ -38,7 +38,7 @@ function HomeBanner() {
                 <div className="banner-Image">
                   <img
                     src={bannerimg}
-                    alt="DMG banner Image"
+                    alt="DMG banner"
                     className="w-100 img-fluid"
                   />
                 </div>
@@ -69,8 +69,8 @@ function HomeBanner() {
             </div>
           </div>
         </div>
-        <div class="toast show" id="cookieBanner">
-          <div class="toast-header d-inline-block d-lg-flex align-items-center justify-content-between gap-3">
+        <div className="toast show" id="cookieBanner">
+          <div className="toast-header d-inline-block d-lg-flex align-items-center justify-content-between gap-3">
             <div className="text-dark flex-grow-1">
               We use cookies to ensure that we give you the best expereince on
               our website. If you continue, we will assume that you agree with
@@ -94,7 +94,7 @@ function HomeBanner() {
             </button>
             <button
               type="button"
-              class="btn-close"
+              className="btn-close"
               data-bs-dismiss="toast"
               onClick={hideCookieBanner}
             ></button>
