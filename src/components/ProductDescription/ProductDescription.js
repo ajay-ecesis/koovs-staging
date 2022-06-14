@@ -14,25 +14,17 @@ const ProductDescription = ({ productData }) => {
   const [productDetail, setProductDetail] = useState(null)
 
   useEffect(() => {
-    if (productData) 
-    setProductDetail(productData[0]?.data[0])
+    if (productData) setProductDetail(productData[0]?.data[0])
     console.log('data from props', productData[0]?.data[0])
     setLoading(false)
   }, [productData])
 
-  const loadingPlaceholder=()=>{
-
-    return(<>
-    
-    
-    
-    
-    
-    </>)
+  const loadingPlaceholder = () => {
+    return <></>
   }
   return (
     <section className='product-detail'>
-      {productDetail!=null && !loading ? (
+      {productDetail != null && !loading ? (
         <>
           <div className='container-fluid px-0 b-bottom'>
             <div className='row mt-3'>
@@ -175,14 +167,13 @@ const ProductDescription = ({ productData }) => {
                           __html: productDetail.product.productDescription
                         }}
                       />
-                    
                     </div>
                     <div className='product-spec-mobile'>
                       <h5 className='pt-lg-3'>SIZE AND FIT</h5>
-                      <ul>
-                        <li>{productDetail.product.styletipSizeFit} </li>
-                    
-                      </ul>
+
+                      {/* <div dangerouslySetInnerHTML={{
+                          __html: productDetail.product.styletipSizeFit
+                        }}> </div> */}
                     </div>
                     <h6 className='pt-4'>
                       <u>FIND YOUR SIZE</u>
