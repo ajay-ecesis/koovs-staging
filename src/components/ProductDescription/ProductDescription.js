@@ -1,13 +1,10 @@
-import React, { Component, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Slider from 'react-slick'
 import './productdescription.css'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
 
 const ProductDescription = ({ productData }) => {
-  const [state, setState] = useState({
-    nav1: null,
-    nav2: null
-  })
+
   const [nav1, setNav1] = useState()
   const [nav2, setNav2] = useState()
   const [loading, setLoading] = useState(true)
@@ -19,9 +16,6 @@ const ProductDescription = ({ productData }) => {
     setLoading(false)
   }, [productData])
 
-  const loadingPlaceholder = () => {
-    return <></>
-  }
   return (
     <section className='product-detail'>
       {productDetail != null && !loading ? (
@@ -64,7 +58,7 @@ const ProductDescription = ({ productData }) => {
                             <img
                               src={img}
                               className='img-fluid w-100 '
-                              alt='Koovs imagettt'
+                              alt='Koovs'
                             />
                           </div>
                         </>
@@ -88,7 +82,7 @@ const ProductDescription = ({ productData }) => {
                             <img
                               src={img}
                               className='img-fluid'
-                              alt='Koovs image'
+                              alt='Koovs '
                             />
                           </div>
                         </>

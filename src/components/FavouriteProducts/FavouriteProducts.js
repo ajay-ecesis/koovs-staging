@@ -50,7 +50,7 @@ export const FavouriteProducts = ({ skuId }) => {
   }
   return (
     <section className='favourite-products py-lg-5'>
-      {similiarProducts.length!=0 && (
+      {similiarProducts.length!==0 && (
         <>
           <div className='container-fluid'>
             <div className='row pb-4 pb-lg-0'>
@@ -75,7 +75,7 @@ export const FavouriteProducts = ({ skuId }) => {
                             <img
                               src={data.imageSmallUrl}
                               className='img-fluid proimage'
-                              alt='Koovs image'
+                              alt='Koovs '
                             />
                           </div>
                           <div className='d-flex flex-column justify-content-between'>
@@ -91,7 +91,7 @@ export const FavouriteProducts = ({ skuId }) => {
                             >
                               <p className='mb-0'>{data.brandName}</p>
                               <p className='mb-0'>{data.productName}</p>
-                              <div>₹ {data.price}</div>
+                              <div>₹ {data.discountPrice}</div>
                             </div>
                             <div>
                               <div className='preview-color pb-0 pb-lg-2'>
@@ -120,7 +120,7 @@ export const FavouriteProducts = ({ skuId }) => {
                                 <img
                                   src={shopimg}
                                   className='img-fluid '
-                                  alt='Koovs image'
+                                  alt='Koovs '
                                 />
                               </div>
                             </div>
@@ -143,7 +143,7 @@ export const FavouriteProducts = ({ skuId }) => {
                             <img
                               src={data.imageSmallUrl}
                               className='img-fluid proimage'
-                              alt='Koovs image'
+                              alt='Koovs '
                               onClick={() =>
                                 goToProductDetailPage(
                                   data.productName,
@@ -166,7 +166,7 @@ export const FavouriteProducts = ({ skuId }) => {
                                 <img
                                   src={shopimg}
                                   className='img-fluid m-2'
-                                  alt='Koovs image'
+                                  alt='Koovs '
                                 />
                                 <div className='preview-color'>
                                   {data.mainColor.map(color => {
@@ -203,7 +203,7 @@ export const FavouriteProducts = ({ skuId }) => {
                                 {data.productName}
                               </p>
                             </div>
-                            <div>₹ {data.price}</div>
+                            <div>₹ {data.discountPrice}</div>
                           </div>
                         </div>
                       </>
@@ -241,13 +241,12 @@ export const FavouriteProducts = ({ skuId }) => {
                               <img
                                 src={data.imageSmallUrl}
                                 className='img-fluid proimage mob-prodImage'
-                                alt='Koovs image'
+                                alt='Koovs '
                               />
                               <img
                                 src={headbandimg}
                                 className='img-fluid '
-                                alt='Koovs rear product image'
-                                className='rear-img'
+                                alt='Koovs rear product '
                               />
                               <p className='fw-bold'>{data.brandName}</p>
                               <p className='mb-0'>{data.productName}</p>

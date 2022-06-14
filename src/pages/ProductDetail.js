@@ -5,7 +5,6 @@ import FavouriteProducts from '../components/FavouriteProducts/FavouriteProducts
 import Footer from '../components/Footer/Footer'
 import { loadSingleProduct } from '../api/commonApi'
 import { useParams } from 'react-router-dom'
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 const ProductDetail = () => {
