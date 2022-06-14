@@ -197,13 +197,13 @@ export const FavouriteProducts = ({ skuId }) => {
                           >
                             <div className='flex-grow-1'>
                               <p className='mb-0'>
-                                {similiarProducts[2].brandName}
+                                {data.brandName}
                               </p>
                               <p className='mb-0'>
-                                {similiarProducts[2].productName}
+                                {data.productName}
                               </p>
                             </div>
-                            <div>₹ {similiarProducts[2].price}</div>
+                            <div>₹ {data.price}</div>
                           </div>
                         </div>
                       </>
