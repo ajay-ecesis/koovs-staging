@@ -1,0 +1,52 @@
+.orders-section h4{
+    font-size: 18px !important;
+    font-weight: 500;
+}
+.order-tabs span{
+  opacity: 0.7;
+}
+.orders-section .order-tabs span.active{
+    font-weight: 600;
+    opacity: 1 !important;
+}
+.nav > li{
+    padding-left:30px;
+    padding-right:30px;
+}
+
+.order-tabs .nav_item{
+
+    padding-left: 25%;
+
+}
+.orders-section .order-content{
+    border: 1px solid;
+}
+.orders-section .order-items{
+    padding: 30px;
+    border: none solid;
+    background-color: '#E8E8E8';
+    background: #E8E8E8;
+
+}
+.orders-section .order-shipping{
+    padding: 30px;
+    border: none solid;
+    background-color: '#E8E8E8';
+
+}
+.product-decription .price{
+margin-left: auto;
+}
+
+.order-status-view{
+padding: 6px;
+border: 1.4px solid;
+}
+.amount-tab .address{
+    margin-bottom: 0;
+}
+
+.orders-section .order-box{
+    padding: 13px;
+}
