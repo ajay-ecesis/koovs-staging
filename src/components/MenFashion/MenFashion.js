@@ -37,7 +37,8 @@ function MenFashion() {
 
   const loadWomenCategoryItems = async () => {
     setLoading(true);
-    let data = await loadProductByCategoryApi("men", "shirts");
+    let size=5,sort="relevence",page=0
+    let data = await loadProductByCategoryApi("men","shirts",size,sort,page);
     setMenItems(data[0].data);
     setLoading(false);
   };

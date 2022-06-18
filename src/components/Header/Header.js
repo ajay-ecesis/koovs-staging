@@ -79,8 +79,7 @@ function Header() {
           </li>
           {loading && loadingPlaceholder()}
 
-          {
-            menu?.length > 0 &&
+          {menu?.length > 0 &&
             menu.map((mainMenu) => {
               return (
                 <>

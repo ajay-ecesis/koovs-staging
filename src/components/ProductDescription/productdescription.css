@@ -37,9 +37,7 @@ a{
   filter: opacity(.4);    
 }
 
-.ImageDesc .blue{
-  background: #7CCCD1;
-}
+
 
 .ImageDesc .blue:checked{
   border: 2px solid #000;
@@ -82,4 +80,9 @@ a{
 }
 .productSpec > h2{
 font-size: 19px;
+}
+
+.product-detail .multiColor{
+  background-image: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet);
+
 }
