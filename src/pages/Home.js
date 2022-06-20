@@ -9,7 +9,7 @@ import TopBrands from "../components/TopBrands/TopBrands";
 import Stories from "../components/Stories/Stories";
 import SocialMedia from "../components/SocialMedia/SocialMedia";
 import Footer from "../components/Footer/Footer";
-import HomeFashion from "../components/HomeFashion.js/HomeFashion";
+import HomeFashion from "../components/HomeFashion/HomeFashion";
 
 class Home extends React.Component {
   render() {

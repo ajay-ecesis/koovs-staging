@@ -38,7 +38,16 @@ function WomenFashion() {
 
   const loadWomenCategoryItems = async () => {
     setLoading(true);
-    let data = await loadProductByCategoryApi("women", "tops");
+    let size = 5,
+      sort = "relevence",
+      page = 0;
+    let data = await loadProductByCategoryApi(
+      "women",
+      "tops",
+      size,
+      sort,
+      page
+    );
     setFashionItems(data[0].data);
     setLoading(false);
   };
@@ -144,7 +153,10 @@ function WomenFashion() {
           <div className="d-flex justify-content-between">
             <h5 className="fw-bold">Women</h5>
             <p className="fw-bold">
-              <a>  <u>View All</u></a>
+              <a>
+                {" "}
+                <u>View All</u>
+              </a>
             </p>
           </div>
           <div className="row" id="carousel-slide">
