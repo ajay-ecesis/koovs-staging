@@ -75,6 +75,29 @@ export const loadProductByCategoryApi = async (
   }
 };
 
+// load product based on tag
+export const loadProductsByTag = async (category, tag, size, sort, page) => {
+  const config = {
+    headers: {
+      "X-API-CLIENT": "WEB",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Credentials": true,
+      "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+    },
+  };
+
+  try {
+    let { data } = await axios.get(
+      `${clentServer}/search-service/v1/products/listing/complete?href=https://koovs.com/${category}/tags/${tag}&page-size=${size}&sort=${sort}relevance&page=${page}`,
+      config
+    );
+
+    return data?.data;
+  } catch (err) {
+    console.log("its an err", err);
+  }
+};
+
 // single product loading api
 export const loadSingleProduct = async (productId, lineId) => {
   const config = {

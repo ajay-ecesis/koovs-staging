@@ -1,4 +1,2 @@
-export {addToCart,removeItemFromCart} from './cart/cartAction'
-
-
+export {userData} from './user/userAction'
 

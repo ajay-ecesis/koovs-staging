@@ -2,18 +2,19 @@ import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "./productdescription.css";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
-import { addToCart } from "../../redux/rootActions";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductByBatchIdAPI } from "../../api/commonApi";
 import { Link } from "react-router-dom";
-const ProductDescription = ({ productData }) => {
+import { addToCartAPI } from "../../api/cart";
+
+const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
   const dispatch = useDispatch();
   const cartDetails = useSelector((state) => state.addToCart);
-
   const [nav1, setNav1] = useState();
   const [nav2, setNav2] = useState();
   const [loading, setLoading] = useState(true);
   const [productDetail, setProductDetail] = useState(null);
+  const [btnLoading, setBtnLoading] = useState(false);
 
   useEffect(() => {
     if (productData) console.log("data from props", productData);
@@ -24,17 +25,19 @@ const ProductDescription = ({ productData }) => {
 
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
+  const [addedToCart, setAddedToCart] = useState(false);
 
   // set the size of the selected product
   const selectSize = (id) => {
-    console.log("" + id);
+    setBtnLoading(true);
     setSelectedSize(id);
+    setAddedToCart(false);
+    setBtnLoading(false);
   };
 
   //  set the color of the selected product
   const selectColor = async (id) => {
     setLoading(true);
-    console.log("tesssss", id, "--", productDetail.mapping.data);
     let mapping = productDetail?.mapping?.data;
     setSelectedColor(id);
 
@@ -47,26 +50,59 @@ const ProductDescription = ({ productData }) => {
     console.log("this is the new updatedProductdata", data);
 
     setProductDetail(data[0]);
+    setAddedToCart(false);
+
     setLoading(false);
   };
 
   // add to cart functionality
 
-  const addProductToCart = (product) => {
+  const addProductToCart = async (product) => {
+    setBtnLoading(true);
     // checking if product has only one color then keeps the product's default color to selected
     if (!selectedColor) {
       setSelectedColor(productDetail.attributes?.colors[0].id);
     }
 
-    if (selectedSize) {
-      console.log("add to cart", product);
-      dispatch({
-        type: "ADD_TO_CART",
-        payload: product,
-      });
+    if (selectedSize && selectedColor) {
+      console.log("prdouct", productDetail);
+      console.log("selectedSize", selectedSize);
+      console.log("color", selectedColor);
+
+      // mapping the SKUID of product that corresponding to color and size id.
+      const result = await productDetail.mapping.data.filter(getSkuId);
+
+      function getSkuId(obj) {
+        return obj.colorId == selectedColor && obj.sizeId == selectedSize;
+      }
+      let skuId = result[0].skuId;
+      let prodDetails = await productDetail.quantity.data.filter(
+        getProudctBySkuId
+      );
+      function getProudctBySkuId(obj) {
+        return obj.skuId == skuId;
+      }
+      console.log("this is product details", prodDetails[0]);
+
+      prodDetails = {
+        product: prodDetails[0],
+        reCaptcha: reCaptcha,
+      };
+
+      // add to cart api
+      let data = await addToCartAPI(prodDetails);
+      if (data)
+        dispatch({
+          type: "ADD_TO_CART",
+          payload: 1,
+        }); // increase the cart count.
+      setAddedToCart(true);
     } else {
-      console.log("not items selected");
+      alert("Please select color and size of product");
     }
+
+    reLoadCaptchaKey();
+    setBtnLoading(false);
   };
 
   return (
@@ -189,7 +225,14 @@ const ProductDescription = ({ productData }) => {
 
                       <>
                         {productDetail.attributes?.colors.map((color) => {
-                          {console.log("colodr", productDetail?.product?.colorCode ,"ANDDD",color.code)}
+                          {
+                            console.log(
+                              "colodr",
+                              productDetail?.product?.colorCode,
+                              "ANDDD",
+                              color.code
+                            );
+                          }
                           return (
                             <>
                               <input
@@ -218,7 +261,9 @@ const ProductDescription = ({ productData }) => {
                           return (
                             <>
                               <li
-                                className={size.isOutOfStock && "no-stock"}
+                                className={`${
+                                  size.isOutOfStock && "no-stock"
+                                } ${selectedSize == size.id && "list-active"}`}
                                 onClick={() =>
                                   !size.isOutOfStock && selectSize(size.id)
                                 }
@@ -232,12 +277,31 @@ const ProductDescription = ({ productData }) => {
                     </div>
                   </div>
                   <br />
-                  <button
-                    className="btn w-100 btn-dark rounded-0"
-                    onClick={() => addProductToCart(productDetail?.product)}
-                  >
-                    ADD TO CART
-                  </button>
+                  {btnLoading ? (
+                    <>
+                      <button className="btn w-100 btn-dark rounded-0">
+                        PLEASE WAIT...
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      {addedToCart ? (
+                        <button className="btn w-100 btn-dark rounded-0">
+                          ADDED TO CART
+                        </button>
+                      ) : (
+                        <button
+                          className="btn w-100 btn-dark rounded-0"
+                          onClick={() =>
+                            addProductToCart(productDetail?.product)
+                          }
+                        >
+                          ADD TO CART
+                        </button>
+                      )}
+                    </>
+                  )}
+
                   <div className="product-desc pt-5">
                     <div className="product-spec-mobile">
                       <h5>DESCRIPTION</h5>

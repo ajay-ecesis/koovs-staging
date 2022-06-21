@@ -4,7 +4,10 @@ import "react-multi-carousel/lib/styles.css";
 import "./midseasonsale.css";
 
 import { useParams } from "react-router-dom";
-import { loadProductByCategoryApi } from "../../api/commonApi";
+import {
+  loadProductByCategoryApi,
+  loadProductsByTag,
+} from "../../api/commonApi";
 import { isMobile } from "react-device-detect";
 import { useNavigate } from "react-router-dom";
 
@@ -35,6 +38,7 @@ function MidSeasonSale() {
     },
   };
   let { category } = useParams();
+  let { tag } = useParams();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -50,13 +54,20 @@ function MidSeasonSale() {
       subCategory = "tops";
     }
     setLoading(true);
-    let data = await loadProductByCategoryApi(
-      category,
-      subCategory,
-      5,
-      "relevance",
-      0
-    );
+    let data;
+    if (tag) {
+   
+      data = await loadProductsByTag(category, tag, 5, "relevance", 0);
+    } else {
+      data = await loadProductByCategoryApi(
+        category,
+        subCategory,
+        5,
+        "relevance",
+        0
+      );
+    }
+
     console.log("thhsi is the load product data", data);
     setProducts(data[0].data);
 
@@ -77,7 +88,7 @@ function MidSeasonSale() {
           <div className="container-fluid">
             <div className="row">
               <div className="d-flex justify-content-between">
-                <h5 className="fw-bold">Mid season sale</h5>
+                <h5 className="fw-bold">{tag?tag:<>Mid season sale </>}</h5>
                 <p className="fw-bold">
                   <u>View All</u>
                 </p>
@@ -92,7 +103,7 @@ function MidSeasonSale() {
                   responsive={responsive}
                   renderButtonGroupOutside={true}
                   swipeable={isMobile ? true : false}
-                  draggable={false}
+                  draggable={isMobile ? true : false}
                   autoPlay={isMobile ? true : false}
                   autoPlaySpeed={2000}
                   containerClass="carousel-new"

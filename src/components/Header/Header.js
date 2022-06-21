@@ -7,8 +7,12 @@ import { loadHeaderCategory } from "../../api/commonApi";
 import { Card } from "react-bootstrap";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { useSelector } from "react-redux";
 
 function Header() {
+  const user = useSelector((state) => state.user);
+  const cartCount = useSelector((state) => state.cart.qty);
+
   const [menu, setMenu] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -41,7 +45,7 @@ function Header() {
         {temp.map((count) => {
           return (
             <>
-              <li className="main-menu">
+              <li className="main-menu" key={count}>
                 <ul className="nav-menu">
                   <li
                     className="nav-main-menu w-100"
@@ -83,7 +87,7 @@ function Header() {
             menu.map((mainMenu) => {
               return (
                 <>
-                  <li className="main-menu">
+                  <li className="main-menu" key={mainMenu}>
                     <ul className="nav-menu">
                       <li
                         className="nav-main-menu w-100"
@@ -100,6 +104,7 @@ function Header() {
                                       {" "}
                                       <li
                                         className="nav-sub-menu"
+                                        key={subMenu}
                                         onClick={(e) => toggleSubClass(e)}
                                       >
                                         {subMenu.title}
@@ -109,7 +114,7 @@ function Header() {
                                               (subMenuChild) => {
                                                 return (
                                                   <>
-                                                    <li>
+                                                    <li key={subMenuChild}>
                                                       <Link
                                                         className="nav-link"
                                                         to="/"
@@ -127,7 +132,7 @@ function Header() {
                                   ) : (
                                     <>
                                       {" "}
-                                      <li>
+                                      <li key={subMenu}>
                                         {" "}
                                         <Link
                                           className="nav-link"
@@ -155,12 +160,25 @@ function Header() {
             })}
           <li className="main-menu">
             <ul>
-              <li>
-                {" "}
-                <Link className="nav-link" to="/">
-                  Log in / create account{" "}
-                </Link>
-              </li>
+              {!user?.isLoggedIn ? (
+                <>
+                  <li>
+                    {" "}
+                    <Link className="nav-link" to="/">
+                      Log in / create account{" "}
+                    </Link>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>
+                    {" "}
+                    <Link className="nav-link" to="/">
+                      My Account
+                    </Link>
+                  </li>
+                </>
+              )}
               <li>
                 <Link className="nav-link" to="/">
                   Online support{" "}
@@ -193,13 +211,19 @@ function Header() {
             className="d-none d-lg-block"
           />
           <div>
-            <Link className="nav-link d-none d-lg-block" to="/">
-              Account
-            </Link>
+            {user.isLoggedIn ? (
+              <Link className="nav-link d-none d-lg-block" to="/">
+                Account{" "}
+              </Link>
+            ) : (
+              <Link className="nav-link d-none d-lg-block" to="/signup/login">
+                Login
+              </Link>
+            )}
           </div>
           <div>
             <Link className="nav-link" to="/cart">
-              Cart (0)
+              Cart ({cartCount})
             </Link>
           </div>
         </div>
