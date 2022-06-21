@@ -6,7 +6,11 @@ function FourNotFourBody() {
       <section className={`${styles.four_not_four} container-fluid`}>
         <div className={`row ${styles.padded_content}`}>
           <div className={styles.four_not_four_body}>
-            404
+            
+          <div className="col d-flex justify-content-center">
+                <div className="col-6"> 404 Not Found!</div>
+                
+            </div>
 
           </div>
         </div>
