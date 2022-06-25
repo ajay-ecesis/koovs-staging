@@ -159,3 +159,43 @@ export const getProductByBatchIdAPI = async (skuId) => {
     return data;
   } catch (err) {}
 };
+
+// product search suggestion keywords loading api
+
+export const loadSearchSuggestions = async (keyword) => {
+  const config = {
+    headers: {
+      "X-API-CLIENT": "WEB",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Credentials": true,
+      "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+    },
+  };
+
+  try {
+    let { data } = await axios.get(
+      `${clentServer}/search/v1/autoSuggestion?entity=products&query=${keyword}`,
+      config
+    );
+    return data;
+  } catch (err) {}
+};
+
+export const loadSearchProductResults = async (searchKeyword) => {
+  const config = {
+    headers: {
+      "X-API-CLIENT": "WEB",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Credentials": true,
+      "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+    },
+  };
+
+  try {
+    let { data } = await axios.get(
+      `${clentServer}/search/v1/complete?query=${searchKeyword}&page=0&page-size=10`,
+      config
+    );
+    return data;
+  } catch (err) {}
+};

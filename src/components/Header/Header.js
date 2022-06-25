@@ -204,12 +204,14 @@ function Header() {
           </Link>
         </div>
         <div className="d-flex align-items-center gap-4">
-          <img
-            src={koovsicon}
-            height="23"
-            alt="Koovs Search icon"
-            className="d-none d-lg-block"
-          />
+          <Link to="/search">
+            <img
+              src={koovsicon}
+              height="23"
+              alt="Koovs Search icon"
+              className="d-none d-lg-block"
+            />
+          </Link>
           <div>
             {user.isLoggedIn ? (
               <Link className="nav-link d-none d-lg-block" to="/">

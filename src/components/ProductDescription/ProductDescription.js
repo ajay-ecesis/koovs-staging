@@ -30,6 +30,11 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
   // set the size of the selected product
   const selectSize = (id) => {
     setBtnLoading(true);
+
+    if (!selectedColor) {
+      setSelectedColor(productDetail.attributes?.colors[0].id);
+    }
+
     setSelectedSize(id);
     setAddedToCart(false);
     setBtnLoading(false);
@@ -60,9 +65,6 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
   const addProductToCart = async (product) => {
     setBtnLoading(true);
     // checking if product has only one color then keeps the product's default color to selected
-    if (!selectedColor) {
-      setSelectedColor(productDetail.attributes?.colors[0].id);
-    }
 
     if (selectedSize && selectedColor) {
       console.log("prdouct", productDetail);
@@ -82,7 +84,6 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
       function getProudctBySkuId(obj) {
         return obj.skuId == skuId;
       }
-      console.log("this is product details", prodDetails[0]);
 
       prodDetails = {
         product: prodDetails[0],
@@ -112,15 +113,7 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
           <div className="container-fluid px-0 b-bottom">
             <div className="row mt-3">
               <Breadcrumb>
-                {/* {productDetail.product.breadCrumb.map((nav) => {
-                  return (
-                    <>
-                      <Breadcrumb.Item href={nav?.links[0]?.href}>
-                        {nav.title}
-                      </Breadcrumb.Item>
-                    </>
-                  );
-                })} */}
+              
 
                 <Breadcrumb.Item href="/">Home </Breadcrumb.Item>
                 <Breadcrumb.Item

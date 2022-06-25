@@ -105,3 +105,7 @@
 .mob-prodImage{
   max-height: 140px;
 }
+
+.favourite-products .product_meta{
+  max-width: 70%;
+}

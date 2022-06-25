@@ -11,8 +11,7 @@
     top: 12px;
 }
 .login-form .submit-btn{
-    position: relative;
-left: 25%;
+text-align: center;
 }
 .login-form .privacy-text{
     font-size: 13px;

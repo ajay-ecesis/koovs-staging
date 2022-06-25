@@ -195,7 +195,7 @@ export const FavouriteProducts = ({ skuId }) => {
                               )
                             }
                           >
-                            <div className="flex-grow-1">
+                            <div className="flex-grow-1 product_meta">
                               <p className="mb-0">{data.brandName}</p>
                               <p className="mb-0">{data.productName}</p>
                             </div>
