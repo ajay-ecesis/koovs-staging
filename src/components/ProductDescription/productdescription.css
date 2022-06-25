@@ -6,7 +6,7 @@ a{
   color: #000;
   text-decoration: unset;
 }
-.b-bottom{
+.product-detail .b-bottom{
   border-bottom: 1px solid #000;
 }
 .product-detail .b-bottom .row{

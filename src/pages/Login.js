@@ -7,7 +7,7 @@ function Login() {
   return (
     <>
       <Header />
-      <AccountSideNav>
+      <AccountSideNav index={1}>
         <LoginForm />
         <div className="d-lg-none d-md-none d-sm-block">
           <RegisterForm />

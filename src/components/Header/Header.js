@@ -8,6 +8,9 @@ import { Card } from "react-bootstrap";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useSelector } from "react-redux";
+import {
+  useLocation
+} from "react-router-dom"
 
 function Header() {
   const user = useSelector((state) => state.user);
@@ -19,6 +22,12 @@ function Header() {
   useEffect(() => {
     loadHeaderItems();
   }, []);
+
+  const { pathname } = useLocation();
+  useEffect(() => {
+    
+document.getElementById("clickClose").click()
+  }, [pathname]);
 
   const loadHeaderItems = async () => {
     setLoading(true);
@@ -73,7 +82,7 @@ function Header() {
       <div className="top-nav">
         <input id="menu-toggle" type="checkbox" />
         <label className="menu-button-container" htmlFor="menu-toggle">
-          <div className="menu-button"></div>
+          <div className="menu-button" id="clickClose"></div>
         </label>
         <ul className="menu">
           <li className="main-menu d-lg-none">
@@ -117,7 +126,7 @@ function Header() {
                                                     <li key={subMenuChild}>
                                                       <Link
                                                         className="nav-link"
-                                                        to="/"
+                                                        to={subMenuChild.links[0].href}
                                                       >
                                                         {subMenuChild.title}
                                                       </Link>
@@ -136,7 +145,7 @@ function Header() {
                                         {" "}
                                         <Link
                                           className="nav-link"
-                                          to="/view-all"
+                                          to={subMenu.links[0].href}
                                         >
                                           {subMenu.title ===
                                           "NEW ARRIVALS:FOOTWEAR & ACCESSORIES" ? (
@@ -173,7 +182,7 @@ function Header() {
                 <>
                   <li>
                     {" "}
-                    <Link className="nav-link" to="/">
+                    <Link className="nav-link" to="/user/account">
                       My Account
                     </Link>
                   </li>
@@ -214,7 +223,7 @@ function Header() {
           </Link>
           <div>
             {user.isLoggedIn ? (
-              <Link className="nav-link d-none d-lg-block" to="/">
+              <Link className="nav-link d-none d-lg-block" to="/user/account">
                 Account{" "}
               </Link>
             ) : (

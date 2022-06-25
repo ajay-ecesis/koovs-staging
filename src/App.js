@@ -10,6 +10,8 @@ import { getCartItems } from "./api/cart";
 import CategoryMainPage from "./pages/CategoryMainPage";
 import Search from "./pages/Search";
 import { Toaster } from "react-hot-toast";
+import MyAccount from "./components/MyAccount/MyAccount";
+import { MyInformationPage } from "./pages/MyInformationPage";
 // component lazy loading begins
 const Home = React.lazy(() => import("./pages/Home"));
 const ProductCart = React.lazy(() => import("./pages/ProductCart"));
@@ -80,14 +82,14 @@ const App = () => {
 
               <Route
                 path="/category/:category/:subcategory"
-                element={<p>Sub category</p>}
+                element={<CategoryMainPage />} 
               />
               <Route path="/signup/register" element={<Signup />} />
               <Route path="/signup/login" element={<Login />} />
               <Route path="/search" element={<Search />} />
 
               {/* <Route path="/categoryMain" element={<CategoryMainPage />} /> */}
-
+              <Route path="/user/account" element={<MyInformationPage />} />
               <Route path="*" element={<FourNotFour />} />
             </Routes>
           </Suspense>

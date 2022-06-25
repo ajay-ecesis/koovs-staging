@@ -1,6 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import "./accountsidenav.css"
-const AccountSideNav = ({ children }) => {
+const AccountSideNav = ({ children,index }) => {
     return (
         <>
 
@@ -16,10 +17,10 @@ const AccountSideNav = ({ children }) => {
                     <div className="account-nav ">
 
                         <div className=" d-flex flex-column pt-3">
-                            <span className="active">Sign In / Register</span>
-                            <span>Orders and Returns</span>
-                            <span>My Information</span>
-                            <span>Wishlist</span>
+                         <Link to="/signup/login" style={{textDecoration:"none",color:"black"}}>  <span className={`${index==1&&"active"}`} >Sign In / Register</span></Link> 
+                            <span className={`${index==2&&"active"}`}>Orders and Returns</span>
+                            <Link to="/user/account" style={{textDecoration:"none",color:"black"}}> <span className={`${index==3&&"active"}`}>My Information</span></Link>
+                            <span className={`${index==4&&"active"}`}>Wishlist</span>
                         </div>
                     </div>
                 </div>

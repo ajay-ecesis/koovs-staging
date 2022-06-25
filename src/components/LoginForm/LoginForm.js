@@ -3,8 +3,10 @@ import "./loginform.css";
 import { ReCaptcha, loadReCaptcha } from "react-recaptcha-v3";
 import { userLoginAPI } from "../../api/auth";
 import { useDispatch } from "react-redux";
+import {  useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
+  const navigate=useNavigate()
   const [values, setValues] = useState("");
   const [token, setToken] = useState("");
   const [btnLoading, setBtnLoading] = useState(false);
@@ -46,6 +48,8 @@ const LoginForm = () => {
         type: "USER_LOGIN",
         payload: userLogin,
       });
+      navigate('/user/account')
+      
     } else {
       // reloads the recaptcha key with new one
       googleCaptcha.current.execute();
