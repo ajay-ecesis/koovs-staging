@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-hot-toast";
 
 const clientServer = process.env.REACT_APP_CLIENT_SERVER;
 
@@ -68,8 +69,10 @@ export const signUpUserApi = async (userData, token) => {
       config
     );
     console.log("this is data", data);
-    if (!data.errorMessage) return data;
-    else return false;
+    if (!data.errorMessage) {
+      toast.success("Successfully created account");
+      return data;
+    } else return false;
   } catch (err) {
     console.log("err", err);
   }
@@ -128,10 +131,8 @@ export const userLoginAPI = async (userData) => {
       { email: userData.email, password: userData.password },
       config
     );
-
-    console.log("response", res);
     localStorage.setItem("userToken", JSON.stringify(res.data.data.token));
-
+    toast.success("Successfully Logged In");
     return res.data.data;
   } catch (err) {
     let data = {

@@ -2,7 +2,7 @@ import React from "react";
 import "./socialmedia.css";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import videolink from "../../assets/images/video.mp4";
+import videolink from "../../assets/images/videosample1.mp4";
 import videoimage from "../../assets/images/thumbnail.png";
 import dmgvideoicon from "../../assets/images/playbutton.png";
 import insta1 from "../../assets/images/insta1.png";

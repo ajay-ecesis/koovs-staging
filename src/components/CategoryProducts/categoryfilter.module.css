@@ -1,0 +1,25 @@
+.filtertext {
+
+    font-family: 'Open Sauce One';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+.accordion_filter .accordion-flush .accordion-item .accordion-button::after {
+
+    padding: 0.5rem 1.25rem;
+
+    background-image: url("../../assets/images/rightarrowicon.png") !important;
+}
+
+.accordion_item::after {
+
+    background-image: url("../../assets/images/rightarrowicon.png") !important;
+
+
+}

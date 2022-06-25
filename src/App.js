@@ -7,7 +7,9 @@ import { checkUserToken } from "./api/auth";
 import { useDispatch, useSelector } from "react-redux";
 import Login from "./pages/Login";
 import { getCartItems } from "./api/cart";
-
+import CategoryMainPage from "./pages/CategoryMainPage";
+import Search from "./pages/Search";
+import { Toaster } from "react-hot-toast";
 // component lazy loading begins
 const Home = React.lazy(() => import("./pages/Home"));
 const ProductCart = React.lazy(() => import("./pages/ProductCart"));
@@ -60,6 +62,8 @@ const App = () => {
   return (
     <>
       <div className="App">
+        <Toaster position="top-center" reverseOrder={false} />
+
         <BrowserRouter>
           <ScrollToTop />
           <Suspense fallback={<> </>}>
@@ -80,6 +84,9 @@ const App = () => {
               />
               <Route path="/signup/register" element={<Signup />} />
               <Route path="/signup/login" element={<Login />} />
+              <Route path="/search" element={<Search />} />
+
+              {/* <Route path="/categoryMain" element={<CategoryMainPage />} /> */}
 
               <Route path="*" element={<FourNotFour />} />
             </Routes>

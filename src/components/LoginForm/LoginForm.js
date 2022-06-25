@@ -65,7 +65,7 @@ const LoginForm = () => {
         verifyCallback={handleVerify}
       />
       <section className="login row">
-        <div className="login-form col-xs-12 col-sm-12 col-md-9 col-lg-9">
+        <div className="login-form col-xs-12 col-sm-12 col-md-9 col-lg-9 pt-4">
           <h6>Sign In</h6>
 
           <div className="form">
