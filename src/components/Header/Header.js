@@ -173,7 +173,7 @@ function Header() {
                 <>
                   <li>
                     {" "}
-                    <Link className="nav-link" to="/">
+                    <Link className="nav-link" to="/signup/register">
                       Log in / create account{" "}
                     </Link>
                   </li>
