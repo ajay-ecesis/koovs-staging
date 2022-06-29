@@ -1,13 +1,52 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./myaccount.css";
+import { useSelector, useDispatch } from "react-redux";
+import { updateProfileApi } from "../../api/account";
+const MyAccount = ({ shippingAddress }) => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  const [values, setValues] = useState({
+    email: "",
+    firstName: "",
+    lastName: "",
+    phone: "",
+  });
 
-const MyAccount = () => {
+  useEffect(() => {
+    if (user.user) {
+      setValues({
+        email: user.user.email,
+        firstName: user.user.firstName,
+        lastName: user.user.lastName,
+        phone: user.user.phone,
+        gender: user.user.gender,
+      });
+    }
+  }, [user]);
+
+  // For changing login values
+  const handleChange = (name) => (event) => {
+    setValues({ ...values, [name]: event.target.value });
+  };
+
+  const updateAccountInfo = async (e) => {
+    e.preventDefault();
+
+    let result = await updateProfileApi(values);
+    console.log("this is result", result);
+    if (result)
+      dispatch({
+        type: "USER_UPDATE",
+        payload: result.data,
+      });
+  };
+
   return (
     <>
       <section className="myaccount row">
         <div className="myaccount-form col-xs-12 col-sm-12 col-md-9 col-lg-9 pt-4">
           <div className="form">
-            <form className="pt-3 ">
+            <form className="pt-3 " onSubmit={updateAccountInfo}>
               <div class="form-group ">
                 <h6 className="pt-2">Email Address</h6>
 
@@ -15,6 +54,8 @@ const MyAccount = () => {
                   type="email"
                   class="form-control"
                   required
+                  defaultValue={values?.email}
+                  disabled
                   placeholder="Email Address"
                 />
               </div>
@@ -22,18 +63,21 @@ const MyAccount = () => {
               <div class="form-group pt-3 ">
                 <input
                   required
-                  type="password"
+                  defaultValue={values?.firstName}
+                  onChange={handleChange("firstName")}
+                  type="text"
                   class="form-control"
-                  placeholder="Password"
+                  placeholder="First Name"
                 />
               </div>
               <h6 className="pt-2">Last Name</h6>
               <div class="form-group pt-3 ">
                 <input
-                  required
-                  type="password"
+                  type="text"
+                  onChange={handleChange("lastName")}
+                  defaultValue={values?.lastName}
                   class="form-control"
-                  placeholder="Password"
+                  placeholder="Last Name"
                 />
               </div>
 
@@ -42,9 +86,11 @@ const MyAccount = () => {
                 <div class="form-group w-75">
                   <input
                     required
-                    type="password"
+                    type="number"
+                    onChange={handleChange("phone")}
+                    defaultValue={values?.phone}
                     class="form-control "
-                    placeholder="Password"
+                    placeholder="Phone Number"
                   />
                 </div>
                 <button
@@ -66,23 +112,44 @@ const MyAccount = () => {
                 </button>
               </div>
             </form>
-            <div className=" pt-3 col gx-5">
-              <span className="pt-3">Shipping address</span>
-              <br />
-              <span className="pt-3">
-                Sofie Lund Saltholmsvej 6, 5.
-                <br />
-              </span>
-              <br />{" "}
-              <span className="pt-3">
-                DK-2300 København S DENMARK <br />
-              </span>
-              <br />{" "}
-              <span className="pt-3">
-                Remove <br />
-              </span>
-              <br />
-            </div>
+
+            {shippingAddress?.length > 0 &&
+              shippingAddress.map((address, index) => {
+                return (
+                  <>
+                    <div className=" pt-3 col gx-5">
+                      <div>
+                        <span className="pt-3">
+                          Shipping address {index + 1}
+                        </span>
+                      </div>
+
+                      <div className="pt-4">
+                        <span className="pt-3">
+                          {address.shippingAddress.name}
+                          <br />
+                          {address.shippingAddress.address}
+                          <br />
+                        </span>
+                        <br />{" "}
+                        <span className="pt-3">
+                          {address.shippingAddress.zip},
+                          {address.shippingAddress.city},{" "}
+                          {address.shippingAddress.state}
+                          <br />
+                          <br />
+                        </span>
+                        <br />{" "}
+                        <span className="pt-3">
+                          <u>Remove</u>
+                          <br />
+                        </span>
+                        <br />
+                      </div>
+                    </div>
+                  </>
+                );
+              })}
           </div>
         </div>
       </section>

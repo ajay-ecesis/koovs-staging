@@ -1,4 +1,4 @@
-import { USER_LOGIN, USER_LOGOUT, USER_SIGNUP } from "./userType";
+import { USER_LOGIN, USER_LOGOUT, USER_SIGNUP,USER_UPDATE } from "./userType";
 
 const initialState = {
   isLoggedIn: false,
@@ -16,10 +16,14 @@ const userReducer = (state = initialState, action) => {
       };
 
     case USER_LOGIN:
-      return { ...state, isLoggedIn: true, user: action.payload };
+      return { ...state, isLoggedIn: true, user: action.payload.data };
 
     case USER_LOGOUT:
       return null;
+      case USER_UPDATE:
+        return { ...state, isLoggedIn: true, user: action.payload };
+
+
 
     default:
       return state;

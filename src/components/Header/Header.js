@@ -8,13 +8,11 @@ import { Card } from "react-bootstrap";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useSelector } from "react-redux";
-import {
-  useLocation
-} from "react-router-dom"
+import { useLocation } from "react-router-dom";
 
 function Header() {
   const user = useSelector((state) => state.user);
-  const cartCount = useSelector((state) => state.cart.qty);
+  const cartData = useSelector((state) => state.cart.items);
 
   const [menu, setMenu] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -25,8 +23,7 @@ function Header() {
 
   const { pathname } = useLocation();
   useEffect(() => {
-    
-document.getElementById("clickClose").click()
+    document.getElementById("clickClose").click();
   }, [pathname]);
 
   const loadHeaderItems = async () => {
@@ -126,7 +123,10 @@ document.getElementById("clickClose").click()
                                                     <li key={subMenuChild}>
                                                       <Link
                                                         className="nav-link"
-                                                        to={subMenuChild.links[0].href}
+                                                        to={
+                                                          subMenuChild.links[0]
+                                                            .href
+                                                        }
                                                       >
                                                         {subMenuChild.title}
                                                       </Link>
@@ -234,7 +234,7 @@ document.getElementById("clickClose").click()
           </div>
           <div>
             <Link className="nav-link" to="/cart">
-              Cart ({cartCount})
+              Cart ({cartData?.length>0?cartData.length : 0})
             </Link>
           </div>
         </div>

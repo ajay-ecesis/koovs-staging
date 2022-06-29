@@ -4,12 +4,13 @@ import "./maincategoryproductslider.css";
 import AddToCart from "./AddToCart";
 import productItem from "../../assets/images/shirts.png";
 
-const ShirtSection = ({ products }) => {
+const ShirtSection = ({ products, loading }) => {
   const [cart, setCart] = useState(false);
   return (
     <>
       <div class="row image-color mt-3">
-        {products?.length > 0 &&
+        {!loading &&
+          products?.length > 0 &&
           products.map((item) => {
             return (
               <>
@@ -45,7 +46,7 @@ const ShirtSection = ({ products }) => {
                         <p>{item.productName}</p>
                       </div>
                       <div className="prodDetail-text">
-                        <p>₹930</p>
+                        <p>₹ {item.discountPrice}</p>
                       </div>
                     </div>
                   </div>
@@ -53,7 +54,7 @@ const ShirtSection = ({ products }) => {
               </>
             );
           })}
-
+        {loading && <>Loading...</>}
         {/* <p className="viewall-text fw-bold d-sm-block d-lg-none">
           <u style={{ cursor: "pointer" }}>View All</u>
         </p> */}

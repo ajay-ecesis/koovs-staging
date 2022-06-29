@@ -5,7 +5,7 @@ import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductByBatchIdAPI } from "../../api/commonApi";
 import { Link } from "react-router-dom";
-import { addToCartAPI } from "../../api/cart";
+import { addToCartAPI, addToWishlistAPI } from "../../api/cart";
 
 const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
   const dispatch = useDispatch();
@@ -17,8 +17,6 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
   const [btnLoading, setBtnLoading] = useState(false);
 
   useEffect(() => {
-    if (productData) console.log("data from props", productData);
-
     setProductDetail(productData[0]?.data[0]);
     setLoading(false);
   }, [productData]);
@@ -49,10 +47,8 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
     var batchSkuId = mapping.filter(function (item) {
       return item.colorId == id;
     });
-    console.log("This is batchskuid", batchSkuId[0].skuId);
 
     let { data } = await getProductByBatchIdAPI(batchSkuId[0].skuId);
-    console.log("this is the new updatedProductdata", data);
 
     setProductDetail(data[0]);
     setAddedToCart(false);
@@ -67,10 +63,6 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
     // checking if product has only one color then keeps the product's default color to selected
 
     if (selectedSize && selectedColor) {
-      console.log("prdouct", productDetail);
-      console.log("selectedSize", selectedSize);
-      console.log("color", selectedColor);
-
       // mapping the SKUID of product that corresponding to color and size id.
       const result = await productDetail.mapping.data.filter(getSkuId);
 
@@ -92,12 +84,72 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
 
       // add to cart api
       let data = await addToCartAPI(prodDetails);
-      if (data)
+      if (data) {
+        let cart = {
+          sku: prodDetails.product.skuId,
+          qty: 1,
+          vendor: prodDetails.product.feDetails.vendor,
+          warehouse: prodDetails.product.feDetails.warehouse,
+          lot: prodDetails.product.feDetails.lot,
+        };
+
+
         dispatch({
           type: "ADD_TO_CART",
-          payload: 1,
+          payload: prodDetails,
         }); // increase the cart count.
-      setAddedToCart(true);
+        setAddedToCart(true);
+      }
+    } else {
+      alert("Please select color and size of product");
+    }
+
+    reLoadCaptchaKey();
+    setBtnLoading(false);
+  };
+
+  // add product to wish list
+  const addToWishlist = async (product) => {
+    setBtnLoading(true);
+    // checking if product has only one color then keeps the product's default color to selected
+
+    if (selectedSize && selectedColor) {
+      // mapping the SKUID of product that corresponding to color and size id.
+      const result = await productDetail.mapping.data.filter(getSkuId);
+
+      function getSkuId(obj) {
+        return obj.colorId == selectedColor && obj.sizeId == selectedSize;
+      }
+      let skuId = result[0].skuId;
+      let prodDetails = await productDetail.quantity.data.filter(
+        getProudctBySkuId
+      );
+      function getProudctBySkuId(obj) {
+        return obj.skuId == skuId;
+      }
+
+      prodDetails = {
+        product: prodDetails[0],
+        productId: productDetail.product.id,
+        lineId: productDetail.product.lineId,
+        reCaptcha: reCaptcha,
+      };
+
+      // add to wishlist api
+      let data = await addToWishlistAPI(prodDetails);
+      // add to wishlist state dispatch
+      if (data) {
+        let obj = {
+          lineId: prodDetails.lineId,
+          skuId: prodDetails.product.skuId,
+          productId: prodDetails.productId,
+        };
+        dispatch({
+          type: "ADD_TO_WISHLIST",
+          payload: obj,
+        }); // increase the cart count.
+        setAddedToCart(true);
+      }
     } else {
       alert("Please select color and size of product");
     }
@@ -113,8 +165,6 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
           <div className="container-fluid px-0 b-bottom">
             <div className="row mt-3">
               <Breadcrumb>
-              
-
                 <Breadcrumb.Item href="/">Home </Breadcrumb.Item>
                 <Breadcrumb.Item
                   href={`/category/${productDetail.product.gender}`}
@@ -150,7 +200,11 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
                   <div className="favIcon me-2 d-lg-block d-none">
                     <input type="checkbox" id="heart" />
                     <label for="heart">
-                      <i class="fa fa-heart-o" aria-hidden="true"></i>
+                      <i
+                        class="fa fa-heart-o"
+                        aria-hidden="true"
+                        onClick={() => addToWishlist(productDetail?.product)}
+                      ></i>
                     </label>
                   </div>
                   <Slider
@@ -201,7 +255,11 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
                     <div className="favIcon me-2 position-relative me-4 d-lg-none">
                       <input type="checkbox" id="heart3" />
                       <label for="heart3">
-                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                        <i
+                          class="fa fa-heart-o"
+                          aria-hidden="true"
+                          onClick={() => addToWishlist(productDetail?.product)}
+                        ></i>
                       </label>
                     </div>
                     <div className="flex-grow-1">
@@ -218,14 +276,6 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
 
                       <>
                         {productDetail.attributes?.colors.map((color) => {
-                          {
-                            console.log(
-                              "colodr",
-                              productDetail?.product?.colorCode,
-                              "ANDDD",
-                              color.code
-                            );
-                          }
                           return (
                             <>
                               <input

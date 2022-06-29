@@ -20,7 +20,7 @@ const AccountSideNav = ({ children,index }) => {
                          <Link to="/signup/login" style={{textDecoration:"none",color:"black"}}>  <span className={`${index==1&&"active"}`} >Sign In / Register</span></Link> 
                             <span className={`${index==2&&"active"}`}>Orders and Returns</span>
                             <Link to="/user/account" style={{textDecoration:"none",color:"black"}}> <span className={`${index==3&&"active"}`}>My Information</span></Link>
-                            <span className={`${index==4&&"active"}`}>Wishlist</span>
+                            <Link to="/wishlist" style={{textDecoration:"none",color:"black"}}>  <span className={`${index==4&&"active"}`}>Wishlist</span></Link>
                         </div>
                     </div>
                 </div>
