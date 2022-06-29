@@ -37,10 +37,11 @@ const Cart = () => {
       setCartData(data);
       setCartItems(data.itemsInStock);
     }
+
     // recalculating the count
     dispatch({
       type: "INITIALIZE_CART",
-      payload: data.itemCount,
+      payload: data.items,
     });
     setLoading(false);
   };
@@ -64,9 +65,8 @@ const Cart = () => {
 
   //   update products quantity
 
-  const updateQuantity = async (product,quantity) => {
+  const updateQuantity = async (product, quantity) => {
     console.log("prdouctdddd", product);
-
   };
 
   return (
@@ -136,7 +136,10 @@ const Cart = () => {
                                                 min="1"
                                                 autoComplete="off"
                                                 onChange={(e) =>
-                                                  updateQuantity(item,e.target.value)
+                                                  updateQuantity(
+                                                    item,
+                                                    e.target.value
+                                                  )
                                                 }
                                               />
                                             </div>
@@ -192,10 +195,10 @@ const Cart = () => {
                             </div>
                             <div className="d-flex bd-highlight mb-3 cart-total">
                               <div className="mr-auto p-2 bd-highlight text-bold">
-                              APPLICABLE TAX & CHARGES
+                                APPLICABLE TAX & CHARGES
                               </div>
                               <div className="p-2 bd-highlight text-bold">
-                              ₹ {cartData.gst} 
+                                ₹ {cartData.gst}
                               </div>
                             </div>
 

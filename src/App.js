@@ -6,12 +6,14 @@ import { getVisitorToken } from "./api/auth";
 import { checkUserToken } from "./api/auth";
 import { useDispatch, useSelector } from "react-redux";
 import Login from "./pages/Login";
-import { getCartItems } from "./api/cart";
+import { getCartItems, getWishlistItems } from "./api/cart";
 import CategoryMainPage from "./pages/CategoryMainPage";
 import Search from "./pages/Search";
 import { Toaster } from "react-hot-toast";
 import MyAccount from "./components/MyAccount/MyAccount";
 import { MyInformationPage } from "./pages/MyInformationPage";
+
+import WishlistPage from "./pages/WishlistPage";
 // component lazy loading begins
 const Home = React.lazy(() => import("./pages/Home"));
 const ProductCart = React.lazy(() => import("./pages/ProductCart"));
@@ -29,6 +31,7 @@ const App = () => {
   useEffect(() => {
     checkIfTokenExists();
     loadCartItems();
+    loadWishlistItems();
   }, []);
 
   // checking for authentication tokens
@@ -53,13 +56,22 @@ const App = () => {
 
   const loadCartItems = async () => {
     let result = await getCartItems();
+    console.log("result",result)
     if (result) {
       dispatch({
         type: "INITIALIZE_CART",
-        payload: result.itemCount,
+        payload: result.items,
       });
     }
   };
+
+const loadWishlistItems=async ()=>{
+  let result=await getWishlistItems()
+  dispatch({
+    type:"INITIALIZE_WISHLIST",
+    payload:result.data
+  })
+}
 
   return (
     <>
@@ -87,9 +99,8 @@ const App = () => {
               <Route path="/signup/register" element={<Signup />} />
               <Route path="/signup/login" element={<Login />} />
               <Route path="/search" element={<Search />} />
-
-              {/* <Route path="/categoryMain" element={<CategoryMainPage />} /> */}
               <Route path="/user/account" element={<MyInformationPage />} />
+              <Route path="/wishlist" element={<WishlistPage />} />
               <Route path="*" element={<FourNotFour />} />
             </Routes>
           </Suspense>

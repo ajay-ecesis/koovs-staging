@@ -4,7 +4,10 @@ import CategoryHeader from "../components/CategoryProducts/CategoryHeader";
 import CategoryMainMenuSlider from "../components/CategoryProducts/MainCategoryMenuSlider";
 import CategoryMainProductSlider from "../components/CategoryProducts/MainCategoryProductSlider";
 import { useParams } from "react-router-dom";
-import { loadProductByCategoryApi } from "../api/commonApi";
+import {
+  loadProductByCategoryApi,
+  loadProductsByFilter,
+} from "../api/commonApi";
 const CategoryMainPage = () => {
   let { category } = useParams();
   let { subcategory } = useParams();
@@ -15,6 +18,13 @@ const CategoryMainPage = () => {
   const [filterTypes, setFilterTypes] = useState([]);
   const [page, setPage] = useState(0);
   const [limit, setLimit] = useState(6);
+  const [filterType, setFilterType] = useState({
+    brand_fq: "",
+    color_fq: "",
+    price_fq: "",
+    size_fq: "",
+  });
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     loadProductItemsBycategory();
@@ -30,7 +40,6 @@ const CategoryMainPage = () => {
         page
       );
 
-      console.log("fetched results from result api", data);
       setProducts(data[0].data);
       setFilterTypes(data[1].data);
       setResult(data[0]);
@@ -39,6 +48,39 @@ const CategoryMainPage = () => {
 
   const changeSortOption = async (option) => {
     setSort(option);
+  };
+
+  // apply a new filter
+  const applyFilter = (type, val) => {
+    if (type == "price_fq") {
+      val = val[0] + "-" + val[1];
+    }
+    const newobj = { ...filterType };
+    newobj[type] = val;
+    setFilterType(newobj);
+  };
+
+  useEffect(() => {
+    loadFilteredResults(filterType);
+  }, [filterType]);
+
+  const loadFilteredResults = async () => {
+    setLoading(true);
+    let filteredResults = await loadProductsByFilter(
+      category,
+      subcategory,
+      limit,
+      sort,
+      page,
+      filterType
+    );
+    if (filteredResults) {
+      setProducts(filteredResults[0]?.data);
+      // setFilterTypes(filteredResults[1]?.data);
+      setResult(filteredResults[0]);
+    }
+
+    setLoading(false);
   };
 
   return (
@@ -57,6 +99,10 @@ const CategoryMainPage = () => {
         filterTypes={filterTypes}
         result={result}
         changeSortOption={changeSortOption}
+        applyFilter={applyFilter}
+        filterType={filterType}
+        loading={loading}
+        setLoading={setLoading}
       />
     </>
   );

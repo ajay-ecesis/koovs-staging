@@ -38,9 +38,9 @@ const ProductDetail = () => {
     console.log(token);
   }
 
-  const reLoadCaptchaKey=()=>{
+  const reLoadCaptchaKey = () => {
     googleCaptcha.current.execute();
-  }
+  };
   return (
     <>
       <ReCaptcha
@@ -52,7 +52,11 @@ const ProductDetail = () => {
       <Header />
       {!loading ? (
         <>
-          <ProductDescription productData={productDetails} reCaptcha={token} reLoadCaptchaKey={reLoadCaptchaKey}/>
+          <ProductDescription
+            productData={productDetails}
+            reCaptcha={token}
+            reLoadCaptchaKey={reLoadCaptchaKey}
+          />
           <FavouriteProducts
             skuId={productDetails[0]?.data[0]?.product.sku}
             reCaptcha={token}

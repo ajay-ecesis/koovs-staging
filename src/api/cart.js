@@ -1,4 +1,4 @@
-// All APIs related to cart can be found here..
+// All APIs related to cart and wishlist can be found here..
 import axios from "axios";
 import { toast } from "react-hot-toast";
 
@@ -130,5 +130,107 @@ export const incrementCartQuantity = async (cartData) => {
     }
   } catch (err) {
     return false;
+  }
+};
+
+// Wishlist related apis
+
+export const addToWishlistAPI = async (productData) => {
+  let authToken = await JSON.parse(localStorage.getItem("userToken"));
+
+  console.log("add to wishlist", productData);
+
+  const config = {
+    headers: {
+      Authorization: authToken,
+      "X-API-CLIENT": "WEB",
+      "CAN-FETCH-VALUE": "NO",
+      "X-AUTH-TOKEN": authToken,
+      "X-API-CLIENT": "WEB",
+      "X-CAPTCHA-TOKEN": productData.reCaptcha,
+      "X-CAPTCHA-ACTION": "addToCart",
+      "X-REMOTE-IP": "",
+    },
+  };
+  try {
+    const res = await axios.post(
+      clientServer + "/jarvis-order-service/v1/wishlist",
+      {
+        sku: productData.product.skuId,
+        line: productData.lineId,
+        product: productData.productId,
+      },
+      config
+    );
+    if (res.status == 200) {
+      return true;
+    }
+  } catch (err) {}
+};
+
+// get items from wishlist
+export const getWishlistItems = async () => {
+  let authToken = await JSON.parse(localStorage.getItem("userToken"));
+
+  const config = {
+    headers: {
+      Authorization: authToken,
+      "X-API-CLIENT": "WEB",
+    },
+  };
+  try {
+    const res = await axios.get(
+      clientServer + "/jarvis-order-service/v1/wishlist",
+      config
+    );
+    if (res.status == 200) {
+      return res.data;
+    }
+  } catch (err) {}
+};
+
+// load wishlist by skuid
+export const loadWishListBySkuIdApi = async (skuIds) => {
+  let authToken = await JSON.parse(localStorage.getItem("userToken"));
+
+  const config = {
+    headers: {
+      Authorization: authToken,
+      "X-API-CLIENT": "WEB",
+    },
+  };
+  try {
+    const res = await axios.get(
+      clientServer + "/jarvis-service/v1/product/details/batch?ids=" + skuIds,
+      config
+    );
+    if (res.status == 200) {
+      return res.data;
+    }
+  } catch (err) {}
+};
+
+// remove product items from wishlist
+
+export const removeItemFromWishList = async (skuId, lineId) => {
+  let authToken = await JSON.parse(localStorage.getItem("userToken"));
+
+
+  const config = {
+    headers: {
+      Authorization: authToken,
+      "X-API-CLIENT": "WEB",
+    },
+  };
+  try {
+    const res = await axios.delete(clientServer+`/jarvis-order-service/v1/wishlist?line=${lineId}&sku=${skuId}`,
+      config
+    );
+    if (res.status == 200) {
+      toast.success("Removed from")
+      return res.data;
+    }
+  } catch (err) {
+    console.error("edrr", err);
   }
 };
