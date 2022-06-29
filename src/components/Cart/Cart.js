@@ -21,7 +21,7 @@ const Cart = () => {
   }, []);
 
   const reloadRecaptcha = () => {
-    loadReCaptcha("6LdSHv0UAAAAACfq2Tk2XQrk1kek189iNpni7nCI"); //sitekey load recaptcha
+    loadReCaptcha("6LdnRa4gAAAAAPMFQgPajQ0i4D_RuikJ-aHU66Qw"); //sitekey load recaptcha
   };
 
   function handleVerify(token) {
@@ -72,7 +72,7 @@ const Cart = () => {
   return (
     <>
       <ReCaptcha
-        sitekey="6LdSHv0UAAAAACfq2Tk2XQrk1kek189iNpni7nCI"
+        sitekey="6LdnRa4gAAAAAPMFQgPajQ0i4D_RuikJ-aHU66Qw"
         action="sign_up"
         verifyCallback={handleVerify}
       />
