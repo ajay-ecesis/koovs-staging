@@ -19,8 +19,8 @@ class Home extends React.Component {
         <MobileStart />
         <HomeBanner />
         <BrandItems />
-        <HomeFashion category="women" subCategory="top" title="Women" />
-        <HomeFashion category="men" subCategory="shirts" title="Men" />
+        <HomeFashion category="women" subCategory="top" title="Women" link="/category/women" />
+        <HomeFashion category="men" subCategory="shirts" title="Men" link="/category/men"/>
         <TopBrands />
         <Stories />
         <SocialMedia />

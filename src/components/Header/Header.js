@@ -16,6 +16,7 @@ function Header() {
 
   const [menu, setMenu] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [headerState,setHeaderState]=useState(false)
 
   useEffect(() => {
     loadHeaderItems();
@@ -23,8 +24,12 @@ function Header() {
 
   const { pathname } = useLocation();
   useEffect(() => {
-    document.getElementById("clickClose").click();
+   if(headerState)
+   {
+    document.getElementById("menu-toggle").checked=false
+   }
   }, [pathname]);
+
 
   const loadHeaderItems = async () => {
     setLoading(true);
@@ -77,7 +82,7 @@ function Header() {
   return (
     <header>
       <div className="top-nav">
-        <input id="menu-toggle" type="checkbox" />
+        <input id="menu-toggle" type="checkbox" onChange={()=>setHeaderState(!headerState)}/>
         <label className="menu-button-container" htmlFor="menu-toggle">
           <div className="menu-button" id="clickClose"></div>
         </label>
