@@ -19,7 +19,12 @@ const wishlistReducer = (state = initialState, action) => {
       };
 
     case REMOVE_FROM_WISHLIST:
-      return { ...state, qty: state.qty - action.payload };
+      let remainingArr = state.items.filter(
+        (item) => item.sku != action.payload.skuId
+      );
+      return {
+        items: remainingArr,
+      };
 
     case INITIALIZE_WISHLIST:
       return {

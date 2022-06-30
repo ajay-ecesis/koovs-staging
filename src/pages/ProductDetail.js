@@ -14,6 +14,7 @@ const ProductDetail = () => {
   const [loading, setLoading] = useState(false);
   const [token, setToken] = useState("");
   const googleCaptcha = useRef();
+  const [key, setKey] = useState(1);
 
   useEffect(() => {
     if (productId && lineId) loadProducts();
@@ -30,6 +31,7 @@ const ProductDetail = () => {
   }, []);
 
   const reloadRecaptcha = () => {
+    setKey(key + 1);
     loadReCaptcha(process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY); //sitekey load recaptcha
   };
 
@@ -47,6 +49,7 @@ const ProductDetail = () => {
         sitekey={process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY}
         action="addToCart"
         verifyCallback={handleVerify}
+        key={key}
       />{" "}
       <Header />
       {!loading ? (
@@ -59,6 +62,7 @@ const ProductDetail = () => {
           <FavouriteProducts
             skuId={productDetails[0]?.data[0]?.product.sku}
             reCaptcha={token}
+            reloadRecaptcha={reloadRecaptcha}
           />
         </>
       ) : (

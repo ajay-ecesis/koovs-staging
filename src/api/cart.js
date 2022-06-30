@@ -1,6 +1,7 @@
 // All APIs related to cart and wishlist can be found here..
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const clientServer = process.env.REACT_APP_CLIENT_SERVER;
 
@@ -135,8 +136,12 @@ export const incrementCartQuantity = async (cartData) => {
 // Wishlist related apis
 
 export const addToWishlistAPI = async (productData) => {
-  let authToken = await JSON.parse(localStorage.getItem("userToken"));
+  console.log("skuiiid", productData);
 
+  let authToken = await JSON.parse(localStorage.getItem("userToken"));
+  if (!authToken) {
+    return toast.error("You are not logged in to use wishlist");
+  }
   const config = {
     headers: {
       Authorization: authToken,
@@ -160,6 +165,7 @@ export const addToWishlistAPI = async (productData) => {
       config
     );
     if (res.status == 200) {
+      toast.success("Added to wishlist");
       return true;
     }
   } catch (err) {}
@@ -212,7 +218,6 @@ export const loadWishListBySkuIdApi = async (skuIds) => {
 export const removeItemFromWishList = async (skuId, lineId) => {
   let authToken = await JSON.parse(localStorage.getItem("userToken"));
 
-
   const config = {
     headers: {
       Authorization: authToken,
@@ -220,12 +225,14 @@ export const removeItemFromWishList = async (skuId, lineId) => {
     },
   };
   try {
-    const res = await axios.delete(clientServer+`/jarvis-order-service/v1/wishlist?line=${lineId}&sku=${skuId}`,
+    const res = await axios.delete(
+      clientServer +
+        `/jarvis-order-service/v1/wishlist?line=${lineId}&sku=${skuId}`,
       config
     );
     if (res.status == 200) {
-      toast.success("Removed from")
-      return res.data;
+      toast.success("Removed from wishlist");
+      return true;
     }
   } catch (err) {
     console.error("edrr", err);

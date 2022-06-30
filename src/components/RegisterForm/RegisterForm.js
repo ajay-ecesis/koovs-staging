@@ -11,13 +11,16 @@ function RegisterForm() {
   const [error, setError] = useState(false);
   const [btnLoading, setBtnLoading] = useState(false);
   const dispatch = useDispatch();
+  const [key, setKey] = useState(1);
 
   useEffect(() => {
     reloadRecaptcha();
   }, []);
 
   const reloadRecaptcha = () => {
+    setKey(key + 1);
     loadReCaptcha(process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY); //sitekey load recaptcha
+
   };
 
   function handleVerify(token) {
@@ -68,6 +71,7 @@ function RegisterForm() {
       <ReCaptcha
         sitekey={process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY}
         action="sign_up"
+        key={key}
         verifyCallback={handleVerify}
       />
 

@@ -18,7 +18,6 @@ export const getMyProfileApi = async () => {
 
     return res.data;
   } catch (err) {
-
     return false;
   }
 };
@@ -64,7 +63,7 @@ export const updateProfileApi = async (profileData) => {
       config
     );
 
-toast.success("Profile updated successfully")
+    toast.success("Profile updated successfully");
     return res.data;
   } catch (err) {
     console.log("err", err);

@@ -468,3 +468,9 @@
   position: fixed;
   left: 85%;
 }
+
+
+.Maincategory_product_slider .favIcon label {
+  font-size: 2.2em;
+  cursor: pointer;
+}

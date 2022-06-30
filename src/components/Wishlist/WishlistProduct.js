@@ -15,6 +15,8 @@ import { ReCaptcha, loadReCaptcha } from "react-recaptcha-v3";
 const WishlistProduct = ({ products, getWishlistItemsByBatchId }) => {
   let dispatch = useDispatch();
   const [reCaptcha, setRecaptcha] = useState("");
+  const [key, setKey] = useState(1);
+
   const removeProductFromWishlist = async (sku, lineId) => {
     let data = await removeItemFromWishList(sku, lineId);
     if (data) {
@@ -36,7 +38,6 @@ const WishlistProduct = ({ products, getWishlistItemsByBatchId }) => {
     let data = await addToCartAPI(prodDetails);
 
     if (data) {
-
     }
     reloadRecaptcha();
   };
@@ -44,8 +45,12 @@ const WishlistProduct = ({ products, getWishlistItemsByBatchId }) => {
     reloadRecaptcha();
   }, []);
 
+
+
   const reloadRecaptcha = () => {
+    setKey(key + 1);
     loadReCaptcha(process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY); //sitekey load recaptcha
+
   };
 
   function handleVerify(token) {
@@ -57,6 +62,7 @@ const WishlistProduct = ({ products, getWishlistItemsByBatchId }) => {
         sitekey={process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY}
         action="addToCart"
         verifyCallback={handleVerify}
+        key={key}
       />
 
       {products?.length > 0 &&

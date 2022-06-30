@@ -18,9 +18,6 @@ import WishlistPage from "./pages/WishlistPage";
 const Home = React.lazy(() => import("./pages/Home"));
 const ProductCart = React.lazy(() => import("./pages/ProductCart"));
 const ProductDetail = React.lazy(() => import("./pages/ProductDetail"));
-const HomePageWomen = React.lazy(() => {
-  import("./pages/HomePageWomen");
-});
 const CategoryPage = React.lazy(() => import("./pages/CategoryPage"));
 const FourNotFour = React.lazy(() => import("./pages/404"));
 const Signup = React.lazy(() => import("./pages/Signup"));
@@ -64,13 +61,13 @@ const App = () => {
     }
   };
 
-const loadWishlistItems=async ()=>{
-  let result=await getWishlistItems()
-  dispatch({
-    type:"INITIALIZE_WISHLIST",
-    payload:result.data
-  })
-}
+  const loadWishlistItems = async () => {
+    let result = await getWishlistItems();
+    dispatch({
+      type: "INITIALIZE_WISHLIST",
+      payload: result.data,
+    });
+  };
 
   return (
     <>
@@ -93,7 +90,7 @@ const loadWishlistItems=async ()=>{
 
               <Route
                 path="/category/:category/:subcategory"
-                element={<CategoryMainPage />} 
+                element={<CategoryMainPage />}
               />
               <Route path="/signup/register" element={<Signup />} />
               <Route path="/signup/login" element={<Login />} />
