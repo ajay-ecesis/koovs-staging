@@ -55,7 +55,6 @@ function WomenFashion() {
   //navigates to product detail page
   const goToProductDetailPage = (title, id, lineId) => {
     let slug = title.replace(/\s+/g, "-").toLowerCase();
-    console.log(slug); // "sonic-free-games"
     navigate(`/product/${slug}/${id}/${lineId}`);
   };
 

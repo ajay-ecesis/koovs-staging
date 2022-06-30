@@ -61,7 +61,6 @@ export const getCartItems = async () => {
       config
     );
 
-    console.log("response from get cart api", res);
     return res?.data?.cart;
   } catch (err) {
     return false;
@@ -137,8 +136,6 @@ export const incrementCartQuantity = async (cartData) => {
 
 export const addToWishlistAPI = async (productData) => {
   let authToken = await JSON.parse(localStorage.getItem("userToken"));
-
-  console.log("add to wishlist", productData);
 
   const config = {
     headers: {

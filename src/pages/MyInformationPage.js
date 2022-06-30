@@ -13,7 +13,6 @@ export const MyInformationPage = () => {
 
   const loadMyAddress = async () => {
     let details = await getMyAddressApi();
-    console.log("My info from api",details);
     setShippingAddress(details)
   };
   return (

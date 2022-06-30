@@ -10,7 +10,6 @@ export const Test = () => {
     }, []);
     const loadProducts = async () => {
         let data = await loadSingleProduct(productId, lineId);
-        console.log("data", data)
     };
     return (<>
 

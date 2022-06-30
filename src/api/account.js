@@ -16,10 +16,8 @@ export const getMyProfileApi = async () => {
       config
     );
 
-    console.log("response", res);
     return res.data;
   } catch (err) {
-    console.log("err", err);
 
     return false;
   }
@@ -41,7 +39,6 @@ export const getMyAddressApi = async () => {
       config
     );
 
-    console.log("response from my address api", res);
     return res.data;
   } catch (err) {
     console.log("err", err);

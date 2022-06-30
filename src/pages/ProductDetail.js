@@ -30,12 +30,11 @@ const ProductDetail = () => {
   }, []);
 
   const reloadRecaptcha = () => {
-    loadReCaptcha("6LdnRa4gAAAAAPMFQgPajQ0i4D_RuikJ-aHU66Qw"); //sitekey load recaptcha
+    loadReCaptcha(process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY); //sitekey load recaptcha
   };
 
   function handleVerify(token) {
     setToken(token);
-    console.log(token);
   }
 
   const reLoadCaptchaKey = () => {
@@ -45,7 +44,7 @@ const ProductDetail = () => {
     <>
       <ReCaptcha
         ref={googleCaptcha}
-        sitekey="6LdnRa4gAAAAAPMFQgPajQ0i4D_RuikJ-aHU66Qw"
+        sitekey={process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY}
         action="addToCart"
         verifyCallback={handleVerify}
       />{" "}

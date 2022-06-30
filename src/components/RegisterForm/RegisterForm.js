@@ -17,7 +17,7 @@ function RegisterForm() {
   }, []);
 
   const reloadRecaptcha = () => {
-    loadReCaptcha("6LdnRa4gAAAAAPMFQgPajQ0i4D_RuikJ-aHU66Qw"); //sitekey load recaptcha
+    loadReCaptcha(process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY); //sitekey load recaptcha
   };
 
   function handleVerify(token) {
@@ -50,9 +50,7 @@ function RegisterForm() {
     } else {
       // user validation is successfull so, call the signUp API
 
-      console.log("not an error ", ifUserValid);
       let signUpResp = await signUpUserApi(values, token);
-      console.log("this is signup response v1", signUpResp);
 
       if (signUpResp?.data?.user) {
         // dispatch user to REDUX state
@@ -68,7 +66,7 @@ function RegisterForm() {
   return (
     <>
       <ReCaptcha
-        sitekey="6LdnRa4gAAAAAPMFQgPajQ0i4D_RuikJ-aHU66Qw"
+        sitekey={process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY}
         action="sign_up"
         verifyCallback={handleVerify}
       />

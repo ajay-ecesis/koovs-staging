@@ -4,7 +4,6 @@ $(function () {
     var winHeight = window.innerHeight;
     var winWidth = window.innerWidth;
 
-    console.log(winHeight);
 
     // Define scene classes.
     var sceneClass = 'scene';
