@@ -21,6 +21,8 @@ function MenCategoryProductSlider({
   filterType,
   loading,
   setLoading,
+  goToProductDetailPage
+  
 }) {
   const [isActive, setActive] = useState(false);
   const [isShow, setShow] = useState(false);
@@ -61,6 +63,8 @@ function MenCategoryProductSlider({
   function getSecondPart(str, index) {
     return str.split("-")[index];
   }
+
+  
 
   return (
     <section className="Maincategory_product_slider">
@@ -334,7 +338,7 @@ function MenCategoryProductSlider({
           </div>
         )}
 
-        <ShirtSection products={products} loading={loading} />
+        <ShirtSection products={products} loading={loading} goToProductDetailPage={goToProductDetailPage}/>
 
         <p className="viewall-text fw-bold d-sm-block d-lg-none">
           <u style={{ cursor: "pointer" }}>View All</u>
