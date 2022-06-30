@@ -6,8 +6,13 @@ import headbandimg from "../../assets/images/headband.png";
 import shopimg from "../../assets/images/Shopping-bag.png";
 import { Link, useNavigate } from "react-router-dom";
 import { similiarProductAPI } from "../../api/commonApi";
+import { addToWishlistAPI, removeItemFromWishList } from "../../api/cart";
+import { useDispatch, useSelector } from "react-redux";
 
-export const FavouriteProducts = ({ skuId }) => {
+export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
+  const wishlistProducts = useSelector((state) => state.wishlist.items);
+
+  const dispatch = useDispatch();
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -46,6 +51,45 @@ export const FavouriteProducts = ({ skuId }) => {
     let slug = title.replace(/\s+/g, "-").toLowerCase();
     navigate(`/product/${slug}/${id}/${lineId}`);
   };
+
+  // add product to wish list
+  const addToWishlist = async (product, productId, lineId) => {
+    console.log("product,", product, "id", productId, "lineid", lineId);
+    let prodDetails = {
+      product: { skuId: product.sku },
+      productId: productId,
+      lineId: lineId,
+      reCaptcha: reCaptcha,
+    };
+
+    // add to wishlist api
+    let data = await addToWishlistAPI(prodDetails);
+    if (data) {
+      let obj = {
+        lineId: lineId,
+        sku: prodDetails.product.skuId,
+        id: prodDetails.productId,
+      };
+      dispatch({
+        type: "ADD_TO_WISHLIST",
+        payload: obj,
+      });
+    }
+    reloadRecaptcha();
+  };
+
+  const removeFromWishlist = async (skuId, lineId) => {
+    await removeItemFromWishList(skuId, lineId);
+    let obj = {
+      skuId: skuId,
+      lineId: lineId,
+    };
+    dispatch({
+      type: "REMOVE_FROM_WISHLIST",
+      payload: obj,
+    });
+  };
+
   return (
     <section className="favourite-products py-lg-5">
       {similiarProducts.length !== 0 && (
@@ -152,12 +196,37 @@ export const FavouriteProducts = ({ skuId }) => {
                             />
                             <div className="heart-cart">
                               <div className="favIcon me-2">
-                                <input type="checkbox" id="heart1" />
                                 <label for="heart1">
-                                  <i
-                                    class="fa fa-heart-o"
-                                    aria-hidden="true"
-                                  ></i>
+                                  {wishlistProducts.some(
+                                    (wishlistItem) =>
+                                      wishlistItem.id === data.id
+                                  ) == true ? (
+                                    <i
+                                      style={{ color: "red" }}
+                                      class="fa fa-heart-o"
+                                      aria-hidden="true"
+                                      onClick={() =>
+                                        removeFromWishlist(
+                                          data.sku,
+                                          data.lineId
+                                        )
+                                      }
+                                    ></i>
+                                  ) : (
+                                    <>
+                                      <i
+                                        class="fa fa-heart-o"
+                                        aria-hidden="true"
+                                        onClick={() =>
+                                          addToWishlist(
+                                            data,
+                                            data.id,
+                                            data.lineId
+                                          )
+                                        }
+                                      ></i>
+                                    </>
+                                  )}
                                 </label>
                               </div>
                               <div className="d-flex flex-column align-items-end">

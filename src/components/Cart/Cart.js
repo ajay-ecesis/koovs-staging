@@ -12,7 +12,7 @@ const Cart = () => {
   const [cartData, setCartData] = useState("");
   const [loading, setLoading] = useState(false);
   const [token, setToken] = useState();
-
+const [key,setKey]=useState(1)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -21,7 +21,9 @@ const Cart = () => {
   }, []);
 
   const reloadRecaptcha = () => {
-    loadReCaptcha(process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY); //sitekey load recaptcha
+setKey(key+1)
+loadReCaptcha(process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY); //sitekey load recaptcha
+
   };
 
   function handleVerify(token) {
@@ -71,6 +73,7 @@ const Cart = () => {
       <ReCaptcha
         sitekey={process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY}
         action="sign_up"
+        key={key}
         verifyCallback={handleVerify}
       />
       <section className="cart">

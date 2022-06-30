@@ -21,8 +21,9 @@ function MenCategoryProductSlider({
   filterType,
   loading,
   setLoading,
-  goToProductDetailPage
-  
+  goToProductDetailPage,
+  addToWishlist,
+  removeWishlist
 }) {
   const [isActive, setActive] = useState(false);
   const [isShow, setShow] = useState(false);
@@ -63,8 +64,6 @@ function MenCategoryProductSlider({
   function getSecondPart(str, index) {
     return str.split("-")[index];
   }
-
-  
 
   return (
     <section className="Maincategory_product_slider">
@@ -124,9 +123,9 @@ function MenCategoryProductSlider({
                         {item.id == "color_fq" && (
                           <Dropdown
                             className="d-inline mx-2"
-                            autoClose="inside"
+                           
                           >
-                            <Dropdown.Toggle id="dropdown-autoclose-inside">
+                            <Dropdown.Toggle id="dropdown-autoclose-true">
                               Color <IoIosArrowDown className="downarrowicon" />
                             </Dropdown.Toggle>
 
@@ -166,9 +165,9 @@ function MenCategoryProductSlider({
                           <>
                             <Dropdown
                               className="d-inline mx-2"
-                              autoClose="outside"
+                             
                             >
-                              <Dropdown.Toggle id="dropdown-autoclose-outside">
+                              <Dropdown.Toggle id="dropdown-autoclose-true">
                                 Size{" "}
                                 <IoIosArrowDown className="downarrowicon" />
                               </Dropdown.Toggle>
@@ -187,12 +186,12 @@ function MenCategoryProductSlider({
                                           applyFilter(item.id, subItem.id)
                                         }
                                       >
-                                          {filterType.size_fq == subItem.id && (
-                                        <i
-                                          class="fa fa-check check-tick"
-                                          aria-hidden="true"
-                                        ></i>
-                                      )}
+                                        {filterType.size_fq == subItem.id && (
+                                          <i
+                                            class="fa fa-check check-tick"
+                                            aria-hidden="true"
+                                          ></i>
+                                        )}
                                         <p style={{ padding: "0px" }}>
                                           {subItem.label}
                                         </p>
@@ -210,9 +209,9 @@ function MenCategoryProductSlider({
                           <>
                             <Dropdown
                               className=" d-inline mx-2"
-                              autoClose={false}
+                              
                             >
-                              <Dropdown.Toggle id="dropdown-autoclose-false">
+                              <Dropdown.Toggle id="dropdown-autoclose-true">
                                 Price range{" "}
                                 <IoIosArrowDown className="downarrowicon" />
                               </Dropdown.Toggle>
@@ -338,7 +337,13 @@ function MenCategoryProductSlider({
           </div>
         )}
 
-        <ShirtSection products={products} loading={loading} goToProductDetailPage={goToProductDetailPage}/>
+        <ShirtSection
+          products={products}
+          loading={loading}
+          goToProductDetailPage={goToProductDetailPage}
+          addToWishlist={addToWishlist}
+          removeWishlist={removeWishlist}
+        />
 
         <p className="viewall-text fw-bold d-sm-block d-lg-none">
           <u style={{ cursor: "pointer" }}>View All</u>

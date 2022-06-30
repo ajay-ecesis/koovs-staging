@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Header from "../components/Header/Header";
 import CategoryHeader from "../components/CategoryProducts/CategoryHeader";
 import CategoryMainMenuSlider from "../components/CategoryProducts/MainCategoryMenuSlider";
@@ -9,11 +9,13 @@ import {
   loadProductsByFilter,
 } from "../api/commonApi";
 import { useNavigate } from "react-router-dom";
-
-
+import { addToWishlistAPI, removeItemFromWishList } from "../api/cart";
+import { ReCaptcha, loadReCaptcha } from "react-recaptcha-v3";
+import { useDispatch } from "react-redux";
 const CategoryMainPage = () => {
-  const navigate=useNavigate()
-  
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   let { category } = useParams();
   let { subcategory } = useParams();
 
@@ -30,11 +32,29 @@ const CategoryMainPage = () => {
     size_fq: "",
   });
   const [loading, setLoading] = useState(false);
+  const [token, setToken] = useState("");
+  const googleCaptcha = useRef();
+  const [key, setKey] = useState(1);
 
-  
   useEffect(() => {
     loadProductItemsBycategory();
   }, [category, subcategory, sort]);
+
+  useEffect(() => {
+    reloadRecaptcha();
+  }, []);
+
+  // reload the recaptcha
+  const reloadRecaptcha = async () => {
+    setKey(key + 1);
+
+    loadReCaptcha(process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY); //sitekey load recaptcha
+
+  };
+
+  function handleVerify(token) {
+    setToken(token);
+  }
 
   const loadProductItemsBycategory = async () => {
     if ((category, subcategory)) {
@@ -89,18 +109,61 @@ const CategoryMainPage = () => {
     setLoading(false);
   };
 
-  
-
   //navigates to product detail page by making url friendly
   const goToProductDetailPage = (title, id, lineId) => {
     let slug = title.replace(/\s+/g, "-").toLowerCase();
     navigate(`/product/${slug}/${id}/${lineId}`);
   };
 
+  // add product to wish list
+  const addToWishlist = async (product, productId, lineId) => {
+    let prodDetails = {
+      product: { skuId: product.sku },
+      productId: productId,
+      lineId: lineId,
+      reCaptcha: token,
+    };
 
+    // add to wishlist api
+    let data = await addToWishlistAPI(prodDetails);
+    if (data) {
+      let obj = {
+        lineId: lineId,
+        sku: prodDetails.product.skuId,
+        id: prodDetails.productId,
+      };
+      dispatch({
+        type: "ADD_TO_WISHLIST",
+        payload: obj,
+      });
+    }
+    reloadRecaptcha();
+  };
+
+  const removeWishlist = async (skuId, lineId) => {
+    let data = await removeItemFromWishList(skuId, lineId);
+    if (data) {
+      let obj = {
+        skuId: skuId,
+        lineId: lineId,
+      };
+      dispatch({
+        type: "REMOVE_FROM_WISHLIST",
+        payload: obj,
+      });
+    }
+    reloadRecaptcha();
+  };
 
   return (
     <>
+      <ReCaptcha
+        key={key}
+        ref={googleCaptcha}
+        sitekey={process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY}
+        action="addToCart"
+        verifyCallback={handleVerify}
+      />
       <Header />
       <CategoryHeader
         category={category}
@@ -120,6 +183,8 @@ const CategoryMainPage = () => {
         loading={loading}
         setLoading={setLoading}
         goToProductDetailPage={goToProductDetailPage}
+        addToWishlist={addToWishlist}
+        removeWishlist={removeWishlist}
       />
     </>
   );

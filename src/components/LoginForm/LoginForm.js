@@ -6,20 +6,23 @@ import { useDispatch } from "react-redux";
 import {  useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const [values, setValues] = useState("");
   const [token, setToken] = useState("");
   const [btnLoading, setBtnLoading] = useState(false);
   const [error, setError] = useState(false);
   const googleCaptcha = useRef();
   const dispatch = useDispatch();
+  const [key, setKey] = useState(1);
 
   useEffect(() => {
     reloadRecaptcha();
   }, []);
 
   const reloadRecaptcha = () => {
+    setKey(key + 1);
     loadReCaptcha(process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY); //sitekey load recaptcha
+
   };
 
   function handleVerify(token) {
@@ -47,8 +50,7 @@ const LoginForm = () => {
         type: "USER_LOGIN",
         payload: userLogin,
       });
-      navigate('/user/account')
-      
+      navigate("/user/account");
     } else {
       // reloads the recaptcha key with new one
       googleCaptcha.current.execute();
@@ -63,6 +65,7 @@ const LoginForm = () => {
     <>
       <ReCaptcha
         ref={googleCaptcha}
+        key={key}
         sitekey={process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY}
         action="login"
         verifyCallback={handleVerify}

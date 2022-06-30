@@ -3,9 +3,16 @@ import shoppingbag from "../../assets/images/Shopping-bag.png";
 import "./maincategoryproductslider.css";
 import AddToCart from "./AddToCart";
 import productItem from "../../assets/images/shirts.png";
-
-const ShirtSection = ({ products, loading, goToProductDetailPage }) => {
+import { useSelector } from "react-redux";
+const ShirtSection = ({
+  products,
+  loading,
+  goToProductDetailPage,
+  addToWishlist,
+  removeWishlist,
+}) => {
   const [cart, setCart] = useState(false);
+  const wishlistProducts = useSelector((state) => state.wishlist.items);
 
   return (
     <>
@@ -20,7 +27,30 @@ const ShirtSection = ({ products, loading, goToProductDetailPage }) => {
                   <div className="text-category">
                     <div className="favIcon me-2 ">
                       <label for="heart">
-                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                        {wishlistProducts?.some(
+                          (wishlistItem) => wishlistItem.id === item.id
+                        ) == true ? (
+                          <>
+                            <i
+                              class="fa fa-heart-o"
+                              style={{ color: "red" }}
+                              aria-hidden="true"
+                              onClick={() =>
+                                removeWishlist(item.sku, item.lineId)
+                              }
+                            ></i>
+                          </>
+                        ) : (
+                          <>
+                            <i
+                              class="fa fa-heart-o"
+                              aria-hidden="true"
+                              onClick={() =>
+                                addToWishlist(item, item.id, item.lineId)
+                              }
+                            ></i>
+                          </>
+                        )}
                       </label>
                     </div>
                     <div className="prod1">
@@ -38,8 +68,11 @@ const ShirtSection = ({ products, loading, goToProductDetailPage }) => {
                         style={{ cursor: "pointer" }}
                       />
                       <div className="shop-icon">
-                        <img src={shoppingbag} onClick={() => setCart(item.id)} />
-                        {cart==item.id && <AddToCart setCart={setCart}/>}
+                        <img
+                          src={shoppingbag}
+                          onClick={() => setCart(item.id)}
+                        />
+                        {cart == item.id && <AddToCart setCart={setCart} />}
                       </div>
 
                       <div className="preview-color">

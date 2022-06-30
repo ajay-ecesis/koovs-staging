@@ -5,11 +5,17 @@ import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductByBatchIdAPI } from "../../api/commonApi";
 import { Link } from "react-router-dom";
-import { addToCartAPI, addToWishlistAPI } from "../../api/cart";
+import {
+  addToCartAPI,
+  addToWishlistAPI,
+  getWishlistItems,
+  removeItemFromWishList,
+} from "../../api/cart";
 
 const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
+  const wishlistProducts = useSelector((state) => state.wishlist.items);
+
   const dispatch = useDispatch();
-  const cartDetails = useSelector((state) => state.addToCart);
   const [nav1, setNav1] = useState();
   const [nav2, setNav2] = useState();
   const [loading, setLoading] = useState(true);
@@ -24,9 +30,10 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
   const [addedToCart, setAddedToCart] = useState(false);
-
+  const [error, setError] = useState(false);
   // set the size of the selected product
   const selectSize = (id) => {
+    setError(false);
     setBtnLoading(true);
 
     if (!selectedColor) {
@@ -40,6 +47,8 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
 
   //  set the color of the selected product
   const selectColor = async (id) => {
+    setError(false);
+
     setLoading(true);
     let mapping = productDetail?.mapping?.data;
     setSelectedColor(id);
@@ -100,7 +109,7 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
         setAddedToCart(true);
       }
     } else {
-      alert("Please select color and size of product");
+      setError("Please select color and size of product");
     }
 
     reLoadCaptchaKey();
@@ -109,7 +118,6 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
 
   // add product to wish list
   const addToWishlist = async (product) => {
-    setBtnLoading(true);
     // checking if product has only one color then keeps the product's default color to selected
 
     if (selectedSize && selectedColor) {
@@ -140,21 +148,28 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
       if (data) {
         let obj = {
           lineId: prodDetails.lineId,
-          skuId: prodDetails.product.skuId,
-          productId: prodDetails.productId,
+          sku: prodDetails.product.skuId,
+          id: prodDetails.productId,
         };
         dispatch({
           type: "ADD_TO_WISHLIST",
           payload: obj,
-        }); // increase the cart count.
-        setAddedToCart(true);
+        }); // increase the wishlist count.
       }
     } else {
-      alert("Please select color and size of product");
+      setError("Please select color and size of product");
     }
 
     reLoadCaptchaKey();
-    setBtnLoading(false);
+  };
+
+  const removeWishlist = async (skuId, lineId) => {
+    await removeItemFromWishList(skuId, lineId);
+    let result = await getWishlistItems();
+    dispatch({
+      type: "INITIALIZE_WISHLIST",
+      payload: result.data,
+    });
   };
 
   return (
@@ -197,13 +212,37 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
               <div className="col-12 col-lg-6">
                 <div className="float-start w-75 me-2 mt-3 position-relative">
                   <div className="favIcon me-2 d-lg-block d-none">
-                    <input type="checkbox" id="heart" />
+                    {/* <input type="checkbox" id="heart" /> */}
                     <label for="heart">
-                      <i
-                        class="fa fa-heart-o"
-                        aria-hidden="true"
-                        onClick={() => addToWishlist(productDetail?.product)}
-                      ></i>
+                      {/* check if item is already added to wishlist */}
+                      {wishlistProducts.some(
+                        (wishlistItem) =>
+                          wishlistItem.id === productDetail.product.id
+                      ) == true ? (
+                        <>
+                          <i
+                            style={{ color: "red" }}
+                            class="fa fa-heart-o"
+                            aria-hidden="true"
+                            onClick={() =>
+                              removeWishlist(
+                                productDetail?.product.sku,
+                                productDetail.product.lineId
+                              )
+                            }
+                          ></i>
+                        </>
+                      ) : (
+                        <>
+                          <i
+                            class="fa fa-heart-o"
+                            aria-hidden="true"
+                            onClick={() =>
+                              addToWishlist(productDetail?.product)
+                            }
+                          ></i>
+                        </>
+                      )}
                     </label>
                   </div>
                   <Slider
@@ -318,7 +357,9 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
                       </ul>
                     </div>
                   </div>
+                  {error && <div style={{ color: "red" }}>*{error}</div>}
                   <br />
+
                   {btnLoading ? (
                     <>
                       <button className="btn w-100 btn-dark rounded-0">

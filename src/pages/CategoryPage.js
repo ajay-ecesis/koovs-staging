@@ -10,7 +10,6 @@ import LiveInMen from "../components/LiveInMen/LiveInMen";
 import { useParams } from "react-router-dom";
 import { loadProductByCategoryApi, loadSingleProduct } from "../api/commonApi";
 import WomenHomeBanner from "../components/WomenHomeBanner/WomenBanner";
-
 const CategoryPage = () => {
   let { category } = useParams();
   let { tag } = useParams();
