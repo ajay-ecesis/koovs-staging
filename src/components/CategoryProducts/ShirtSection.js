@@ -4,8 +4,9 @@ import "./maincategoryproductslider.css";
 import AddToCart from "./AddToCart";
 import productItem from "../../assets/images/shirts.png";
 
-const ShirtSection = ({ products, loading }) => {
+const ShirtSection = ({ products, loading, goToProductDetailPage }) => {
   const [cart, setCart] = useState(false);
+
   return (
     <>
       <div class="row image-color mt-3">
@@ -27,10 +28,18 @@ const ShirtSection = ({ products, loading }) => {
                         src={item.imageSmallUrl}
                         className="img-fluid"
                         alt="Koovs product Front image"
+                        onClick={() =>
+                          goToProductDetailPage(
+                            item.productName,
+                            item.id,
+                            item.lineId
+                          )
+                        }
+                        style={{ cursor: "pointer" }}
                       />
                       <div className="shop-icon">
-                        <img src={shoppingbag} onClick={() => setCart(!cart)} />
-                        {cart && <AddToCart setCart={setCart} />}
+                        <img src={shoppingbag} onClick={() => setCart(item.id)} />
+                        {cart==item.id && <AddToCart setCart={setCart}/>}
                       </div>
 
                       <div className="preview-color">

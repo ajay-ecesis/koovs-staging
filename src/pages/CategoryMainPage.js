@@ -8,7 +8,12 @@ import {
   loadProductByCategoryApi,
   loadProductsByFilter,
 } from "../api/commonApi";
+import { useNavigate } from "react-router-dom";
+
+
 const CategoryMainPage = () => {
+  const navigate=useNavigate()
+  
   let { category } = useParams();
   let { subcategory } = useParams();
 
@@ -26,6 +31,7 @@ const CategoryMainPage = () => {
   });
   const [loading, setLoading] = useState(false);
 
+  
   useEffect(() => {
     loadProductItemsBycategory();
   }, [category, subcategory, sort]);
@@ -83,6 +89,16 @@ const CategoryMainPage = () => {
     setLoading(false);
   };
 
+  
+
+  //navigates to product detail page by making url friendly
+  const goToProductDetailPage = (title, id, lineId) => {
+    let slug = title.replace(/\s+/g, "-").toLowerCase();
+    navigate(`/product/${slug}/${id}/${lineId}`);
+  };
+
+
+
   return (
     <>
       <Header />
@@ -103,6 +119,7 @@ const CategoryMainPage = () => {
         filterType={filterType}
         loading={loading}
         setLoading={setLoading}
+        goToProductDetailPage={goToProductDetailPage}
       />
     </>
   );

@@ -10,7 +10,7 @@ const addtocart = ({ setCart }) => {
           <div className={`${style.closebutton} d-flex `}>
             <GrClose
               className={style.closeicon}
-              onClick={() => setCart(false)}
+              onClick={() => setCart("")}
             />
             <p className={`${style.filterbutton} d-flex `}>Choose Size</p>
           </div>

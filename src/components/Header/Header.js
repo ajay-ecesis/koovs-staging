@@ -16,7 +16,7 @@ function Header() {
 
   const [menu, setMenu] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [headerState,setHeaderState]=useState(false)
+  const [headerState, setHeaderState] = useState(false);
 
   useEffect(() => {
     loadHeaderItems();
@@ -24,12 +24,10 @@ function Header() {
 
   const { pathname } = useLocation();
   useEffect(() => {
-   if(headerState)
-   {
-    document.getElementById("menu-toggle").checked=false
-   }
+    if (headerState) {
+      document.getElementById("menu-toggle").checked = false;
+    }
   }, [pathname]);
-
 
   const loadHeaderItems = async () => {
     setLoading(true);
@@ -82,7 +80,11 @@ function Header() {
   return (
     <header>
       <div className="top-nav">
-        <input id="menu-toggle" type="checkbox" onChange={()=>setHeaderState(!headerState)}/>
+        <input
+          id="menu-toggle"
+          type="checkbox"
+          onChange={() => setHeaderState(!headerState)}
+        />
         <label className="menu-button-container" htmlFor="menu-toggle">
           <div className="menu-button" id="clickClose"></div>
         </label>
@@ -239,7 +241,7 @@ function Header() {
           </div>
           <div>
             <Link className="nav-link" to="/cart">
-              Cart ({cartData?.length>0?cartData.length : 0})
+              Cart ({cartData?.length > 0 ? cartData.length : 0})
             </Link>
           </div>
         </div>
