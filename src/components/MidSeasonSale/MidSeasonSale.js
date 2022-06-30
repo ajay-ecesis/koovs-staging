@@ -68,7 +68,6 @@ function MidSeasonSale() {
       );
     }
 
-    console.log("thhsi is the load product data", data);
     setProducts(data[0].data);
 
     setLoading(false);
@@ -77,7 +76,6 @@ function MidSeasonSale() {
   //navigates to product detail page by making url friendly
   const goToProductDetailPage = (title, id, lineId) => {
     let slug = title.replace(/\s+/g, "-").toLowerCase();
-    console.log(slug); // "sonic-free-games"
     navigate(`/product/${slug}/${id}/${lineId}`);
   };
   return (

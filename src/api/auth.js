@@ -15,14 +15,12 @@ export const checkIfUserValid = async (userData) => {
   let obj = {};
 
   try {
-    console.log(config);
     let response = await axios.post(
       clientServer + "/koovs-auth-service/v1/auth/validate-user",
       { email: userData.email, phone: userData.phoneNumber },
       config
     );
 
-    console.log("this is response", response.status);
     if (response.status == 200) {
       obj = {
         error: false,
@@ -44,8 +42,6 @@ export const signUpUserApi = async (userData, token) => {
 
   try {
     let ipAddress = await getMyIpAddress();
-    console.log("my ip adddress", ipAddress);
-    console.log("userdata", userData);
     const config = {
       headers: {
         "X-API-CLIENT": "WEB",
@@ -68,7 +64,6 @@ export const signUpUserApi = async (userData, token) => {
       userPayload,
       config
     );
-    console.log("this is data", data);
     if (!data.errorMessage) {
       toast.success("Successfully created account");
       return data;
@@ -104,7 +99,6 @@ export const checkUserToken = async () => {
       config
     );
 
-    console.log("response", res);
     return res.data;
   } catch (err) {
     console.log("err", err);
@@ -115,7 +109,6 @@ export const checkUserToken = async () => {
 
 export const userLoginAPI = async (userData) => {
   let ipAddress = await getMyIpAddress();
-  console.log("this is userdata", userData);
   const config = {
     headers: {
       "X-API-CLIENT": "WEB",

@@ -45,7 +45,7 @@ const WishlistProduct = ({ products, getWishlistItemsByBatchId }) => {
   }, []);
 
   const reloadRecaptcha = () => {
-    loadReCaptcha("6LdnRa4gAAAAAPMFQgPajQ0i4D_RuikJ-aHU66Qw"); //sitekey load recaptcha
+    loadReCaptcha(process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY); //sitekey load recaptcha
   };
 
   function handleVerify(token) {
@@ -54,7 +54,7 @@ const WishlistProduct = ({ products, getWishlistItemsByBatchId }) => {
   return (
     <>
       <ReCaptcha
-        sitekey="6LdnRa4gAAAAAPMFQgPajQ0i4D_RuikJ-aHU66Qw"
+        sitekey={process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY}
         action="addToCart"
         verifyCallback={handleVerify}
       />

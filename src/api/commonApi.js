@@ -218,7 +218,6 @@ export const loadProductsByFilter = async (
       "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
     },
   };
-  console.log("filtertype", filter);
 
   let priceUrl = "",
     colorUrl = "",
@@ -244,13 +243,11 @@ export const loadProductsByFilter = async (
     sizeUrl = `&${filter.size_fq !== "" && `filter_size_fq=${filter.size_fq}`}`;
   }
 
-  console.log("priceurl", priceUrl);
   let masterUrl = `${priceUrl != "&false" && priceUrl}${
     colorUrl != "&false" && colorUrl
   }${priceUrl != "&false" && priceUrl}${brandUrl != "&false" && brandUrl}${
     sizeUrl != "&false" && sizeUrl
   }`;
-  console.log("urlss", masterUrl);
 
   try {
     let { data } = await axios.get(

@@ -56,7 +56,6 @@ const App = () => {
 
   const loadCartItems = async () => {
     let result = await getCartItems();
-    console.log("result",result)
     if (result) {
       dispatch({
         type: "INITIALIZE_CART",

@@ -35,7 +35,6 @@ const SearchProduct = () => {
   const loadSearchResultProducts = async (keyword) => {
     setProductsLoading(true);
     let data = await loadSearchProductResults(keyword);
-    console.log("search result", data?.data);
 
     if (data?.data[0]?.data) {
       setSearchResult(data?.data[0]?.data);
@@ -73,7 +72,6 @@ const SearchProduct = () => {
   //navigates to product detail page by making url friendly
   const goToProductDetailPage = (title, id, lineId) => {
     let slug = title.replace(/\s+/g, "-").toLowerCase();
-    console.log(slug); // "sonic-free-games"
     navigate(`/product/${slug}/${id}/${lineId}`);
   };
 

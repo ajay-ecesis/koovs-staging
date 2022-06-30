@@ -21,19 +21,17 @@ const Cart = () => {
   }, []);
 
   const reloadRecaptcha = () => {
-    loadReCaptcha("6LdnRa4gAAAAAPMFQgPajQ0i4D_RuikJ-aHU66Qw"); //sitekey load recaptcha
+    loadReCaptcha(process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY); //sitekey load recaptcha
   };
 
   function handleVerify(token) {
     setToken(token);
-    console.log(token);
   }
 
   const loadCartItems = async () => {
     setLoading(true);
     let data = await getCartItems();
     if (data) {
-      console.log("this is data", data);
       setCartData(data);
       setCartItems(data.itemsInStock);
     }
@@ -66,13 +64,12 @@ const Cart = () => {
   //   update products quantity
 
   const updateQuantity = async (product, quantity) => {
-    console.log("prdouctdddd", product);
   };
 
   return (
     <>
       <ReCaptcha
-        sitekey="6LdnRa4gAAAAAPMFQgPajQ0i4D_RuikJ-aHU66Qw"
+        sitekey={process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY}
         action="sign_up"
         verifyCallback={handleVerify}
       />

@@ -86,17 +86,16 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
       let data = await addToCartAPI(prodDetails);
       if (data) {
         let cart = {
-          sku: prodDetails.product.skuId,
+          product: { sku: prodDetails.product.skuId },
           qty: 1,
           vendor: prodDetails.product.feDetails.vendor,
           warehouse: prodDetails.product.feDetails.warehouse,
           lot: prodDetails.product.feDetails.lot,
         };
 
-
         dispatch({
           type: "ADD_TO_CART",
-          payload: prodDetails,
+          payload: cart,
         }); // increase the cart count.
         setAddedToCart(true);
       }

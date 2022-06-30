@@ -33,7 +33,6 @@ function MenCategoryProductSlider() {
       "latest",
       0
     );
-    console.log("thhsi is the load product data", data);
     setProducts(data[0].data);
 
     setLoading(false);
@@ -42,7 +41,6 @@ function MenCategoryProductSlider() {
     //navigates to product detail page by making url friendly
     const goToProductDetailPage = (title, id, lineId) => {
         let slug = title.replace(/\s+/g, "-").toLowerCase();
-        console.log(slug); // "sonic-free-games"
         navigate(`/product/${slug}/${id}/${lineId}`);
     };
   return (
@@ -58,7 +56,6 @@ function MenCategoryProductSlider() {
         <div class="row image-color">
           {products.length > 0 &&
             products.slice(0, 4).map((item) => {
-              // {console.log("this is item",item)}
               return (
                 <>
                   <div class="shirt-col col-xl-3  col-lg-3  col-sm-6  col-6" style={{cursor:"pointer"}} onClick={() =>

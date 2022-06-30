@@ -33,7 +33,6 @@ const MyAccount = ({ shippingAddress }) => {
     e.preventDefault();
 
     let result = await updateProfileApi(values);
-    console.log("this is result", result);
     if (result)
       dispatch({
         type: "USER_UPDATE",
