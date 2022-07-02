@@ -6,8 +6,10 @@ import shoppingbag from "../../assets/images/Shopping-bag.svg";
 import { useParams } from "react-router-dom";
 import { loadProductByCategoryApi } from "../../api/commonApi";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
-function MenCategoryProductSlider() {
+function MenCategoryProductSlider({ addToWishlist,removeWishlist }) {
+  const wishlistProducts = useSelector((state) => state.wishlist.items);
   let { category } = useParams();
   const navigate = useNavigate();
 
@@ -67,7 +69,30 @@ function MenCategoryProductSlider() {
                       <div>
                         <div className="favIcon me-2">
                           <label for="heart">
-                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                            {wishlistProducts?.some(
+                              (wishlistItem) => wishlistItem.id === item.id
+                            ) == true ? (
+                              <>
+                                <i
+                                  class="fa fa-heart-o"
+                                  style={{ color: "red" }}
+                                  aria-hidden="true"
+                                  onClick={() =>
+                                    removeWishlist(item.sku, item.lineId)
+                                  }
+                                ></i>
+                              </>
+                            ) : (
+                              <>
+                                <i
+                                  class="fa fa-heart-o"
+                                  aria-hidden="true"
+                                  onClick={() =>
+                                    addToWishlist(item, item.id, item.lineId)
+                                  }
+                                ></i>
+                              </>
+                            )}
                           </label>
                         </div>
                       </div>
