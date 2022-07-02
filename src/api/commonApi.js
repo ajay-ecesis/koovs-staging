@@ -181,7 +181,7 @@ export const loadSearchSuggestions = async (keyword) => {
   } catch (err) {}
 };
 
-export const loadSearchProductResults = async (searchKeyword) => {
+export const loadSearchProductResults = async (searchKeyword,page) => {
   const config = {
     headers: {
       "X-API-CLIENT": "WEB",
@@ -193,7 +193,7 @@ export const loadSearchProductResults = async (searchKeyword) => {
 
   try {
     let { data } = await axios.get(
-      `${clentServer}/search/v1/complete?query=${searchKeyword}&page=0&page-size=10`,
+      `${clentServer}/search/v1/complete?query=${searchKeyword}&page=${page}&page-size=10`,
       config
     );
     return data;

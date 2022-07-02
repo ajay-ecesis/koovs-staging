@@ -474,3 +474,7 @@
   font-size: 2.2em;
   cursor: pointer;
 }
+
+.infinite-scroll-component {
+  overflow:hidden !important;
+}

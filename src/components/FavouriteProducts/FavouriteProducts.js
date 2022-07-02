@@ -8,6 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { similiarProductAPI } from "../../api/commonApi";
 import { addToWishlistAPI, removeItemFromWishList } from "../../api/cart";
 import { useDispatch, useSelector } from "react-redux";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
   const wishlistProducts = useSelector((state) => state.wishlist.items);
@@ -114,7 +115,8 @@ export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
                               )
                             }
                           >
-                            <img
+                            <LazyLoadImage
+                              effect="blur"
                               src={data.imageSmallUrl}
                               className="img-fluid proimage"
                               alt="Koovs "
@@ -159,7 +161,8 @@ export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
                                   <li>XL</li>
                                   <li>XXL</li>
                                 </ul>
-                                <img
+                                <LazyLoadImage
+                                  effect="blur"
                                   src={shopimg}
                                   className="img-fluid "
                                   alt="Koovs "
@@ -182,7 +185,8 @@ export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
                       <>
                         <div className="col-12 col-lg-6">
                           <div className="position-relative">
-                            <img
+                            <LazyLoadImage
+                              effect="blur"
                               src={data.imageSmallUrl}
                               className="img-fluid proimage"
                               alt="Koovs "
@@ -230,7 +234,8 @@ export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
                                 </label>
                               </div>
                               <div className="d-flex flex-column align-items-end">
-                                <img
+                                <LazyLoadImage
+                                  effect="blur"
                                   src={shopimg}
                                   className="img-fluid m-2"
                                   alt="Koovs "
@@ -301,7 +306,8 @@ export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
                         <div className="cards overflow-hidden">
                           <Link to="/productdetail">
                             <div className="bg-grey">
-                              <img
+                              <LazyLoadImage
+                                effect="blur"
                                 src={data.imageSmallUrl}
                                 className="img-fluid proimage mob-prodImage"
                                 alt="Koovs "

@@ -212,7 +212,6 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
               <div className="col-12 col-lg-6">
                 <div className="float-start w-75 me-2 mt-3 position-relative">
                   <div className="favIcon me-2 d-lg-block d-none">
-                    {/* <input type="checkbox" id="heart" /> */}
                     <label for="heart">
                       {/* check if item is already added to wishlist */}
                       {wishlistProducts.some(
@@ -293,37 +292,36 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
                     <div className="favIcon me-2 position-relative me-4 d-lg-none">
                       {/* <input type="checkbox" id="heart3" /> */}
                       <label for="heart3">
-                        
                         {/* check if item is already added to wishlist */}
-                      {wishlistProducts.some(
-                        (wishlistItem) =>
-                          wishlistItem.id === productDetail.product.id
-                      ) == true ? (
-                        <>
-                          <i
-                            style={{ color: "red" }}
-                            class="fa fa-heart-o"
-                            aria-hidden="true"
-                            onClick={() =>
-                              removeWishlist(
-                                productDetail?.product.sku,
-                                productDetail.product.lineId
-                              )
-                            }
-                          ></i>
-                        </>
-                      ) : (
-                        <>
-                          <i
-                            class="fa fa-heart-o"
-                            aria-hidden="true"
-                            onClick={() =>
-                              addToWishlist(productDetail?.product)
-                            }
-                          ></i>
-                        </>
-                      )}
-                        
+                        {wishlistProducts.some(
+                          (wishlistItem) =>
+                            wishlistItem.id === productDetail.product.id
+                        ) == true ? (
+                          <>
+                            <i
+                              style={{ color: "red" }}
+                              class="fa fa-heart-o"
+                              aria-hidden="true"
+                              onClick={() =>
+                                removeWishlist(
+                                  productDetail?.product.sku,
+                                  productDetail.product.lineId
+                                )
+                              }
+                            ></i>
+                          </>
+                        ) : (
+                          <>
+                            <i
+                              class="fa fa-heart-o"
+                              aria-hidden="true"
+                              onClick={() =>
+                                addToWishlist(productDetail?.product)
+                              }
+                            ></i>
+                          </>
+                        )}
+
                         {/* <i
                           class="fa fa-heart-o"
                           aria-hidden="true"

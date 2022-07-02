@@ -13,6 +13,8 @@ import insta5 from "../../assets/images/insta5.png";
 import insta6 from "../../assets/images/insta6.png";
 import insta7 from "../../assets/images/insta7.png";
 import insta8 from "../../assets/images/insta8.png";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 class SocialMedia extends React.Component {
   // Create state
   state = {
@@ -243,31 +245,35 @@ class SocialMedia extends React.Component {
               <br />
               <div className="row g-1">
                 <div className="col-4 col-lg-4">
-                  <img
+                  <LazyLoadImage
                     src={insta1}
                     className="img-fluid"
                     alt="instagram photo"
+                    effect=""
                   />
                 </div>
                 <div className="col-4 col-lg-4">
-                  <img
+                  <LazyLoadImage
                     src={insta2}
                     className="img-fluid"
                     alt="instagram photo"
+                    effect="blur"
                   />
                 </div>
                 <div className="col-4 col-lg-4">
-                  <img
+                  <LazyLoadImage
                     src={insta3}
                     className="img-fluid"
                     alt="instagram photo"
+                    effect="blur"
                   />
                 </div>
                 <div className="col-4 col-lg-4">
-                  <img
+                  <LazyLoadImage
                     src={insta4}
                     className="img-fluid"
                     alt="instagram photo"
+                    effect="blur"
                   />
                 </div>
                 <div className="col-4 col-lg-4 d-flex align-items-center">
@@ -276,31 +282,35 @@ class SocialMedia extends React.Component {
                   </p>
                 </div>
                 <div className="col-4 col-lg-4">
-                  <img
+                  <LazyLoadImage
                     src={insta5}
                     className="img-fluid"
                     alt="instagram photo"
+                    effect="blur"
                   />
                 </div>
                 <div className="col-4 col-lg-4">
-                  <img
+                  <LazyLoadImage
                     src={insta6}
                     className="img-fluid"
                     alt="instagram photo"
+                    effect="blur"
                   />
                 </div>
                 <div className="col-4 col-lg-4">
-                  <img
+                  <LazyLoadImage
                     src={insta7}
                     className="img-fluid"
                     alt="instagram photo"
+                    effect="blur"
                   />
                 </div>
                 <div className="col-4 col-lg-4">
-                  <img
+                  <LazyLoadImage
                     src={insta8}
                     className="img-fluid"
                     alt="instagram photo"
+                    effect="blur"
                   />
                 </div>
               </div>

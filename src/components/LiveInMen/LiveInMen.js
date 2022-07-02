@@ -5,6 +5,7 @@ import videomenpage from "../../assets/images/videomenpage.png";
 import comingsoon from "../../assets/images/comingsoonmenpage.png";
 import { Carousel } from "react-bootstrap";
 import samplevideo from "../../assets/images/videosample1.mp4";
+
 const LiveInMen = () => {
   const videoRef = useRef();
   const [playVideo, setPlayVideo] = useState(false);

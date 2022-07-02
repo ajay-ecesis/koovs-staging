@@ -7,8 +7,10 @@ import { useParams } from "react-router-dom";
 import { loadProductByCategoryApi } from "../../api/commonApi";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
-function MenCategoryProductSlider({ addToWishlist,removeWishlist }) {
+function MenCategoryProductSlider({ addToWishlist, removeWishlist }) {
   const wishlistProducts = useSelector((state) => state.wishlist.items);
   let { category } = useParams();
   const navigate = useNavigate();
@@ -98,11 +100,12 @@ function MenCategoryProductSlider({ addToWishlist,removeWishlist }) {
                       </div>
                       <div>
                         {" "}
-                        <img
+                        <LazyLoadImage
                           src={item.imageSmallUrl}
                           className="img-fluid"
                           alt="Koovs product Front image"
                           style={{ cursor: "pointer" }}
+                          effect="blur"
                           onClick={() =>
                             goToProductDetailPage(
                               item.productName,
@@ -113,7 +116,7 @@ function MenCategoryProductSlider({ addToWishlist,removeWishlist }) {
                         />
                       </div>
                       <div className="shop-icon d-sm-block d-lg-none d-xl-none">
-                        <img src={shoppingbag} />
+                        <LazyLoadImage src={shoppingbag} effect="blur" />
                       </div>
                       <div className="preview-color">
                         {item?.mainColor?.length > 0 &&

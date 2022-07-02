@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import { ReCaptcha, loadReCaptcha } from "react-recaptcha-v3";
 import { useSelector } from "react-redux";
 import { getProductByBatchIdAPI } from "../../api/commonApi";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const Cart = () => {
   const cartProducts = useSelector((state) => state.cart.items);
@@ -150,11 +151,12 @@ const Cart = () => {
                                       <>
                                         <tr key={item.total}>
                                           <th scope="row" className="w-50">
-                                            <img
+                                            <LazyLoadImage
+                                            effect="blur"
                                               src={item?.product?.cartImageUrl}
                                               width="67px"
                                               height="67px"
-                                            ></img>
+                                            />
                                             <div>
                                               {item?.product?.productName}
                                             </div>

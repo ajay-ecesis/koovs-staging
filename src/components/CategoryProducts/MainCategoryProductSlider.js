@@ -23,7 +23,9 @@ function MenCategoryProductSlider({
   setLoading,
   goToProductDetailPage,
   addToWishlist,
-  removeWishlist
+  removeWishlist,
+  page,
+  setPage
 }) {
   const [isActive, setActive] = useState(false);
   const [isShow, setShow] = useState(false);
@@ -343,6 +345,8 @@ function MenCategoryProductSlider({
           goToProductDetailPage={goToProductDetailPage}
           addToWishlist={addToWishlist}
           removeWishlist={removeWishlist}
+          page={page}
+          setPage={setPage}
         />
 
         <p className="viewall-text fw-bold d-sm-block d-lg-none">

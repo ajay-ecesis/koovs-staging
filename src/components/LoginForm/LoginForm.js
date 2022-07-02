@@ -4,8 +4,10 @@ import { ReCaptcha, loadReCaptcha } from "react-recaptcha-v3";
 import { userLoginAPI } from "../../api/auth";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
+import { useSelector } from "react-redux";
+import { getProductByBatchIdAPI } from "../../api/commonApi";
 const LoginForm = () => {
+  const cartData = useSelector((state) => state.cart.items);
   const navigate = useNavigate();
   const [values, setValues] = useState("");
   const [token, setToken] = useState("");
@@ -45,6 +47,20 @@ const LoginForm = () => {
 
     let userLogin = await userLoginAPI(userData);
     if (!userLogin?.error) {
+      // merge the cart data//
+
+      const loadCartByBatchId = async (data) => {
+        let sku = [];
+        for (let i = 0; i < cartData.length; i++) {
+          sku.push(cartData.product.sku);
+        }
+        sku = sku.toString();
+        let result = await getProductByBatchIdAPI(sku);
+        console.log("this is result", result);
+      };
+
+      // dispatches the login state
+
       dispatch({
         type: "USER_LOGIN",
         payload: userLogin,

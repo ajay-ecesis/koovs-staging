@@ -4,6 +4,9 @@ import womenbannerimg from "../../assets/images/womenbannerimg1.png";
 import Womencarouselimg1 from "../../assets/images/WomenCarouselimg.png";
 import "./womenbanner.css";
 import LazyLoad from "react-lazy-load";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+
 
 const WomenBanner = () => {
   return (
@@ -19,7 +22,8 @@ const WomenBanner = () => {
                     <p>Shop selected spring and summer styles</p>
                   </div>
                   <div className="Menbanner-Image">
-                    <img
+                    <LazyLoadImage
+                    effect="blur"
                       src={Womencarouselimg1}
                       className="w-100 img-fluid"
                       alt="DMG banner Image"
@@ -32,7 +36,8 @@ const WomenBanner = () => {
                     <p>Shop selected spring and summer styles</p>
                   </div>
                   <div className="Menbanner-Image">
-                    <img
+                    <LazyLoadImage
+                    effect="blur"
                       src={Womencarouselimg1}
                       alt="Koovs banner Image"
                       className="w-100 img-fluid"
@@ -45,7 +50,8 @@ const WomenBanner = () => {
                     <p>Shop selected spring and summer styles</p>
                   </div>
                   <div className="Menbanner-Image">
-                    <img
+                    <LazyLoadImage
+                    effect="blur"
                       src={Womencarouselimg1}
                       alt="Koovs banner Image"
                       className="w-100 img-fluid"
@@ -63,7 +69,8 @@ const WomenBanner = () => {
                   <u style={{ cursor: "pointer" }}>View All</u>
                 </p>
               </div>
-              <img
+              <LazyLoadImage
+              effect="blur"
                 src={womenbannerimg}
                 alt="Koovs banner Image"
                 className="w-100 img-fluid"

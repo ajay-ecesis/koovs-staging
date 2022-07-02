@@ -7,6 +7,9 @@ import { Card, Placeholder } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { isMobile } from "react-device-detect";
 import { Link } from "react-router-dom";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+
 function HomeFashion({ category, subCategory, title, link }) {
   const responsive = {
     desktop: {
@@ -193,15 +196,17 @@ function HomeFashion({ category, subCategory, title, link }) {
                         }
                       >
                         <div className="bg-grey">
-                          <img
+                          <LazyLoadImage
                             src={item.imageSmallUrl}
                             className="img-fluid"
                             alt="Koovs product Front "
+                            effect="blur"
                           />
-                          <img
+                          <LazyLoadImage
                             src={item.imageSmallUrl}
                             className="img-fluid rear-img"
                             alt="Koovs rear product "
+                            effect="blur"
                           />
                           <p className="fw-bold">{item.productName}</p>
                           <p>{item.brandName}</p>

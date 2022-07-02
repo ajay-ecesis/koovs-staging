@@ -12,6 +12,8 @@ import { useSearchParams } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router-dom";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const SearchProduct = () => {
   let navigate = useNavigate();
@@ -20,6 +22,7 @@ const SearchProduct = () => {
   const [searchResult, setSearchResult] = useState([]);
   const [suggestedKeywords, setSuggestedKeywords] = useState([]);
   const [productsLoading, setProductsLoading] = useState(false);
+  const [page, setPage] = useState(0);
 
   // get the products on changing the query params
   useEffect(() => {
@@ -32,12 +35,15 @@ const SearchProduct = () => {
   }, [searchParams]);
 
   // loads the search result products based on the query params
-  const loadSearchResultProducts = async (keyword) => {
-    setProductsLoading(true);
-    let data = await loadSearchProductResults(keyword);
+  const loadSearchResultProducts = async (keyword, isInfinityScroll) => {
+    // loader will only show if the search is not from infinity scroll
+    if (!isInfinityScroll) {
+      setProductsLoading(true);
+    }
+    let data = await loadSearchProductResults(keyword, page);
 
     if (data?.data[0]?.data) {
-      setSearchResult(data?.data[0]?.data);
+      setSearchResult((previous) => [...previous, ...data?.data[0]?.data]);
     } else {
       setSearchResult([]);
     }
@@ -76,8 +82,13 @@ const SearchProduct = () => {
   };
 
   const paginateResult = () => {
-    // alert("paginate");
+    setPage(page + 1);
   };
+
+  useEffect(() => {
+    if (page) loadSearchResultProducts(searchKeyword, true);
+  }, [page]);
+
   return (
     <>
       <section className={styles.search_products}>
@@ -149,23 +160,11 @@ const SearchProduct = () => {
               </p>
             </div>
             <InfiniteScroll
-                dataLength={searchResult.length} //This is important field to render the next data
-                next={paginateResult}
-                hasMore={true}
-                loader={<h4>Loading...</h4>}
-                endMessage={
-                  <p style={{ textAlign: "center" }}>
-                    <b>Yay! You have seen it all</b>
-                  </p>
-                }
-                releaseToRefreshContent={
-                  <h3 style={{ textAlign: "center" }}>
-                    &#8593; Release to refresh
-                  </h3>
-                }
-              >
-            <div className={`${styles.image_color} row g-1`}>
-             
+              dataLength={searchResult.length} //This is important field to render the next data
+              next={paginateResult}
+              hasMore={true}
+            >
+              <div className={`${styles.image_color} row g-1`}>
                 {searchResult.length > 0 &&
                   searchResult.map((item) => {
                     return (
@@ -200,16 +199,17 @@ const SearchProduct = () => {
                             </div>
                             <div>
                               {" "}
-                              <img
+                              <LazyLoadImage
                                 src={item.imageSmallUrl}
                                 className="img-fluid"
                                 alt="Koovs product Front image"
+                                effect="blur"
                               />
                             </div>
                             <div
                               className={`${styles.shop_icon} d-sm-block d-lg-none d-xl-none`}
                             >
-                              <img src={shoppingbag} />
+                              <LazyLoadImage src={shoppingbag} effect="blur" />
                             </div>
                             <div className={`${styles.preview_color}`}>
                               <input
@@ -254,11 +254,11 @@ const SearchProduct = () => {
                       </>
                     );
                   })}
-           
-              <div
-                className={` ${styles.shirt_col}   col-lg-3  d-sm-none`}
-              ></div>
-            </div>
+
+                <div
+                  className={` ${styles.shirt_col}   col-lg-3  d-sm-none`}
+                ></div>
+              </div>
             </InfiniteScroll>
           </div>
         )}
