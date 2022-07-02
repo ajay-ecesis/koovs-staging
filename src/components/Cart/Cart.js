@@ -2,17 +2,25 @@ import React, { useEffect, useState } from "react";
 import "./cart.css";
 import cartProductImg from "../../assets/images/Outline/cartProduct.png";
 import payment from "../../assets/images/Outline/payment.png";
-import { getCartItems, removeCartItem } from "../../api/cart";
+import {
+  getCartItems,
+  removeCartItem,
+  updateCartQuantity,
+} from "../../api/cart";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { ReCaptcha, loadReCaptcha } from "react-recaptcha-v3";
+import { useSelector } from "react-redux";
+import { getProductByBatchIdAPI } from "../../api/commonApi";
 
 const Cart = () => {
+  const cartProducts = useSelector((state) => state.cart.items);
   const [cartItems, setCartItems] = useState([]);
+  const [productInDetail, setProductInDetail] = useState([]);
   const [cartData, setCartData] = useState("");
   const [loading, setLoading] = useState(false);
   const [token, setToken] = useState();
-const [key,setKey]=useState(1)
+  const [key, setKey] = useState(1);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -21,9 +29,8 @@ const [key,setKey]=useState(1)
   }, []);
 
   const reloadRecaptcha = () => {
-setKey(key+1)
-loadReCaptcha(process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY); //sitekey load recaptcha
-
+    setKey(key + 1);
+    loadReCaptcha(process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY); //sitekey load recaptcha
   };
 
   function handleVerify(token) {
@@ -35,7 +42,8 @@ loadReCaptcha(process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY); //sitekey load recapt
     let data = await getCartItems();
     if (data) {
       setCartData(data);
-      setCartItems(data.itemsInStock);
+      setCartItems(data.items);
+      loadCartByBatchId(data);
     }
 
     // recalculating the count
@@ -44,6 +52,17 @@ loadReCaptcha(process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY); //sitekey load recapt
       payload: data.items,
     });
     setLoading(false);
+  };
+
+  const loadCartByBatchId = async (data) => {
+    let sku = [];
+    for (let i = 0; i < data.items.length; i++) {
+      sku.push(data.items[i].product.sku);
+    }
+    sku = sku.toString();
+    let result = await getProductByBatchIdAPI(sku);
+    console.log("this is result", result);
+    setProductInDetail(result.data);
   };
 
   const removeItemFromCart = async (skuId) => {
@@ -63,16 +82,36 @@ loadReCaptcha(process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY); //sitekey load recapt
     );
   };
 
-  //   update products quantity
-
+  //   update single products quantity
   const updateQuantity = async (product, quantity) => {
+    // get FeDetails, lot , and other meta details from previously stored product data//
+    var [temp] = productInDetail.filter((item) => {
+      return item.product.sku == product.product.sku;
+    });
+
+    [temp] = temp.quantity.data.filter((item) => {
+      return item.skuId == product.product.sku;
+    });
+
+    let obj = {
+      sku: product.product.sku,
+      quantity: quantity,
+      vendor: temp.feDetails.vendor,
+      warehouse: temp.feDetails.warehouse,
+      lot: temp.feDetails.lot,
+      reCaptcha: token,
+    };
+
+    let result = await updateCartQuantity(obj);
+    reloadRecaptcha();
+    loadCartItems();
   };
 
   return (
     <>
       <ReCaptcha
         sitekey={process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY}
-        action="sign_up"
+        action="addToCart"
         key={key}
         verifyCallback={handleVerify}
       />
@@ -98,6 +137,7 @@ loadReCaptcha(process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY); //sitekey load recapt
                                 <tr>
                                   <th scope="col">Item</th>
                                   <th scope="col">Price</th>
+                                  <th scope="col">Size</th>
                                   <th scope="col">Quantity</th>
                                   <th scope="col">Total</th>
                                 </tr>
@@ -123,6 +163,12 @@ loadReCaptcha(process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY); //sitekey load recapt
                                             {" "}
                                             <div className="pt-4">
                                               ₹ {item.total}
+                                            </div>
+                                          </td>
+                                          <td className="w-25 total-price">
+                                            {" "}
+                                            <div className="pt-4">
+                                              {item.product.sizeCode}
                                             </div>
                                           </td>
                                           <td className="w-25">

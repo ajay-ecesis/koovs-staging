@@ -38,11 +38,11 @@ function MenCategoryProductSlider() {
     setLoading(false);
   };
 
-    //navigates to product detail page by making url friendly
-    const goToProductDetailPage = (title, id, lineId) => {
-        let slug = title.replace(/\s+/g, "-").toLowerCase();
-        navigate(`/product/${slug}/${id}/${lineId}`);
-    };
+  //navigates to product detail page by making url friendly
+  const goToProductDetailPage = (title, id, lineId) => {
+    let slug = title.replace(/\s+/g, "-").toLowerCase();
+    navigate(`/product/${slug}/${id}/${lineId}`);
+  };
   return (
     <section className="category_product_slider">
       <div className="container-fluid">
@@ -58,13 +58,7 @@ function MenCategoryProductSlider() {
             products.slice(0, 4).map((item) => {
               return (
                 <>
-                  <div class="shirt-col col-xl-3  col-lg-3  col-sm-6  col-6" style={{cursor:"pointer"}} onClick={() =>
-                          goToProductDetailPage(
-                            item.productName,
-                            item.id,
-                            item.lineId
-                          )
-                        }>
+                  <div class="shirt-col col-xl-3  col-lg-3  col-sm-6  col-6">
                     {" "}
                     <div className="text-category">
                       <div className="new">
@@ -83,6 +77,14 @@ function MenCategoryProductSlider() {
                           src={item.imageSmallUrl}
                           className="img-fluid"
                           alt="Koovs product Front image"
+                          style={{ cursor: "pointer" }}
+                          onClick={() =>
+                            goToProductDetailPage(
+                              item.productName,
+                              item.id,
+                              item.lineId
+                            )
+                          }
                         />
                       </div>
                       <div className="shop-icon d-sm-block d-lg-none d-xl-none">
@@ -119,7 +121,7 @@ function MenCategoryProductSlider() {
             })}
 
           <p className="viewall-text fw-bold d-sm-block d-lg-none">
-            <u style={{ cursor: "pointer" }}>View rAll</u>
+            <u style={{ cursor: "pointer" }}>View All</u>
           </p>
         </div>
       </div>

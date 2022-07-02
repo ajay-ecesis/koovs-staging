@@ -291,13 +291,44 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
                 <div className="w-75 mx-auto d-table pt-lg-5 pt-3">
                   <div className="product-name d-flex align-items-center fw-bold">
                     <div className="favIcon me-2 position-relative me-4 d-lg-none">
-                      <input type="checkbox" id="heart3" />
+                      {/* <input type="checkbox" id="heart3" /> */}
                       <label for="heart3">
-                        <i
+                        
+                        {/* check if item is already added to wishlist */}
+                      {wishlistProducts.some(
+                        (wishlistItem) =>
+                          wishlistItem.id === productDetail.product.id
+                      ) == true ? (
+                        <>
+                          <i
+                            style={{ color: "red" }}
+                            class="fa fa-heart-o"
+                            aria-hidden="true"
+                            onClick={() =>
+                              removeWishlist(
+                                productDetail?.product.sku,
+                                productDetail.product.lineId
+                              )
+                            }
+                          ></i>
+                        </>
+                      ) : (
+                        <>
+                          <i
+                            class="fa fa-heart-o"
+                            aria-hidden="true"
+                            onClick={() =>
+                              addToWishlist(productDetail?.product)
+                            }
+                          ></i>
+                        </>
+                      )}
+                        
+                        {/* <i
                           class="fa fa-heart-o"
                           aria-hidden="true"
                           onClick={() => addToWishlist(productDetail?.product)}
-                        ></i>
+                        ></i> */}
                       </label>
                     </div>
                     <div className="flex-grow-1">

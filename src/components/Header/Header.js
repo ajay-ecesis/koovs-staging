@@ -9,8 +9,10 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 function Header() {
+  const dispatch=useDispatch()
   const user = useSelector((state) => state.user);
   const cartData = useSelector((state) => state.cart.items);
 
@@ -73,13 +75,19 @@ function Header() {
     );
   };
 
+  const logoutUser=()=>{
+
+    dispatch({
+      type:"USER_LOGOUT",
+      payload:null
+    })
+
+  }
+
   return (
     <header>
       <div className="top-nav">
-        <input
-          id="menu-toggle"
-          type="checkbox"
-        />
+        <input id="menu-toggle" type="checkbox" />
         <label className="menu-button-container" htmlFor="menu-toggle">
           <div className="menu-button" id="clickClose"></div>
         </label>
@@ -206,6 +214,11 @@ function Header() {
                   <u>Shipping to Denmark</u>
                 </Link>
               </li>
+              {user?.isLoggedIn&&
+              <li onClick={()=>{logoutUser()}}>
+                <u>Logout</u>
+              </li>
+              }
             </ul>
           </li>
         </ul>

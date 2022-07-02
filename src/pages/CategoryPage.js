@@ -18,7 +18,7 @@ const CategoryPage = () => {
   useEffect(() => {
     if (category) setCategoryName(category);
   }, [category]);
-  
+
   return (
     <div className="HomeMen">
       <Header />

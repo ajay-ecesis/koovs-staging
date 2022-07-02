@@ -133,11 +133,48 @@ export const incrementCartQuantity = async (cartData) => {
   }
 };
 
+export const updateCartQuantity = async (cartItem) => {
+  let authToken = await JSON.parse(localStorage.getItem("userToken"));
+  if (!authToken) {
+    authToken = await JSON.parse(localStorage.getItem("guestToken"));
+  }
+  const config = {
+    headers: {
+      Authorization: authToken,
+      "X-API-CLIENT": "WEB",
+      "CAN-FETCH-VALUE": "NO",
+      "X-CAPTCHA-TOKEN": cartItem.reCaptcha,
+      "X-CAPTCHA-ACTION": "addToCart",
+    },
+  };
+
+  try {
+    const res = await axios.post(
+      clientServer + "/jarvis-order-service/v1/cart",
+      {
+        addItemList: [
+          {
+            sku:cartItem.sku,
+            qty: cartItem.quantity,
+            vendor: cartItem.vendor,
+            warehouse: cartItem.warehouse,
+            lot:cartItem.lot,
+          },
+        ],
+      },
+      config
+    );
+    toast.success("Updated product quantity");
+    return true;
+  } catch (err) {
+    console.log("err",err)
+    return false;
+  }
+};
+
 // Wishlist related apis
 
 export const addToWishlistAPI = async (productData) => {
-  console.log("skuiiid", productData);
-
   let authToken = await JSON.parse(localStorage.getItem("userToken"));
   if (!authToken) {
     return toast.error("You are not logged in to use wishlist");
