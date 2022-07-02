@@ -6,8 +6,10 @@ import shoppingbag from "../../assets/images/Shopping-bag.svg";
 import { useParams } from "react-router-dom";
 import { loadProductByCategoryApi } from "../../api/commonApi";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
-function MenCategoryProductSlider() {
+function MenCategoryProductSlider({ addToWishlist,removeWishlist }) {
+  const wishlistProducts = useSelector((state) => state.wishlist.items);
   let { category } = useParams();
   const navigate = useNavigate();
 
@@ -38,11 +40,11 @@ function MenCategoryProductSlider() {
     setLoading(false);
   };
 
-    //navigates to product detail page by making url friendly
-    const goToProductDetailPage = (title, id, lineId) => {
-        let slug = title.replace(/\s+/g, "-").toLowerCase();
-        navigate(`/product/${slug}/${id}/${lineId}`);
-    };
+  //navigates to product detail page by making url friendly
+  const goToProductDetailPage = (title, id, lineId) => {
+    let slug = title.replace(/\s+/g, "-").toLowerCase();
+    navigate(`/product/${slug}/${id}/${lineId}`);
+  };
   return (
     <section className="category_product_slider">
       <div className="container-fluid">
@@ -58,13 +60,7 @@ function MenCategoryProductSlider() {
             products.slice(0, 4).map((item) => {
               return (
                 <>
-                  <div class="shirt-col col-xl-3  col-lg-3  col-sm-6  col-6" style={{cursor:"pointer"}} onClick={() =>
-                          goToProductDetailPage(
-                            item.productName,
-                            item.id,
-                            item.lineId
-                          )
-                        }>
+                  <div class="shirt-col col-xl-3  col-lg-3  col-sm-6  col-6">
                     {" "}
                     <div className="text-category">
                       <div className="new">
@@ -73,7 +69,30 @@ function MenCategoryProductSlider() {
                       <div>
                         <div className="favIcon me-2">
                           <label for="heart">
-                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                            {wishlistProducts?.some(
+                              (wishlistItem) => wishlistItem.id === item.id
+                            ) == true ? (
+                              <>
+                                <i
+                                  class="fa fa-heart-o"
+                                  style={{ color: "red" }}
+                                  aria-hidden="true"
+                                  onClick={() =>
+                                    removeWishlist(item.sku, item.lineId)
+                                  }
+                                ></i>
+                              </>
+                            ) : (
+                              <>
+                                <i
+                                  class="fa fa-heart-o"
+                                  aria-hidden="true"
+                                  onClick={() =>
+                                    addToWishlist(item, item.id, item.lineId)
+                                  }
+                                ></i>
+                              </>
+                            )}
                           </label>
                         </div>
                       </div>
@@ -83,6 +102,14 @@ function MenCategoryProductSlider() {
                           src={item.imageSmallUrl}
                           className="img-fluid"
                           alt="Koovs product Front image"
+                          style={{ cursor: "pointer" }}
+                          onClick={() =>
+                            goToProductDetailPage(
+                              item.productName,
+                              item.id,
+                              item.lineId
+                            )
+                          }
                         />
                       </div>
                       <div className="shop-icon d-sm-block d-lg-none d-xl-none">
@@ -119,7 +146,7 @@ function MenCategoryProductSlider() {
             })}
 
           <p className="viewall-text fw-bold d-sm-block d-lg-none">
-            <u style={{ cursor: "pointer" }}>View rAll</u>
+            <u style={{ cursor: "pointer" }}>View All</u>
           </p>
         </div>
       </div>

@@ -3,7 +3,7 @@ import "./loginform.css";
 import { ReCaptcha, loadReCaptcha } from "react-recaptcha-v3";
 import { userLoginAPI } from "../../api/auth";
 import { useDispatch } from "react-redux";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -22,7 +22,6 @@ const LoginForm = () => {
   const reloadRecaptcha = () => {
     setKey(key + 1);
     loadReCaptcha(process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY); //sitekey load recaptcha
-
   };
 
   function handleVerify(token) {
@@ -50,7 +49,8 @@ const LoginForm = () => {
         type: "USER_LOGIN",
         payload: userLogin,
       });
-      navigate("/user/account");
+      // navigate("/user/account");
+      window.location.href = "/user/account";
     } else {
       // reloads the recaptcha key with new one
       googleCaptcha.current.execute();
