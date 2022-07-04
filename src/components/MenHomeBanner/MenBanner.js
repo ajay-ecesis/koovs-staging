@@ -4,6 +4,8 @@ import menbannerimg from "../../assets/images/menbannerimg.png";
 import MenBannerimg1 from "../../assets/images/MenBannerimg1.png";
 import "./menbanner.css";
 import LazyLoad from "react-lazy-load";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const MenBanner = () => {
   return (
@@ -19,7 +21,8 @@ const MenBanner = () => {
                     <p>Explore the new collection...</p>
                   </div>
                   <div className="Menbanner-Image">
-                    <img
+                    <LazyLoadImage
+                    effect="blur"
                       src={MenBannerimg1}
                       className="w-100 img-fluid"
                       alt="DMG banner Image"
@@ -32,7 +35,8 @@ const MenBanner = () => {
                     <p>Explore the new collection...</p>
                   </div>
                   <div className="Menbanner-Image">
-                    <img
+                    <LazyLoadImage
+                    effect="blur"
                       src={MenBannerimg1}
                       alt="Koovs banner Image"
                       className="w-100 img-fluid"
@@ -45,7 +49,8 @@ const MenBanner = () => {
                     <p>Explore the new collection...</p>
                   </div>
                   <div className="Menbanner-Image">
-                    <img
+                    <LazyLoadImage
+                    effect="blur"
                       src={MenBannerimg1}
                       alt="Koovs banner Image"
                       className="w-100 img-fluid"
@@ -63,7 +68,8 @@ const MenBanner = () => {
                   <u style={{ cursor: "pointer" }}>View All</u>
                 </p>
               </div>
-              <img
+              <LazyLoadImage
+              effect="blur"
                 src={menbannerimg}
                 alt="Koovs banner Image"
                 className="w-100 img-fluid"

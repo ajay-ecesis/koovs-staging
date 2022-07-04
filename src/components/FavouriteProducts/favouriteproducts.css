@@ -65,7 +65,7 @@
 .favIcon input:checked ~ label {
     color: red;
   }
-.favIcon label {
+  .favourite-products .favIcon label {
     font-size: 2.2em;
     cursor: pointer;
   }

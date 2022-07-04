@@ -154,11 +154,11 @@ export const updateCartQuantity = async (cartItem) => {
       {
         addItemList: [
           {
-            sku:cartItem.sku,
+            sku: cartItem.sku,
             qty: cartItem.quantity,
             vendor: cartItem.vendor,
             warehouse: cartItem.warehouse,
-            lot:cartItem.lot,
+            lot: cartItem.lot,
           },
         ],
       },
@@ -167,7 +167,7 @@ export const updateCartQuantity = async (cartItem) => {
     toast.success("Updated product quantity");
     return true;
   } catch (err) {
-    console.log("err",err)
+    console.log("err", err);
     return false;
   }
 };
@@ -177,7 +177,8 @@ export const updateCartQuantity = async (cartItem) => {
 export const addToWishlistAPI = async (productData) => {
   let authToken = await JSON.parse(localStorage.getItem("userToken"));
   if (!authToken) {
-    return toast.error("You are not logged in to use wishlist");
+    toast.error("You are not logged in to use wishlist");
+    return false;
   }
   const config = {
     headers: {

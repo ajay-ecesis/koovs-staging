@@ -1,4 +1,9 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, INITIALIZE_CART } from "./cartType";
+import {
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  INITIALIZE_CART,
+  MERGE_CART,
+} from "./cartType";
 
 const initialState = {
   qty: 0,
@@ -37,6 +42,10 @@ const cartReducer = (state = initialState, action) => {
     case INITIALIZE_CART:
       return {
         ...state,
+        items: action.payload,
+      };
+    case MERGE_CART:
+      return {
         items: action.payload,
       };
 

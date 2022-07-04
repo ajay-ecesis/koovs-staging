@@ -6,6 +6,7 @@ import storiesimg from "../../assets/images/Screenshot.png";
 import { Link } from "react-router-dom";
 import { getCookie, setCookie } from "../../utils/cookieManage";
 
+
 function HomeBanner() {
   const hideCookieBanner = () => {
     var element = document.getElementById("cookieBanner");

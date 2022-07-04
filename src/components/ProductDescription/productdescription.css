@@ -1,4 +1,8 @@
 
+.product-detail .favIcon label{
+  font-size: 2.3rem;
+
+}
 .ImageDesc .slick-vertical .slick-slide {
   border: 5px solid transparent;
 }

@@ -20,11 +20,11 @@ const CategoryMainPage = () => {
   let { subcategory } = useParams();
 
   const [result, setResult] = useState();
-  const [products, setProducts] = useState();
+  const [products, setProducts] = useState([]);
   const [sort, setSort] = useState("relevance");
   const [filterTypes, setFilterTypes] = useState([]);
   const [page, setPage] = useState(0);
-  const [limit, setLimit] = useState(6);
+  const [limit, setLimit] = useState(8);
   const [filterType, setFilterType] = useState({
     brand_fq: "",
     color_fq: "",
@@ -38,7 +38,7 @@ const CategoryMainPage = () => {
 
   useEffect(() => {
     loadProductItemsBycategory();
-  }, [category, subcategory, sort]);
+  }, [category, subcategory, sort, page]);
 
   useEffect(() => {
     reloadRecaptcha();
@@ -49,7 +49,6 @@ const CategoryMainPage = () => {
     setKey(key + 1);
 
     loadReCaptcha(process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY); //sitekey load recaptcha
-
   };
 
   function handleVerify(token) {
@@ -65,8 +64,9 @@ const CategoryMainPage = () => {
         sort,
         page
       );
+      setProducts((previous) => [...previous, ...data[0].data]);
 
-      setProducts(data[0].data);
+      // setProducts(data[0].data);
       setFilterTypes(data[1].data);
       setResult(data[0]);
     }
@@ -185,6 +185,8 @@ const CategoryMainPage = () => {
         goToProductDetailPage={goToProductDetailPage}
         addToWishlist={addToWishlist}
         removeWishlist={removeWishlist}
+        page={page}
+        setPage={setPage}
       />
     </>
   );

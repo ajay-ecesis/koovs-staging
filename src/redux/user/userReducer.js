@@ -5,7 +5,7 @@ const initialState = {
   user: null,
 };
 
-const userReducer = (state = initialState, action) => {
+const userReducer =  (state = initialState, action) => {
   switch (action.type) {
     case USER_SIGNUP:
       localStorage.setItem("userToken", JSON.stringify(action.payload.token));

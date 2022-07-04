@@ -14,6 +14,8 @@ import MyAccount from "./components/MyAccount/MyAccount";
 import { MyInformationPage } from "./pages/MyInformationPage";
 
 import WishlistPage from "./pages/WishlistPage";
+import PrivateRoute from "./route/PrivateRoute";
+import Address from "./pages/Address";
 // component lazy loading begins
 const Home = React.lazy(() => import("./pages/Home"));
 const ProductCart = React.lazy(() => import("./pages/ProductCart"));
@@ -95,8 +97,9 @@ const App = () => {
               <Route path="/signup/register" element={<Signup />} />
               <Route path="/signup/login" element={<Login />} />
               <Route path="/search" element={<Search />} />
-              <Route path="/user/account" element={<MyInformationPage />} />
+              <Route path="/user/account" element={<PrivateRoute> <MyInformationPage /></PrivateRoute>} />
               <Route path="/wishlist" element={<WishlistPage />} />
+              <Route path="/checkout/address" element={<Address />} />
               <Route path="*" element={<FourNotFour />} />
             </Routes>
           </Suspense>
