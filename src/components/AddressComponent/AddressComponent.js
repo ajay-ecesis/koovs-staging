@@ -1,6 +1,62 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Button, Modal, OverlayTrigger, Tooltip } from "react-bootstrap";
 import "./addressComponent.css";
-const AddressComponent = () => {
+import { addNewAddressApi, selectAddressApi } from "../../api/checkout";
+const AddressComponent = ({ address, loadAddressDetails }) => {
+  const cartDetails = useSelector((state) => state.cart.cartData); //cart global info
+  const cartProducts = useSelector((state) => state.cart.items); //cart items info
+  const [showAddressModal, setShowAddressModal] = useState(false);
+  const [selectedAddress, setSelectedAddress] = useState(null);
+  const [values, setValues] = useState({
+    country: "INDIA",
+  });
+
+  useEffect(() => {
+    if (address) handleChangeSelectedAddress();
+  }, [address]);
+
+  const renderTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      In case of partial cancellation there may be recovery of shipping charges
+      applicable. <br /> For more details check <u>shipping policy</u>
+    </Tooltip>
+  );
+
+  const changeSelectedAddress = async (id) => {
+    let data = await selectAddressApi(id);
+
+    if (data.isServiceable == false) {
+      document.getElementById("deliverymsg" + id).innerHTML = data.msg;
+    }
+    setSelectedAddress(id);
+  };
+  const handleChangeSelectedAddress = async () => {
+    let [detail] = await address.filter(function (address) {
+      return address.isDefault == true;
+    });
+
+    console.log("result of address detail", detail.id);
+    setSelectedAddress(detail?.id);
+  };
+
+  const handleChange = (name) => (event) => {
+    setValues({ ...values, [name]: event.target.value });
+  };
+
+  const submitAddress = async () => {
+    let obj = {
+      isBillingSameAsShipping: true,
+      isDefault: false,
+      shippingAddress: values,
+    };
+
+    let data = await addNewAddressApi(obj);
+    if (data) {
+      setShowAddressModal(false);
+      loadAddressDetails();
+    }
+  };
   return (
     <>
       <section className="checkout-address">
@@ -11,248 +67,155 @@ const AddressComponent = () => {
                 <div class="defaultAddText" data-reactid="30">
                   Select Delivery Address
                 </div>
-                <div class="addBtn fw-bold" data-reactid="31">
-                  ADD
+                <div
+                  class="addBtn fw-bold"
+                  data-reactid="31"
+                  onClick={() => {
+                    setShowAddressModal(true);
+                  }}
+                >
+                  <u>ADD</u>
                 </div>
               </div>
               <div className="row">
-                <div class="card mt-3">
-                  <div class="card-body">
-                    <span>default</span>
-                    <div class="radioDiv">
-                      <input
-                        type="radio"
-                        name="selectAddress"
-                        value="3055606"
-                        id="3055606"
-                      />
-                      <label for="3055606"></label>
-                      <div class="check"></div>
-                    </div>
+                {address &&
+                  address.length > 0 &&
+                  address.map((item) => {
+                    return (
+                      <>
+                        <div class="card mt-3">
+                          <div class="card-body">
+                            {item.isDefault && <span>default</span>}
+                            <div class="radioDiv">
+                              <input
+                                type="radio"
+                                name="selectAddress"
+                                id={item.id}
+                                checked={selectedAddress == item.id}
+                                onChange={() => changeSelectedAddress(item.id)}
+                              />
+                              <label for="3055606"></label>
+                              <div class="check"></div>
+                            </div>
 
-                    <div className="card-address">
-                      {" "}
-                      <h5 class="card-title">Card title</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">
-                        Card subtitle
-                      </h6>
-                      <p class="card-text">
-                        Some quick example text to build on the card title and
-                        make up the bulk of the card's content.
-                      </p>
-                      <span> Edit</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="card mt-3">
-                  <div class="card-body">
-                    <span>default</span>
-                    <div class="radioDiv">
-                      <input
-                        type="radio"
-                        name="selectAddress"
-                        value="3055606"
-                        id="3055606"
-                      />
-                      <label for="3055606"></label>
-                      <div class="check"></div>
-                    </div>
-
-                    <div className="card-address">
-                      {" "}
-                      <h5 class="card-title">Card title</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">
-                        Card subtitle
-                      </h6>
-                      <p class="card-text">
-                        Some quick example text to build on the card title and
-                        make up the bulk of the card's content.
-                      </p>
-                      <span> Edit</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="card mt-3">
-                  <div class="card-body">
-                    <span>default</span>
-                    <div class="radioDiv">
-                      <input
-                        type="radio"
-                        name="selectAddress"
-                        value="3055606"
-                        id="3055606"
-                      />
-                      <label for="3055606"></label>
-                      <div class="check"></div>
-                    </div>
-
-                    <div className="card-address">
-                      {" "}
-                      <h5 class="card-title">Card title</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">
-                        Card subtitle
-                      </h6>
-                      <p class="card-text">
-                        Some quick example text to build on the card title and
-                        make up the bulk of the card's content.
-                      </p>
-                      <span> Edit</span>
-                    </div>
-                  </div>
-                </div>
+                            <div className="card-address">
+                              {" "}
+                              <h5 class="card-title">
+                                {item.shippingAddress.name}
+                              </h5>
+                              <p class="card-text">
+                                <span>{item.shippingAddress.address}</span>
+                                <br />
+                                <span>{item.shippingAddress.city}</span>
+                                <br />
+                                <span>{item.shippingAddress.zip}</span>
+                                <br />
+                                <span>{item.shippingAddress.state}</span>
+                                <br />
+                                <span>{item.shippingAddress.country}</span>
+                              </p>
+                              <span className="fw-bold">
+                                <u>EDIT</u>
+                              </span>
+                              <br />
+                              {/* service message */}
+                              {selectedAddress == item.id && (
+                                <span
+                                  className="delivery-info"
+                                  id={"deliverymsg" + item.id}
+                                  dangerouslySetInnerHTML={{
+                                    __html: item.servicableMsg,
+                                  }}
+                                ></span>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    );
+                  })}
               </div>
               <div className="product-overview">
                 <div className="cart-item">
                   <div className="d-flex">3 items</div>
 
                   <div className="bag-item-lists">
-                    <div className="bag-item">
-                      <div className="bag-item-img">
-                        <img src="https://product.koovs.com/172804_ca4d19cfd40a463ba227c6b1af054019_image1_search.jpg" />
-                      </div>
-                      <div className="bag-item-info">
-                        <div>
-                          <div class="bag-item-title">
-                            <a
-                              href="/blue-saint-women-blue-slim-fit-midrise-mildly-distressed-stretchable-jeans-155540-172804.html?ref=cart_1997231"
-                              target="_blank"
-                            >
-                              <p class="product-name">
-                                <span class="brand-name">Blue Saint</span>Women
-                                Blue Slim Fit Mid-Rise Mildly Distressed
-                                Stretchable Jeans
-                              </p>
-                            </a>
-                          </div>
-                        </div>
+                    {cartProducts?.length > 0 &&
+                      cartProducts.map((item) => {
+                        return (
+                          <>
+                            <div className="bag-item">
+                              <div className="bag-item-img">
+                                <img src={item.product.cartImageUrl} />
+                              </div>
+                              <div className="bag-item-info">
+                                <div>
+                                  <div class="bag-item-title">
+                                    <a
+                                      href="/blue-saint-women-blue-slim-fit-midrise-mildly-distressed-stretchable-jeans-155540-172804.html?ref=cart_1997231"
+                                      target="_blank"
+                                    >
+                                      <p class="product-name">
+                                        <span class="brand-name">
+                                          {item.product.brandName}
+                                        </span>
+                                        {item.product.productName}
+                                      </p>
+                                    </a>
+                                  </div>
+                                </div>
 
-                        <div className="os-item-summary">
-                          <div className="os-item-details">
-                            <div class="os-size-div">
-                              <div class="size-label">Size :</div>
-                              <div class="size-code">34</div>
-                            </div>
-                          </div>
-                          <div class="os-color-div">
-                            <div class="color-label">Color :</div>
-                            <div class="color-code">
-                              <div class="color-div"> </div>
-                            </div>
-                          </div>
-                          <div class="os-qty-div">
-                            <div class="qty-label">Qty :</div>
-                            <div class="qty-code">1</div>
-                          </div>
-                        </div>
+                                <div className="os-item-summary">
+                                  <div className="os-item-details">
+                                    <div class="os-size-div">
+                                      <div class="size-label">Size :</div>
+                                      <div class="size-code">
+                                        {" "}
+                                        {item.product.sizeCode}
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="os-color-div">
+                                    <div class="color-label">Color :</div>
+                                    <div class="color-code">
+                                      <div
+                                        class="color-div"
+                                        style={{
+                                          backgroundColor:
+                                            item.product.colorCode,
+                                        }}
+                                      >
+                                        {" "}
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="os-qty-div">
+                                    <div class="qty-label">Qty :</div>
+                                    <div class="qty-code">{item.qty}</div>
+                                  </div>
+                                </div>
 
-                        <div class="item-price-wrapper">
-                          <div class="price-div">
-                            <div class="disc-price">₹ 1000</div>
-                            <div class="striked-price">₹1999</div>
-                            <div class="disc-perc"> % OFF</div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="sold-out-hide"></div>
-                    </div>
-                    <div className="bag-item">
-                      <div className="bag-item-img">
-                        <img src="https://product.koovs.com/172804_ca4d19cfd40a463ba227c6b1af054019_image1_search.jpg" />
-                      </div>
-                      <div className="bag-item-info">
-                        <div>
-                          <div class="bag-item-title">
-                            <a
-                              href="/blue-saint-women-blue-slim-fit-midrise-mildly-distressed-stretchable-jeans-155540-172804.html?ref=cart_1997231"
-                              target="_blank"
-                            >
-                              <p class="product-name">
-                                <span class="brand-name">Blue Saint</span>Women
-                                Blue Slim Fit Mid-Rise Mildly Distressed
-                                Stretchable Jeans
-                              </p>
-                            </a>
-                          </div>
-                        </div>
-
-                        <div className="os-item-summary">
-                          <div className="os-item-details">
-                            <div class="os-size-div">
-                              <div class="size-label">Size :</div>
-                              <div class="size-code">34</div>
+                                <div class="item-price-wrapper">
+                                  <div class="price-div">
+                                    <div class="disc-price">
+                                      ₹ {item.subTotal}
+                                    </div>
+                                    <div class="striked-price">
+                                      {" "}
+                                     
+₹  {item.total}
+                                    </div>
+                                    <div class="disc-perc">
+                                      {item.product.discountPercent} % OFF
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="sold-out-hide"></div>
                             </div>
-                          </div>
-                          <div class="os-color-div">
-                            <div class="color-label">Color :</div>
-                            <div class="color-code">
-                              <div class="color-div"> </div>
-                            </div>
-                          </div>
-                          <div class="os-qty-div">
-                            <div class="qty-label">Qty :</div>
-                            <div class="qty-code">1</div>
-                          </div>
-                        </div>
-
-                        <div class="item-price-wrapper">
-                          <div class="price-div">
-                            <div class="disc-price">₹ 1000</div>
-                            <div class="striked-price">₹1999</div>
-                            <div class="disc-perc"> % OFF</div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="sold-out-hide"></div>
-                    </div>
-                    <div className="bag-item">
-                      <div className="bag-item-img">
-                        <img src="https://product.koovs.com/172804_ca4d19cfd40a463ba227c6b1af054019_image1_search.jpg" />
-                      </div>
-                      <div className="bag-item-info">
-                        <div>
-                          <div class="bag-item-title">
-                            <a
-                              href="/blue-saint-women-blue-slim-fit-midrise-mildly-distressed-stretchable-jeans-155540-172804.html?ref=cart_1997231"
-                              target="_blank"
-                            >
-                              <p class="product-name">
-                                <span class="brand-name">Blue Saint</span>Women
-                                Blue Slim Fit Mid-Rise Mildly Distressed
-                                Stretchable Jeans
-                              </p>
-                            </a>
-                          </div>
-                        </div>
-
-                        <div className="os-item-summary">
-                          <div className="os-item-details">
-                            <div class="os-size-div">
-                              <div class="size-label">Size :</div>
-                              <div class="size-code">34</div>
-                            </div>
-                          </div>
-                          <div class="os-color-div">
-                            <div class="color-label">Color :</div>
-                            <div class="color-code">
-                              <div class="color-div"> </div>
-                            </div>
-                          </div>
-                          <div class="os-qty-div">
-                            <div class="qty-label">Qty :</div>
-                            <div class="qty-code">1</div>
-                          </div>
-                        </div>
-
-                        <div class="item-price-wrapper">
-                          <div class="price-div">
-                            <div class="disc-price">₹ 1000</div>
-                            <div class="striked-price">₹1999</div>
-                            <div class="disc-perc"> % OFF</div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="sold-out-hide"></div>
-                    </div>
+                          </>
+                        );
+                      })}
                   </div>
                 </div>
               </div>
@@ -262,11 +225,39 @@ const AddressComponent = () => {
               <span>PRICE SUMMARY</span>
 
               <div className="bag-payment-section">
-                <div className="row">
-                    <div className="title"> Bag Total  <span className="details">Details</span> </div>
-                    <span class="show_info_icon" data-tip="true" data-for="shipping_info_blurb" data-event="click" currentitem="false"></span>
+                <div className=" d-flex pricecontent">
+                  <div>
+                    Bag total <span className="details">Details</span>
+                  </div>
+
+                  <div>:</div>
+                  <div>₹ {cartDetails?.subTotal}</div>
                 </div>
-                
+
+                <div className=" d-flex pricecontent">
+                  <div>Shipping charges</div>
+                  <OverlayTrigger placement="top" overlay={renderTooltip}>
+                    <span class="show_info_icon"></span>
+                  </OverlayTrigger>
+                  <div className="dot">:</div>
+                  <div>
+                    <span className="shipping-value">
+                      {cartDetails?.shippingAmount != "0"
+                        ? cartDetails?.shippingAmount
+                        : "FREE"}
+                    </span>{" "}
+                  </div>
+                </div>
+              </div>
+
+              <div className="bag-payment-section">
+                <div className=" d-flex pricecontent">
+                  <div>TOTAL PAYABLE</div>
+
+                  <div>:</div>
+                  <div>₹ {cartDetails?.payAmount}</div>
+                </div>
+                <span className="tax-info">PRICES INCLUSIVE OF ALL TAXES</span>
               </div>
 
               <div className="checkout-btn mt-4">
@@ -277,6 +268,95 @@ const AddressComponent = () => {
             </div>
           </div>
         </div>
+
+        <Modal
+          size="lg"
+          show={showAddressModal}
+          onHide={() => setShowAddressModal(false)}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>Shipping Address</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <form className="address-form">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Name</label>
+                <input
+                  type="text"
+                  required
+                  class="form-control"
+                  autoComplete="off"
+                  onChange={handleChange("name")}
+                />
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Pin Code</label>
+                <input
+                  required
+                  type="text"
+                  class="form-control"
+                  onChange={handleChange("zip")}
+                />
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">City</label>
+                <input
+                  required
+                  type="text"
+                  class="form-control"
+                  onChange={handleChange("city")}
+                />
+              </div>{" "}
+              <div class="form-group">
+                <label for="exampleInputEmail1">State</label>
+                <input
+                  required
+                  type="text"
+                  class="form-control"
+                  onChange={handleChange("state")}
+                />
+              </div>{" "}
+              <div class="form-group">
+                <label for="exampleInputEmail1">Address</label>
+                <input
+                  required
+                  type="email"
+                  class="form-control"
+                  onChange={handleChange("address")}
+                />
+              </div>{" "}
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email </label>
+                <input
+                  required
+                  type="email"
+                  class="form-control"
+                  onChange={handleChange("email")}
+                />
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Mobile </label>
+                <input
+                  required
+                  type="number"
+                  class="form-control"
+                  onChange={handleChange("mobile")}
+                />
+              </div>
+            </form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button
+              variant="primary"
+              className="btn w-25 btn-dark rounded-0"
+              onClick={() => {
+                submitAddress();
+              }}
+            >
+              Save
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </section>
     </>
   );

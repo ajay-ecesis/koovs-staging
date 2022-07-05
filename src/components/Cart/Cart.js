@@ -50,7 +50,7 @@ const Cart = () => {
     // recalculating the count
     dispatch({
       type: "INITIALIZE_CART",
-      payload: data.items,
+      payload: data,
     });
     setLoading(false);
   };
@@ -152,7 +152,7 @@ const Cart = () => {
                                         <tr key={item.total}>
                                           <th scope="row" className="w-50">
                                             <LazyLoadImage
-                                            effect="blur"
+                                              effect="blur"
                                               src={item?.product?.cartImageUrl}
                                               width="67px"
                                               height="67px"
@@ -272,9 +272,9 @@ const Cart = () => {
                               </div>
                             </div>
                             <div className="pt-3">
-                              <button className="btn btn-dark px-5 rounded-0 mx-auto d-flex">
+                      <Link to="/checkout/address" style={{textDecoration:"none"}}>   <button className="btn btn-dark px-5 rounded-0 mx-auto d-flex">
                                 CHECKOUT
-                              </button>
+                              </button></Link>   
                             </div>
                           </>
                         )}

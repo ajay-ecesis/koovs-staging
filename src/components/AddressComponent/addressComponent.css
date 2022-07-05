@@ -30,7 +30,7 @@
 
 .checkout-address .card .card-body {
     padding: 0;
-    border: 1px solid;
+    border: 1px solid #d1d1d1;
 }
 
 .card-body>span {
@@ -51,13 +51,14 @@
 .address-section .checkout-summary {
     padding: 5px;
 }
-@media(max-width:768px)
-{
-    .checkout-summary{
-    position: relative;
-    top: 22px;
+
+@media(max-width:768px) {
+    .checkout-summary {
+        position: relative;
+        margin: 31px 0 30px 0;
     }
 }
+
 .row-title {
     width: 50%;
     float: left;
@@ -169,14 +170,18 @@
 
 .bag-item .item-price-wrapper {
     display: flex;
+    margin: 12px 0 12px 0;
     width: 40%;
 
 }
-
+.checkout-address .color-code{
+    padding-left: 8px;
+}
 .color-div {
     background-color: blue;
     width: 35px;
     height: 15px;
+    
 }
 
 .price-div {
@@ -190,6 +195,7 @@
 }
 
 .striked-price {
+    text-decoration: line-through;
     margin-right: 15px;
 
 }
@@ -219,29 +225,56 @@
     flex-direction: column;
     position: relative;
 }
-.bag-payment-section{
+
+.bag-payment-section {
     margin-top: 10px;
     margin-bottom: 10px;
 }
-.bag-payment-section .title{
+
+.bag-payment-section .title {
     position: absolute;
     margin-bottom: 10px;
 }
-.bag-payment-section .title .details{
+
+.bag-payment-section .details {
     height: 15px;
     width: 15px;
-    position: absolute;
-    /* margin-left: 1px; */
+    position: relative;
+    margin-left: 15px;
     cursor: pointer;
     line-height: 19px;
-    left: 96px;
-    top: 3px;
     color: #3b73af;
     font-size: 12px;
 
 }
 
-.show_info_icon{
+.bag-payment-section .pricecontent {
+    position: relative;
+    margin-top: 12px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.bag-payment-section .pricecontent .dot {
+    position: relative;
+    right: 30px;
+}
+
+.bag-payment-section .pricecontent .shipping-value {
+    color: green;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.bag-payment-section .tax-info {
+    font-size: 10px;
+    position: relative;
+    bottom: 7px;
+    color: #7b7b7b;
+}
+
+.show_info_icon {
+    right: 15px;
     background: url(https://images.koovs.com/uploads/koovs/information.png);
     background-repeat: no-repeat;
     background-size: 14px;
@@ -250,7 +283,54 @@
     position: relative;
     /* margin-left: 1px; */
     cursor: pointer;
-    left: 150px;
     top: 5px;
 
+}
+
+.radioDiv input {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    top: 21px;
+    left: 26px;
+    border: 2px solid #000;
+    accent-color: black;
+}
+
+.checkout-address .delivery-info {
+    font-size: 12px;
+    color: green;
+}
+
+.checkout-address .payment-footer {
+    padding-top: 22px;
+}
+
+.checkout-address .payment-footer {
+    border-bottom: 1px solid #cecece;
+}
+
+.checkout-address .payment-footer .payment-item {
+    color: #737373;
+    display: inline-block;
+
+}
+
+.checkout-address .addBtn {
+    right: 73px;
+    position: relative;
+}
+
+.modal-body .address-form input {
+    border: 0;
+    border-radius: 0;
+    border-bottom: 1px solid #d1d1d1;
+}
+
+.modal-body .address-form .form-group {
+    margin: 10px;
+}
+
+.modal .modal-footer {
+    justify-content: center;
 }

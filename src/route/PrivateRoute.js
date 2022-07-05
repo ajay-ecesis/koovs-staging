@@ -6,8 +6,10 @@ import { useSelector } from "react-redux";
 const PrivateRoute = ({ children }) => {
 
     const user = useSelector((state) => state.user);
+   
+
     
-    return user?.isLoggedIn?{children}: <Navigate to="/signup/login"/>
+    return user?.isLoggedIn? children: <Navigate to="/signup/login"/>
 
 };
 
