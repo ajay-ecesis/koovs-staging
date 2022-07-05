@@ -42,7 +42,8 @@ const cartReducer = (state = initialState, action) => {
     case INITIALIZE_CART:
       return {
         ...state,
-        items: action.payload,
+        items: action.payload.items,
+        cartData:action.payload
       };
     case MERGE_CART:
       return {

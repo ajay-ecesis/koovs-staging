@@ -58,7 +58,7 @@ const App = () => {
     if (result) {
       dispatch({
         type: "INITIALIZE_CART",
-        payload: result.items,
+        payload: result,
       });
     }
   };
