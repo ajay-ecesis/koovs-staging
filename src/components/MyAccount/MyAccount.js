@@ -40,6 +40,11 @@ const MyAccount = ({ shippingAddress }) => {
       });
   };
 
+  const removeAddress=async()=>{
+
+  
+  }
+
   return (
     <>
       <section className="myaccount row">
@@ -81,8 +86,8 @@ const MyAccount = ({ shippingAddress }) => {
               </div>
 
               <h6 className="pt-2">Phone Number</h6>
-              <div className="d-flex  pt-3">
-                <div class="form-group w-75">
+              <div className="  pt-3">
+                <div class="form-group ">
                   <input
                     required
                     type="number"
@@ -92,13 +97,13 @@ const MyAccount = ({ shippingAddress }) => {
                     placeholder="Phone Number"
                   />
                 </div>
-                <button
+                {/* <button
                   type="submit"
                   className="btn btn-dark rounded-0 w-25 ph-remove-btn"
                 >
                   {" "}
                   REMOVE
-                </button>
+                </button> */}
               </div>
 
               <div className="submit-btn pt-5">
@@ -139,7 +144,7 @@ const MyAccount = ({ shippingAddress }) => {
                           <br />
                         </span>
                         <br />{" "}
-                        <span className="pt-3">
+                        <span className="pt-3" onClick={()=>{removeAddress(address.id)}}>
                           <u>Remove</u>
                           <br />
                         </span>

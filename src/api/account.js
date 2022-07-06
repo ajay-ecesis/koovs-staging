@@ -71,3 +71,28 @@ export const updateProfileApi = async (profileData) => {
     return false;
   }
 };
+
+export const deleteAddressApi = async (id) => {
+  let authToken = await JSON.parse(localStorage.getItem("userToken"));
+
+  const config = {
+    headers: {
+      "X-API-CLIENT": "WEB",
+      Authorization: authToken,
+    },
+  };
+  try {
+    const res = await axios.put(
+      clientServer + "/jarvis-order-service/v1/address/" + id,
+      {},
+      config
+    );
+
+    toast.success("Profile updated successfully");
+    return res.data;
+  } catch (err) {
+    console.log("err", err);
+
+    return false;
+  }
+};
