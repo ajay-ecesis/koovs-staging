@@ -195,7 +195,7 @@ const Cart = () => {
                                           <td className="w-25 total-price">
                                             {" "}
                                             <div className="pt-4">
-                                              ₹ {item.payAmount}
+                                              ₹ {item.payAmount}    
                                             </div>
                                           </td>
                                           <td className="w-25">
@@ -226,19 +226,19 @@ const Cart = () => {
 
                             <div className="d-flex bd-highlight mb-3 cart-total">
                               <div className="mr-auto p-2 bd-highlight text-bold">
-                                Discount
+                                Sub Total
                               </div>
                               <div className="p-2 bd-highlight text-bold">
-                                ₹ {cartData.discount}
+                                ₹ {cartData.total}
                               </div>
                             </div>
 
                             <div className="d-flex bd-highlight mb-3 cart-total">
                               <div className="mr-auto p-2 bd-highlight text-bold">
-                                Subtotal
+                                Discount
                               </div>
                               <div className="p-2 bd-highlight text-bold">
-                                ₹ {cartData.subTotal}
+                                ₹ {cartData.discount}
                               </div>
                             </div>
                             <div className="d-flex bd-highlight mb-3 cart-total">
@@ -255,7 +255,7 @@ const Cart = () => {
                                 Total
                               </div>
                               <div className="p-2 bd-highlight text-bold">
-                                ₹ {cartData.total}
+                                ₹ {cartData.subTotal}
                               </div>
                             </div>
 

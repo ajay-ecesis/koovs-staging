@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Button, Modal, OverlayTrigger, Tooltip } from "react-bootstrap";
 import "./addressComponent.css";
 import { addNewAddressApi, selectAddressApi } from "../../api/checkout";
+import { Link } from "react-router-dom";
 const AddressComponent = ({ address, loadAddressDetails }) => {
   const cartDetails = useSelector((state) => state.cart.cartData); //cart global info
   const cartProducts = useSelector((state) => state.cart.items); //cart items info
@@ -261,9 +262,11 @@ const AddressComponent = ({ address, loadAddressDetails }) => {
               </div>
 
               <div className="checkout-btn mt-4">
+                      <Link to="/checkout/payment">
                 <button className="btn w-100 btn-dark rounded-0">
                   CONFIRM & PAY
                 </button>
+                </Link>
               </div>
             </div>
           </div>
