@@ -5,7 +5,7 @@ const AccountSideNav = ({ children, index }) => {
   return (
     <>
       <section className=" container-fluid account-section d-flex">
-        <div className="account-actions col-3">
+        <div className="account-actions col-3 pt-4">
           <h4>Account</h4>
 
           <div className="account-nav ">
