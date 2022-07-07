@@ -3,8 +3,10 @@ import { useSelector } from "react-redux";
 import { Button, Modal, OverlayTrigger, Tooltip } from "react-bootstrap";
 import "./addressComponent.css";
 import { addNewAddressApi, selectAddressApi } from "../../api/checkout";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 const AddressComponent = ({ address, loadAddressDetails }) => {
+  const navigate = useNavigate();
   const cartDetails = useSelector((state) => state.cart.cartData); //cart global info
   const cartProducts = useSelector((state) => state.cart.items); //cart items info
   const [showAddressModal, setShowAddressModal] = useState(false);
@@ -56,6 +58,17 @@ const AddressComponent = ({ address, loadAddressDetails }) => {
     if (data) {
       setShowAddressModal(false);
       loadAddressDetails();
+    }
+  };
+
+  const redirectToCheckout = () => {
+    if (address?.length > 0) {
+      navigate("/checkout/payment");
+    }
+    else
+    {
+      toast.error("Please add an address to proceed checkout")
+      setShowAddressModal(true)
     }
   };
   return (
@@ -203,8 +216,7 @@ const AddressComponent = ({ address, loadAddressDetails }) => {
                                     </div>
                                     <div class="striked-price">
                                       {" "}
-                                     
-₹  {item.total}
+                                      ₹ {item.total}
                                     </div>
                                     <div class="disc-perc">
                                       {item.product.discountPercent} % OFF
@@ -262,11 +274,12 @@ const AddressComponent = ({ address, loadAddressDetails }) => {
               </div>
 
               <div className="checkout-btn mt-4">
-                      <Link to="/checkout/payment">
-                <button className="btn w-100 btn-dark rounded-0">
+                <button
+                  className="btn w-100 btn-dark rounded-0"
+                  onClick={() => redirectToCheckout()}
+                >
                   CONFIRM & PAY
                 </button>
-                </Link>
               </div>
             </div>
           </div>

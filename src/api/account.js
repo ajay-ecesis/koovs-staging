@@ -82,13 +82,12 @@ export const deleteAddressApi = async (id) => {
     },
   };
   try {
-    const res = await axios.put(
+    const res = await axios.delete(
       clientServer + "/jarvis-order-service/v1/address/" + id,
-      {},
       config
     );
 
-    toast.success("Profile updated successfully");
+    toast.success("Address successfully");
     return res.data;
   } catch (err) {
     console.log("err", err);

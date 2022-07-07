@@ -100,8 +100,8 @@ const App = () => {
               <Route path="/search" element={<Search />} />
               <Route path="/user/account" element={<PrivateRoute> <MyInformationPage /></PrivateRoute>} />
               <Route path="/wishlist" element={<WishlistPage />} />
-              <Route path="/checkout/address" element={<Address />} />
-              <Route path="/checkout/payment" element={<PaymentPage />} />
+              <Route path="/checkout/address" element={<PrivateRoute><Address /></PrivateRoute>} />
+              <Route path="/checkout/payment" element={<PrivateRoute> <PaymentPage /> </PrivateRoute>} />
               <Route path="*" element={<FourNotFour />} />
             </Routes>
           </Suspense>

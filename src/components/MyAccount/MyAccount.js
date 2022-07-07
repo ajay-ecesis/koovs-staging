@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./myaccount.css";
 import { useSelector, useDispatch } from "react-redux";
-import { updateProfileApi } from "../../api/account";
+import { deleteAddressApi, updateProfileApi } from "../../api/account";
 const MyAccount = ({ shippingAddress }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
@@ -40,10 +40,10 @@ const MyAccount = ({ shippingAddress }) => {
       });
   };
 
-  const removeAddress=async()=>{
+  const removeAddress = async (id) => {
 
-  
-  }
+  let status= await deleteAddressApi(id)
+  };
 
   return (
     <>
@@ -123,7 +123,7 @@ const MyAccount = ({ shippingAddress }) => {
                   <>
                     <div className=" pt-3 col gx-5">
                       <div>
-                        <span className="pt-3">
+                        <span className="pt-3 fw-bold">
                           Shipping address {index + 1}
                         </span>
                       </div>
@@ -143,9 +143,14 @@ const MyAccount = ({ shippingAddress }) => {
                           <br />
                           <br />
                         </span>
-                        <br />{" "}
-                        <span className="pt-3" onClick={()=>{removeAddress(address.id)}}>
-                          <u>Remove</u>
+                   
+                        <span
+                          className="fw-bold"
+                          onClick={() => {
+                            removeAddress(address.id);
+                          }}
+                        >
+                          <u >Remove</u>
                           <br />
                         </span>
                         <br />
