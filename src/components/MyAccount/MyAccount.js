@@ -41,8 +41,7 @@ const MyAccount = ({ shippingAddress }) => {
   };
 
   const removeAddress = async (id) => {
-
-  let status= await deleteAddressApi(id)
+    let status = await deleteAddressApi(id);
   };
 
   return (
@@ -143,14 +142,13 @@ const MyAccount = ({ shippingAddress }) => {
                           <br />
                           <br />
                         </span>
-                   
                         <span
                           className="fw-bold"
                           onClick={() => {
                             removeAddress(address.id);
                           }}
                         >
-                          <u >Remove</u>
+                          <u>Remove</u>
                           <br />
                         </span>
                         <br />

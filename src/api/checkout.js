@@ -116,3 +116,26 @@ export const getPaymentGatewaysApi = async () => {
     return false;
   }
 };
+
+export const checkForActiveOffersApi = async () => {
+  let authToken = await JSON.parse(localStorage.getItem("userToken"));
+
+  const config = {
+    headers: {
+      Authorization: authToken,
+      "x-api-client": "WEB",
+    },
+  };
+  try {
+    let { data } = await axios.get(
+      clientServer + `/jarvis-order-service/v2/payment/apply-offer-discount`,
+      config
+    );
+
+    console.log("data from discount", data);
+    return data;
+  } catch (err) {
+
+    return false;
+  }
+};

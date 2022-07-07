@@ -4,8 +4,7 @@ import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import { loadMyAddressDetailsApi } from "../api/checkout";
 const Address = () => {
-  
-  const [address,setAddress]=useState([])
+  const [address, setAddress] = useState([]);
 
   useEffect(() => {
     loadAddressDetails();
@@ -13,14 +12,16 @@ const Address = () => {
 
   const loadAddressDetails = async () => {
     let data = await loadMyAddressDetailsApi();
-    setAddress(data)
+    setAddress(data);
   };
-
 
   return (
     <>
       <Header />
-      <AddressComponent address={address} loadAddressDetails={loadAddressDetails}/>
+      <AddressComponent
+        address={address}
+        loadAddressDetails={loadAddressDetails}
+      />
       <Footer />
     </>
   );
