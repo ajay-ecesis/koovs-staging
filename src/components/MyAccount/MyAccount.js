@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./myaccount.css";
 import { useSelector, useDispatch } from "react-redux";
-import { updateProfileApi } from "../../api/account";
-const MyAccount = ({ shippingAddress }) => {
+import { deleteAddressApi, updateProfileApi } from "../../api/account";
+const MyAccount = ({ shippingAddress,loadMyAddress }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const [values, setValues] = useState({
@@ -40,10 +40,11 @@ const MyAccount = ({ shippingAddress }) => {
       });
   };
 
-  const removeAddress=async()=>{
-
-  
-  }
+  const removeAddress = async (id) => {
+    let consent=window.confirm("Are you sure to delete this address?")
+    if(!consent) return;
+    let status = await deleteAddressApi(id);
+  };
 
   return (
     <>
@@ -123,7 +124,7 @@ const MyAccount = ({ shippingAddress }) => {
                   <>
                     <div className=" pt-3 col gx-5">
                       <div>
-                        <span className="pt-3">
+                        <span className="pt-3 fw-bold">
                           Shipping address {index + 1}
                         </span>
                       </div>
@@ -143,8 +144,13 @@ const MyAccount = ({ shippingAddress }) => {
                           <br />
                           <br />
                         </span>
-                        <br />{" "}
-                        <span className="pt-3" onClick={()=>{removeAddress(address.id)}}>
+                        <span
+                          className="fw-bold"
+                          onClick={() => {
+                            removeAddress(address.id);
+                          }}
+                          style={{cursor:"pointer"}}
+                        >
                           <u>Remove</u>
                           <br />
                         </span>

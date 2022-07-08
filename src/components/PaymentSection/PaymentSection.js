@@ -30,7 +30,13 @@ import mastercardImg from "../../assets/images/mastercard.png";
 import amexCardImg from "../../assets/images/amexcard.png";
 import { useSelector } from "react-redux/es/exports";
 
-const PaymentSection = ({ paymentModes,addressDetails}) => {
+const PaymentSection = ({
+  paymentModes,
+  addressDetails,
+  checkForActiveOffers,
+  setSelectedPaymentGateway,
+  selectedPaymentGateway,
+}) => {
   const cartDetails = useSelector((state) => state.cart.cartData); //cart global info
   const [show, setShow] = useState(false);
 
@@ -63,6 +69,14 @@ const PaymentSection = ({ paymentModes,addressDetails}) => {
     }
   };
 
+  const changePaymentTab = (item) => {
+    console.log("item", item);
+
+    setSelectedPaymentGateway(item)
+    checkForActiveOffers(item);
+
+  };
+
   return (
     <>
       <section className="payment-section mt-5">
@@ -74,7 +88,6 @@ const PaymentSection = ({ paymentModes,addressDetails}) => {
                 <Tab.Container
                   id="left-tabs-example"
                   defaultActiveKey="creditcard"
-                  onSelect={() => {}}
                 >
                   <Col sm={3} className="card-headings">
                     <Nav variant="pills" className="flex-column">
@@ -83,7 +96,9 @@ const PaymentSection = ({ paymentModes,addressDetails}) => {
                           return (
                             <>
                               {item.name != "zeroPayment" && (
-                                <Nav.Item>
+                                <Nav.Item
+                                  onClick={() => changePaymentTab(item)}
+                                >
                                   <Nav.Link eventKey={item.name}>
                                     <FaRegCreditCard className="logo-space" />
                                     {item.name == "creditcard" && "CREDIT CARD"}
@@ -608,11 +623,21 @@ const PaymentSection = ({ paymentModes,addressDetails}) => {
               <div className="delivery-address d-sm-none d-lg-block">
                 <p className="fw-bold">DELIVERY ADDRESS</p>
                 <div className="delivery-details">
-                  <p className="fw-bold">{addressDetails?.shippingAddress?.name}</p>
+                  <p className="fw-bold">
+                    {addressDetails?.shippingAddress?.name}
+                  </p>
                   <p>{addressDetails?.shippingAddress?.city}</p>
-                  <p>{addressDetails?.shippingAddress?.state}, {addressDetails?.shippingAddress?.zip}, {addressDetails?.shippingAddress?.country}</p>
-                  <p className="fw-bold">{addressDetails?.shippingAddress?.mobile}</p>
-                  <p className="fw-bold">{addressDetails?.shippingAddress?.email}</p>
+                  <p>
+                    {addressDetails?.shippingAddress?.state},{" "}
+                    {addressDetails?.shippingAddress?.zip},{" "}
+                    {addressDetails?.shippingAddress?.country}
+                  </p>
+                  <p className="fw-bold">
+                    {addressDetails?.shippingAddress?.mobile}
+                  </p>
+                  <p className="fw-bold">
+                    {addressDetails?.shippingAddress?.email}
+                  </p>
                 </div>
               </div>
             </div>

@@ -3,12 +3,18 @@ import { useSelector } from "react-redux";
 import { Button, Modal, OverlayTrigger, Tooltip } from "react-bootstrap";
 import "./addressComponent.css";
 import { addNewAddressApi, selectAddressApi } from "../../api/checkout";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import { editAddressApi } from "../../api/account";
 const AddressComponent = ({ address, loadAddressDetails }) => {
+  const navigate = useNavigate();
   const cartDetails = useSelector((state) => state.cart.cartData); //cart global info
   const cartProducts = useSelector((state) => state.cart.items); //cart items info
   const [showAddressModal, setShowAddressModal] = useState(false);
   const [selectedAddress, setSelectedAddress] = useState(null);
+  const [showEditAddressModal, setShowEditAddressModal] = useState(false);
+  const [editableAddress, setEditAddress] = useState("");
+  const [editAddressId, setEditAddressId] = useState("");
   const [values, setValues] = useState({
     country: "INDIA",
   });
@@ -37,18 +43,24 @@ const AddressComponent = ({ address, loadAddressDetails }) => {
       return address.isDefault == true;
     });
 
-    console.log("result of address detail", detail.id);
     setSelectedAddress(detail?.id);
   };
 
   const handleChange = (name) => (event) => {
     setValues({ ...values, [name]: event.target.value });
   };
+  const handleChangeEditAddress = (name) => (event) => {
+    setEditAddress({
+      ...editableAddress,
+      [name]: event.target.value,
+    });
+  };
 
   const submitAddress = async () => {
     let obj = {
       isBillingSameAsShipping: true,
       isDefault: false,
+
       shippingAddress: values,
     };
 
@@ -58,6 +70,42 @@ const AddressComponent = ({ address, loadAddressDetails }) => {
       loadAddressDetails();
     }
   };
+
+  const redirectToCheckout = () => {
+    if (address?.length > 0) {
+      navigate("/checkout/payment");
+    } else {
+      toast.error("Please add an address to proceed checkout");
+      setShowAddressModal(true);
+    }
+  };
+
+  // fetch info of editable address
+  const editAddress = (id) => {
+    let [result] = address.filter((address) => {
+      return address.id == id;
+    });
+    setEditAddressId(id);
+    setEditAddress(result.shippingAddress);
+    setShowEditAddressModal(true);
+  };
+
+  const submitEditAddress = async (id) => {
+    let obj = {
+      billingAddress: editableAddress,
+      shippingAddress: editableAddress,
+      isBillingSameAsShipping: true,
+      id: editAddressId,
+    };
+
+    let result = await editAddressApi(obj);
+    if (result) {
+      setShowEditAddressModal(false);
+      setEditAddressId("");
+      setEditAddress("");
+    }
+  };
+
   return (
     <>
       <section className="checkout-address">
@@ -115,7 +163,12 @@ const AddressComponent = ({ address, loadAddressDetails }) => {
                                 <br />
                                 <span>{item.shippingAddress.country}</span>
                               </p>
-                              <span className="fw-bold">
+                              <span
+                                className="fw-bold"
+                                onClick={() => {
+                                  editAddress(item.id);
+                                }}
+                              >
                                 <u>EDIT</u>
                               </span>
                               <br />
@@ -203,8 +256,7 @@ const AddressComponent = ({ address, loadAddressDetails }) => {
                                     </div>
                                     <div class="striked-price">
                                       {" "}
-                                     
-₹  {item.total}
+                                      ₹ {item.total}
                                     </div>
                                     <div class="disc-perc">
                                       {item.product.discountPercent} % OFF
@@ -262,11 +314,12 @@ const AddressComponent = ({ address, loadAddressDetails }) => {
               </div>
 
               <div className="checkout-btn mt-4">
-                      <Link to="/checkout/payment">
-                <button className="btn w-100 btn-dark rounded-0">
+                <button
+                  className="btn w-100 btn-dark rounded-0"
+                  onClick={() => redirectToCheckout()}
+                >
                   CONFIRM & PAY
                 </button>
-                </Link>
               </div>
             </div>
           </div>
@@ -274,8 +327,8 @@ const AddressComponent = ({ address, loadAddressDetails }) => {
 
         <Modal
           size="lg"
-          show={showAddressModal}
-          onHide={() => setShowAddressModal(false)}
+          show={showEditAddressModal}
+          onHide={() => setShowEditAddressModal(false)}
         >
           <Modal.Header closeButton>
             <Modal.Title>Shipping Address</Modal.Title>
@@ -360,6 +413,106 @@ const AddressComponent = ({ address, loadAddressDetails }) => {
             </Button>
           </Modal.Footer>
         </Modal>
+
+        {/* edit address section */}
+
+        <>
+          <Modal
+            size="lg"
+            show={showEditAddressModal}
+            onHide={() => setShowEditAddressModal(false)}
+          >
+            <Modal.Header closeButton>
+              <Modal.Title>Shipping Address</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <form className="address-form">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Name</label>
+                  <input
+                    type="text"
+                    required
+                    class="form-control"
+                    autoComplete="off"
+                    value={editableAddress?.name}
+                    onChange={handleChangeEditAddress("name")}
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Pin Code</label>
+                  <input
+                    required
+                    type="text"
+                    value={editableAddress?.zip}
+                    class="form-control"
+                    onChange={handleChangeEditAddress("zip")}
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">City</label>
+                  <input
+                    required
+                    value={editableAddress?.city}
+                    type="text"
+                    class="form-control"
+                    onChange={handleChangeEditAddress("city")}
+                  />
+                </div>{" "}
+                <div class="form-group">
+                  <label for="exampleInputEmail1">State</label>
+                  <input
+                    required
+                    type="text"
+                    value={editableAddress?.state}
+                    class="form-control"
+                    onChange={handleChangeEditAddress("state")}
+                  />
+                </div>{" "}
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Address</label>
+                  <input
+                    required
+                    type="email"
+                    value={editableAddress?.address}
+                    class="form-control"
+                    onChange={handleChangeEditAddress("address")}
+                  />
+                </div>{" "}
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email </label>
+                  <input
+                    required
+                    value={editableAddress?.email}
+                    type="email"
+                    class="form-control"
+                    onChange={handleChangeEditAddress("email")}
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Mobile </label>
+                  <input
+                    required
+                    value={editableAddress?.mobile}
+                    type="number"
+                    class="form-control"
+                    onChange={handleChangeEditAddress("mobile")}
+                  />
+                </div>
+              </form>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button
+                variant="primary"
+                className="btn w-25 btn-dark rounded-0"
+                onClick={() => {
+                  submitEditAddress(editableAddress?.id);
+                }}
+              >
+                Save
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        </>
       </section>
     </>
   );

@@ -37,7 +37,8 @@ const CategoryMainPage = () => {
   const [key, setKey] = useState(1);
 
   useEffect(() => {
-    loadProductItemsBycategory();
+    let loadFromUrl = true;
+    loadProductItemsBycategory(loadFromUrl);
   }, [category, subcategory, sort, page]);
 
   useEffect(() => {
@@ -55,7 +56,7 @@ const CategoryMainPage = () => {
     setToken(token);
   }
 
-  const loadProductItemsBycategory = async () => {
+  const loadProductItemsBycategory = async (loadFromUrl) => {
     if ((category, subcategory)) {
       let data = await loadProductByCategoryApi(
         category,
@@ -64,6 +65,10 @@ const CategoryMainPage = () => {
         sort,
         page
       );
+      if (loadFromUrl) {
+        setProducts(data[0].data);
+        return;
+      }
       setProducts((previous) => [...previous, ...data[0].data]);
 
       // setProducts(data[0].data);

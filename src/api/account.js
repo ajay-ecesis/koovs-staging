@@ -82,17 +82,41 @@ export const deleteAddressApi = async (id) => {
     },
   };
   try {
-    const res = await axios.put(
+    const res = await axios.delete(
       clientServer + "/jarvis-order-service/v1/address/" + id,
-      {},
       config
     );
 
-    toast.success("Profile updated successfully");
-    return res.data;
+    toast.success("Address successfully Deleted");
+    return true;
   } catch (err) {
     console.log("err", err);
 
+    return false;
+  }
+};
+
+export const editAddressApi = async (address) => {
+  let authToken = await JSON.parse(localStorage.getItem("userToken"));
+
+  const config = {
+    headers: {
+      "X-API-CLIENT": "WEB",
+      Authorization: authToken,
+    },
+  };
+  try {
+    const res = await axios.put(
+      clientServer + "/jarvis-order-service/v1/address",
+      address,
+      config
+    );
+
+    toast.success("Address updated successfully");
+    return true;
+  } catch (err) {
+    console.log("err", err);
+    toast.error(err.response.data.message);
     return false;
   }
 };
