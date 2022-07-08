@@ -19,7 +19,7 @@ export const MyInformationPage = () => {
       <Header />
 
       <AccountSideNav index={3}>
-        <MyAccount shippingAddress={shippingAddress} />
+        <MyAccount shippingAddress={shippingAddress} loadMyAddress={loadMyAddress}/>
       </AccountSideNav>
     </>
   );

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./myaccount.css";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteAddressApi, updateProfileApi } from "../../api/account";
-const MyAccount = ({ shippingAddress }) => {
+const MyAccount = ({ shippingAddress,loadMyAddress }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const [values, setValues] = useState({
@@ -41,6 +41,8 @@ const MyAccount = ({ shippingAddress }) => {
   };
 
   const removeAddress = async (id) => {
+    let consent=window.confirm("Are you sure to delete this address?")
+    if(!consent) return;
     let status = await deleteAddressApi(id);
   };
 
@@ -147,6 +149,7 @@ const MyAccount = ({ shippingAddress }) => {
                           onClick={() => {
                             removeAddress(address.id);
                           }}
+                          style={{cursor:"pointer"}}
                         >
                           <u>Remove</u>
                           <br />
