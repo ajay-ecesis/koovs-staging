@@ -66,7 +66,8 @@ const LoginForm = () => {
         payload: userLogin,
       });
       // navigate("/user/account");
-      window.location.href = "/user/account";
+      // window.location.href = "/user/account";
+      navigate(-1)
     } else {
       // reloads the recaptcha key with new one
       googleCaptcha.current.execute();
