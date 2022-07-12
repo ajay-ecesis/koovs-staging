@@ -4,7 +4,7 @@ import "./registerform.css";
 import { ReCaptcha, loadReCaptcha } from "react-recaptcha-v3";
 import { checkIfUserValid, signUpUserApi } from "../../api/auth";
 import { useDispatch, useSelector } from "react-redux";
-
+import { useNavigate } from "react-router-dom";
 function RegisterForm() {
   const [token, setToken] = useState();
   const [values, setValues] = useState();
@@ -12,6 +12,7 @@ function RegisterForm() {
   const [btnLoading, setBtnLoading] = useState(false);
   const dispatch = useDispatch();
   const [key, setKey] = useState(1);
+  const navigate = useNavigate();
 
   useEffect(() => {
     reloadRecaptcha();
@@ -20,7 +21,6 @@ function RegisterForm() {
   const reloadRecaptcha = () => {
     setKey(key + 1);
     loadReCaptcha(process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY); //sitekey load recaptcha
-
   };
 
   function handleVerify(token) {
@@ -61,6 +61,7 @@ function RegisterForm() {
           type: "USER_SIGNUP",
           payload: signUpResp.data,
         });
+        navigate(-1);
       }
       setBtnLoading(false);
     }

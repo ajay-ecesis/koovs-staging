@@ -8,11 +8,13 @@ import { Card } from "react-bootstrap";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import toast from "react-hot-toast";
 
 function Header() {
-  const dispatch=useDispatch()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const cartData = useSelector((state) => state.cart.items);
 
@@ -75,14 +77,15 @@ function Header() {
     );
   };
 
-  const logoutUser=()=>{
-
+  const logoutUser = () => {
     dispatch({
-      type:"USER_LOGOUT",
-      payload:null
-    })
-
-  }
+      type: "USER_LOGOUT",
+      payload: null,
+    });
+    toast.success("successfully logged Out");
+    document.getElementById("menu-toggle").checked = false;
+    navigate("/");
+  };
 
   return (
     <header>
@@ -214,11 +217,16 @@ function Header() {
                   <u>Shipping to Denmark</u>
                 </Link>
               </li>
-              {user?.isLoggedIn&&
-              <li onClick={()=>{logoutUser()}}>
-                <u>Logout</u>
-              </li>
-              }
+              {user?.isLoggedIn && (
+                <li
+                  onClick={() => {
+                    logoutUser();
+                  }}
+                  style={{ cursor: "pointer" }}
+                >
+                  <u>Logout</u>
+                </li>
+              )}
             </ul>
           </li>
         </ul>
