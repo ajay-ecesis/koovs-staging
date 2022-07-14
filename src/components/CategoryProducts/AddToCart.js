@@ -12,7 +12,7 @@ const Addtocart = ({ setCart, item, token, reloadRecaptcha }) => {
   const [productDetail, setProductDetail] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
-  const [btnLoading,setBtnLoading]=useState(false)
+  const [btnLoading, setBtnLoading] = useState(false);
   useEffect(() => {
     if (item) setCurrentItem(item);
     loadSizeBysku(item.sku);
@@ -36,7 +36,7 @@ const Addtocart = ({ setCart, item, token, reloadRecaptcha }) => {
   // add to cart functionality
 
   const addProductToCart = async (product) => {
-    setBtnLoading(true)
+    setBtnLoading(true);
     // checking if product has only one color then keeps the product's default color to selected
 
     if (selectedSize && selectedColor) {
@@ -76,9 +76,9 @@ const Addtocart = ({ setCart, item, token, reloadRecaptcha }) => {
         }); // increase the cart count.
       }
     } else {
-     toast.error("Please select a variant")
+      toast.error("Please select a variant");
     }
-    setBtnLoading(false)
+    setBtnLoading(false);
     reloadRecaptcha();
   };
 
@@ -115,20 +115,20 @@ const Addtocart = ({ setCart, item, token, reloadRecaptcha }) => {
             {productDetail?.product?.styletipMaterial}
           </p>
         </div>
-      
-      {!btnLoading?  <button
-          type="button"
-          className={style.cartbutton}
-          onClick={() => addProductToCart(productDetail?.product)}
-        >
-          ADD TO CART
-        </button>
-        :<button
-        type="button"
-        className={style.cartbutton}
-      >
-       PLEASE WAIT..
-      </button>}
+
+        {!btnLoading ? (
+          <button
+            type="button"
+            className={style.cartbutton}
+            onClick={() => addProductToCart(productDetail?.product)}
+          >
+            ADD TO CART
+          </button>
+        ) : (
+          <button type="button" className={style.cartbutton}>
+            PLEASE WAIT..
+          </button>
+        )}
       </div>
     </>
   );

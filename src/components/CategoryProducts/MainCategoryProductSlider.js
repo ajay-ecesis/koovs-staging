@@ -44,6 +44,8 @@ function MenCategoryProductSlider({
 
   useEffect(() => {
     if (filterTypes) {
+      console.log("filter typee", filterTypes);
+
       var filterItem = filterTypes.findIndex((item) => item.id === "price_fq");
 
       filterItem = filterTypes[filterItem];

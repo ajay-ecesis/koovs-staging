@@ -56,6 +56,7 @@ const CategoryMainPage = () => {
     setToken(token);
   }
 
+  //loading product items by category
   const loadProductItemsBycategory = async (loadFromUrl) => {
     if ((category, subcategory)) {
       let data = await loadProductByCategoryApi(
@@ -65,15 +66,10 @@ const CategoryMainPage = () => {
         sort,
         page
       );
-      if (loadFromUrl) {
-        setProducts(data[0].data);
-        return;
-      }
       setProducts((previous) => [...previous, ...data[0].data]);
+        setFilterTypes(data[1].data);
+        setResult(data[0]);
 
-      // setProducts(data[0].data);
-      setFilterTypes(data[1].data);
-      setResult(data[0]);
     }
   };
 
