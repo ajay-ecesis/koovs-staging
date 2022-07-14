@@ -173,7 +173,6 @@ export const updateCartQuantity = async (cartItem) => {
 };
 
 // Wishlist related apis
-
 export const addToWishlistAPI = async (productData) => {
   let authToken = await JSON.parse(localStorage.getItem("userToken"));
   if (!authToken) {

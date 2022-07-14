@@ -91,9 +91,8 @@ const MyAccount = ({ shippingAddress,loadMyAddress }) => {
                 <div class="form-group ">
                   <input
                     required
-                    type="number"
-                    // min={10}
-                    // max={10}
+                    type="text" pattern="\d*" maxlength="10"
+                  
                     onChange={handleChange("phone")}
                     defaultValue={values?.phone}
                     class="form-control "

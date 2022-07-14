@@ -14,8 +14,12 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { loadReCaptcha, ReCaptcha } from "react-recaptcha-v3";
+import { addToWishlistAPI, getWishlistItems, removeItemFromWishList } from "../../api/cart";
+import { useDispatch,useSelector} from "react-redux";
 
 const SearchProduct = () => {
+  let dispatch=useDispatch()
   let navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchKeyword, setSearchKeyword] = useState("");
@@ -23,6 +27,9 @@ const SearchProduct = () => {
   const [suggestedKeywords, setSuggestedKeywords] = useState([]);
   const [productsLoading, setProductsLoading] = useState(false);
   const [page, setPage] = useState(0);
+  const [key, setKey] = useState(1);
+  const [token, setToken] = useState();
+  const wishlistProducts = useSelector((state) => state.wishlist.items);
 
   // get the products on changing the query params
   useEffect(() => {
@@ -32,6 +39,7 @@ const SearchProduct = () => {
       loadSearchResultProducts(keyword);
     }
     setSuggestedKeywords([]);
+    reloadRecaptcha();
   }, [searchParams]);
 
   // loads the search result products based on the query params
@@ -89,8 +97,59 @@ const SearchProduct = () => {
     if (page) loadSearchResultProducts(searchKeyword, true);
   }, [page]);
 
+  // add product to wish list
+  const addToWishlist = async (product, productId, lineId) => {
+    console.log("product,", product, "id", productId, "lineid", lineId);
+    let prodDetails = {
+      product: { skuId: product.sku },
+      productId: productId,
+      lineId: lineId,
+      reCaptcha: token,
+    };
+
+    // add to wishlist api
+    let data = await addToWishlistAPI(prodDetails);
+    if (data) {
+      let obj = {
+        lineId: lineId,
+        sku: prodDetails.product.skuId,
+        id: prodDetails.productId,
+      };
+      dispatch({
+        type: "ADD_TO_WISHLIST",
+        payload: obj,
+      });
+    }
+    reloadRecaptcha();
+  };
+
+  const reloadRecaptcha = () => {
+    setKey(key + 1);
+    loadReCaptcha(process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY); //sitekey load recaptcha
+  };
+
+
+  function handleVerify(token) {
+    setToken (token);
+  }
+
+  const removeWishlist = async (skuId, lineId) => {
+    await removeItemFromWishList(skuId, lineId);
+    let result = await getWishlistItems();
+    dispatch({
+      type: "INITIALIZE_WISHLIST",
+      payload: result.data,
+    });
+  };
+
   return (
     <>
+    <ReCaptcha
+        sitekey={process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY}
+        action="addToCart"
+        key={key}
+        verifyCallback={handleVerify}
+      />
       <section className={styles.search_products}>
         <div className={`${styles.search_function} d-lg-block d-none`}></div>
 
@@ -98,8 +157,10 @@ const SearchProduct = () => {
           <input
             type="text"
             className={` ${styles.type_text} d-lg-block d-none`}
+            autoComplete="off"
             placeholder="Type to search"
             id={`${styles.type_text}  `}
+            defaultValue={searchKeyword}
             onChange={(e) => {
               loadSearchSuggestion(e);
             }}
@@ -115,6 +176,7 @@ const SearchProduct = () => {
             id="searchProduct"
             name="searchProduct"
             placeholder="SEARCH"
+            defaultValue={searchKeyword}
             className={`mt-4 ${styles.btnStyle}`}
             onChange={(e) => {
               loadSearchSuggestion(e);
@@ -176,25 +238,39 @@ const SearchProduct = () => {
                           <div
                             className={styles.text_category}
                             style={{ cursor: "pointer" }}
-                            onClick={() =>
-                              goToProductDetailPage(
-                                item.productName,
-                                item.id,
-                                item.lineId
-                              )
-                            }
                           >
                             <div className={styles.new}>
                               <span>new in</span>
                             </div>
                             <div>
                               <div className={`${styles.favIcon} me-2`}>
-                                <label for="heart">
-                                  <i
-                                    className="fa fa-heart-o"
-                                    aria-hidden="true"
-                                  ></i>
-                                </label>
+                              <label for="heart"    style={{cursor:"pointer"}}>
+                          {wishlistProducts?.some(
+                            (wishlistItem) => wishlistItem.id === item.id
+                          ) == true ? (
+                            <>
+                              <i
+                           
+                                class="fa fa-heart-o"
+                                style={{ color: "red" }}
+                                aria-hidden="true"
+                                onClick={() =>
+                                  removeWishlist(item.sku, item.lineId)
+                                }
+                              ></i>
+                            </>
+                          ) : (
+                            <>
+                              <i
+                                class="fa fa-heart-o"
+                                aria-hidden="true"
+                                onClick={() =>
+                                  addToWishlist(item, item.id, item.lineId)
+                                }
+                              ></i>
+                            </>
+                          )}
+                        </label>
                               </div>
                             </div>
                             <div>
@@ -204,6 +280,13 @@ const SearchProduct = () => {
                                 className="img-fluid"
                                 alt="Koovs product Front image"
                                 effect="blur"
+                                onClick={() =>
+                                  goToProductDetailPage(
+                                    item.productName,
+                                    item.id,
+                                    item.lineId
+                                  )
+                                }
                               />
                             </div>
                             <div
@@ -211,7 +294,7 @@ const SearchProduct = () => {
                             >
                               <LazyLoadImage src={shoppingbag} effect="blur" />
                             </div>
-                            <div className={`${styles.preview_color}`}>
+                            {/* <div className={`${styles.preview_color}`}>
                               <input
                                 className={styles.darkblue}
                                 name="color"
@@ -237,7 +320,7 @@ const SearchProduct = () => {
                                 name="color"
                                 type="radio"
                               />
-                            </div>
+                            </div> */}
                             <div
                               className={`${styles.product_description} d-flex justify-content-between px-3`}
                             >
