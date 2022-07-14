@@ -39,7 +39,13 @@ const CategoryMainPage = () => {
   useEffect(() => {
     let loadFromUrl = true;
     loadProductItemsBycategory(loadFromUrl);
-  }, [category, subcategory, sort, page]);
+  }, [category, subcategory, sort]);
+
+  useEffect(() => {
+    let loadFromUrl = false;
+    // loading from pagination
+    loadProductItemsBycategory(loadFromUrl);
+  }, [page]);
 
   useEffect(() => {
     reloadRecaptcha();
@@ -66,10 +72,13 @@ const CategoryMainPage = () => {
         sort,
         page
       );
-      setProducts((previous) => [...previous, ...data[0].data]);
+      if (loadFromUrl) {
+        setProducts(data[0].data);
         setFilterTypes(data[1].data);
         setResult(data[0]);
-
+      } else {
+        setProducts((previous) => [...previous, ...data[0].data]);
+      }
     }
   };
 
