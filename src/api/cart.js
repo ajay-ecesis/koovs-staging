@@ -177,7 +177,17 @@ export const updateCartQuantity = async (cartItem) => {
 export const addToWishlistAPI = async (productData) => {
   let authToken = await JSON.parse(localStorage.getItem("userToken"));
   if (!authToken) {
-    toast.error("You are not logged in to use wishlist");
+    // if user is not authenticated, then save the wishlist item to session
+    sessionStorage.setItem(
+      "add_to_wishlist",
+      JSON.stringify({
+        sku: productData.product.skuId,
+        line: productData.lineId,
+        product: productData.productId,
+        reCaptcha:productData.reCaptcha
+      })
+    );
+    window.location.href="/wishlist"
     return false;
   }
   const config = {

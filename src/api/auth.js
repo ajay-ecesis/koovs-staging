@@ -125,6 +125,13 @@ export const userLoginAPI = async (userData) => {
       config
     );
     localStorage.setItem("userToken", JSON.stringify(res.data.data.token));
+    let sessionExists = await JSON.parse(
+      sessionStorage.getItem("add_to_wishlist")
+    );
+    if (sessionExists) {
+      addToWishlistFromSession(sessionExists);
+    }
+
     toast.success("Successfully Logged In");
     return res.data.data;
   } catch (err) {
@@ -155,4 +162,37 @@ export const getVisitorToken = async () => {
   } catch (err) {
     console.log("err", err);
   }
+};
+
+export const addToWishlistFromSession = async (productData) => {
+  console.log("addto wishlist from session", productData);
+  let authToken = await JSON.parse(localStorage.getItem("userToken"));
+  const config = {
+    headers: {
+      Authorization: authToken,
+      "X-API-CLIENT": "WEB",
+      "CAN-FETCH-VALUE": "NO",
+      "X-AUTH-TOKEN": authToken,
+      "X-API-CLIENT": "WEB",
+      "X-CAPTCHA-TOKEN": productData.reCaptcha,
+      "X-CAPTCHA-ACTION": "addToCart",
+      "X-REMOTE-IP": "",
+    },
+  };
+
+  try {
+    const res = await axios.post(
+      clientServer + "/jarvis-order-service/v1/wishlist",
+      {
+        sku: productData.sku,
+        line: productData.line,
+        product: productData.product,
+      },
+      config
+    );
+    if (res.status == 200) {
+      toast.success("Added to wishlist");
+      return true;
+    }
+  } catch (err) {}
 };
