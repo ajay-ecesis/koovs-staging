@@ -92,8 +92,8 @@ const MyAccount = ({ shippingAddress,loadMyAddress }) => {
                   <input
                     required
                     type="number"
-                    min={10}
-                    max={10}
+                    // min={10}
+                    // max={10}
                     onChange={handleChange("phone")}
                     defaultValue={values?.phone}
                     class="form-control "

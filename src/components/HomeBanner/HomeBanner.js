@@ -39,7 +39,7 @@ function HomeBanner() {
       <div className="container-fluid">
         <div className="row">
           <div className="col-12 col-lg-6">
-            <Carousel controls={true} interval={700} fade>
+            <Carousel controls={true} interval={10000} fade>
               <Carousel.Item>
                 <div className="banner-Image">
                   <img

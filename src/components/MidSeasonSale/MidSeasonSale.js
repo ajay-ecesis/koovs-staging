@@ -3,7 +3,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import "./midseasonsale.css";
 
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   loadProductByCategoryApi,
   loadProductsByTag,
@@ -11,7 +11,7 @@ import {
 import { isMobile } from "react-device-detect";
 import { useNavigate } from "react-router-dom";
 
-function MidSeasonSale() {
+function MidSeasonSale({categoryName}) {
   const navigate = useNavigate();
 
   const responsive = {
@@ -88,7 +88,7 @@ function MidSeasonSale() {
               <div className="d-flex justify-content-between">
                 <h5 className="fw-bold">{tag?tag:<>Mid season sale </>}</h5>
                 <p className="fw-bold">
-                  <u>View All</u>
+                <Link to={`/category/${categoryName}/mid-season-sale`} style={{color:"black"}}> <u>View All</u></Link> 
                 </p>
               </div>
               <div className="row women" id="carousel-slide">

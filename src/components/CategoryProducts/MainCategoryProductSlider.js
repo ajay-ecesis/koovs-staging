@@ -25,7 +25,9 @@ function MenCategoryProductSlider({
   addToWishlist,
   removeWishlist,
   page,
-  setPage
+  setPage,
+  token,
+  reloadRecaptcha,
 }) {
   const [isActive, setActive] = useState(false);
   const [isShow, setShow] = useState(false);
@@ -42,6 +44,8 @@ function MenCategoryProductSlider({
 
   useEffect(() => {
     if (filterTypes) {
+      console.log("filter typee", filterTypes);
+
       var filterItem = filterTypes.findIndex((item) => item.id === "price_fq");
 
       filterItem = filterTypes[filterItem];
@@ -123,10 +127,7 @@ function MenCategoryProductSlider({
                         )}
 
                         {item.id == "color_fq" && (
-                          <Dropdown
-                            className="d-inline mx-2"
-                           
-                          >
+                          <Dropdown className="d-inline mx-2">
                             <Dropdown.Toggle id="dropdown-autoclose-true">
                               Color <IoIosArrowDown className="downarrowicon" />
                             </Dropdown.Toggle>
@@ -165,10 +166,7 @@ function MenCategoryProductSlider({
 
                         {item.id == "size_fq" && (
                           <>
-                            <Dropdown
-                              className="d-inline mx-2"
-                             
-                            >
+                            <Dropdown className="d-inline mx-2">
                               <Dropdown.Toggle id="dropdown-autoclose-true">
                                 Size{" "}
                                 <IoIosArrowDown className="downarrowicon" />
@@ -209,10 +207,7 @@ function MenCategoryProductSlider({
                         {/* showing the price range if */}
                         {item.id == "price_fq" && (
                           <>
-                            <Dropdown
-                              className=" d-inline mx-2"
-                              
-                            >
+                            <Dropdown className=" d-inline mx-2">
                               <Dropdown.Toggle id="dropdown-autoclose-true">
                                 Price range{" "}
                                 <IoIosArrowDown className="downarrowicon" />
@@ -347,6 +342,8 @@ function MenCategoryProductSlider({
           removeWishlist={removeWishlist}
           page={page}
           setPage={setPage}
+          token={token}
+          reloadRecaptcha={reloadRecaptcha}
         />
 
         <p className="viewall-text fw-bold d-sm-block d-lg-none">
