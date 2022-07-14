@@ -39,7 +39,13 @@ const CategoryMainPage = () => {
   useEffect(() => {
     let loadFromUrl = true;
     loadProductItemsBycategory(loadFromUrl);
-  }, [category, subcategory, sort, page]);
+  }, [category, subcategory, sort]);
+
+  useEffect(() => {
+    let loadFromUrl = false;
+    // loading from pagination
+    loadProductItemsBycategory(loadFromUrl);
+  }, [page]);
 
   useEffect(() => {
     reloadRecaptcha();
@@ -56,6 +62,7 @@ const CategoryMainPage = () => {
     setToken(token);
   }
 
+  //loading product items by category
   const loadProductItemsBycategory = async (loadFromUrl) => {
     if ((category, subcategory)) {
       let data = await loadProductByCategoryApi(
@@ -67,13 +74,11 @@ const CategoryMainPage = () => {
       );
       if (loadFromUrl) {
         setProducts(data[0].data);
-        return;
+        setFilterTypes(data[1].data);
+        setResult(data[0]);
+      } else {
+        setProducts((previous) => [...previous, ...data[0].data]);
       }
-      setProducts((previous) => [...previous, ...data[0].data]);
-
-      // setProducts(data[0].data);
-      setFilterTypes(data[1].data);
-      setResult(data[0]);
     }
   };
 
@@ -191,7 +196,9 @@ const CategoryMainPage = () => {
         addToWishlist={addToWishlist}
         removeWishlist={removeWishlist}
         page={page}
+        token={token}
         setPage={setPage}
+        reloadRecaptcha={reloadRecaptcha}
       />
     </>
   );

@@ -5,13 +5,20 @@ import "./favouriteproducts.css";
 import headbandimg from "../../assets/images/headband.png";
 import shopimg from "../../assets/images/Shopping-bag.png";
 import { Link, useNavigate } from "react-router-dom";
-import { similiarProductAPI } from "../../api/commonApi";
+import {
+  getProductByBatchIdAPI,
+  similiarProductAPI,
+} from "../../api/commonApi";
 import { addToWishlistAPI, removeItemFromWishList } from "../../api/cart";
 import { useDispatch, useSelector } from "react-redux";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
   const wishlistProducts = useSelector((state) => state.wishlist.items);
+  const [similiarProductSize, setSimiliarProductSize] = useState(null);
+  const [selectedSize, setSelectedSize] = useState("");
+  const [selectedColor, setSelectedColor] = useState("");
+  const [productDetail, setProductDetail] = useState(null);
 
   const dispatch = useDispatch();
   const responsive = {
@@ -91,6 +98,29 @@ export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
     });
   };
 
+  // set the size of the selected product
+  const selectSize = (id) => {
+    setSelectedSize(id);
+  };
+
+  // size returning for shop the outfit section//
+
+  useEffect(() => {
+    console.log("similiear produts", similiarProducts);
+    loadSimiarProductSize();
+  }, [similiarProducts]);
+
+  const loadSimiarProductSize = async () => {
+    let result = [];
+    for (let i = 0; i < 2; i++) {
+      let { data } = await getProductByBatchIdAPI(similiarProducts[0].sku);
+
+      result.push(data[0]);
+    }
+    console.log("data on api result", result);
+    setSimiliarProductSize(result);
+  };
+
   return (
     <section className="favourite-products py-lg-5">
       {similiarProducts.length !== 0 && (
@@ -102,7 +132,7 @@ export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
                   Shop the whole outfit{" "}
                 </h5>
                 <div>
-                  {similiarProducts.slice(0, 2).map((data) => {
+                  {similiarProducts.slice(0, 2).map((data, index) => {
                     return (
                       <>
                         <div className="product-outfit d-flex gap-lg-4 gap-2 mb-3">
@@ -154,12 +184,36 @@ export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
                               </div>
                               <div className="preview-size">
                                 <ul className="d-flex align-items-center">
-                                  <li>XS</li>
-                                  <li>S</li>
+                                  {similiarProductSize?.length > 0 &&
+                                    similiarProductSize[
+                                      index
+                                    ]?.attributes?.sizes.map((size) => {
+                                      return (
+                                        <>
+                                          <li
+                                            className={`${
+                                              size.isOutOfStock && "no-stock"
+                                            } ${
+                                              selectedSize == size.id &&
+                                              "list-active"
+                                            }`}
+                                            onClick={() =>
+                                              !size.isOutOfStock &&
+                                              selectSize(size.id)
+                                            }
+                                          >
+                                            {" "}
+                                            {size.code}
+                                          </li>
+                                        </>
+                                      );
+                                    })}
+
+                                  {/* <li>S</li>
                                   <li className="no-stock">M</li>
                                   <li>L</li>
                                   <li>XL</li>
-                                  <li>XXL</li>
+                                  <li>XXL</li> */}
                                 </ul>
                                 <LazyLoadImage
                                   effect="blur"

@@ -15,12 +15,13 @@ const ShirtSection = ({
   removeWishlist,
   page,
   setPage,
+  token,
+  reloadRecaptcha,
 }) => {
   const [cart, setCart] = useState(false);
   const wishlistProducts = useSelector((state) => state.wishlist.items);
 
   const paginateResult = () => {
-
     setPage(page + 1);
   };
 
@@ -70,8 +71,9 @@ const ShirtSection = ({
                       </div>
                       <div className="prod1">
                         <LazyLoadImage
-                        effect="blur"
+                          effect="blur"
                           src={item.imageSmallUrl}
+                          // src={productItem}
                           className="img-fluid"
                           alt="Koovs product Front image"
                           onClick={() =>
@@ -88,7 +90,14 @@ const ShirtSection = ({
                             src={shoppingbag}
                             onClick={() => setCart(item.id)}
                           />
-                          {cart == item.id && <AddToCart setCart={setCart} />}
+                          {cart == item.id && (
+                            <AddToCart
+                              setCart={setCart}
+                              item={item}
+                              token={token}
+                              reloadRecaptcha={reloadRecaptcha}
+                            />
+                          )}
                         </div>
 
                         <div className="preview-color">
