@@ -28,6 +28,7 @@ function MenCategoryProductSlider({
   setPage,
   token,
   reloadRecaptcha,
+  sortLabel,
 }) {
   const [isActive, setActive] = useState(false);
   const [isShow, setShow] = useState(false);
@@ -307,7 +308,7 @@ function MenCategoryProductSlider({
               Sort by:{" "}
               <u style={{ cursor: "pointer" }}>
                 <p id="newcategory" onClick={() => setActive(!isActive)}>
-                  Newest
+                  {sortLabel}
                 </p>
               </u>
             </p>
@@ -323,7 +324,8 @@ function MenCategoryProductSlider({
                     <>
                       <li
                         className="sort-list"
-                        onClick={() => changeSortOption(item.id)}
+                        style={{ cursor: "pointer" }}
+                        onClick={() => changeSortOption(item.id, item.label)&&setActive(!isActive)}
                       >
                         {item.label}
                       </li>

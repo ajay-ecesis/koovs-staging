@@ -22,6 +22,7 @@ const CategoryMainPage = () => {
   const [result, setResult] = useState();
   const [products, setProducts] = useState([]);
   const [sort, setSort] = useState("relevance");
+  const [sortLabel, setSortLabel] = useState("relevance");
   const [filterTypes, setFilterTypes] = useState([]);
   const [page, setPage] = useState(0);
   const [limit, setLimit] = useState(8);
@@ -82,8 +83,9 @@ const CategoryMainPage = () => {
     }
   };
 
-  const changeSortOption = async (option) => {
+  const changeSortOption = async (option, label) => {
     setSort(option);
+    setSortLabel(label);
   };
 
   // apply a new filter
@@ -94,6 +96,8 @@ const CategoryMainPage = () => {
     const newobj = { ...filterType };
     newobj[type] = val;
     setFilterType(newobj);
+
+    console.log("objj",newobj)
   };
 
   useEffect(() => {
@@ -199,6 +203,7 @@ const CategoryMainPage = () => {
         token={token}
         setPage={setPage}
         reloadRecaptcha={reloadRecaptcha}
+        sortLabel={sortLabel}
       />
     </>
   );

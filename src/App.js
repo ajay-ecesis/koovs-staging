@@ -17,6 +17,7 @@ import WishlistPage from "./pages/WishlistPage";
 import PrivateRoute from "./route/PrivateRoute";
 import Address from "./pages/Address";
 import PaymentPage from "./pages/Payment";
+import NotSignedWishlist from "./components/Wishlist/NotSignedWishlist";
 // component lazy loading begins
 const Home = React.lazy(() => import("./pages/Home"));
 const ProductCart = React.lazy(() => import("./pages/ProductCart"));
@@ -98,10 +99,33 @@ const App = () => {
               <Route path="/signup/register" element={<Signup />} />
               <Route path="/signup/login" element={<Login />} />
               <Route path="/search" element={<Search />} />
-              <Route path="/user/account" element={<PrivateRoute> <MyInformationPage /></PrivateRoute>} />
+              <Route
+                path="/user/account"
+                element={
+                  <PrivateRoute>
+                    {" "}
+                    <MyInformationPage />
+                  </PrivateRoute>
+                }
+              />
               <Route path="/wishlist" element={<WishlistPage />} />
-              <Route path="/checkout/address" element={<PrivateRoute><Address /></PrivateRoute>} />
-              <Route path="/checkout/payment" element={<PrivateRoute> <PaymentPage /> </PrivateRoute>} />
+              <Route
+                path="/checkout/address"
+                element={
+                  <PrivateRoute>
+                    <Address />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/checkout/payment"
+                element={
+                  <PrivateRoute>
+                    {" "}
+                    <PaymentPage />{" "}
+                  </PrivateRoute>
+                }
+              />
               <Route path="*" element={<FourNotFour />} />
             </Routes>
           </Suspense>
