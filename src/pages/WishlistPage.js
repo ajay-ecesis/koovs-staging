@@ -4,9 +4,11 @@ import Header from "../components/Header/Header";
 import { useSelector } from "react-redux";
 import Wishlist from "../components/Wishlist/Wishlist";
 import { loadWishListBySkuIdApi } from "../api/cart";
+import NotSignedWishlist from "../components/Wishlist/NotSignedWishlist";
 
 const WishlistPage = () => {
   const wishlistItems = useSelector((state) => state.wishlist.items);
+  const user = useSelector((state) => state.user);
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -23,7 +25,14 @@ const WishlistPage = () => {
     <>
       <Header />
       <AccountSideNav index={4}>
-        <Wishlist products={products} getWishlistItemsByBatchId={getWishlistItemsByBatchId} />
+       
+       {user.isLoggedIn?
+        <Wishlist
+          products={products}
+          getWishlistItemsByBatchId={getWishlistItemsByBatchId}
+        />:
+       <NotSignedWishlist/>
+       }
       </AccountSideNav>
     </>
   );

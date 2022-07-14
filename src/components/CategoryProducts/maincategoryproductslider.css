@@ -478,3 +478,7 @@
 .infinite-scroll-component {
   overflow:hidden !important;
 }
+
+/* .dropdown-item div{
+  display: none;
+} */
