@@ -191,7 +191,9 @@ const CategoryMainPage = () => {
         addToWishlist={addToWishlist}
         removeWishlist={removeWishlist}
         page={page}
+        token={token}
         setPage={setPage}
+        reloadRecaptcha={reloadRecaptcha}
       />
     </>
   );

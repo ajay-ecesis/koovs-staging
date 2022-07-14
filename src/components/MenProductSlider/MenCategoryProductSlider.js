@@ -3,14 +3,18 @@ import "./categoryproductslider.css";
 import "react-multi-carousel/lib/styles.css";
 import productItem from "../../assets/images/shirts.png";
 import shoppingbag from "../../assets/images/Shopping-bag.svg";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { loadProductByCategoryApi } from "../../api/commonApi";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
-function MenCategoryProductSlider({ addToWishlist, removeWishlist }) {
+function MenCategoryProductSlider({
+  addToWishlist,
+  removeWishlist,
+  categoryName,
+}) {
   const wishlistProducts = useSelector((state) => state.wishlist.items);
   let { category } = useParams();
   const navigate = useNavigate();
@@ -51,9 +55,15 @@ function MenCategoryProductSlider({ addToWishlist, removeWishlist }) {
     <section className="category_product_slider">
       <div className="container-fluid">
         <div className="actions d-flex justify-content-between">
-          <h5 className="fw-bold">New in</h5>
+          <h5 className="fw-bold">New in </h5>
           <p className="fw-bold d-none d-lg-block">
-            <u style={{ cursor: "pointer" }}>View All</u>
+            <Link
+              to={`/category/${categoryName}/new-arrivals`}
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              {" "}
+              <u style={{ cursor: "pointer" }}>View All</u>
+            </Link>
           </p>
         </div>
 

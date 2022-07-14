@@ -95,10 +95,10 @@ const CategoryPage = () => {
           <>404</>
         )}
 
-        <MidSeasonSale tag={tag} />
+        <MidSeasonSale tag={tag} categoryName={categoryName}/>
         <MobileMenBanner />
         <MenSlider />
-        <MenProductSlider addToWishlist={addToWishlist} removeWishlist={removeWishlist}/>
+        <MenProductSlider addToWishlist={addToWishlist} removeWishlist={removeWishlist} categoryName={categoryName}/>
         <LiveInMen />
 
         <Footer />
