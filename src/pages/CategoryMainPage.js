@@ -94,10 +94,39 @@ const CategoryMainPage = () => {
       val = val[0] + "-" + val[1];
     }
     const newobj = { ...filterType };
-    newobj[type] = val;
-    setFilterType(newobj);
 
-    console.log("objj",newobj)
+    if (type == "brand_fq") {
+      let arr = newobj?.brand_fq || [];
+      // check if the filter is already exists
+      var idExists = arr.indexOf(val);
+      if (idExists !== -1) {
+        arr.splice(idExists, 1);
+      } else {
+        arr.push(val);
+      }
+      newobj[type] = arr;
+    }
+    if (type == "color_fq") {
+      let arr = newobj?.color_fq || [];
+      var idExists = arr.indexOf(val);
+      if (idExists !== -1) {
+        arr.splice(idExists, 1);
+      } else {
+        arr.push(val);
+      }
+      newobj[type] = arr;
+    }
+    if (type == "size_fq") {
+      let arr = newobj?.size_fq || [];
+      var idExists = arr.indexOf(val);
+      if (idExists !== -1) {
+        arr.splice(idExists, 1);
+      } else {
+        arr.push(val);
+      }
+      newobj[type] = arr;
+    }
+    setFilterType(newobj);
   };
 
   useEffect(() => {
@@ -105,6 +134,7 @@ const CategoryMainPage = () => {
   }, [filterType]);
 
   const loadFilteredResults = async () => {
+    
     setLoading(true);
     let filteredResults = await loadProductsByFilter(
       category,

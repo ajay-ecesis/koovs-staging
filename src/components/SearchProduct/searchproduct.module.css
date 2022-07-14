@@ -135,7 +135,9 @@
     z-index: 1;
     cursor: pointer;
 }
-
+.image_color .favIcon label{
+font-size: 2.1rem;
+}
 
 .image_color input[type='radio'] {
     -webkit-appearance: none;
