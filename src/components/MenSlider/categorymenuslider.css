@@ -64,3 +64,34 @@
     padding: 17px 0px 17px 17px;
     
 }
+
+@media(min-width:768px) and (max-width:1200){
+
+    .category_menu_slider .category-buttons .btn{
+
+        margin:12px 0px;
+    }
+    .category_menu_slider .text-button{
+        padding:12px 20px;
+
+    }
+
+}
+
+@media(min-width:1440px)and (max-width:2000px){
+
+    .category_menu_slider .text-button{
+
+        padding:12px 20px;
+    }
+
+       .category_menu_slider .category-buttons{
+        height:83px;
+
+       }
+
+      .category_menu_slider .category-buttons .btn{
+
+        margin:12px 0px;
+      }
+}

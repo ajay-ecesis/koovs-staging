@@ -64,14 +64,15 @@
     flex-direction: row !important;
     z-index: 999;
     justify-content: space-between;
-    width: 65px;
-    height: 20px;
+    width: 90px;
+    height: 38px;
 
 }
 
 .timing-text {
-    font-size: 10px;
-    padding: 2px;
+    font-size: 12px;
+    padding: 5px;
+    font-weight:500;
 }
 
 .Heading-live {
