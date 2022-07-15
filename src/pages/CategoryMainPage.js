@@ -74,13 +74,14 @@ const CategoryMainPage = () => {
         sort,
         page
       );
-      if (loadFromUrl) {
-        setProducts(data[0].data);
-        setFilterTypes(data[1].data);
-        setResult(data[0]);
-      } else {
-        setProducts((previous) => [...previous, ...data[0].data]);
-      }
+      if (data)
+        if (loadFromUrl) {
+          setProducts(data[0]?.data);
+          setFilterTypes(data[1]?.data);
+          setResult(data[0]);
+        } else {
+          setProducts((previous) => [...previous, ...data[0]?.data]);
+        }
     }
   };
 
@@ -135,7 +136,6 @@ const CategoryMainPage = () => {
   }, [filterType]);
 
   const loadFilteredResults = async () => {
-    
     setLoading(true);
     let filteredResults = await loadProductsByFilter(
       category,
@@ -236,7 +236,7 @@ const CategoryMainPage = () => {
         reloadRecaptcha={reloadRecaptcha}
         sortLabel={sortLabel}
       />
-      <Footer/>
+      <Footer />
     </>
   );
 };

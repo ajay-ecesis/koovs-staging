@@ -68,10 +68,13 @@ export const loadProductByCategoryApi = async (
       `${clentServer}/search-service/v1/products/listing/complete?href=https://www.koovs.com/${category}/${subCategory}&page-size=${size}&sort=${sort}&page=${page}`,
       config
     );
-
-    return data?.data;
+    if (data?.data) {
+      return data?.data;
+    } else {
+      return false;
+    }
   } catch (err) {
-    console.log("its an err", err);
+    return false
   }
 };
 
@@ -196,7 +199,12 @@ export const loadSearchProductResults = async (searchKeyword, page) => {
       `${clentServer}/search/v1/complete?query=${searchKeyword}&page=${page}&page-size=10`,
       config
     );
-    return data;
+
+    if (data) {
+      return data;
+    } else {
+      return { data: false };
+    }
   } catch (err) {}
 };
 
@@ -236,7 +244,6 @@ export const loadProductsByFilter = async (
   if (size_fq) {
     size_fq = size_fq.join(";");
   }
-
 
   if (filter.price_fq) {
     priceUrl = `&${

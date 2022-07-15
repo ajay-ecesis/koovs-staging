@@ -21,13 +21,13 @@ class Home extends React.Component {
         <BrandItems />
         <HomeFashion
           category="women"
-          subCategory="top"
+          subCategory="dresses"
           title="Women"
           link="/category/women"
         />
         <HomeFashion
           category="men"
-          subCategory="shirts"
+          subCategory="jeans"
           title="Men"
           link="/category/men"
         />

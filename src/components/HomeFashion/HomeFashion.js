@@ -7,8 +7,8 @@ import { Card, Placeholder } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { isMobile } from "react-device-detect";
 import { Link } from "react-router-dom";
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css';
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 function HomeFashion({ category, subCategory, title, link }) {
   const responsive = {
@@ -38,10 +38,10 @@ function HomeFashion({ category, subCategory, title, link }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    loadWomenCategoryItems();
+    loadCategoryItems();
   }, [category, subCategory]);
 
-  const loadWomenCategoryItems = async () => {
+  const loadCategoryItems = async () => {
     setLoading(true);
     let size = 5,
       sort = "relevence",

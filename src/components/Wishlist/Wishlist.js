@@ -1,13 +1,17 @@
 import React, { useEffect } from "react";
 import WishlistProduct from "./WishlistProduct";
 
-const Wishlist = ({ products,getWishlistItemsByBatchId }) => {
+const Wishlist = ({ products, getWishlistItemsByBatchId,loading }) => {
   return (
     <>
       <section className="wishlist-section pt-5">
         <p className="mobile-wishheading d-sm-block d-lg-none">Wishlist</p>
         <div className="row gx-7">
-          <WishlistProduct products={products} getWishlistItemsByBatchId={getWishlistItemsByBatchId}/>
+          <WishlistProduct
+            products={products}
+            getWishlistItemsByBatchId={getWishlistItemsByBatchId}
+            loading={loading}
+          />
 
           <section className="share-wishlist d-sm-block d-lg-none">
             <p>

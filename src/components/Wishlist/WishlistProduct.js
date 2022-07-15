@@ -12,10 +12,11 @@ import {
 import { useDispatch } from "react-redux/es/exports";
 import { ReCaptcha, loadReCaptcha } from "react-recaptcha-v3";
 
-const WishlistProduct = ({ products, getWishlistItemsByBatchId }) => {
+const WishlistProduct = ({ products, getWishlistItemsByBatchId, loading }) => {
   let dispatch = useDispatch();
   const [reCaptcha, setRecaptcha] = useState("");
   const [key, setKey] = useState(1);
+  const [btnLoading, setBtnLoading] = useState(false);
 
   const removeProductFromWishlist = async (sku, lineId) => {
     let data = await removeItemFromWishList(sku, lineId);
@@ -27,6 +28,7 @@ const WishlistProduct = ({ products, getWishlistItemsByBatchId }) => {
   };
 
   const addToCart = async (product) => {
+    setBtnLoading(product.product.id);
     var [batchSkuId] = product.quantity.data.filter(function (item) {
       return item.skuId == product.product.sku;
     });
@@ -38,24 +40,44 @@ const WishlistProduct = ({ products, getWishlistItemsByBatchId }) => {
     let data = await addToCartAPI(prodDetails);
 
     if (data) {
+      let cart = {
+        product: { sku: prodDetails.product.skuId },
+        qty: 1,
+        vendor: prodDetails.product.feDetails.vendor,
+        warehouse: prodDetails.product.feDetails.warehouse,
+        lot: prodDetails.product.feDetails.lot,
+      };
+
+      dispatch({
+        type: "ADD_TO_CART",
+        payload: cart,
+      }); // increase the cart count.
     }
     reloadRecaptcha();
+    setBtnLoading(false);
   };
   useEffect(() => {
     reloadRecaptcha();
   }, []);
 
-
-
   const reloadRecaptcha = () => {
     setKey(key + 1);
     loadReCaptcha(process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY); //sitekey load recaptcha
-
   };
 
   function handleVerify(token) {
     setRecaptcha(token);
   }
+
+  const loadingPlaceHolder = () => {
+    return (
+      <>
+        <div className="Product-wishlist col-xl-8  col-lg-8  col-sm-6  col-6">
+          <div class="skeleton-a6p58lb6tt3"></div>
+        </div>
+      </>
+    );
+  };
   return (
     <>
       <ReCaptcha
@@ -64,7 +86,7 @@ const WishlistProduct = ({ products, getWishlistItemsByBatchId }) => {
         verifyCallback={handleVerify}
         key={key}
       />
-
+      {loading && loadingPlaceHolder()}
       {products?.length > 0 &&
         products.map((item) => {
           return (
@@ -113,13 +135,21 @@ const WishlistProduct = ({ products, getWishlistItemsByBatchId }) => {
                     </Dropdown.Menu>
                   </Dropdown> */}
                   <div className="addtobag-button">
-                    <button
-                      type="button"
-                      className="addtobag"
-                      onClick={() => addToCart(item)}
-                    >
-                      ADD TO BAG
-                    </button>
+                    {btnLoading == item.product.id ? (
+                      <>
+                        <button type="button" className="addtobag">
+                          ADDING TO BAG...
+                        </button>
+                      </>
+                    ) : (
+                      <button
+                        type="button"
+                        className="addtobag"
+                        onClick={() => addToCart(item)}
+                      >
+                        ADD TO BAG
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
@@ -127,7 +157,7 @@ const WishlistProduct = ({ products, getWishlistItemsByBatchId }) => {
           );
         })}
 
-      {products.length == 0 && (
+      {products.length == 0 && !loading && (
         <section className="wishlistnoitems-section">
           <p className="noitems-heading d-sm-block d-lg-none">Wishlist</p>
           <p>Save your favourite items to start building your wishlist.</p>
