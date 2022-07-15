@@ -23,17 +23,16 @@ function MidSeasonSale({categoryName}) {
       slidesToSlide: 1, // optional, default to 1.
     },
     tablet: {
-      breakpoint: { max: 1024, min: 464 },
+      breakpoint: { max: 1023, min: 464 },
       items: 2,
       partialVisible: true,
       partialVisibilityGutter: 60,
       slidesToSlide: 2, // optional, default to 1.
     },
     mobile: {
-      breakpoint: { max: 464, min: 0 },
+      breakpoint: { max: 463, min: 100 },
       items: 2.5,
-      partialVisible: true,
-      partialVisibilityGutter: 10,
+
       slidesToSlide: 1, // optional, default to 1.
     },
   };
@@ -91,10 +90,10 @@ function MidSeasonSale({categoryName}) {
                 <Link to={`/category/${categoryName}/mid-season-sale`} style={{color:"black"}}> <u>View All</u></Link> 
                 </p>
               </div>
-              <div className="row women" id="carousel-slide">
+              <div className="row women" id="carousel-s">
                 <Carousel
                   infinite="true"
-                  partialVisible={true}
+                  partialVisible={false}
                   interval={3000}
                   touch={true}
                   arrows={false}
@@ -102,9 +101,9 @@ function MidSeasonSale({categoryName}) {
                   renderButtonGroupOutside={true}
                   swipeable={isMobile ? true : false}
                   draggable={isMobile ? true : false}
-                  autoPlay={isMobile ? true : false}
+                  autoPlay={isMobile ? false : false}
                   autoPlaySpeed={2000}
-                  containerClass="carousel-new"
+                  // containerClass="carousel-new"
                 >
                   {products.length > 0 &&
                     products.map((item) => {
@@ -128,7 +127,7 @@ function MidSeasonSale({categoryName}) {
                                 className="img-fluid"
                                 alt="Koovs product Front image"
                               />
-                              {/* <img
+                              {/* <imgfds
                                 src={headbandimg}
                                 alt="Koovs rear product image"
                                 className="rear-img"

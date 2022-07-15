@@ -157,7 +157,7 @@ function MenFashion() {
               renderButtonGroupOutside={true}
               swipeable={true}
               draggable={false}
-              autoPlay={true}
+              autoPlay={false}
               autoPlaySpeed={2000}
               infinite={true}
             >

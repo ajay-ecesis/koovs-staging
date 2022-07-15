@@ -23,12 +23,12 @@ function mobilemenbanner() {
       mobile: {
         breakpoint: { max: 464, min: 0 },
         items: 1,
-        partialVisibilityGutter: 100,
+        partialVisibilityGutter: 90,
         slidesToSlide: 1, // optional, default to 1.
       },
     };
     return (
-      <section className="stories pb-5 d-block d-lg-none">
+      <section className="stories pb-5 d-xs-block d-sm-block d-lg-none d-md-none d-xl-none">
         <div className="container-fluid">
           <div className="row g-lg-1">
             <div className="stylestories">

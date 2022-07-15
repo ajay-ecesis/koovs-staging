@@ -12,7 +12,7 @@ const MenBanner = () => {
     <section className="men-banner">
       <div className="container-fluid">
         <div className="row">
-          <div className="col-12 col-lg-6">
+          <div className="carousel-img col-12 col-lg-6">
           <LazyLoad offsetTop={200}>
               <Carousel controls={true} interval={3000}>
                 <Carousel.Item>
@@ -60,7 +60,7 @@ const MenBanner = () => {
               </Carousel>
             </LazyLoad>
           </div>
-          <div className="col-12 col-lg-6  d-none d-lg-block">
+          <div className="jen-img col-12 col-lg-6  d-none d-lg-block">
             <div className="category-carousel">
               <div className="text-menbanner d-flex justify-content-between">
                 <p>Influencer Collections</p>

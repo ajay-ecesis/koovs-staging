@@ -11,7 +11,7 @@ const LiveInWomen = () => {
       <section className="liveinwomen">
         <div className="container-fluid">
           <div className="row carousel-live">
-            <div className="col-12 col-lg-6">
+            <div className=" live-mohammed col-12 col-lg-6">
               <div className="LiveMen">
                 <p className="fw-bold d-none d-lg-block ">GO LIVE WITH US</p>
               </div>
@@ -66,7 +66,7 @@ const LiveInWomen = () => {
               </div>
             </div>
 
-            <div className="col-12 col-lg-6 d-none d-lg-block">
+            <div className=" live-bobby col-12 col-lg-6 d-none d-lg-block">
               <div className="text-live d-flex justify-content-between">
                 <span className="timing-text">In 7 days</span>
               </div>
@@ -75,6 +75,7 @@ const LiveInWomen = () => {
                 src={comingsoon}
                 className="w-100 img-fluid"
               />
+              
               <button
                 type="button"
                 id="coming-soon"
@@ -82,10 +83,11 @@ const LiveInWomen = () => {
               >
                 <span>Coming Soon</span>
               </button>
+           
               <div className="Heading-live">
                 <h5 className="fw-bold">Live with Bobbi and Holly/April 29</h5>
 
-                <p className="fw-bold para-live">
+                <p className="fw-bold bobby-live">
                   Spend the afternoon with bobbi and Holly as they Lorem ipsum
                   dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                   tempor incididunt ut labore et dolore magna aliqua.
