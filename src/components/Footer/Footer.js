@@ -63,8 +63,8 @@ class Footer extends React.Component {
                                     <p>Sign up for email updates and promotions</p>  
                                 </div>
                                 <div className="form-floating">
-                                    <input type="password" className="form-control" id="floatingPassword" placeholder="Password" />
-                                    <label htmlFor ="floatingPassword">Password</label>
+                                    <input type="email" className="form-control" id="floatingPassword" placeholder="Password" />
+                                    <label htmlFor ="floatingPassword">Email Address</label>
                                 </div>
                             </div>
                             <div className="footer-widget d-block d-lg-none">
