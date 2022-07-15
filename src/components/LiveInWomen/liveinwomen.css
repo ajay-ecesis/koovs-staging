@@ -16,9 +16,10 @@
     bottom: 166px;
 }
 
-.liveinwomen .row{
+.liveinwomen .row {
     --bs-gutter-x: 52px;
 }
+
 .liveinwomen .video-play-button {
 
     position: absolute;
@@ -39,7 +40,7 @@
     width: 290px;
     height: 50px;
     font-weight: 600;
-    font-size:25px;
+    font-size: 25px;
 
 }
 
@@ -70,20 +71,20 @@
     flex-direction: row !important;
     z-index: 999;
     justify-content: space-between;
-    width: 65px;
-    height: 20px;
+    width: 90px;
+    height: 30px;
 
 }
 
 .timing-text {
-    font-size: 10px;
-    padding: 2px;
+    font-size: 12px;
+    padding: 5px 3px 5px 17px;
 }
 
 .Heading-live {
     margin-top: 35px;
     font-size: 20px;
-    font-weight:700;
+    font-weight: 700;
 
 }
 
@@ -91,7 +92,7 @@
     font-size: 15px;
     line-height: 18px;
     min-height: 109px;
-    margin:20px 0 20px 0;
+    margin: 20px 0 20px 0;
     font-weight: 400;
     font-style: normal;
 
@@ -104,7 +105,7 @@
     display: flex;
     justify-content: center;
     margin: 0 auto;
-    
+
 
 }
 
@@ -113,8 +114,9 @@
     .Live-button {
         margin-bottom: 20px;
     }
+
     .liveinwomen {
-        padding: 0!important;
+        padding: 0 !important;
     }
 }
 
@@ -129,9 +131,41 @@
         padding: 3px 5px 2px 5px;
     }
 
-    .Heading-live .para-live{
-        font-size:12px;
+    .Heading-live .para-live {
+        font-size: 12px;
         line-height: 153.7%;
     }
-    
+
+}
+
+@media only screen and (min-device-width: 990px) and (max-device-width: 1300px) {
+    #coming-soon {
+        width: 237px;
+    }
+
+}
+
+@media only screen and (min-device-width: 1350px) and (max-device-width: 2000px) {
+    #coming-soon {
+
+        width: 367px;
+        height: 85px;
+        font-weight: 600;
+        font-size: 30px;
+
+    }
+    .liveinwomen{
+
+        padding: 37px 290px 46px 290px;
+    }
+    .coming-soon-button {
+        left:68%;
+    }
+
+/* .LiveMen{
+    font-size: 55px;
+    height: auto;
+    bottom: 230px;
+    left: -111px;
+} */
 }
