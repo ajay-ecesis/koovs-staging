@@ -17,6 +17,7 @@ export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
   const wishlistProducts = useSelector((state) => state.wishlist.items);
   const [similiarProductSize, setSimiliarProductSize] = useState(null);
   const [selectedSize, setSelectedSize] = useState("");
+  const [selectedVariant,setSelectedVariant]=useState("")
   const [selectedColor, setSelectedColor] = useState("");
   const [productDetail, setProductDetail] = useState(null);
 
@@ -99,8 +100,9 @@ export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
   };
 
   // set the size of the selected product
-  const selectSize = (id) => {
+  const selectSize = (id,index) => {
     setSelectedSize(id);
+    setSelectedVariant(index);
   };
 
   // size returning for shop the outfit section//
@@ -113,7 +115,7 @@ export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
   const loadSimiarProductSize = async () => {
     let result = [];
     for (let i = 0; i < 2; i++) {
-      let { data } = await getProductByBatchIdAPI(similiarProducts[0].sku);
+      let { data } = await getProductByBatchIdAPI(similiarProducts[i].sku);
 
       result.push(data[0]);
     }
@@ -194,16 +196,16 @@ export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
                                             className={`${
                                               size.isOutOfStock && "no-stock"
                                             } ${
-                                              selectedSize == size.id &&
+                                              selectedSize == size.id&&selectedVariant==index &&
                                               "list-active"
                                             }`}
                                             onClick={() =>
                                               !size.isOutOfStock &&
-                                              selectSize(size.id)
+                                              selectSize(size.id,index)
                                             }
                                           >
                                             {" "}
-                                            {size.code}
+                                            {size.code} {index}
                                           </li>
                                         </>
                                       );
