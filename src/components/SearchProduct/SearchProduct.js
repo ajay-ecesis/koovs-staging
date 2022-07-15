@@ -15,11 +15,15 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { loadReCaptcha, ReCaptcha } from "react-recaptcha-v3";
-import { addToWishlistAPI, getWishlistItems, removeItemFromWishList } from "../../api/cart";
-import { useDispatch,useSelector} from "react-redux";
+import {
+  addToWishlistAPI,
+  getWishlistItems,
+  removeItemFromWishList,
+} from "../../api/cart";
+import { useDispatch, useSelector } from "react-redux";
 
 const SearchProduct = () => {
-  let dispatch=useDispatch()
+  let dispatch = useDispatch();
   let navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchKeyword, setSearchKeyword] = useState("");
@@ -33,33 +37,48 @@ const SearchProduct = () => {
 
   // get the products on changing the query params
   useEffect(() => {
+    setPage(0);
     let keyword = searchParams.get("s");
     setSearchKeyword(keyword);
     if (keyword) {
-      loadSearchResultProducts(keyword);
+      loadSearchResultProducts(keyword, false, 0);
     }
     setSuggestedKeywords([]);
     reloadRecaptcha();
   }, [searchParams]);
 
   // loads the search result products based on the query params
-  const loadSearchResultProducts = async (keyword, isInfinityScroll) => {
+  const loadSearchResultProducts = async (
+    keyword,
+    isInfinityScroll,
+    pageNumber
+  ) => {
     // loader will only show if the search is not from infinity scroll
     if (!isInfinityScroll) {
       setProductsLoading(true);
     }
-    let data = await loadSearchProductResults(keyword, page);
 
-    if (data?.data[0]?.data) {
-      setSearchResult((previous) => [...previous, ...data?.data[0]?.data]);
+    let data = await loadSearchProductResults(keyword, pageNumber);
+    if (isInfinityScroll) {
+      if (data?.data[0]?.data) {
+        setSearchResult((previous) => [...previous, ...data?.data[0]?.data]);
+      }
     } else {
-      setSearchResult([]);
+      if (data?.data[0]?.data) {
+        setSearchResult(data?.data[0]?.data);
+      } else {
+        setSearchResult(null);
+      }
     }
+
     setProductsLoading(false);
   };
 
   // load the search suggestion keywords
   const loadSearchSuggestion = async (e) => {
+    if (searchResult == null) {
+      setSearchResult([]);
+    }
     let keyword = e.target.value;
     let data = await loadSearchSuggestions(keyword);
     if (data?.data[0].suggestionData) {
@@ -94,7 +113,7 @@ const SearchProduct = () => {
   };
 
   useEffect(() => {
-    if (page) loadSearchResultProducts(searchKeyword, true);
+    if (page) loadSearchResultProducts(searchKeyword, true, page);
   }, [page]);
 
   // add product to wish list
@@ -128,9 +147,8 @@ const SearchProduct = () => {
     loadReCaptcha(process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY); //sitekey load recaptcha
   };
 
-
   function handleVerify(token) {
-    setToken (token);
+    setToken(token);
   }
 
   const removeWishlist = async (skuId, lineId) => {
@@ -142,9 +160,29 @@ const SearchProduct = () => {
     });
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key == "Enter") {
+      loadSearchResultProducts(e.target.value, false, 0);
+      setSearchKeyword(e.target.value);
+      setSearchKeyword("")
+    }
+  };
+
+  const noResultFound = () => {
+    return (
+      <>
+        <div className={styles.searchContent}>
+          <div className={styles.text_search}>
+            <p>No Results found for “{searchKeyword}”:</p>
+          </div>
+        </div>
+      </>
+    );
+  };
+
   return (
     <>
-    <ReCaptcha
+      <ReCaptcha
         sitekey={process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY}
         action="addToCart"
         key={key}
@@ -164,6 +202,7 @@ const SearchProduct = () => {
             onChange={(e) => {
               loadSearchSuggestion(e);
             }}
+            onKeyDown={handleKeyPress}
           ></input>
           <GrClose
             className={`${styles.closeBtn}`}
@@ -181,6 +220,7 @@ const SearchProduct = () => {
             onChange={(e) => {
               loadSearchSuggestion(e);
             }}
+            onKeyDown={handleKeyPress}
           />
         </div>
 
@@ -213,6 +253,8 @@ const SearchProduct = () => {
         {/* loading placeholder for product */}
         {productsLoading && loadingProductPlaceholder()}
 
+        {searchResult == null && noResultFound()}
+
         {!productsLoading && searchResult?.length > 0 && (
           <div className={styles.searchContent}>
             <div className={styles.text_search}>
@@ -244,33 +286,40 @@ const SearchProduct = () => {
                             </div>
                             <div>
                               <div className={`${styles.favIcon} me-2`}>
-                              <label for="heart"    style={{cursor:"pointer"}}>
-                          {wishlistProducts?.some(
-                            (wishlistItem) => wishlistItem.id === item.id
-                          ) == true ? (
-                            <>
-                              <i
-                           
-                                class="fa fa-heart-o"
-                                style={{ color: "red" }}
-                                aria-hidden="true"
-                                onClick={() =>
-                                  removeWishlist(item.sku, item.lineId)
-                                }
-                              ></i>
-                            </>
-                          ) : (
-                            <>
-                              <i
-                                class="fa fa-heart-o"
-                                aria-hidden="true"
-                                onClick={() =>
-                                  addToWishlist(item, item.id, item.lineId)
-                                }
-                              ></i>
-                            </>
-                          )}
-                        </label>
+                                <label
+                                  for="heart"
+                                  style={{ cursor: "pointer" }}
+                                >
+                                  {wishlistProducts?.some(
+                                    (wishlistItem) =>
+                                      wishlistItem.id === item.id
+                                  ) == true ? (
+                                    <>
+                                      <i
+                                        class="fa fa-heart-o"
+                                        style={{ color: "red" }}
+                                        aria-hidden="true"
+                                        onClick={() =>
+                                          removeWishlist(item.sku, item.lineId)
+                                        }
+                                      ></i>
+                                    </>
+                                  ) : (
+                                    <>
+                                      <i
+                                        class="fa fa-heart-o"
+                                        aria-hidden="true"
+                                        onClick={() =>
+                                          addToWishlist(
+                                            item,
+                                            item.id,
+                                            item.lineId
+                                          )
+                                        }
+                                      ></i>
+                                    </>
+                                  )}
+                                </label>
                               </div>
                             </div>
                             <div>

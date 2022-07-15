@@ -9,7 +9,11 @@ import {
   getProductByBatchIdAPI,
   similiarProductAPI,
 } from "../../api/commonApi";
-import { addToWishlistAPI, removeItemFromWishList } from "../../api/cart";
+import {
+  addToCartAPI,
+  addToWishlistAPI,
+  removeItemFromWishList,
+} from "../../api/cart";
 import { useDispatch, useSelector } from "react-redux";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
@@ -17,8 +21,10 @@ export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
   const wishlistProducts = useSelector((state) => state.wishlist.items);
   const [similiarProductSize, setSimiliarProductSize] = useState(null);
   const [selectedSize, setSelectedSize] = useState("");
+  const [selectedVariant, setSelectedVariant] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
   const [productDetail, setProductDetail] = useState(null);
+  const [btnLoading, setBtnLoading] = useState(false);
 
   const dispatch = useDispatch();
   const responsive = {
@@ -99,11 +105,10 @@ export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
   };
 
   // set the size of the selected product
-  const selectSize = (id) => {
+  const selectSize = (id, index) => {
     setSelectedSize(id);
+    setSelectedVariant(index);
   };
-
-  // size returning for shop the outfit section//
 
   useEffect(() => {
     console.log("similiear produts", similiarProducts);
@@ -113,7 +118,7 @@ export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
   const loadSimiarProductSize = async () => {
     let result = [];
     for (let i = 0; i < 2; i++) {
-      let { data } = await getProductByBatchIdAPI(similiarProducts[0].sku);
+      let { data } = await getProductByBatchIdAPI(similiarProducts[i].sku);
 
       result.push(data[0]);
     }
@@ -195,11 +200,12 @@ export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
                                               size.isOutOfStock && "no-stock"
                                             } ${
                                               selectedSize == size.id &&
+                                              selectedVariant == index &&
                                               "list-active"
                                             }`}
                                             onClick={() =>
                                               !size.isOutOfStock &&
-                                              selectSize(size.id)
+                                              selectSize(size.id, index)
                                             }
                                           >
                                             {" "}
@@ -215,12 +221,15 @@ export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
                                   <li>XL</li>
                                   <li>XXL</li> */}
                                 </ul>
-                                <LazyLoadImage
+                                {/* <LazyLoadImage
                                   effect="blur"
+                                  onClick={() =>
+                                    addProductToCart(productDetail?.product)
+                                  }
                                   src={shopimg}
                                   className="img-fluid "
                                   alt="Koovs "
-                                />
+                                /> */}
                               </div>
                             </div>
                           </div>
@@ -288,12 +297,12 @@ export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
                                 </label>
                               </div>
                               <div className="d-flex flex-column align-items-end">
-                                <LazyLoadImage
+                                {/* <LazyLoadImage
                                   effect="blur"
                                   src={shopimg}
                                   className="img-fluid m-2"
                                   alt="Koovs "
-                                />
+                                /> */}
                                 <div className="preview-color">
                                   {data.mainColor.map((color) => {
                                     return (
@@ -366,11 +375,7 @@ export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
                                 className="img-fluid proimage mob-prodImage"
                                 alt="Koovs "
                               />
-                              {/* <img
-                                src={headbandimg}
-                                className='img-fluid '
-                                alt='Koovs rear product '
-                              /> */}
+
                               <p className="fw-bold">{data.brandName}</p>
                               <p className="mb-0">{data.productName}</p>
                               <p>₹ {data.discountPrice}</p>

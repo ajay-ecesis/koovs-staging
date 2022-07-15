@@ -2,6 +2,7 @@ import React from "react";
 import "./mobilestart.css";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { Link } from "react-router-dom";
 class MobileStart extends React.Component {
   render() {
     const responsive = {
@@ -33,14 +34,22 @@ class MobileStart extends React.Component {
               <Carousel interval={3000} touch={true} arrows={false} responsive={responsive} renderButtonGroupOutside={true} swipeable={true} draggable={false} autoPlay={true}
                 autoPlaySpeed={2000}>
                 <div className="mx-2">
-                  <div className="bg-white p-2 border border-dark text-center fs-14">
+                <Link
+                    to="/category/men"
+                    style={{ textDecoration: "none", color: "black" }}
+                  > <div className="bg-white p-2 border border-dark text-center fs-14">
                     Men
                   </div>
+                  </Link>
                 </div>
                 <div className="mx-2">
-                  <div className="bg-white p-2 border border-dark text-center fs-14">
+                <Link
+                    to="/category/women"
+                    style={{ textDecoration: "none", color: "black" }}
+                  >    <div className="bg-white p-2 border border-dark text-center fs-14">
                     Women
                   </div>
+                  </Link>
                 </div>
                 <div className="mx-2">
                   <div className="bg-white p-2 border border-dark text-center fs-14">

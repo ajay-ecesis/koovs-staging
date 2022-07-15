@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { addToWishlistAPI, removeItemFromWishList } from "../api/cart";
 import { ReCaptcha, loadReCaptcha } from "react-recaptcha-v3";
 import { useDispatch } from "react-redux";
+import Footer from "../components/Footer/Footer";
 const CategoryMainPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -73,13 +74,14 @@ const CategoryMainPage = () => {
         sort,
         page
       );
-      if (loadFromUrl) {
-        setProducts(data[0].data);
-        setFilterTypes(data[1].data);
-        setResult(data[0]);
-      } else {
-        setProducts((previous) => [...previous, ...data[0].data]);
-      }
+      if (data)
+        if (loadFromUrl) {
+          setProducts(data[0]?.data);
+          setFilterTypes(data[1]?.data);
+          setResult(data[0]);
+        } else {
+          setProducts((previous) => [...previous, ...data[0]?.data]);
+        }
     }
   };
 
@@ -134,7 +136,6 @@ const CategoryMainPage = () => {
   }, [filterType]);
 
   const loadFilteredResults = async () => {
-    
     setLoading(true);
     let filteredResults = await loadProductsByFilter(
       category,
@@ -235,6 +236,7 @@ const CategoryMainPage = () => {
         reloadRecaptcha={reloadRecaptcha}
         sortLabel={sortLabel}
       />
+      <Footer />
     </>
   );
 };

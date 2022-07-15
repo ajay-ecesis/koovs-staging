@@ -4,6 +4,7 @@ import {
   getCurrentSelectedAddress,
   getPaymentGatewaysApi,
 } from "../api/checkout";
+import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import PaymentSection from "../components/PaymentSection/PaymentSection";
 
@@ -40,6 +41,7 @@ function PaymentPage() {
         setSelectedPaymentGateway={setSelectedPaymentGateway}
         selectedPaymentGateway={selectedPaymentGateway}
       />
+      <Footer/>
     </>
   );
 }
