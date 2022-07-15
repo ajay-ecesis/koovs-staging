@@ -28,7 +28,7 @@ const ShirtSection = ({
   return (
     <>
       <InfiniteScroll
-        dataLength={2} //This is important field to render the next data
+        dataLength={products?.length} //This is important field to render the next data
         next={paginateResult}
         hasMore={true}
       >
@@ -89,6 +89,7 @@ const ShirtSection = ({
                           <img
                             src={shoppingbag}
                             onClick={() => setCart(item.id)}
+                            style={{cursor:"pointer"}}
                           />
                           {cart == item.id && (
                             <AddToCart
@@ -101,9 +102,9 @@ const ShirtSection = ({
                         </div>
 
                         <div className="preview-color">
-                          <input className="blue" name="color" type="radio" />
+                          {/* <input className="blue" name="color" type="radio" />
                           <input className="yellow" name="color" type="radio" />
-                          <input className="white" name="color" type="radio" />
+                          <input className="white" name="color" type="radio" /> */}
                         </div>
                       </div>
 

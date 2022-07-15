@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { addToWishlistAPI, removeItemFromWishList } from "../api/cart";
 import { ReCaptcha, loadReCaptcha } from "react-recaptcha-v3";
 import { useDispatch } from "react-redux";
+import Footer from "../components/Footer/Footer";
 const CategoryMainPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -73,13 +74,14 @@ const CategoryMainPage = () => {
         sort,
         page
       );
-      if (loadFromUrl) {
-        setProducts(data[0].data);
-        setFilterTypes(data[1].data);
-        setResult(data[0]);
-      } else {
-        setProducts((previous) => [...previous, ...data[0].data]);
-      }
+      if (data)
+        if (loadFromUrl) {
+          setProducts(data[0]?.data);
+          setFilterTypes(data[1]?.data);
+          setResult(data[0]);
+        } else {
+          setProducts((previous) => [...previous, ...data[0]?.data]);
+        }
     }
   };
 
@@ -94,10 +96,39 @@ const CategoryMainPage = () => {
       val = val[0] + "-" + val[1];
     }
     const newobj = { ...filterType };
-    newobj[type] = val;
-    setFilterType(newobj);
 
-    console.log("objj",newobj)
+    if (type == "brand_fq") {
+      let arr = newobj?.brand_fq || [];
+      // check if the filter is already exists
+      var idExists = arr.indexOf(val);
+      if (idExists !== -1) {
+        arr.splice(idExists, 1);
+      } else {
+        arr.push(val);
+      }
+      newobj[type] = arr;
+    }
+    if (type == "color_fq") {
+      let arr = newobj?.color_fq || [];
+      var idExists = arr.indexOf(val);
+      if (idExists !== -1) {
+        arr.splice(idExists, 1);
+      } else {
+        arr.push(val);
+      }
+      newobj[type] = arr;
+    }
+    if (type == "size_fq") {
+      let arr = newobj?.size_fq || [];
+      var idExists = arr.indexOf(val);
+      if (idExists !== -1) {
+        arr.splice(idExists, 1);
+      } else {
+        arr.push(val);
+      }
+      newobj[type] = arr;
+    }
+    setFilterType(newobj);
   };
 
   useEffect(() => {
@@ -205,6 +236,7 @@ const CategoryMainPage = () => {
         reloadRecaptcha={reloadRecaptcha}
         sortLabel={sortLabel}
       />
+      <Footer />
     </>
   );
 };

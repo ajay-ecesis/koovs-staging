@@ -68,10 +68,13 @@ export const loadProductByCategoryApi = async (
       `${clentServer}/search-service/v1/products/listing/complete?href=https://www.koovs.com/${category}/${subCategory}&page-size=${size}&sort=${sort}&page=${page}`,
       config
     );
-
-    return data?.data;
+    if (data?.data) {
+      return data?.data;
+    } else {
+      return false;
+    }
   } catch (err) {
-    console.log("its an err", err);
+    return false
   }
 };
 
@@ -181,7 +184,7 @@ export const loadSearchSuggestions = async (keyword) => {
   } catch (err) {}
 };
 
-export const loadSearchProductResults = async (searchKeyword,page) => {
+export const loadSearchProductResults = async (searchKeyword, page) => {
   const config = {
     headers: {
       "X-API-CLIENT": "WEB",
@@ -196,7 +199,12 @@ export const loadSearchProductResults = async (searchKeyword,page) => {
       `${clentServer}/search/v1/complete?query=${searchKeyword}&page=${page}&page-size=10`,
       config
     );
-    return data;
+
+    if (data) {
+      return data;
+    } else {
+      return { data: false };
+    }
   } catch (err) {}
 };
 
@@ -224,23 +232,32 @@ export const loadProductsByFilter = async (
     sizeUrl = "",
     brandUrl = "";
 
+  var color_fq = filter?.color_fq;
+  var brand_fq = filter?.brand_fq;
+  var size_fq = filter?.size_fq;
+  if (color_fq) {
+    color_fq = color_fq.join(";");
+  }
+  if (brand_fq) {
+    brand_fq = brand_fq.join(";");
+  }
+  if (size_fq) {
+    size_fq = size_fq.join(";");
+  }
+
   if (filter.price_fq) {
     priceUrl = `&${
       filter.price_fq != "" && `filter_price_fq=${filter.price_fq}`
     }`;
   }
   if (filter.color_fq) {
-    colorUrl = `&${
-      filter.color_fq != "" && `filter_color_fq=${filter.color_fq}`
-    }`;
+    colorUrl = `&${filter.color_fq != "" && `filter_color_fq=${color_fq}`}`;
   }
   if (filter.brand_fq) {
-    brandUrl = `&${
-      filter.brand_fq !== "" && `filter_brand_fq=${filter.brand_fq}`
-    }`;
+    brandUrl = `&${filter.brand_fq !== "" && `filter_brand_fq=${brand_fq}`}`;
   }
   if (filter.size_fq) {
-    sizeUrl = `&${filter.size_fq !== "" && `filter_size_fq=${filter.size_fq}`}`;
+    sizeUrl = `&${filter.size_fq !== "" && `filter_size_fq=${size_fq}`}`;
   }
 
   let masterUrl = `${priceUrl != "&false" && priceUrl}${

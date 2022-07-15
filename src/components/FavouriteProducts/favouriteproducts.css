@@ -109,3 +109,7 @@
 .favourite-products .product_meta{
   max-width: 70%;
 }
+
+.list-active{
+  border: 2px solid !important;
+}

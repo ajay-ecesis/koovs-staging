@@ -186,3 +186,21 @@
     }
 
 }
+
+
+.skeleton-a6p58lb6tt3:empty {
+    height: 290px;
+    background-color: #E1E1E1;
+    border-radius: 0px 0px 0px 0px;
+    background-image: linear-gradient(100deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 80%), linear-gradient(#E0E0E0 20px, transparent 0), radial-gradient(circle 17.5px at 17.5px 17.5px, #E0E0E0 16.5px, transparent 17.5px), linear-gradient(#E0E0E0 200px, transparent 0);
+    background-repeat: repeat-y;
+    background-size: 50px 290px, 300px 290px, 35px 290px, 360px 290px;
+    background-position: -20% 0, 70px 244px, 20px 236px, 20px 20px;
+    animation: shineForSkeleton-a6p58lb6tt3 2s infinite;
+}
+
+@keyframes shineForSkeleton-a6p58lb6tt3 {
+    to {
+        background-position: 120% 0, 70px 244px, 20px 236px, 20px 20px;
+    }
+}

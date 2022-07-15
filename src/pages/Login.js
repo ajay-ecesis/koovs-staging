@@ -3,6 +3,7 @@ import LoginForm from "../components/LoginForm/LoginForm";
 import AccountSideNav from "../components/AccountSideNav/AccountSideNav";
 import Header from "../components/Header/Header";
 import RegisterForm from "../components/RegisterForm/RegisterForm";
+import Footer from "../components/Footer/Footer";
 function Login() {
   return (
     <>
@@ -13,6 +14,7 @@ function Login() {
           <RegisterForm />
         </div>
       </AccountSideNav>
+      <Footer/>
     </>
   );
 }

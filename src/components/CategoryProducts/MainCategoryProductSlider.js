@@ -112,7 +112,9 @@ function MenCategoryProductSlider({
                                         }
                                       >
                                         {subItem.label}
-                                        {filterType.brand_fq == subItem.id && (
+                                        {filterType.brand_fq.includes(
+                                          subItem.id
+                                        ) && (
                                           <i
                                             class="fa fa-check check-tick"
                                             aria-hidden="true"
@@ -150,7 +152,9 @@ function MenCategoryProductSlider({
                                           backgroundColor: subItem.code,
                                         }}
                                       ></span>
-                                      {filterType.color_fq == subItem.id && (
+                                      {filterType.color_fq.includes(
+                                        subItem.id
+                                      ) && (
                                         <i
                                           class="fa fa-check check-tick"
                                           aria-hidden="true"
@@ -187,7 +191,9 @@ function MenCategoryProductSlider({
                                           applyFilter(item.id, subItem.id)
                                         }
                                       >
-                                        {filterType.size_fq == subItem.id && (
+                                        {filterType.size_fq.includes(
+                                          subItem.id
+                                        ) && (
                                           <i
                                             class="fa fa-check check-tick"
                                             aria-hidden="true"
@@ -325,7 +331,10 @@ function MenCategoryProductSlider({
                       <li
                         className="sort-list"
                         style={{ cursor: "pointer" }}
-                        onClick={() => changeSortOption(item.id, item.label)&&setActive(!isActive)}
+                        onClick={() =>
+                          changeSortOption(item.id, item.label) &&
+                          setActive(!isActive)
+                        }
                       >
                         {item.label}
                       </li>

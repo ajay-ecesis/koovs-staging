@@ -87,7 +87,7 @@ function MenCategoryProductSlider({
                               <>
                                 <i
                                   class="fa fa-heart-o"
-                                  style={{ color: "red" }}
+                                  style={{ color: "red",cursor:"pointer" }}
                                   aria-hidden="true"
                                   onClick={() =>
                                     removeWishlist(item.sku, item.lineId)
@@ -99,6 +99,7 @@ function MenCategoryProductSlider({
                                 <i
                                   class="fa fa-heart-o"
                                   aria-hidden="true"
+                                  style={{cursor:"pointer"}}
                                   onClick={() =>
                                     addToWishlist(item, item.id, item.lineId)
                                   }
