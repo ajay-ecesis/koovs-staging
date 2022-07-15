@@ -17,7 +17,7 @@ const MenBanner = () => {
               <Carousel controls={true} interval={3000}>
                 <Carousel.Item>
                   <div className="carousel-heading">
-                    <p className="fw-bold">Casual cool</p>
+                    <span className="casual fw-bold">Casual cool</span>
                     <p>Explore the new collection...</p>
                   </div>
                   <div className="Menbanner-Image">
@@ -31,7 +31,7 @@ const MenBanner = () => {
                 </Carousel.Item>
                 <Carousel.Item>
                   <div className="carousel-heading">
-                    <p className="fw-bold">Casual cool</p>
+                    <span className="casual fw-bold">Casual cool</span>
                     <p>Explore the new collection...</p>
                   </div>
                   <div className="Menbanner-Image">
@@ -45,7 +45,7 @@ const MenBanner = () => {
                 </Carousel.Item>
                 <Carousel.Item>
                   <div className="carousel-heading">
-                    <p className="fw-bold">Casual cool</p>
+                    <span className=" casual fw-bold">Casual cool</span>
                     <p>Explore the new collection...</p>
                   </div>
                   <div className="Menbanner-Image">
