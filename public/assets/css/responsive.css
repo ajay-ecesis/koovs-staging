@@ -43,7 +43,7 @@
   }
 
   .banner-Image {
-    height: 590px !important;
+    height: auto !important;
     width: 100% !important;
   }
 
@@ -155,7 +155,7 @@
   .women-fashion .container-fluid #carousel-slide,
   .men-fashion .container-fluid #carousel-slide,
   .stories .container-fluid #carousel-slide {
-    padding-left: 1rem !important;
+    /* padding-left: 1rem !important; */
   position: relative;
     left: 58px;
   }
@@ -354,7 +354,7 @@
   }
 
   .banner-Image {
-    height: 400px !important;
+    height: auto !important;
     width: 100% !important;
   }
 }

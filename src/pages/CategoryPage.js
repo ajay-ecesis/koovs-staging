@@ -99,6 +99,7 @@ const CategoryPage = () => {
         <MobileMenBanner />
         <MenSlider />
         <MenProductSlider addToWishlist={addToWishlist} removeWishlist={removeWishlist} categoryName={categoryName}/>
+
         <LiveInMen />
 
         <Footer />

@@ -112,9 +112,10 @@ function MenCategoryProductSlider({
                         {" "}
                         <LazyLoadImage
                           src={item.imageSmallUrl}
-                          className="img-fluid"
+                          className="img-fluid men-products"
                           alt="Koovs product Front image"
                           style={{ cursor: "pointer" }}
+                   
                           effect="blur"
                           onClick={() =>
                             goToProductDetailPage(

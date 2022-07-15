@@ -27,10 +27,22 @@ video{
 
 }
 
-@media(max-width:768px)
+@media (min-width:575px) and (max-width:768px)
 {
     .women-fashion .container-fluid #carousel-slide, .men-fashion .container-fluid #carousel-slide, .stories .container-fluid #carousel-slide{
 
 padding-left: 0!important;
+left:0px;
     }
+
+    .stylestories h5{
+
+        margin-left:70px;
+    }
+
+    .stylestories p{
+
+        margin-right:94px;
+    
+}
 }

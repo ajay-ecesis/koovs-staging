@@ -71,7 +71,7 @@ function WomenFashion() {
           renderButtonGroupOutside={true}
           swipeable={true}
           draggable={false}
-          autoPlay={true}
+          autoPlay={false}
           autoPlaySpeed={2000}
         >
           <Card style={{ width: "18rem", border: "none" }}>

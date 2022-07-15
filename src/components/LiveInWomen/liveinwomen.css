@@ -37,8 +37,8 @@
 
     background-color: white;
     border: none;
-    width: 290px;
-    height: 50px;
+    width: 270px;
+    height: 60px;
     font-weight: 600;
     font-size: 25px;
 
@@ -48,7 +48,7 @@
     position: absolute;
     z-index: 10;
     top: 37%;
-    right: 8%;
+    right: 12%;
     transform: translateX(-50%) translateY(-50%);
     box-sizing: content-box;
     display: block;
@@ -92,12 +92,22 @@
     font-size: 15px;
     line-height: 18px;
     min-height: 109px;
-    margin: 20px 0 20px 0;
+    margin: 30px 0 20px 0;
     font-weight: 400;
     font-style: normal;
 
 }
+.Heading-live .bobby-live {
 
+    font-size: 15px;
+    line-height: 18px;
+    min-height: 115px;
+    margin: 30px 0 20px 0;
+    font-weight: 400;
+    font-style: normal;
+
+
+}
 .Live-button {
 
     width: 252px;
@@ -109,6 +119,12 @@
 
 }
 
+.live-mohammed{
+    padding-right:65px;
+}
+.live-bobby{
+    padding-right:65px;
+}
 @media only screen and (max-width: 768px) {
 
     .Live-button {
@@ -135,17 +151,36 @@
         font-size: 12px;
         line-height: 153.7%;
     }
+    .live-mohammed{
+        padding-right:25px;
+    }
 
+    .banner-Image {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
 }
 
 @media only screen and (min-device-width: 990px) and (max-device-width: 1300px) {
     #coming-soon {
         width: 237px;
     }
+    .Heading-live h5{
+
+        font-size:17px;
+
+
+    }
+
+    .Heading-live .bobby-live{
+
+        min-height:146px;
+    }
 
 }
 
-@media only screen and (min-device-width: 1350px) and (max-device-width: 2000px) {
+@media only screen and (min-device-width: 1440px) and (max-device-width: 2000px) {
     #coming-soon {
 
         width: 367px;
@@ -162,10 +197,19 @@
         left:68%;
     }
 
-/* .LiveMen{
-    font-size: 55px;
-    height: auto;
-    bottom: 230px;
-    left: -111px;
-} */
+
 }
+
+@media only screen and (min-device-width: 767px) and (max-device-width: 980px) {
+    .banner-Image {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+    .liveinwomen{
+        padding: 22px 0px 22px 22px;
+    }
+    .live-mohammed{
+        padding-right:0px;
+    }
+    }

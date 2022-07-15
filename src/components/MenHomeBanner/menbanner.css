@@ -228,3 +228,9 @@
         font-size:20px;
     }
 }
+.men-banner .jen-img{
+    padding-left: 3px;
+}
+.men-banner .carousel-img{
+    padding-right:0px;
+}
