@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { addToWishlistAPI, removeItemFromWishList } from "../api/cart";
 import { ReCaptcha, loadReCaptcha } from "react-recaptcha-v3";
 import { useDispatch } from "react-redux";
+import Footer from "../components/Footer/Footer";
 const CategoryMainPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -235,6 +236,7 @@ const CategoryMainPage = () => {
         reloadRecaptcha={reloadRecaptcha}
         sortLabel={sortLabel}
       />
+      <Footer/>
     </>
   );
 };

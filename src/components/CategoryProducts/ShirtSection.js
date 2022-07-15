@@ -102,9 +102,9 @@ const ShirtSection = ({
                         </div>
 
                         <div className="preview-color">
-                          <input className="blue" name="color" type="radio" />
+                          {/* <input className="blue" name="color" type="radio" />
                           <input className="yellow" name="color" type="radio" />
-                          <input className="white" name="color" type="radio" />
+                          <input className="white" name="color" type="radio" /> */}
                         </div>
                       </div>
 

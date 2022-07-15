@@ -15,11 +15,15 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { loadReCaptcha, ReCaptcha } from "react-recaptcha-v3";
-import { addToWishlistAPI, getWishlistItems, removeItemFromWishList } from "../../api/cart";
-import { useDispatch,useSelector} from "react-redux";
+import {
+  addToWishlistAPI,
+  getWishlistItems,
+  removeItemFromWishList,
+} from "../../api/cart";
+import { useDispatch, useSelector } from "react-redux";
 
 const SearchProduct = () => {
-  let dispatch=useDispatch()
+  let dispatch = useDispatch();
   let navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchKeyword, setSearchKeyword] = useState("");
@@ -128,9 +132,8 @@ const SearchProduct = () => {
     loadReCaptcha(process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY); //sitekey load recaptcha
   };
 
-
   function handleVerify(token) {
-    setToken (token);
+    setToken(token);
   }
 
   const removeWishlist = async (skuId, lineId) => {
@@ -144,7 +147,7 @@ const SearchProduct = () => {
 
   return (
     <>
-    <ReCaptcha
+      <ReCaptcha
         sitekey={process.env.REACT_APP_GOOGLE_RECAPTCHA_KEY}
         action="addToCart"
         key={key}
@@ -244,33 +247,40 @@ const SearchProduct = () => {
                             </div>
                             <div>
                               <div className={`${styles.favIcon} me-2`}>
-                              <label for="heart"    style={{cursor:"pointer"}}>
-                          {wishlistProducts?.some(
-                            (wishlistItem) => wishlistItem.id === item.id
-                          ) == true ? (
-                            <>
-                              <i
-                           
-                                class="fa fa-heart-o"
-                                style={{ color: "red" }}
-                                aria-hidden="true"
-                                onClick={() =>
-                                  removeWishlist(item.sku, item.lineId)
-                                }
-                              ></i>
-                            </>
-                          ) : (
-                            <>
-                              <i
-                                class="fa fa-heart-o"
-                                aria-hidden="true"
-                                onClick={() =>
-                                  addToWishlist(item, item.id, item.lineId)
-                                }
-                              ></i>
-                            </>
-                          )}
-                        </label>
+                                <label
+                                  for="heart"
+                                  style={{ cursor: "pointer" }}
+                                >
+                                  {wishlistProducts?.some(
+                                    (wishlistItem) =>
+                                      wishlistItem.id === item.id
+                                  ) == true ? (
+                                    <>
+                                      <i
+                                        class="fa fa-heart-o"
+                                        style={{ color: "red" }}
+                                        aria-hidden="true"
+                                        onClick={() =>
+                                          removeWishlist(item.sku, item.lineId)
+                                        }
+                                      ></i>
+                                    </>
+                                  ) : (
+                                    <>
+                                      <i
+                                        class="fa fa-heart-o"
+                                        aria-hidden="true"
+                                        onClick={() =>
+                                          addToWishlist(
+                                            item,
+                                            item.id,
+                                            item.lineId
+                                          )
+                                        }
+                                      ></i>
+                                    </>
+                                  )}
+                                </label>
                               </div>
                             </div>
                             <div>

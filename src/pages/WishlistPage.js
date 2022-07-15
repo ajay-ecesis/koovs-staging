@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import Wishlist from "../components/Wishlist/Wishlist";
 import { loadWishListBySkuIdApi } from "../api/cart";
 import NotSignedWishlist from "../components/Wishlist/NotSignedWishlist";
+import Footer from "../components/Footer/Footer";
 
 const WishlistPage = () => {
   const wishlistItems = useSelector((state) => state.wishlist.items);
@@ -34,6 +35,8 @@ const WishlistPage = () => {
        <NotSignedWishlist/>
        }
       </AccountSideNav>
+
+      <Footer/>
     </>
   );
 };

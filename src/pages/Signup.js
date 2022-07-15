@@ -1,5 +1,6 @@
 import React from "react";
 import AccountSideNav from "../components/AccountSideNav/AccountSideNav";
+import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import RegisterForm from "../components/RegisterForm/RegisterForm";
 const Signup = () => {
@@ -10,6 +11,7 @@ const Signup = () => {
         {/* <LoginForm /> */}
         <RegisterForm />
       </AccountSideNav>
+      <Footer/>
     </>
   );
 };
