@@ -215,6 +215,7 @@ $(function () {
 
     // 
     $(window).on('scroll', function(){
+
      
         // Get window scroll top.
         winScrollTop = $(window).scrollTop();

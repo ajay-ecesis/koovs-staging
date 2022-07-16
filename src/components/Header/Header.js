@@ -88,7 +88,7 @@ function Header() {
   };
 
   return (
-    <header>
+    <header id="header">
       <div className="top-nav">
         <input id="menu-toggle" type="checkbox" />
         <label className="menu-button-container" htmlFor="menu-toggle">

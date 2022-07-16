@@ -145,8 +145,33 @@ a:hover {
   margin-top: 1rem;
 } */
 
+header {
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: position 10s;
+  -ms-transition: position 10s;
+  -o-transition: position 10s;
+  transition: all 0.5s ease;
+}
 
+.sticky {
+  top: 0;
+  position: sticky;
+  animation: smoothScroll 0.5s forwards;
+}
 
+#header {
+  z-index: 1400;
+}
+
+@keyframes smoothScroll {
+  0% {
+    transform: translateY(-40px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
 
 .skeleton-uuypnq47b80:empty {
   box-sizing: content-box;
