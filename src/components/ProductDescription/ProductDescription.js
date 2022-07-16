@@ -21,6 +21,10 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
   const [loading, setLoading] = useState(true);
   const [productDetail, setProductDetail] = useState(null);
   const [btnLoading, setBtnLoading] = useState(false);
+  const [showInfo, setShowInfo] = useState({
+    showDetails: false,
+    showDescription: false,
+  });
 
   useEffect(() => {
     setProductDetail(productData[0]?.data[0]);
@@ -414,7 +418,7 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
                     </>
                   )}
 
-                  <div className="product-desc pt-5">
+                  <div className="product-desc pt-5 product-desc-desktop">
                     <div className="product-spec-mobile">
                       <h5>DESCRIPTION</h5>
                       <p className="p-desc">
@@ -461,6 +465,118 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
                     <h6 className="pt-lg-4 pt-lg-3">
                       <u>MORE INFORMATION</u>
                     </h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="product-desc-mobile pt-3">
+            <div className="product-desc-content">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                  <button
+                    class="accordion-button"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseOne"
+                    aria-expanded="false  "
+                    aria-controls="collapseOne"
+                  >
+                    SHIPPING & RETURNS
+                  </button>
+                </h2>
+                <div
+                  id="collapseOne"
+                  class="accordion-collapse collapse "
+                  aria-labelledby="headingOne"
+                  data-bs-parent="#accordionExample"
+                >
+                  <div class="accordion-body">
+                    <p>{productDetail.product.deliveryText}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="product-spec-mobile row container ">
+              <div class="d-flex align-items-start" style={{gap:"3rem"}}>
+                <div
+                  class="nav flex-column nav-pills me-3"
+                  id="v-pills-tab"
+                  role="tablist"
+                  aria-orientation="vertical"
+                >
+                  <span
+                    class=" active pt-2"
+                    id="v-pills-home-tab"
+                    data-bs-toggle="pill"
+                    data-bs-target="#v-pills-home"
+                    type="button"
+                    role="tab"
+                    aria-controls="v-pills-home"
+                    aria-selected="true"
+                  >
+                    DESCRIPTION
+                  </span>
+                  <span
+                    class="  pt-2"
+                    id="v-pills-brand_detail-tab"
+                    data-bs-toggle="pill"
+                    data-bs-target="#v-pills-brand_detail"
+                    type="button"
+                    role="tab"
+                    aria-controls="v-pills-brand_detail"
+                    aria-selected="false"
+                  >
+                    DETAILS
+                  </span>
+
+                  <span
+                                      class="  pt-2"
+
+                    id="v-pills-details-tab"
+                    data-bs-toggle="pill"
+                    data-bs-target="#v-pills-details"
+                    type="button"
+                    role="tab"
+                    aria-controls="v-pills-details"
+                    aria-selected="false"
+                  >
+                    SIZE AND FIT
+                  </span>
+                </div>
+
+                <div class="tab-content pt-2" id="v-pills-tabContent">
+                  <div
+                    class="tab-pane fade show active"
+                    id="v-pills-home"
+                    role="tabpanel"
+                    aria-labelledby="v-pills-home-tab"
+                  >
+                    <div
+                      className="productSpec"
+                      dangerouslySetInnerHTML={{
+                        __html: productDetail.product.productDescription,
+                      }}
+                    />
+                  </div>
+                  <div
+                    class="tab-pane fade"
+                    id="v-pills-brand_detail"
+                    role="tabpanel"
+                    aria-labelledby="v-pills-brand_detail-tab"
+                  >
+                    {productDetail.product.brandDescription ||
+                      productDetail.product.commodity}{" "}
+                  </div>
+
+                  <div
+                    class="tab-pane fade"
+                    id="v-pills-details"
+                    role="tabpanel"
+                    aria-labelledby="v-pills-details-tab"
+                  >
+                    {productDetail.product.styletipSizeFit}
                   </div>
                 </div>
               </div>

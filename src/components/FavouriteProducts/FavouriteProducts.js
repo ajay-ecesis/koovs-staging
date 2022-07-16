@@ -367,9 +367,17 @@ export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
                     return (
                       <>
                         <div className="cards overflow-hidden">
-                          <Link to="/productdetail">
+            
                             <div className="bg-grey">
                               <LazyLoadImage
+                              onClick={() =>
+                                goToProductDetailPage(
+                                  data.productName,
+                                  data.id,
+                                  data.lineId
+                                )
+                              }
+                              
                                 effect="blur"
                                 src={data.imageSmallUrl}
                                 className="img-fluid proimage mob-prodImage"
@@ -380,7 +388,7 @@ export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
                               <p className="mb-0">{data.productName}</p>
                               <p>₹ {data.discountPrice}</p>
                             </div>
-                          </Link>
+                  
                         </div>
                       </>
                     );

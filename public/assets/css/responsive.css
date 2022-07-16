@@ -286,7 +286,7 @@
   }
 
   .product-spec-mobile {
-    display: flex;
+    /* display: flex; */
     align-items: start;
     gap: 7px;
   }

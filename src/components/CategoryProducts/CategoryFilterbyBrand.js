@@ -3,7 +3,13 @@ import styles from "./categoryfilterbybrand.module.css";
 import { GrClose } from "react-icons/gr";
 import StickyFooter from "./StickFooter";
 
-const CategoryFilterbyBrand = ({ setBrand, item, applyFilter, filterType, setFilter }) => {
+const CategoryFilterbyBrand = ({
+  setBrand,
+  item,
+  applyFilter,
+  filterType,
+  setFilter,
+}) => {
   const [isSelect, setSelect] = useState(false);
   return (
     <>
@@ -33,7 +39,10 @@ const CategoryFilterbyBrand = ({ setBrand, item, applyFilter, filterType, setFil
             return (
               <>
                 <div className={styles.brand_btn}>
-                  <button className={styles.text_suggested} onClick={() => applyFilter(item.id, brand.id)} >
+                  <button
+                    className={styles.text_suggested}
+                    onClick={() => applyFilter(item.id, brand.id)}
+                  >
                     {brand.label}
                   </button>
                 </div>
@@ -71,7 +80,7 @@ const CategoryFilterbyBrand = ({ setBrand, item, applyFilter, filterType, setFil
           </div>
         </div>
       </div>
-      <StickyFooter setFilter={setFilter}/>
+      <StickyFooter setFilter={setFilter} />
     </>
   );
 };
