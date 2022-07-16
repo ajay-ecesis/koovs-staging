@@ -88,14 +88,19 @@ const App = () => {
                 path="/product/:title/:productId/:lineId"
                 element={<ProductDetail />}
               />
-              <Route path="/:category/tags/:tag" element={<CategoryPage />} />
+{/* render men and women collection page */}
+              <Route path="/collection/:category" element={<CategoryPage />} />
 
-              <Route path="/category/:category" element={<CategoryPage />} />
-
+{/* sub category products listing page */}
               <Route
                 path="/category/:category/:subcategory"
                 element={<CategoryMainPage />}
               />
+{/* prdouct listing pages for each categories */}
+              <Route path="/category/:category" element={<CategoryMainPage />} />
+
+              <Route path="/:category/tags/:tag" element={<CategoryPage />} />
+
               <Route path="/signup/register" element={<Signup />} />
               <Route path="/signup/login" element={<Login />} />
               <Route path="/search" element={<Search />} />

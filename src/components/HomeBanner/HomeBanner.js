@@ -75,7 +75,7 @@ function HomeBanner() {
                 <h5 className="fw-bold">Where do you want to start?</h5>
                 <div className="col-6">
                   <Link
-                    to="/category/men"
+                    to="/collection/men"
                     style={{ textDecoration: "none", color: "black" }}
                   >
                     {" "}
@@ -86,7 +86,7 @@ function HomeBanner() {
                 </div>
                 <div className="col-6">
                   <Link
-                    to="/category/women"
+                    to="/collection/women"
                     style={{ textDecoration: "none", color: "black" }}
                   >
                     {" "}
