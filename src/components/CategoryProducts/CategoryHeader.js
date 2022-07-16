@@ -8,7 +8,26 @@ import { Link } from "react-router-dom";
 import CategoryFilter from "./CategoryFilter";
 import { Breadcrumb } from "react-bootstrap";
 
-function CategoryHeader({ category, subcategory, result,changeSortOption}) {
+function CategoryHeader({
+  category,
+  subcategory,
+  result,
+  changeSortOption,
+  products,
+  applyFilter,
+  filterType,
+  loading,
+  setLoading,
+  goToProductDetailPage,
+  addToWishlist,
+  removeWishlist,
+  page,
+  token,
+  setPage,
+  reloadRecaptcha,
+  sortLabel,
+  filterTypes
+}) {
   const [isActive, setActive] = useState(false);
   const [isView, setView] = useState(false);
   const [filter, setFilter] = useState(false);
@@ -83,7 +102,27 @@ function CategoryHeader({ category, subcategory, result,changeSortOption}) {
             onClick={() => setFilter(!filter)}
           ></img>
 
-          {filter && <CategoryFilter setFilter={setFilter} />}
+          {filter && (
+            <CategoryFilter
+              setFilter={setFilter}
+              products={products}
+              filterTypes={filterTypes}
+              result={result}
+              changeSortOption={changeSortOption}
+              applyFilter={applyFilter}
+              filterType={filterType}
+              loading={loading}
+              setLoading={setLoading}
+              goToProductDetailPage={goToProductDetailPage}
+              addToWishlist={addToWishlist}
+              removeWishlist={removeWishlist}
+              page={page}
+              token={token}
+              setPage={setPage}
+              reloadRecaptcha={reloadRecaptcha}
+              sortLabel={sortLabel}
+            />
+          )}
           <input
             type="text"
             id="maincategoryProduct"
@@ -106,7 +145,14 @@ function CategoryHeader({ category, subcategory, result,changeSortOption}) {
                 result?.sortOptions?.data.map((item) => {
                   return (
                     <>
-                      <li className={styles.list_sortmobile} onClick={()=>changeSortOption(item.id)&&setActive(false)}>{item.label}</li>
+                      <li
+                        className={styles.list_sortmobile}
+                        onClick={() =>
+                          changeSortOption(item.id) && setActive(false)
+                        }
+                      >
+                        {item.label}
+                      </li>
                     </>
                   );
                 })}

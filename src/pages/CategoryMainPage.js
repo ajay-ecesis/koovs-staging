@@ -215,6 +215,21 @@ const CategoryMainPage = () => {
         subcategory={subcategory}
         result={result}
         changeSortOption={changeSortOption}
+        products={products}
+        filterTypes={filterTypes}
+        applyFilter={applyFilter}
+        filterType={filterType}
+        loading={loading}
+        setLoading={setLoading}
+        goToProductDetailPage={goToProductDetailPage}
+        addToWishlist={addToWishlist}
+        removeWishlist={removeWishlist}
+        page={page}
+        token={token}
+        setPage={setPage}
+        reloadRecaptcha={reloadRecaptcha}
+        sortLabel={sortLabel}
+
       />
       <CategoryMainMenuSlider products={products} />{" "}
       {/* shows the btn categories*/}
