@@ -13,6 +13,7 @@
 
   height: auto;
   display: flex;
+  padding: 2px;
 }
 
 .text-category {
@@ -28,10 +29,9 @@
   color: #fff;
 }
 
-.prod1 img {
-
+/* .Maincategory_product_slider .prod1 img {
   position: relative;
-}
+} */
 
 .image-color .favIcon {
   position: absolute;
@@ -115,16 +115,26 @@
 .Maincategory_product_slider .product-description {
 
   width: 100%;
-  padding: 3px 0 10px 0;
+  padding: 17px 0 10px 0;
 
 }
 
-.Maincategory_product_slider .prodDetail-text {
-  line-height: 5px;
-}
 
-.Maincategory_product_slider .prodDetail-text p {
-  font-size: 14px;
+@media only screen and (max-width: 1440px) and (max-width: 2000px) {
+
+
+  .Maincategory_product_slider .prodDetail-text {
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 183.7%;
+  }
+
+  .Maincategory_product_slider .prodDetail-text p {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 19px;
+  }
+
 }
 
 .shop-icon img {
@@ -146,12 +156,11 @@
 
 .filtertext-category {
 
-
-  font-family: 'Open Sauce One';
   font-style: normal;
-  font-weight: 400;
-  font-size: 15px;
   line-height: 203.2%;
+  font-weight: 500;
+  font-size: 15px;
+
 }
 
 .filtertext-category img {
@@ -171,7 +180,7 @@
 }
 
 .sort-list {
-  font-family: 'Open Sauce One';
+
   font-style: normal;
   font-weight: 700;
   font-size: 12px;
@@ -454,14 +463,28 @@
 
 }
 
-@media only screen and (max-width: 386px) {
+@media only screen and (max-width: 567px) {
 
   .Maincategory_product_slider .prodDetail-text p {
-    font-size: 8px !important;
-    line-height: 2px !important;
+
+    font-weight: 700;
+    font-size: 9px;
+    line-height: 11px;
+  }
+  .Maincategory_product_slider  .product-description .wid-price{
+
+    font-weight: 700;
+    font-size: 9px;
+    line-height: 11px;
+    width:84px;
+  
+  }
+
+  .shop-icon img{
+
+    bottom:170px;
   }
 }
-
 
 .Maincategory_product_slider .check-tick {
 
@@ -470,15 +493,44 @@
 }
 
 
+
 .Maincategory_product_slider .favIcon label {
   font-size: 2.2em;
   cursor: pointer;
 }
 
 .infinite-scroll-component {
-  overflow:hidden !important;
+  overflow: hidden !important;
+  margin-top: -24px;
 }
 
-/* .dropdown-item div{
-  display: none;
-} */
+
+.filter-headingtext {
+
+  padding-right: 12px;
+}
+
+.relevance-text {
+
+  padding-left: 17px;
+
+}
+
+.listsorting .justify {
+
+  padding: 20px 0px 33px;
+  margin-left: 35px;
+
+}
+
+.Maincategory_product_slider .prodDetail-text {
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 183.7%;
+}
+
+.Maincategory_product_slider .prodDetail-text p {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 19px;
+}

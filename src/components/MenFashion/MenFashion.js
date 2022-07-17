@@ -136,7 +136,7 @@ function MenFashion() {
   };
 
   return (
-    <section className="men-fashion py-5">
+    <section className="men-fashion pb-5">
       <div className="bg-light-blue"></div>
       <div className="container-fluid">
         <div className="row">

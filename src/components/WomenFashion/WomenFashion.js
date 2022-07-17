@@ -145,7 +145,7 @@ function WomenFashion() {
   };
 
   return (
-    <section className="women-fashion py-lg-5 pt-4">
+    <section className="women-fashion  pt-4">
       <div className="bg-light-blue"></div>
       <div className="container-fluid">
         <div className="row">
@@ -158,7 +158,7 @@ function WomenFashion() {
               </a>
             </p>
           </div>
-          <div className="row" id="carousel-slide">
+          <div className="row women" id="carousel-slide">
             {loading && loadingPlaceholder()}
 
             <Carousel

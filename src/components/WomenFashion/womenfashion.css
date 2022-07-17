@@ -42,3 +42,24 @@
     height: 15rem;
     width: 15rem;
 }
+
+.women-fashion .women {
+    padding-left: 129px
+}
+
+
+@media only screen and (max-width: 576px) {
+
+
+    .bg-grey p {
+
+        font-size: 8px;
+    }
+
+    .men-womenheading {
+        padding-left: 7px;
+
+    }
+
+
+}

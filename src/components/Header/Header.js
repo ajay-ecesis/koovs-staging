@@ -255,7 +255,7 @@ function Header() {
               </Link>
             )}
           </div>
-          <div>
+          <div className='icons-account d-flex align-items-center' >
             <Link className="nav-link" to="/cart">
               Cart ({cartData?.length > 0 ? cartData.length : 0})
             </Link>

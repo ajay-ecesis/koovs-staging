@@ -4,7 +4,7 @@
 
 }
 .ImageDesc .slick-vertical .slick-slide {
-  border: 5px solid transparent;
+  border: 3px solid transparent;
 }
 a{
   color: #000;
@@ -22,7 +22,7 @@ a{
 .ImageDesc .favIcon{
   position: absolute;
   top: 0;
-  right: 0;
+  right: 8px;
   z-index: 1;
   cursor: pointer;
 }
@@ -93,4 +93,28 @@ font-size: 19px;
 
 .product-detail .list-active{
   border: 2px solid !important;
+}
+
+.product-detail .prod-breadcrumb{
+  padding-left:0px;
+}
+
+@media only screen and (min-width: 1080px) and (max-width: 1400px) {
+.product-detail .slick-slider .slick-list{
+
+  height:633px !important;
+}
+}
+.slick-slide img {
+  max-height:629px;
+}
+
+
+@media only screen and (min-width: 1440px) and (max-width: 2000px) {
+
+.prod-detail-breadcrumb{
+
+  height:74px;
+}
+
 }

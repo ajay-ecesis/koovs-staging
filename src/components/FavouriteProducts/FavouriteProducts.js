@@ -136,7 +136,7 @@ export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
                 <h5 className="fw-bold pb-4 pt-4 pt-lg-0">
                   Shop the whole outfit{" "}
                 </h5>
-                <div>
+                <div className="shop-outfit">
                   {similiarProducts.slice(0, 2).map((data, index) => {
                     return (
                       <>
@@ -168,8 +168,8 @@ export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
                                 )
                               }
                             >
-                              <p className="mb-0">{data.brandName}</p>
-                              <p className="mb-0">{data.productName}</p>
+                              <p className="brand-favourite mb-0">{data.brandName}</p>
+                              <p className="product-favourite mb-0">{data.productName}</p>
                               <div>₹ {data.discountPrice}</div>
                             </div>
                             <div>

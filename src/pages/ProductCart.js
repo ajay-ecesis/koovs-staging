@@ -11,8 +11,7 @@ class ProductCart extends React.Component {
       
       <Header/>
       <Cart/>
-      <Footer/>
-    <Footer/>
+  
     </div>
   );
  }

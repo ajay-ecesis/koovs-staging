@@ -80,7 +80,7 @@ function MenCategoryProductSlider({
             className="d-flex filtertext-category"
             style={{ cursor: "pointer" }}
           >
-            <p className="fw-bold"> Filter</p>
+            <p className="fw-bold filter-headingtext"> Filter</p>
             <img src={filterIcon} onClick={() => setShow(!isShow)}></img>
             {isShow && (
               <div className="d-none d-lg-flex">
@@ -279,14 +279,15 @@ function MenCategoryProductSlider({
                                         {...props}
                                         style={{
                                           ...props.style,
-                                          height: "56px",
-                                          width: "56px",
+                                          height: "43px",
+                                          width: "57px",
                                           borderRadius: "4px",
                                           background: `url(${ClipIcon})`,
                                           display: "flex",
                                           justifyContent: "center",
                                           alignItems: "center",
                                           backgroundSize: "contain",
+                                        
                                         }}
                                       ></div>
                                     )}
@@ -313,7 +314,7 @@ function MenCategoryProductSlider({
             <p className="fw-bold d-sm-none d-lg-flex filtertext-category">
               Sort by:{" "}
               <u style={{ cursor: "pointer" }}>
-                <p id="newcategory" onClick={() => setActive(!isActive)}>
+                <p id="newcategory" className="relevance-text" onClick={() => setActive(!isActive)}>
                   {sortLabel}
                 </p>
               </u>
@@ -322,7 +323,7 @@ function MenCategoryProductSlider({
         </div>
         {isActive && (
           <div className="d-none d-lg-flex listsorting">
-            <ol className="justify p-3">
+            <ol className="justify">
               {/* sort options based on backend api */}
               {result?.sortOptions?.data &&
                 result?.sortOptions?.data.map((item) => {

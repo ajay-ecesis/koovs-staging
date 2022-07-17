@@ -38,7 +38,7 @@ function HomeBanner() {
     <section className="home_banner">
       <div className="container-fluid">
         <div className="row">
-          <div className="col-12 col-lg-6">
+          <div className="col-12 col-lg-6 col-xl-6">
             <Carousel controls={true} interval={10000} fade>
               <Carousel.Item>
                 <div className="banner-Image">
@@ -115,20 +115,19 @@ function HomeBanner() {
               <div className="text-dark flex-grow-1">
                 We use cookies to ensure that we give you the best expereince on
                 our website. If you continue, we will assume that you agree with
-                this and
-                <br /> accept our cookie policy. Learn more here.
+                this and accept our cookie policy. <u>Learn more here.</u>
               </div>
-              <button className="border-0 bg-transparent d-none d-lg-block">
+              <button className="cookie border-0 bg-transparent d-none d-lg-block">
                 <u>COOKIE SETTINGS</u>
               </button>
               <button
-                className="btn btn-outline-dark rounded-0 px-4 d-none d-lg-block"
+                className="reject btn btn-outline-dark rounded-0 px-4 d-none d-lg-block"
                 onClick={hideCookieBanner}
               >
                 REJECT ALL
               </button>
               <button
-                className="btn btn-dark rounded-0 px-4"
+                className="accept btn btn-dark rounded-0 px-4"
                 onClick={acceptCookie}
               >
                 ACCEPT ALL

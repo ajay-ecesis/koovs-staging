@@ -116,7 +116,6 @@
     justify-content: center;
     margin: 0 auto;
 
-
 }
 
 .live-mohammed{
@@ -139,7 +138,7 @@
 @media only screen and (max-width: 576px) {
 
     .Live-button {
-        margin-bottom: 20px;
+        margin-bottom: 37px;
     }
 
     .carousel-live {
