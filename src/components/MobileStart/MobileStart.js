@@ -30,8 +30,8 @@ class MobileStart extends React.Component {
         <div className="container">
           <div className="row ">
             <h5 className="py-4 fs-16">Where do you want to start?</h5>
-            <div className="row ps-3 px-lg-0" id="carousel-slide">
-              <Carousel interval={3000} touch={true} arrows={false} responsive={responsive} renderButtonGroupOutside={true} swipeable={true} draggable={false} autoPlay={true}
+            <div className="row  px-lg-0 where-start" id="carousel-slide">
+              <Carousel interval={3000} touch={true} arrows={false} responsive={responsive} renderButtonGroupOutside={true} swipeable={true} draggable={false} autoPlay={false}
                 autoPlaySpeed={2000}>
                 <div className="mx-2">
                 <Link

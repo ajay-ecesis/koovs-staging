@@ -68,8 +68,10 @@
     width: 100%;
     background-color: #000;
     color: #fff;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 400;
+    padding:12px;
+  
 }
 .added_to_cart{
     background-color: grey !important;
@@ -82,7 +84,6 @@
 
         bottom: 0px;
         position: fixed;
-
 
     }
 
@@ -107,3 +108,18 @@
 
 }
 
+@media only screen and (min-width: 1440px) and (max-width: 2000px) {
+
+
+    .cartbutton {
+        width: 100%;
+        background-color: #000;
+        color: #fff;
+        font-size: 20px;
+        font-weight: 400;
+        padding:17px;
+      
+    }
+
+
+}

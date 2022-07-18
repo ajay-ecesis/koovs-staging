@@ -240,7 +240,7 @@ class SocialMedia extends React.Component {
             </div>
             <div className="insta-koovs col-12 col-lg-6">
               <h5>
-                <b>KOOVS on Instagram </b>
+                <strong>KOOVS on Instagram </strong>
               </h5>{" "}
               <br />
               <div className="row g-1">

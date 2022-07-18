@@ -1,6 +1,5 @@
 .filtertext {
 
-    font-family: 'Open Sauce One';
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -9,48 +8,53 @@
     justify-content: center;
     margin: 10px;
 }
-.accordion_filter{
 
-    height:100%;
-    width:100%;
+.accordion_filter {
+
+    height: 100%;
+    width: 100%;
     position: fixed;
-    top:0px;
-    left:0;
+    top: 0px;
+    left: 0;
     z-index: 1010;
     background-color: #fff;
-    padding:0px 20px;
-    overflow:scroll;
+    padding: 0px 20px;
+    overflow: scroll;
 }
 
 
 
-.closebutton{
+.closebutton {
     position: relative;
     justify-content: center;
     padding: 8px 0px 23px 0px;
-    border-bottom:1px solid #878787 !important;
+    border-bottom: 1px solid #878787 !important;
 }
 
-.closeicon{
-    top:8px;
-    left:-14px;
+.closeicon {
+    top: 8px;
+    left: -14px;
     position: absolute;
-    padding:3px 0px 2px 3px;
+    padding: 3px 0px 2px 3px;
 }
 
-.filterbutton{
+.filterbutton {
 
-font-family: 'Open Sauce One';
-font-style: normal;
-font-weight: 400;
-font-size: 14px;
-line-height: 17px;
+    font-weight: 500;
+    font-size: 14px;
+    font-style: normal;
+    line-height: 17px;
+    padding-top: 10px;
 
 }
-.text_menu{
+
+.text_menu {
     font-size: 12px;
 }
+
 .productborder {
 
-    border-bottom:1px solid #878787 !important;
+    border-bottom: 1px solid #878787 !important;
 }
+
+

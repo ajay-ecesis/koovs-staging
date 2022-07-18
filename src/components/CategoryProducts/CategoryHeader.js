@@ -61,7 +61,7 @@ function CategoryHeader({
         ></div>
 
         <div className="container-fluid px-0 b-bottom">
-          <div className="row mt-3">
+          <div className={`row ${styles.header_category}`}>
             <Breadcrumb>
               <Breadcrumb.Item href="/">
                 {" "}

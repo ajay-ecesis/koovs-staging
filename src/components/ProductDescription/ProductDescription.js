@@ -181,8 +181,8 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
       {productDetail != null && !loading ? (
         <>
           <div className="container-fluid px-0 b-bottom">
-            <div className="row mt-3">
-              <Breadcrumb>
+            <div className="row prod-detail-breadcrumb mt-3">
+              <Breadcrumb className="prod-breadcrumb">
                 <Breadcrumb.Item href="/">Home </Breadcrumb.Item>
                 <Breadcrumb.Item
                   href={`/category/${productDetail.product.gender}`}
@@ -214,8 +214,8 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
           <div className="container-fluid ImageDesc">
             <div className="row">
               <div className="col-12 col-lg-6">
-                <div className="float-start w-75 me-2 mt-3 position-relative">
-                  <div className="favIcon me-2 d-lg-block d-none">
+                <div className="float-start w-75  mt-1 position-relative">
+                  <div className="favIcon  d-lg-block d-none">
                     <label for="heart">
                       {/* check if item is already added to wishlist */}
                       {wishlistProducts.some(
@@ -260,7 +260,7 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
                           <div>
                             <img
                               src={img}
-                              className="img-fluid w-100 "
+                              className="img-fluid w-100 prod-silder "
                               alt="Koovs"
                             />
                           </div>
@@ -269,7 +269,7 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
                     })}
                   </Slider>
                 </div>
-                <div className="slideshow-gallery mt-2">
+                <div className="slideshow-gallery mt-0">
                   <Slider
                     asNavFor={nav1}
                     ref={(slider2) => setNav2(slider2)}
@@ -340,7 +340,7 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
                     <div>₹ {productDetail.product.discountPrice}</div>
                   </div>
                   <br />
-                  <div className="d-flex align-items-center py-lg-4 py-0">
+                  <div className="d-flex align-items-center py-lg-2 py-0">
                     <div className="w-25">COLOR</div>
                     <div className="preview-color">
                       {/* color mapping from api */}

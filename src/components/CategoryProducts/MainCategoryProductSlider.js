@@ -80,7 +80,7 @@ function MenCategoryProductSlider({
             className="d-flex filtertext-category"
             style={{ cursor: "pointer" }}
           >
-            <p className="fw-bold"> Filter</p>
+            <p className="fw-bold filter-headingtext"> Filter</p>
             <img src={filterIcon} onClick={() => setShow(!isShow)}></img>
             {isShow && (
               <div className="d-none d-lg-flex">
@@ -92,7 +92,7 @@ function MenCategoryProductSlider({
 
                         {item.id == "brand_fq" && (
                           <>
-                            <Dropdown className="dropdown-text d-inline mx-2">
+                            <Dropdown className="dropdown-text d-inline mx-4">
                               <Dropdown.Toggle id="dropdown-autoclose-true">
                                 Brand
                                 <IoIosArrowDown className="downarrowicon" />
@@ -130,7 +130,7 @@ function MenCategoryProductSlider({
                         )}
 
                         {item.id == "color_fq" && (
-                          <Dropdown className="d-inline mx-2">
+                          <Dropdown className="d-inline mx-4">
                             <Dropdown.Toggle id="dropdown-autoclose-true">
                               Color <IoIosArrowDown className="downarrowicon" />
                             </Dropdown.Toggle>
@@ -171,7 +171,7 @@ function MenCategoryProductSlider({
 
                         {item.id == "size_fq" && (
                           <>
-                            <Dropdown className="d-inline mx-2">
+                            <Dropdown className="d-inline mx-4">
                               <Dropdown.Toggle id="dropdown-autoclose-true">
                                 Size{" "}
                                 <IoIosArrowDown className="downarrowicon" />
@@ -214,7 +214,7 @@ function MenCategoryProductSlider({
                         {/* showing the price range if */}
                         {item.id == "price_fq" && (
                           <>
-                            <Dropdown className=" d-inline mx-2">
+                            <Dropdown className=" d-inline mx-4">
                               <Dropdown.Toggle id="dropdown-autoclose-true">
                                 Price range{" "}
                                 <IoIosArrowDown className="downarrowicon" />
@@ -279,17 +279,20 @@ function MenCategoryProductSlider({
                                         {...props}
                                         style={{
                                           ...props.style,
-                                          height: "56px",
-                                          width: "56px",
+                                          height: "38px",
+                                          width: "50px",
                                           borderRadius: "4px",
                                           background: `url(${ClipIcon})`,
                                           display: "flex",
                                           justifyContent: "center",
                                           alignItems: "center",
                                           backgroundSize: "contain",
+                                          transform: "translate(233px, -16.5px)",
+                                        
                                         }}
                                       ></div>
                                     )}
+ 
                                   />
                                   <output
                                     style={{ marginTop: "30px" }}
@@ -313,7 +316,7 @@ function MenCategoryProductSlider({
             <p className="fw-bold d-sm-none d-lg-flex filtertext-category">
               Sort by:{" "}
               <u style={{ cursor: "pointer" }}>
-                <p id="newcategory" onClick={() => setActive(!isActive)}>
+                <p id="newcategory" className="relevance-text" onClick={() => setActive(!isActive)}>
                   {sortLabel}
                 </p>
               </u>
@@ -322,7 +325,7 @@ function MenCategoryProductSlider({
         </div>
         {isActive && (
           <div className="d-none d-lg-flex listsorting">
-            <ol className="justify p-3">
+            <ol className="justify">
               {/* sort options based on backend api */}
               {result?.sortOptions?.data &&
                 result?.sortOptions?.data.map((item) => {

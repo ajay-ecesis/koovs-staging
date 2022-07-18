@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import shoppingbag from "../../assets/images/Shopping-bag.png";
 import "./maincategoryproductslider.css";
 import AddToCart from "./AddToCart";
-import productItem from "../../assets/images/shirts.png";
+import HeartCategoryicon from "../../assets/images/Hearticoncategory.png";
 import { useSelector } from "react-redux";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -42,6 +42,7 @@ const ShirtSection = ({
                     {" "}
                     <div className="text-category">
                       <div className="favIcon me-2 ">
+
                         <label for="heart">
                           {wishlistProducts?.some(
                             (wishlistItem) => wishlistItem.id === item.id
@@ -55,6 +56,10 @@ const ShirtSection = ({
                                   removeWishlist(item.sku, item.lineId)
                                 }
                               ></i>
+                              {/* <img src={HeartCategoryicon} className='wish-heart' onClick={() =>
+                                removeWishlist(item.sku, item.lineId)
+                              } style={{ width: "30px", height: "30px", color: "red" }} /> */}
+
                             </>
                           ) : (
                             <>
@@ -65,6 +70,10 @@ const ShirtSection = ({
                                   addToWishlist(item, item.id, item.lineId)
                                 }
                               ></i>
+
+                              {/* <img src={HeartCategoryicon} className='wish-heart' onClick={() =>
+                                addToWishlist(item, item.id, item.lineId)
+                              } style={{ width: "37px", height: "40px", color: "red" }} /> */}
                             </>
                           )}
                         </label>
@@ -89,7 +98,7 @@ const ShirtSection = ({
                           <img
                             src={shoppingbag}
                             onClick={() => setCart(item.id)}
-                            style={{cursor:"pointer"}}
+                            style={{ cursor: "pointer" }}
                           />
                           {cart == item.id && (
                             <AddToCart
@@ -110,11 +119,11 @@ const ShirtSection = ({
 
                       <div className="product-description d-flex justify-content-between px-3">
                         <div className="prodDetail-text">
-                          <p className="fw-bold">{item.brandName}</p>
+                          <h6 className="fw-bold">{item.brandName}</h6>
                           <p>{item.productName}</p>
                         </div>
-                        <div className="prodDetail-text">
-                          <p>₹ {item.discountPrice}</p>
+                        <div className="prodDetail-text wid-price">
+                          <span>₹ {item.discountPrice}</span>
                         </div>
                       </div>
                     </div>

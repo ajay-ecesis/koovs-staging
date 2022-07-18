@@ -1,29 +1,42 @@
-.MobileStart h5{
+.MobileStart h5 {
     margin: 0;
 }
-.MobileStart .img-content p{
+
+.MobileStart .img-content p {
     position: absolute;
     top: 0.5rem;
     left: 1rem;
     color: #fff;
 }
-.MobileStart .img-content{
+
+.MobileStart .img-content {
     position: relative;
 }
-.MobileStart .react-multi-carousel-item .cards, .MobileStart .react-multi-carousel-item .img-content, .MobileStart .react-multi-carousel-item .img-content img{
+
+.MobileStart .react-multi-carousel-item .cards,
+.MobileStart .react-multi-carousel-item .img-content,
+.MobileStart .react-multi-carousel-item .img-content img {
     height: 100%;
 }
+
 .MobileStart .cards {
     padding: 1px;
 }
-.MobileStart .react-multi-carousel-item .img-content img{
+
+.MobileStart .react-multi-carousel-item .img-content img {
     width: 100%;
 }
-.MobileStart{
+
+.MobileStart {
     background: #f1ff54;
 }
-.carousel-indicators{
+
+.carousel-indicators {
 
     margin-bottom: 5px;
 
+}
+
+.where-start {
+    padding-left: 42px;
 }
