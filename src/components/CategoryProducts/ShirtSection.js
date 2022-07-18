@@ -25,6 +25,13 @@ const ShirtSection = ({
     setPage(page + 1);
   };
 
+  const loadingPlaceHolder=()=>{
+
+    return(<>
+<div class="skeleton-qxlz8l195jy"></div>
+    </>)
+  }
+
   return (
     <>
       <InfiniteScroll
@@ -132,7 +139,7 @@ const ShirtSection = ({
               );
             })}
 
-          {loading && <>Loading...</>}
+          {loading && loadingPlaceHolder()}
           {/* <p className="viewall-text fw-bold d-sm-block d-lg-none">
           <u style={{ cursor: "pointer" }}>View All</u>
         </p> */}

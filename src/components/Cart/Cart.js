@@ -13,8 +13,8 @@ import { ReCaptcha, loadReCaptcha } from "react-recaptcha-v3";
 import { useSelector } from "react-redux";
 import { getProductByBatchIdAPI } from "../../api/commonApi";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import Swal from 'sweetalert2'
-
+import { confirmAlert } from "react-confirm-alert"; // Import
+import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -70,17 +70,27 @@ const Cart = () => {
   };
 
   const removeItemFromCart = async (skuId) => {
-   let consent= Swal.fire({
-      text: 'Do you want to remove this item from cart',
-      icon: 'question',
-      confirmButtonText: 'Okay'
-    })
-
-    if (!consent) return;
-    let data = await removeCartItem(skuId);
-    if (data) {
-      loadCartItems();
-    }
+    let consent = false;
+    confirmAlert({
+      title: "Are you sure to delete this item ?",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: async () => {
+            let data = await removeCartItem(skuId);
+            if (data) {
+              loadCartItems();
+            }
+          },
+        },
+        {
+          label: "No",
+          onClick: () => {
+            return;
+          },
+        },
+      ],
+    });
   };
 
   const loadingPlaceHolder = () => {
@@ -164,11 +174,7 @@ const Cart = () => {
                                     return (
                                       <>
                                         <tr key={item.total}>
-                                          <th
-                                            scope="row"
-                                            className="w-50"
-                                           
-                                          >
+                                          <th scope="row" className="w-50">
                                             <LazyLoadImage
                                               effect="blur"
                                               src={item?.product?.cartImageUrl}
