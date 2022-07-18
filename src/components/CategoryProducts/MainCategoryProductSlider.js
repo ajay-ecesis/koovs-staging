@@ -320,7 +320,7 @@ function MenCategoryProductSlider({
         </div>
         {isActive && (
           <div className="d-none d-lg-flex listsorting">
-            <ol className="justify p-3">
+            <ol className="justify">
               {/* sort options based on backend api */}
               {result?.sortOptions?.data &&
                 result?.sortOptions?.data.map((item) => {

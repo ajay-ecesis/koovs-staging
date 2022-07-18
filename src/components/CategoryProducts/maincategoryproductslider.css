@@ -163,19 +163,25 @@
 
   border: 2px solid #000;
   position: absolute;
-  width: 272px;
+  width: 352px;
   z-index: 100;
   background: white;
   right: 32px;
+  padding: 30px !important;
+  margin-top: -20px;
 
 }
-
+.justify{
+  width: 100%;
+  margin: 0;
+}
 .sort-list {
   font-family: 'Open Sauce One';
   font-style: normal;
   font-weight: 700;
   font-size: 12px;
-  line-height: 183.7%;
+  line-height: 22px;
+  cursor: pointer;
 }
 
 .Maincategory_product_slider .btn-primary {
