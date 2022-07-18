@@ -19,9 +19,9 @@ class BrandItems extends React.Component {
         slidesToSlide: 2, // optional, default to 1.
       },
       mobile: {
-        breakpoint: { max: 464, min: 0 },
-        items: 1,
-        partialVisibilityGutter: 100,
+        breakpoint: { max: 768, min: 0 },
+        items: 1.5,
+        partialVisibilityGutter: 150,
         slidesToSlide: 1, // optional, default to 1.
       },
     };
@@ -32,7 +32,7 @@ class BrandItems extends React.Component {
             <div className="row" id="carousel-slide">
               <Carousel
                 infinite={true}
-                partialVisible={true}
+                partialVisible={false}
                 interval={2000}
                 touch={true}
                 arrows={false}

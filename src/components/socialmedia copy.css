@@ -46,9 +46,9 @@
     font-size: 14px;
 }
 
-.SocialMedia .react-multi-carousel-list{
-    position:relative ;
-    left:-23px ;
+.SocialMedia.react-multi-carousel-list{
+    position:relative !important;
+    left:-21px !important;
 }
 
 .future-collaboration{
@@ -57,32 +57,7 @@
     padding-bottom:90px;
 }
 
-
-.futute-rightspace{
-
- padding-right:0px;
-
-}
-
-@media only screen and (min-width: 1440px) and (max-width: 2000px) {
-
-    .grid-text{
-
-    font-weight: 500;
-    font-size: 30.9px;
-
-    padding:0px 16px !important;
-
-}
-}
-
-
 @media only screen and (max-width: 576px) {
-
-    .grid-text{
-        font-weight: 500 !important;
-        font-size: 10px !important;
-        }
 
     .future-collaboration{
         padding-left:11px;
@@ -96,16 +71,6 @@
     .collab-padding{
         padding-right: 0px !important;
 
-    }
-
-    .insta-koovs{
-        padding-left: 0px;
-        padding-right:0px;
-    }
-
-    .insta-koovs strong{
-
-        padding-left:21px;
     }
 
 }

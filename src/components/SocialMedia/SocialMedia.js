@@ -67,7 +67,7 @@ class SocialMedia extends React.Component {
       <section className="SocialMedia py-5">
         <div className="container-fluid">
           <div className="row">
-            <div className="col-12 col-lg-6">
+            <div className="col-12 col-lg-6 futute-rightspace">
               <div className="future-collaboration pb-5 d-none d-lg-block">
                 <h5>
                   <b>
