@@ -11,19 +11,21 @@ const WishlistPage = () => {
   const wishlistItems = useSelector((state) => state.wishlist.items);
   const user = useSelector((state) => state.user);
   const [products, setProducts] = useState([]);
-  const [loading,setLoading]=useState(false)
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getWishlistItemsByBatchId();
   }, [wishlistItems]);
 
   const getWishlistItemsByBatchId = async () => {
-    setLoading(true)
+    setLoading(true);
     let result = wishlistItems.map((item) => item.sku);
     result = result.toString();
     let data = await loadWishListBySkuIdApi(result);
-    setProducts(data.data);
-    setLoading(false)
+    if (data) {
+      setProducts(data.data);
+    }
+    setLoading(false);
   };
 
   return (
