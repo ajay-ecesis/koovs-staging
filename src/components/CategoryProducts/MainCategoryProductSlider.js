@@ -92,7 +92,7 @@ function MenCategoryProductSlider({
 
                         {item.id == "brand_fq" && (
                           <>
-                            <Dropdown className="dropdown-text d-inline mx-2">
+                            <Dropdown className="dropdown-text d-inline mx-4">
                               <Dropdown.Toggle id="dropdown-autoclose-true">
                                 Brand
                                 <IoIosArrowDown className="downarrowicon" />
@@ -130,7 +130,7 @@ function MenCategoryProductSlider({
                         )}
 
                         {item.id == "color_fq" && (
-                          <Dropdown className="d-inline mx-2">
+                          <Dropdown className="d-inline mx-4">
                             <Dropdown.Toggle id="dropdown-autoclose-true">
                               Color <IoIosArrowDown className="downarrowicon" />
                             </Dropdown.Toggle>
@@ -171,7 +171,7 @@ function MenCategoryProductSlider({
 
                         {item.id == "size_fq" && (
                           <>
-                            <Dropdown className="d-inline mx-2">
+                            <Dropdown className="d-inline mx-4">
                               <Dropdown.Toggle id="dropdown-autoclose-true">
                                 Size{" "}
                                 <IoIosArrowDown className="downarrowicon" />
@@ -214,7 +214,7 @@ function MenCategoryProductSlider({
                         {/* showing the price range if */}
                         {item.id == "price_fq" && (
                           <>
-                            <Dropdown className=" d-inline mx-2">
+                            <Dropdown className=" d-inline mx-4">
                               <Dropdown.Toggle id="dropdown-autoclose-true">
                                 Price range{" "}
                                 <IoIosArrowDown className="downarrowicon" />
@@ -279,18 +279,20 @@ function MenCategoryProductSlider({
                                         {...props}
                                         style={{
                                           ...props.style,
-                                          height: "43px",
-                                          width: "57px",
+                                          height: "38px",
+                                          width: "50px",
                                           borderRadius: "4px",
                                           background: `url(${ClipIcon})`,
                                           display: "flex",
                                           justifyContent: "center",
                                           alignItems: "center",
                                           backgroundSize: "contain",
+                                          transform: "translate(233px, -16.5px)",
                                         
                                         }}
                                       ></div>
                                     )}
+ 
                                   />
                                   <output
                                     style={{ marginTop: "30px" }}

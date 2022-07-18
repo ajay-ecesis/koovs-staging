@@ -29,10 +29,6 @@
   color: #fff;
 }
 
-/* .Maincategory_product_slider .prod1 img {
-  position: relative;
-} */
-
 .image-color .favIcon {
   position: absolute;
   top: 0;
@@ -202,7 +198,6 @@
 
 .Maincategory_product_slider .dropdown-text {
 
-  font-family: 'Open Sauce One';
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
@@ -218,8 +213,10 @@
 }
 
 .Maincategory_product_slider #size-selector {
+
   height: 352px !important;
   overflow-y: auto;
+
 }
 
 .Maincategory_product_slider .dropdown-header {
@@ -293,7 +290,6 @@
 .Maincategory_product_slider .colors p {
 
   padding: 0px 0px 0px 50px;
-  font-family: 'Open Sauce One';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -460,20 +456,34 @@
   width: 36px;
   height: 30px;
   color: #878787;
+    position: relative;
+    right: -23px
 
 }
+
+.Maincategory_product_slider .filtertext-category img {
+
+  padding-right:50px;
+}
+
+.Maincategory_product_slider .btn-primary {
+
+  padding: 0px 9px 0px 0px;
+
+}
+
 
 @media only screen and (max-width: 567px) {
 
   .Maincategory_product_slider .prodDetail-text p {
 
-    font-weight: 700;
+    font-weight: 500;
     font-size: 9px;
     line-height: 11px;
   }
   .Maincategory_product_slider  .product-description .wid-price{
 
-    font-weight: 700;
+    font-weight: 500;
     font-size: 9px;
     line-height: 11px;
     width:84px;

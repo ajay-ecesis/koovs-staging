@@ -29,13 +29,13 @@
 
 .filterbutton {
 
-    font-family: 'Open Sauce One';
     font-style: normal;
-    font-weight: 400;
+    font-weight:500;
     font-size: 14px;
     line-height: 17px;
-
-}
+    padding-top:10px;
+  
+  }
 .productborder {
 
     border-bottom:1px solid #878787 !important;

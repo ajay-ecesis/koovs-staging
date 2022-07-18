@@ -1,4 +1,3 @@
-
 .list_Product {
 
     background-color: #fff;
@@ -8,17 +7,22 @@
     top: 0px;
     left: 0;
     z-index: 1010;
-    padding:0px 20px 91px 20px;
-    overflow-y:scroll;
+    padding: 0px 20px 91px 20px;
+    overflow-y: scroll;
     overflow-x: hidden;
 
+}
+
+.arrowone {
+    font-weight: 500;
+    font-size: 12px;
 }
 
 .closebutton {
     position: relative;
     justify-content: center;
     padding: 8px 0px 23px 0px;
-    border-bottom:1px solid #878787;
+    border-bottom: 1px solid #878787;
 
 }
 
@@ -31,16 +35,16 @@
 
 .filterbutton {
 
-    font-family: 'Open Sauce One';
+
     font-style: normal;
-    font-weight: 400;
+    font-weight: 500;
     font-size: 14px;
     line-height: 17px;
+    padding-top: 10px;
 
 }
+
 .productborder {
 
-    border-bottom:1px solid #878787 !important;
+    border-bottom: 1px solid #878787 !important;
 }
-
-
