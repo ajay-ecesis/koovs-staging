@@ -155,7 +155,7 @@
   .women-fashion .container-fluid #carousel-slide,
   .men-fashion .container-fluid #carousel-slide,
   .stories .container-fluid #carousel-slide {
-    /* padding-left: 1rem !important; */
+  
   position: relative;
     left: 58px;
   }

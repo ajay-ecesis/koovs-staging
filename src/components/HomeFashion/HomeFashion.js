@@ -27,7 +27,7 @@ function HomeFashion({ category, subCategory, title, link }) {
       autoPlay: false,
     },
     mobile: {
-      breakpoint: { max: 464, min: 0 },
+      breakpoint: { max: 900, min: 0 },
       items: 2,
       partialVisibilityGutter: 30,
       slidesToSlide: 1, // optional, default to 1.
@@ -76,7 +76,7 @@ function HomeFashion({ category, subCategory, title, link }) {
           renderButtonGroupOutside={true}
           swipeable={true}
           draggable={false}
-          autoPlay={true}
+          autoPlay={false}
           autoPlaySpeed={2000}
         >
           <Card style={{ width: "18rem", border: "none" }}>
@@ -150,7 +150,7 @@ function HomeFashion({ category, subCategory, title, link }) {
   };
 
   return (
-    <section className="men-fashion py-4">
+    <section className="men-fashion py-4 gender_category_slider">
       <div className="bg-light-blue"></div>
       <div className="container-fluid">
         <div className="row">
