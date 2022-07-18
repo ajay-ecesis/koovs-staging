@@ -167,4 +167,8 @@
     background-color:#F7F2E5
   
   }
-  
+  .color_content{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }

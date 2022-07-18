@@ -214,22 +214,7 @@ export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
                                         </>
                                       );
                                     })}
-
-                                  {/* <li>S</li>
-                                  <li className="no-stock">M</li>
-                                  <li>L</li>
-                                  <li>XL</li>
-                                  <li>XXL</li> */}
                                 </ul>
-                                {/* <LazyLoadImage
-                                  effect="blur"
-                                  onClick={() =>
-                                    addProductToCart(productDetail?.product)
-                                  }
-                                  src={shopimg}
-                                  className="img-fluid "
-                                  alt="Koovs "
-                                /> */}
                               </div>
                             </div>
                           </div>
@@ -367,20 +352,25 @@ export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
                     return (
                       <>
                         <div className="cards overflow-hidden">
-                          <Link to="/productdetail">
-                            <div className="bg-grey">
-                              <LazyLoadImage
-                                effect="blur"
-                                src={data.imageSmallUrl}
-                                className="img-fluid proimage mob-prodImage"
-                                alt="Koovs "
-                              />
+                          <div className="bg-grey">
+                            <LazyLoadImage
+                              onClick={() =>
+                                goToProductDetailPage(
+                                  data.productName,
+                                  data.id,
+                                  data.lineId
+                                )
+                              }
+                              effect="blur"
+                              src={data.imageSmallUrl}
+                              className="img-fluid proimage mob-prodImage"
+                              alt="Koovs "
+                            />
 
-                              <p className="fw-bold">{data.brandName}</p>
-                              <p className="mb-0">{data.productName}</p>
-                              <p>₹ {data.discountPrice}</p>
-                            </div>
-                          </Link>
+                            <p className="fw-bold">{data.brandName}</p>
+                            <p className="mb-0">{data.productName}</p>
+                            <p>₹ {data.discountPrice}</p>
+                          </div>
                         </div>
                       </>
                     );

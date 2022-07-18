@@ -62,7 +62,7 @@ export const loadProductByCategoryApi = async (
       "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
     },
   };
-
+  if (!subCategory) subCategory = category;
   try {
     let { data } = await axios.get(
       `${clentServer}/search-service/v1/products/listing/complete?href=https://www.koovs.com/${category}/${subCategory}&page-size=${size}&sort=${sort}&page=${page}`,
@@ -74,7 +74,7 @@ export const loadProductByCategoryApi = async (
       return false;
     }
   } catch (err) {
-    return false
+    return false;
   }
 };
 

@@ -41,6 +41,7 @@ const CategoryMainPage = () => {
   useEffect(() => {
     let loadFromUrl = true;
     loadProductItemsBycategory(loadFromUrl);
+    if (!subcategory) subcategory = category;
   }, [category, subcategory, sort]);
 
   useEffect(() => {
@@ -66,7 +67,7 @@ const CategoryMainPage = () => {
 
   //loading product items by category
   const loadProductItemsBycategory = async (loadFromUrl) => {
-    if ((category, subcategory)) {
+    if (category) {
       let data = await loadProductByCategoryApi(
         category,
         subcategory,
@@ -215,6 +216,20 @@ const CategoryMainPage = () => {
         subcategory={subcategory}
         result={result}
         changeSortOption={changeSortOption}
+        products={products}
+        filterTypes={filterTypes}
+        applyFilter={applyFilter}
+        filterType={filterType}
+        loading={loading}
+        setLoading={setLoading}
+        goToProductDetailPage={goToProductDetailPage}
+        addToWishlist={addToWishlist}
+        removeWishlist={removeWishlist}
+        page={page}
+        token={token}
+        setPage={setPage}
+        reloadRecaptcha={reloadRecaptcha}
+        sortLabel={sortLabel}
       />
       <CategoryMainMenuSlider products={products} />{" "}
       {/* shows the btn categories*/}

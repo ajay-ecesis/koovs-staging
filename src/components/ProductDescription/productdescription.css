@@ -1,31 +1,37 @@
-
-.product-detail .favIcon label{
+.product-detail .favIcon label {
   font-size: 2.3rem;
 
 }
+
 .ImageDesc .slick-vertical .slick-slide {
   border: 3px solid transparent;
 }
-a{
+
+a {
   color: #000;
   text-decoration: unset;
 }
-.product-detail .b-bottom{
+
+.product-detail .b-bottom {
   border-bottom: 1px solid #000;
 }
-.product-detail .b-bottom .row{
-  margin:0 30px;
+
+.product-detail .b-bottom .row {
+  margin: 0 30px;
 }
-.ImageDesc{
+
+.ImageDesc {
   position: relative;
 }
-.ImageDesc .favIcon{
+
+.ImageDesc .favIcon {
   position: absolute;
   top: 0;
   right: 8px;
   z-index: 1;
   cursor: pointer;
 }
+
 .ImageDesc input[type='radio'] {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -33,37 +39,38 @@ a{
   height: 40px;
   position: relative;
   cursor: pointer;
-  border:1px solid #c4c4c4;
+  border: 1px solid #c4c4c4;
 }
 
-.ImageDesc input[type='radio']:hover{
+.ImageDesc input[type='radio']:hover {
   -webkit-filter: opacity(.4);
-  filter: opacity(.4);    
+  filter: opacity(.4);
 }
 
 
 
-.ImageDesc .blue:checked{
+.ImageDesc .blue:checked {
   border: 2px solid #000;
 }
 
-.ImageDesc .yellow{
+.ImageDesc .yellow {
   background: #F0C968;
 }
 
-.ImageDesc .yellow:checked{
+.ImageDesc .yellow:checked {
   border: 2px solid #000;
 }
 
-.ImageDesc .grey{
+.ImageDesc .grey {
   background: #C4C4C4;
 }
 
-.ImageDesc .grey:checked{
+.ImageDesc .grey:checked {
   /* background: linear-gradient(orange, #C4C4C4); */
   border: 2px solid #000;
 }
-.ImageDesc .preview-size ul li{
+
+.ImageDesc .preview-size ul li {
   width: 50px;
   height: 40px;
   text-align: center;
@@ -73,25 +80,30 @@ a{
   display: flex;
   cursor: pointer;
 }
-.ImageDesc .product-desc ul{
+
+.ImageDesc .product-desc ul {
   list-style: inside;
 }
-.ImageDesc .product-desc h5, .product-desc h6{
+
+.ImageDesc .product-desc h5,
+.product-desc h6 {
   font-weight: 500;
 }
-.favIcon.me-2.position-relative.me-4 label{
+
+.favIcon.me-2.position-relative.me-4 label {
   font-size: 1.5em;
 }
-.productSpec > h2{
-font-size: 19px;
+
+.productSpec>h2 {
+  font-size: 19px;
 }
 
-.product-detail .multiColor{
-  background-image: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet);
+.product-detail .multiColor {
+  background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
 
 }
 
-.product-detail .list-active{
+.product-detail .list-active {
   border: 2px solid !important;
 }
 

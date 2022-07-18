@@ -8,13 +8,16 @@ import {
   updateCartQuantity,
 } from "../../api/cart";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ReCaptcha, loadReCaptcha } from "react-recaptcha-v3";
 import { useSelector } from "react-redux";
 import { getProductByBatchIdAPI } from "../../api/commonApi";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import Swal from 'sweetalert2'
+
 
 const Cart = () => {
+  const navigate = useNavigate();
   const cartProducts = useSelector((state) => state.cart.items);
   const [cartItems, setCartItems] = useState([]);
   const [productInDetail, setProductInDetail] = useState([]);
@@ -67,7 +70,12 @@ const Cart = () => {
   };
 
   const removeItemFromCart = async (skuId) => {
-    let consent = window.confirm("Are you sure to remove this item from cart?");
+   let consent= Swal.fire({
+      text: 'Do you want to remove this item from cart',
+      icon: 'question',
+      confirmButtonText: 'Okay'
+    })
+
     if (!consent) return;
     let data = await removeCartItem(skuId);
     if (data) {
@@ -106,6 +114,12 @@ const Cart = () => {
     let result = await updateCartQuantity(obj);
     reloadRecaptcha();
     loadCartItems();
+  };
+
+  //navigates to product detail page by making url friendly
+  const goToProductDetailPage = (title, id, lineId) => {
+    let slug = title.replace(/\s+/g, "-").toLowerCase();
+    navigate(`/product/${slug}/${id}/${lineId}`);
   };
 
   return (
@@ -150,12 +164,23 @@ const Cart = () => {
                                     return (
                                       <>
                                         <tr key={item.total}>
-                                          <th scope="row" className="w-50">
+                                          <th
+                                            scope="row"
+                                            className="w-50"
+                                           
+                                          >
                                             <LazyLoadImage
                                               effect="blur"
                                               src={item?.product?.cartImageUrl}
                                               width="67px"
                                               height="67px"
+                                              onClick={() =>
+                                                goToProductDetailPage(
+                                                  item.product.productName,
+                                                  item.product.id,
+                                                  item.product.lineId
+                                                )
+                                              }
                                             />
                                             <div>
                                               {item?.product?.productName}
@@ -195,7 +220,7 @@ const Cart = () => {
                                           <td className="w-25 total-price">
                                             {" "}
                                             <div className="pt-4">
-                                              ₹ {item.payAmount}    
+                                              ₹ {item.payAmount}
                                             </div>
                                           </td>
                                           <td className="w-25">
@@ -272,9 +297,15 @@ const Cart = () => {
                               </div>
                             </div>
                             <div className="pt-3">
-                      <Link to="/checkout/address" style={{textDecoration:"none"}}>   <button className="btn btn-dark px-5 rounded-0 mx-auto d-flex">
-                                CHECKOUT
-                              </button></Link>   
+                              <Link
+                                to="/checkout/address"
+                                style={{ textDecoration: "none" }}
+                              >
+                                {" "}
+                                <button className="btn btn-dark px-5 rounded-0 mx-auto d-flex">
+                                  CHECKOUT
+                                </button>
+                              </Link>
                             </div>
                           </>
                         )}

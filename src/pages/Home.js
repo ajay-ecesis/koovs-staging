@@ -23,13 +23,13 @@ class Home extends React.Component {
           category="women"
           subCategory="dresses"
           title="Women"
-          link="/category/women"
+          link="/collection/women"
         />
         <HomeFashion
           category="men"
           subCategory="jeans"
           title="Men"
-          link="/category/men"
+          link="/collection/men"
         />
         <TopBrands />
         <Stories />

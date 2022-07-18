@@ -327,8 +327,8 @@ const AddressComponent = ({ address, loadAddressDetails }) => {
 
         <Modal
           size="lg"
-          show={showEditAddressModal}
-          onHide={() => setShowEditAddressModal(false)}
+          show={showAddressModal}
+          onHide={() => setShowAddressModal(false)}
         >
           <Modal.Header closeButton>
             <Modal.Title>Shipping Address</Modal.Title>
