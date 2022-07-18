@@ -22,3 +22,9 @@
 .BrandItem .react-multi-carousel-item .img-content img{
     width: 100%;
 }
+
+
+.BrandItem .react-multi-carousel-list{
+
+    left: -9px;
+}

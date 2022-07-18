@@ -22,14 +22,14 @@ class Stories extends React.Component {
         slidesToSlide: 2, // optional, default to 1.
       },
       mobile: {
-        breakpoint: { max: 464, min: 0 },
+        breakpoint: { max: 768, min: 0 },
         items: 1,
         partialVisibilityGutter: 100,
         slidesToSlide: 1, // optional, default to 1.
       },
     };
     return (
-      <section className="stories pb-5">
+      <section className="stories pb-5 style_stories">
         <div className="container-fluid">
           <div className="row g-lg-1">
             <div className="stylestories">

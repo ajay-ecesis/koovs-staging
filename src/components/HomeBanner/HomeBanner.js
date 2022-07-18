@@ -35,10 +35,10 @@ function HomeBanner() {
   };
 
   return (
-    <section className="home_banner">
+    <section className="home_banner ">
       <div className="container-fluid">
         <div className="row">
-          <div className="col-12 col-lg-6 col-xl-6">
+          <div className="col-12 col-lg-6 col-xl-6 slider-home-banner">
             <Carousel controls={true} interval={10000} fade>
               <Carousel.Item>
                 <div className="banner-Image">

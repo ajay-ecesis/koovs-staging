@@ -85,3 +85,12 @@
 
     width:234px;
 }
+
+@media (max-width:768px){
+ .home-banner .slider-home-banner{
+
+ padding-left:12px;
+ padding-right:0px;
+
+}
+}
