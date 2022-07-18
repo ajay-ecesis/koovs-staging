@@ -13,7 +13,7 @@ const MenBanner = () => {
       <div className="container-fluid">
         <div className="row">
           <div className="carousel-img col-12 col-lg-6">
-          <LazyLoad offsetTop={200}>
+            <LazyLoad offsetTop={200}>
               <Carousel controls={true} interval={3000}>
                 <Carousel.Item>
                   <div className="carousel-heading">
@@ -22,7 +22,7 @@ const MenBanner = () => {
                   </div>
                   <div className="Menbanner-Image">
                     <LazyLoadImage
-                    effect="blur"
+                      effect="blur"
                       src={MenBannerimg1}
                       className="w-100 img-fluid"
                       alt="DMG banner Image"
@@ -36,7 +36,7 @@ const MenBanner = () => {
                   </div>
                   <div className="Menbanner-Image">
                     <LazyLoadImage
-                    effect="blur"
+                      effect="blur"
                       src={MenBannerimg1}
                       alt="Koovs banner Image"
                       className="w-100 img-fluid"
@@ -50,7 +50,7 @@ const MenBanner = () => {
                   </div>
                   <div className="Menbanner-Image">
                     <LazyLoadImage
-                    effect="blur"
+                      effect="blur"
                       src={MenBannerimg1}
                       alt="Koovs banner Image"
                       className="w-100 img-fluid"
@@ -69,7 +69,7 @@ const MenBanner = () => {
                 </p>
               </div>
               <LazyLoadImage
-              effect="blur"
+                effect="blur"
                 src={menbannerimg}
                 alt="Koovs banner Image"
                 className="w-100 img-fluid"

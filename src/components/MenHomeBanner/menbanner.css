@@ -200,15 +200,59 @@
     color: #000;
 }
 
+@media only screen  and (max-device-width: 576px) {
+
+    .carousel-img {
+        max-height: 214px;
+        overflow: hidden;
+    }
+
+    .men-banner .carousel.slide{
+        height:100% !important;
+    }
+
+    .men-banner .is-visible{
+        height:100%;
+    }
+
+    .men-banner .carousel-indicators {
+
+        bottom:23px;
+
+    }
+
+    .men-banner .carousel-control-next-icon {
+
+        position: absolute !important;
+        bottom: 75px !important;
+        width:33px !important;
+        height:33px !important;
+        right:0px;
+
+    }
+
+    .men-banner .carousel-control-prev-icon {
+
+        position: absolute !important;
+        bottom: 75px !important;
+        width:33px !important;
+        height:33px !important;
+        left:0px;
+
+    }
+
+}
+
+
 @media only screen and (min-device-width: 990px) and (max-device-width: 1300px) {
 
     .jenCellabos-text .centered {
         width: 420px;
-        font-size:33px;
+        font-size: 33px;
 
     }
 
-    
+
 }
 
 @media only screen and (min-device-width: 1440px) and (max-device-width: 2000px) {
@@ -218,19 +262,24 @@
         width: 813px;
 
     }
-    .text-menbanner p ,.carousel-heading .casual{
+
+    .text-menbanner p,
+    .carousel-heading .casual {
 
         font-weight: 700;
         font-size: 25px;
     }
-    .carousel-heading p{
+
+    .carousel-heading p {
         font-weight: 500;
-        font-size:20px;
+        font-size: 20px;
     }
 }
-.men-banner .jen-img{
+
+.men-banner .jen-img {
     padding-left: 3px;
 }
-.men-banner .carousel-img{
-    padding-right:0px;
+
+.men-banner .carousel-img {
+    padding-right: 0px;
 }

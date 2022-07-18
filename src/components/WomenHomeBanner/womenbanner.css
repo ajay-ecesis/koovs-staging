@@ -51,3 +51,46 @@
 .men-banner .carousel-img{
     padding-right:0px;
 }
+
+
+@media only screen  and (max-device-width: 576px) {
+
+    .carousel-img {
+        max-height: 214px;
+        overflow: hidden;
+    }
+
+    .men-banner .carousel.slide{
+        height:100% !important;
+    }
+
+    .men-banner  .is-visible{
+        height:100%;
+    }
+
+    .men-banner .carousel-control-next-icon {
+
+        position: absolute !important;
+        bottom: 75px !important;
+        width:33px !important;
+        height:33px !important;
+        right:0px;
+
+    }
+
+    .men-banner .carousel-control-prev-icon {
+
+        position: absolute !important;
+        bottom: 75px !important;
+        width:33px !important;
+        height:33px !important;
+        left:0px;
+
+    }
+
+    .men-banner .carousel-heading{
+        padding-top:23px;
+    }
+
+
+}

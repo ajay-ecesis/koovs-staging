@@ -9,9 +9,15 @@
 
 .arrowright .accordion-button{
     padding: 1rem 0rem;
+    font-weight: 500 !important;
+    font-size: 12px !important;
+
 }
 .arrownone .accordion-button{
     padding: 1rem 0rem;
+    font-weight: 500 !important;
+    font-size: 12px !important;
+
 }
 .crossbutton{
     background-color:#E8E8E8 !important;
@@ -28,3 +34,4 @@
    
    
 }
+

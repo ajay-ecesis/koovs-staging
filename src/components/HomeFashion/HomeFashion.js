@@ -150,7 +150,7 @@ function HomeFashion({ category, subCategory, title, link }) {
   };
 
   return (
-    <section className="men-fashion py-5">
+    <section className="men-fashion py-4">
       <div className="bg-light-blue"></div>
       <div className="container-fluid">
         <div className="row">

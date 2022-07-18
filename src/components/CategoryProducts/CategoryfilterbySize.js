@@ -10,7 +10,7 @@ const CategoryfilterbySize = ({setSize}) => {
     <div className={style.list_Product}>
     <div className={`${style.closebutton} d-flex `}>
         <GrClose className={style.closeicon} onClick={() => setSize(false)} />
-        <p className={`${style.filterbutton} d-flex `}>Product Type</p>
+        <p className={`${style.filterbutton} d-flex `}>Size</p>
     </div>
     
     <Accordion defaultActiveKey="0" flush>
