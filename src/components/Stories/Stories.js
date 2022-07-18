@@ -33,8 +33,8 @@ class Stories extends React.Component {
         <div className="container-fluid">
           <div className="row g-lg-1">
             <div className="stylestories">
-              <h5 className="fw-bold">Style stories</h5>
-              <p className="d-none d-lg-block">
+              <h5 className="fw-bold style-text-stories">Style stories</h5>
+              <p className="d-none d-lg-block get-inspired">
                 Get inspired by our latest campaigns
               </p>
               <p className="d-block d-lg-none mb-0">

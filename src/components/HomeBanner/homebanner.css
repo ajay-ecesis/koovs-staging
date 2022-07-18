@@ -87,9 +87,11 @@
 }
 
 @media (max-width:768px){
- .home-banner .slider-home-banner{
 
- padding-left:12px;
+
+  .slider-home-banner{
+
+ padding-left:20px;
  padding-right:0px;
 
 }

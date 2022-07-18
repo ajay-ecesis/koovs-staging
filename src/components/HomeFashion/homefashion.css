@@ -30,7 +30,8 @@
 
 .gender_category_slider .react-multi-carousel-list{
     position:relative;
-    left:51px;
+    left:105px;
+    padding-left: 0;
     
 }
 @media (max-width:768px){

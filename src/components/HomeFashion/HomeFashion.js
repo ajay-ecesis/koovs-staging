@@ -76,7 +76,7 @@ function HomeFashion({ category, subCategory, title, link }) {
           renderButtonGroupOutside={true}
           swipeable={true}
           draggable={false}
-          autoPlay={true}
+          autoPlay={false}
           autoPlaySpeed={2000}
         >
           <Card style={{ width: "18rem", border: "none" }}>
