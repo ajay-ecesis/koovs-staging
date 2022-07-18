@@ -456,14 +456,13 @@
   width: 36px;
   height: 30px;
   color: #878787;
-    position: relative;
-    right: -23px
-
+  position: relative;
+  right: -23px
 }
 
 .Maincategory_product_slider .filtertext-category img {
 
-  padding-right:50px;
+  padding-right: 50px;
 }
 
 .Maincategory_product_slider .btn-primary {
@@ -481,18 +480,19 @@
     font-size: 9px;
     line-height: 11px;
   }
-  .Maincategory_product_slider  .product-description .wid-price{
+
+  .Maincategory_product_slider .product-description .wid-price {
 
     font-weight: 500;
     font-size: 9px;
     line-height: 11px;
-    width:84px;
-  
+    width: 84px;
+
   }
 
-  .shop-icon img{
+  .shop-icon img {
 
-    bottom:170px;
+    bottom: 170px;
   }
 }
 
@@ -543,4 +543,23 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 19px;
+}
+
+
+.skeleton-qxlz8l195jy:empty {
+  box-sizing: content-box;
+  height: 290px;
+  background-color: #E1E1E1;
+  border-radius: 0px 0px 0px 0px;
+  background-image: linear-gradient(100deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 80%), linear-gradient(#E0E0E0 200px, transparent 0);
+  background-repeat: repeat-y;
+  background-size: 50px 290px, 360px 290px;
+  background-position: -20% 0, 20px 20px;
+  animation: shineForSkeleton-uuypnq47b80 2s infinite;
+}
+
+@keyframes shineForSkeleton-qxlz8l195jy {
+  to {
+    background-position: 120% 0,
+  }
 }
