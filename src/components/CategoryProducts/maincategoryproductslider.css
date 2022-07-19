@@ -184,7 +184,7 @@
     margin-top: -20px;
   
   }
-  .justify{
+  .listing .justify{
     width: 100%;
     margin: 0;
   }
@@ -520,7 +520,7 @@
 
   .shop-icon img {
 
-    bottom: 108px;
+    bottom: 131px;
   }
 }
 
@@ -591,6 +591,14 @@
   to {
     background-position: 120% 0,
   }
+}
+
+@media (max-width:768px)
+{
+  .Maincategory_product_slider .product-container{
+
+    width: 100%;
+    }
 }
 
 /* .Maincategory_product_slider .product-container{

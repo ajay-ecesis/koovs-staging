@@ -12,6 +12,7 @@
 .myaccount .form-group input{
     border-radius: 0!important;
     border: 1.5px solid;
+    color:#878787;
 }
 
 .myaccount .form-group  input::placeholder{
@@ -34,6 +35,7 @@ text-align: center;
 }
 .myaccount h6{
     font-weight: 600;
+    padding-bottom:12px;
   
 }
 .myaccount .error_message{
