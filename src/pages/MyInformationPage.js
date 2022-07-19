@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getMyAddressApi, getMyProfileApi } from "../api/account";
+import AccountMobile from "../components/AccountSideNav/AccountMobile";
 import AccountSideNav from "../components/AccountSideNav/AccountSideNav";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
@@ -20,7 +21,10 @@ export const MyInformationPage = () => {
       <Header />
 
       <AccountSideNav index={3}>
-        <MyAccount shippingAddress={shippingAddress} loadMyAddress={loadMyAddress}/>
+        <MyAccount
+          shippingAddress={shippingAddress}
+          loadMyAddress={loadMyAddress}
+        />
       </AccountSideNav>
     </>
   );

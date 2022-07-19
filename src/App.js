@@ -19,6 +19,7 @@ import Address from "./pages/Address";
 import PaymentPage from "./pages/Payment";
 import NotSignedWishlist from "./components/Wishlist/NotSignedWishlist";
 import OrderPage from "./pages/OrderPage";
+import AccountNavMobile from "./pages/AccountNavMobile";
 // component lazy loading begins
 const Home = React.lazy(() => import("./pages/Home"));
 const ProductCart = React.lazy(() => import("./pages/ProductCart"));
@@ -115,6 +116,19 @@ const App = () => {
                   </PrivateRoute>
                 }
               />
+
+              {/* mobile account navigation */}
+              
+              <Route
+                path="/account"
+                element={
+                  <PrivateRoute>
+                    {" "}
+                    <AccountNavMobile />
+                  </PrivateRoute>
+                }
+              />
+
               <Route path="/wishlist" element={<WishlistPage />} />
               <Route
                 path="/checkout/address"
