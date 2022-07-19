@@ -52,9 +52,9 @@ const MyAccount = ({ shippingAddress,loadMyAddress }) => {
       <section className="myaccount row">
         <div className="myaccount-form col-xs-12 col-sm-12 col-md-9 col-lg-9 pt-4">
           <div className="form">
-            <form className="pt-3 " onSubmit={updateAccountInfo}>
+            <form className="pt-4" onSubmit={updateAccountInfo}>
               <div class="form-group ">
-                <h6 className="pt-2">Email Address</h6>
+                <h6 className="pt-4">Email Address</h6>
 
                 <input
                   type="email"
@@ -65,8 +65,8 @@ const MyAccount = ({ shippingAddress,loadMyAddress }) => {
                   placeholder="Email Address"
                 />
               </div>
-              <h6 className="pt-2">First Name</h6>
-              <div class="form-group pt-3 ">
+              <h6 className="pt-4">First Name</h6>
+              <div class="form-group pt-2 ">
                 <input
                   required
                   defaultValue={values?.firstName}
@@ -76,8 +76,8 @@ const MyAccount = ({ shippingAddress,loadMyAddress }) => {
                   placeholder="First Name"
                 />
               </div>
-              <h6 className="pt-2">Last Name</h6>
-              <div class="form-group pt-3 ">
+              <h6 className="pt-4">Last Name</h6>
+              <div class="form-group pt-2 ">
                 <input
                   type="text"
                   onChange={handleChange("lastName")}
@@ -87,8 +87,8 @@ const MyAccount = ({ shippingAddress,loadMyAddress }) => {
                 />
               </div>
 
-              <h6 className="pt-2">Phone Number</h6>
-              <div className="  pt-3">
+              <h6 className="pt-4">Phone Number</h6>
+              <div className="  pt-2">
                 <div class="form-group ">
                   <input
                     required
@@ -98,15 +98,15 @@ const MyAccount = ({ shippingAddress,loadMyAddress }) => {
                     defaultValue={values?.phone}
                     class="form-control "
                     placeholder="Phone Number"
-                  />
+                  ></input>
                 </div>
-                {/* <button
+                <button
                   type="submit"
                   className="btn btn-dark rounded-0 w-25 ph-remove-btn"
                 >
                   {" "}
                   REMOVE
-                </button> */}
+                </button>
               </div>
 
               <div className="submit-btn pt-5">

@@ -34,12 +34,13 @@ const ShirtSection = ({
 
   return (
     <>
+    <div>
       <InfiniteScroll
         dataLength={products?.length} //This is important field to render the next data
         next={paginateResult}
         hasMore={true}
       >
-        <div class="row image-color mt-3">
+        <div class="row image-color mt-3 product-container">
           {!loading &&
             products?.length > 0 &&
             products.map((item) => {
@@ -145,6 +146,7 @@ const ShirtSection = ({
         </p> */}
         </div>
       </InfiniteScroll>
+      </div>
     </>
   );
 };

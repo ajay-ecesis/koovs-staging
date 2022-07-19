@@ -94,3 +94,14 @@
 
 
 }
+ 
+@media only screen  and (min-device-width: 1440px) and (max-device-width: 2000px) {
+.centered {
+
+    font-size: 64px;
+    right: 58px;
+    width: 474px;
+    bottom: 25px;
+}
+}
+

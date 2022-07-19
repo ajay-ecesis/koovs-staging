@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./maincategoryproductslider.css";
 import "react-multi-carousel/lib/styles.css";
 import productItem from "../../assets/images/shirts.png";
@@ -42,6 +42,7 @@ function MenCategoryProductSlider({
   });
   // const MAX = 100;
   const [values, setValues] = React.useState([0, 30]);
+  const sortDiv=useRef();
 
   useEffect(() => {
     if (filterTypes) {
@@ -71,6 +72,32 @@ function MenCategoryProductSlider({
   function getSecondPart(str, index) {
     return str.split("-")[index];
   }
+
+
+     // For closing menu, whenver we click outside
+     const useOutsideAlerter = (ref) => {
+      useEffect(() => {
+        const handleClickOutside = (event) => {
+          if (ref.current && !ref.current.contains(event.target)) {
+            //setActions(false);
+            if (event.target.id !== "hamb___btn") {
+              setActive(false)
+  
+            }
+          }
+        };
+  
+        // Bind the event listener
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+          // Unbind the event listener on clean up
+          document.removeEventListener("mousedown", handleClickOutside);
+        };
+      }, [ref]);
+    };
+  
+    useOutsideAlerter(sortDiv);
+
 
   return (
     <section className="Maincategory_product_slider">
@@ -115,11 +142,11 @@ function MenCategoryProductSlider({
                                         {filterType.brand_fq.includes(
                                           subItem.id
                                         ) && (
-                                          <i
-                                            class="fa fa-check check-tick"
-                                            aria-hidden="true"
-                                          ></i>
-                                        )}
+                                            <i
+                                              class="fa fa-check check-tick"
+                                              aria-hidden="true"
+                                            ></i>
+                                          )}
                                       </Dropdown.Item>
                                     </>
                                   );
@@ -134,7 +161,6 @@ function MenCategoryProductSlider({
                             <Dropdown.Toggle id="dropdown-autoclose-true">
                               Color <IoIosArrowDown className="downarrowicon" />
                             </Dropdown.Toggle>
-
                             <Dropdown.Menu>
                               {item.data.map((subItem) => {
                                 return (
@@ -155,11 +181,11 @@ function MenCategoryProductSlider({
                                       {filterType.color_fq.includes(
                                         subItem.id
                                       ) && (
-                                        <i
-                                          class="fa fa-check check-tick"
-                                          aria-hidden="true"
-                                        ></i>
-                                      )}
+                                          <i
+                                            class="fa fa-check check-tick"
+                                            aria-hidden="true"
+                                          ></i>
+                                        )}
                                       <p>{subItem.label}</p>
                                     </Dropdown.Item>
                                   </>
@@ -194,11 +220,11 @@ function MenCategoryProductSlider({
                                         {filterType.size_fq.includes(
                                           subItem.id
                                         ) && (
-                                          <i
-                                            class="fa fa-check check-tick"
-                                            aria-hidden="true"
-                                          ></i>
-                                        )}
+                                            <i
+                                              class="fa fa-check check-tick"
+                                              aria-hidden="true"
+                                            ></i>
+                                          )}
                                         <p style={{ padding: "0px" }}>
                                           {subItem.label}
                                         </p>
@@ -288,11 +314,11 @@ function MenCategoryProductSlider({
                                           alignItems: "center",
                                           backgroundSize: "contain",
                                           transform: "translate(233px, -16.5px)",
-                                        
+
                                         }}
                                       ></div>
                                     )}
- 
+
                                   />
                                   <output
                                     style={{ marginTop: "30px" }}
@@ -324,7 +350,7 @@ function MenCategoryProductSlider({
           </div>
         </div>
         {isActive && (
-          <div className="d-none d-lg-flex listsorting">
+          <div className="d-none d-lg-flex listsorting" ref={sortDiv}>
             <ol className="justify">
               {/* sort options based on backend api */}
               {result?.sortOptions?.data &&
