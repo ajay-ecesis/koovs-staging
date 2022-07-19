@@ -358,3 +358,13 @@
     width: 100% !important;
   }
 }
+
+.display-mob{
+  display: none;
+}
+@media(max-width:768px)
+{
+  .display-mob{
+    display: block;
+  }
+}

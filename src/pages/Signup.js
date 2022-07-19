@@ -9,7 +9,7 @@ const Signup = () => {
     <>
       <Header />
       <AccountSideNav>
-        <div className="d-none d-sm-block d-md-none ">
+        <div className="display-mob ">
           <LoginForm />
         </div>
         <RegisterForm />
