@@ -19,9 +19,14 @@ const AccountSideNav = ({ children, index }) => {
                   Sign In / Register
                 </span>
               </Link>
+              <Link
+                to="/orders"
+                style={{ textDecoration: "none", color: "black" }}
+              >
               <span className={`${index == 2 && "active"}`}>
                 Orders and Returns
               </span>
+              </Link>
               <Link
                 to="/user/account"
                 style={{ textDecoration: "none", color: "black" }}
