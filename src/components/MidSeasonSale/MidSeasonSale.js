@@ -78,7 +78,7 @@ function MidSeasonSale({categoryName}) {
     navigate(`/product/${slug}/${id}/${lineId}`);
   };
   return (
-    <section className="women-fashion py-lg-5 pt-4">
+    <section className="women-fashion py-lg-5 pt-4 mid_season_sale">
       {!loading && products.length > 0 ? (
         <>
           <div className="bg-light-blue"></div>
@@ -90,7 +90,7 @@ function MidSeasonSale({categoryName}) {
                 <Link to={`/category/${categoryName}/mid-season-sale`} style={{color:"black"}}> <u>View All</u></Link> 
                 </p>
               </div>
-              <div className="row women" id="carousel-s">
+              <div className="row women" id="carousel-mid-season">
                 <Carousel
                   infinite="true"
                   partialVisible={false}

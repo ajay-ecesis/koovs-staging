@@ -13,6 +13,13 @@
     border-radius: 0!important;
     border: 1.5px solid;
 }
+
+.myaccount .form-group  input::placeholder{
+
+    color: #878787;
+
+
+}
 .forgot-password{
     position: relative;
     top: 12px;
@@ -27,6 +34,7 @@ text-align: center;
 }
 .myaccount h6{
     font-weight: 600;
+  
 }
 .myaccount .error_message{
     font-size: 14px;

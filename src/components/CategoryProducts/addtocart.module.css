@@ -1,10 +1,10 @@
 .view_addtocart {
 
+    bottom: 88px;
     background-color: #fff;
     height: auto;
     width: 100%;
     position: absolute;
-    bottom: 0px;
     left: 0;
     z-index: 1010;
     padding: 0px 0px 14px 0px;

@@ -35,7 +35,7 @@ class MobileStart extends React.Component {
                 autoPlaySpeed={2000}>
                 <div className="mx-2">
                 <Link
-                    to="/category/men"
+                    to="/collection/men"
                     style={{ textDecoration: "none", color: "black" }}
                   > <div className="bg-white p-2 border border-dark text-center fs-14">
                     Men
@@ -44,7 +44,7 @@ class MobileStart extends React.Component {
                 </div>
                 <div className="mx-2">
                 <Link
-                    to="/category/women"
+                    to="/collection/women"
                     style={{ textDecoration: "none", color: "black" }}
                   >    <div className="bg-white p-2 border border-dark text-center fs-14">
                     Women

@@ -84,7 +84,7 @@ const Addtocart = ({ setCart, item, token, reloadRecaptcha }) => {
 
   return (
     <>
-      <div className={style.view_addtocart} style={{ bottom: "80px" }}>
+      <div className={style.view_addtocart} >
         <div className="container">
           <div className={`${style.closebutton} d-flex `}>
             <GrClose className={style.closeicon} onClick={() => setCart("")} />

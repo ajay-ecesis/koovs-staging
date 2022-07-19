@@ -1,46 +1,51 @@
-.stories h5{
+.mobile_men_banner h5{
     margin: 0;
 }
-.stories{
+.mobile_men_banner{
     padding: 40px 0;
-    background:#93FAB0;
     position: relative;
 }
-.stories .img-content p{
+.mobile_men_banner .img-content p{
     position: absolute;
     bottom: 0;
     left: 1rem;
     color: #fff;
 }
-.stories .img-content{
+.mobile_men_banner .img-content{
     position: relative;
 }
 video{
     width: 100%;
 }
-.stylestories{
+.stylemobile_men_banner{
     display: block;
 }
-.stories .react-multi-carousel-list{
 
-    padding-left:8px;
+@media (max-width:567px){
+
+    .mobile_men_banner .react-multi-carousel-list{
+
+    padding-left:3px !important;
 
 }
+
+}
+
 
 @media (min-width:575px) and (max-width:768px)
 {
-    .women-fashion .container-fluid #carousel-slide, .men-fashion .container-fluid #carousel-slide, .stories .container-fluid #carousel-slide{
+    .mid_season_sale .container-fluid #carousel-slide, .men-fashion .container-fluid #carousel-slide, .mobile_men_banner .container-fluid #carousel-slide{
 
 padding-left: 0!important;
 left:0px;
     }
 
-    .stylestories h5{
+    .stylemobile_men_banner h5{
 
         margin-left:70px;
     }
 
-    .stylestories p{
+    .stylemobile_men_banner p{
 
         margin-right:94px;
     
