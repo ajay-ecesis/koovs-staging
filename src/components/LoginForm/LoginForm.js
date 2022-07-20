@@ -6,6 +6,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getProductByBatchIdAPI } from "../../api/commonApi";
+import { Modal, Button } from "react-bootstrap";
+import { forgotPasswordApi } from "../../api/account";
 const LoginForm = () => {
   const cartData = useSelector((state) => state.cart.items);
   const navigate = useNavigate();
@@ -16,6 +18,12 @@ const LoginForm = () => {
   const googleCaptcha = useRef();
   const dispatch = useDispatch();
   const [key, setKey] = useState(1);
+  const [showForgotPassword, setForgotPassword] = useState(false);
+
+  const [forgotPwdResult, setForgotPwdResult] = useState({
+    errorMsg: null,
+    successMsg: null,
+  });
 
   useEffect(() => {
     reloadRecaptcha();
@@ -56,7 +64,6 @@ const LoginForm = () => {
         }
         sku = sku.toString();
         let result = await getProductByBatchIdAPI(sku);
-        console.log("this is result", result);
       };
 
       // dispatches the login state
@@ -67,7 +74,7 @@ const LoginForm = () => {
       });
       // navigate("/user/account");
       // window.location.href = "/user/account";
-      navigate(-1)
+      navigate(-1);
     } else {
       // reloads the recaptcha key with new one
       googleCaptcha.current.execute();
@@ -78,6 +85,29 @@ const LoginForm = () => {
     setBtnLoading(false);
   };
 
+  // forgot pwd submission
+  const submitForgotPassword = async () => {
+    setForgotPwdResult(null);
+    let forgotEmail = document.getElementById("forgotPwdEmail").value;
+    let data = await forgotPasswordApi(forgotEmail);
+    if (!data.status) {
+      setForgotPwdResult({ ...forgotPwdResult, errorMsg: data.errorMessage });
+    } else {
+      setForgotPwdResult({
+        ...forgotPwdResult,
+        successMsg:
+          "Your Password request has been successfully registered. Please check your mail",
+      });
+    }
+  };
+  const handleClose = () =>{
+    setForgotPassword(false);
+    setForgotPwdResult({
+      successMsg:null,
+      errorMsg:null
+    })
+  } 
+  const handleShow = () => setForgotPassword(true);
   return (
     <>
       <ReCaptcha
@@ -121,7 +151,13 @@ const LoginForm = () => {
                 )}
               </div>
               <div className="forgot-password">
-                <span>Forgot your password?</span>
+                <span
+                  onClick={() => {
+                    handleShow(true);
+                  }}
+                >
+                  Forgot your password.?
+                </span>
               </div>
 
               <div className="submit-btn pt-5">
@@ -147,6 +183,47 @@ const LoginForm = () => {
           </div>
         </div>
       </section>
+
+      {/* forgot password modal */}
+
+      <Modal show={showForgotPassword} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>
+            <h5>Reset Your password</h5>{" "}
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>Reset your password to get access to your account</p>
+
+          <div class="form-group pt-3 ">
+            <label>Enter your email </label>
+            <input
+              required
+              type="email"
+              class="form-control"
+              id="forgotPwdEmail"
+              placeholder="Enter your email "
+            />
+          </div>
+
+          <span style={{ color: "green" }}>
+            {" "}
+            {forgotPwdResult?.successMsg}{" "}
+          </span>
+          <span style={{ color: "red" }}>{forgotPwdResult?.errorMsg}</span>
+        </Modal.Body>
+        <Modal.Footer>
+          {!forgotPwdResult?.successMsg? (
+            <Button variant="secondary" onClick={submitForgotPassword}>
+              Submit
+            </Button>
+          ) : (
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+          )}
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };

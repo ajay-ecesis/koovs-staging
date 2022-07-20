@@ -6,6 +6,7 @@ const initialState = {
 };
 
 const userReducer =  (state = initialState, action) => {
+  console.log("aCtioNNNNN",action)
   switch (action.type) {
     case USER_SIGNUP:
       localStorage.setItem("userToken", JSON.stringify(action.payload.token));
@@ -16,7 +17,7 @@ const userReducer =  (state = initialState, action) => {
       };
 
     case USER_LOGIN:
-      return { ...state, isLoggedIn: true, user: action.payload.data };
+      return { ...state, isLoggedIn: true, user: action.payload.data||action.payload.user };
 
     case USER_LOGOUT:
       localStorage.removeItem("userToken");

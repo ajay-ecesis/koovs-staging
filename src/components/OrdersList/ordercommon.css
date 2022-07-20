@@ -1,0 +1,58 @@
+.table-order {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.returnsandorders {
+    display: flex;
+    gap: 50px;
+    margin-top: 25px;
+    margin-bottom: 20px;
+}
+
+.order-headingtable {
+
+    border: 0;
+}
+
+.table-section .heading-track {
+    padding-top: 85px;
+}
+
+.table-section .table>:not(caption)>*>* {
+    padding: 0;
+
+}
+.table-section .active{
+    opacity: 1 !important;
+    text-decoration: underline !important;
+   
+}
+.table-section .not-active{
+    opacity: 0.6;
+    text-decoration: none;
+    cursor: pointer;
+}
+@media only screen and (max-width: 576px) {
+    .orderdate-heading {
+
+        display: flex;
+        justify-content: space-between;
+
+
+    }
+
+    .mobile-mainorder {
+
+        margin-top:35px;
+    }
+
+    .table-section h5 {
+        font-weight: 600;
+    }
+
+    .table-section .heading-track {
+        padding-top: 15px;
+    }
+}

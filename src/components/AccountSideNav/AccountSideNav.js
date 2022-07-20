@@ -1,47 +1,51 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./accountsidenav.css";
-const AccountSideNav = ({ children, index }) => {
+import styles from "./accountsidenav.module.css";
+const AccountSideNav = ({ children,index  }) => {
   return (
     <>
-      <section className=" container-fluid account-section d-flex">
-        <div className="account-actions col-3 pt-4">
-          <h4>Account</h4>
+      <section className={`container-fluid ${styles.account_section} d-flex`}>
+        <div className={` ${styles.account_actions} col-3`}>
+          <div className={styles.account_mobile}>
+            <h4 className={styles.account_heading}>Account</h4>
+          </div>
 
           <div className="account-nav ">
-            <div className=" d-flex flex-column pt-3">
+            <div
+              className={` ${styles.account_navheadings} d-flex flex-column pt-3`}
+            >
               <Link
                 to="/signup/login"
                 style={{ textDecoration: "none", color: "black" }}
               >
-                {" "}
-                <span className={`${index == 1 && "active"}`}>
-                  Sign In / Register
-                </span>
+             <span className={`${index == 1 &&  styles.active}`}>Sign In / Register</span>
               </Link>
-              <span className={`${index == 2 && "active"}`}>
-                Orders and Returns
-              </span>
+              <Link
+                to="/orders"
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                {" "}
+                <span className={`${index == 2 && styles.active}`}>Orders and Returns</span>{" "}
+              </Link>
               <Link
                 to="/user/account"
                 style={{ textDecoration: "none", color: "black" }}
               >
                 {" "}
-                <span className={`${index == 3 && "active"}`}>
-                  My Information
-                </span>
+                <span className={`${index == 3 &&  styles.active}`}>My Information</span>
               </Link>
               <Link
                 to="/wishlist"
                 style={{ textDecoration: "none", color: "black" }}
               >
                 {" "}
-                <span className={`${index == 4 && "active"}`}>Wishlist</span>
+                <span className={`${index == 4&&  styles.active}`}>Wishlist</span>{" "}
               </Link>
             </div>
           </div>
         </div>
-        <div className="col ">{children}</div>
+
+        <div className={`col `}>{children}</div>
       </section>
     </>
   );

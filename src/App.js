@@ -18,6 +18,8 @@ import PrivateRoute from "./route/PrivateRoute";
 import Address from "./pages/Address";
 import PaymentPage from "./pages/Payment";
 import NotSignedWishlist from "./components/Wishlist/NotSignedWishlist";
+import OrderPage from "./pages/OrderPage";
+import AccountNavMobile from "./pages/AccountNavMobile";
 // component lazy loading begins
 const Home = React.lazy(() => import("./pages/Home"));
 const ProductCart = React.lazy(() => import("./pages/ProductCart"));
@@ -83,7 +85,8 @@ const App = () => {
           <Suspense fallback={<> </>}>
             <Routes>
               <Route exact path="/" element={<Home />} />
-              <Route path="/cart" element={<ProductCart />} />
+              <Route path="/cart" element={<ProductCart />} />              
+              <Route path="/orders" element={<OrderPage />} />
               <Route
                 path="/product/:title/:productId/:lineId"
                 element={<ProductDetail />}
@@ -113,6 +116,19 @@ const App = () => {
                   </PrivateRoute>
                 }
               />
+
+              {/* mobile account navigation */}
+              
+              <Route
+                path="/account"
+                element={
+                  <PrivateRoute>
+                    {" "}
+                    <AccountNavMobile />
+                  </PrivateRoute>
+                }
+              />
+
               <Route path="/wishlist" element={<WishlistPage />} />
               <Route
                 path="/checkout/address"

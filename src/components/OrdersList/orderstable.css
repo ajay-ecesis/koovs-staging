@@ -1,0 +1,41 @@
+
+    @media only screen and (max-width: 576px) {
+
+        .order-status-view .nav_item{
+
+          font-size:12px;
+        
+        }
+
+    }
+
+.table>:not(:first-child) {
+
+
+border-top:1px solid ;
+
+}
+.table-ordercontents{
+    border:1px solid #000;
+    margin-top:14px;
+    opacity:0.6;
+    position: relative;
+}
+
+@media only screen and (max-width: 576px) {
+
+
+    .table-ordercontents{
+        border:1px solid #000;
+        margin: 14px 9px 3px 13px;
+        /* display: flex; */
+        justify-content: space-between;
+    }
+
+    .table-ordercontents td{
+        padding:0 12px;
+    }
+
+   
+
+}

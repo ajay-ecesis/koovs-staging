@@ -120,3 +120,26 @@ export const editAddressApi = async (address) => {
     return false;
   }
 };
+
+export const forgotPasswordApi = async (email) => {
+  let authToken = await JSON.parse(localStorage.getItem("guestToken"));
+
+  const config = {
+    headers: {
+      "X-API-CLIENT": "WEB",
+      "x-auth-token": authToken,
+    },
+  };
+  try {
+    const { data } = await axios.put(
+      clientServer + "/koovs-auth-service/v1/auth/forget-password",
+      { email: email },
+      config
+    );
+    return data;
+  } catch (err) {
+    console.log("err", err);
+
+    return err.response.data;
+  }
+};

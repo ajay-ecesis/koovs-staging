@@ -22,6 +22,7 @@ const MyAccount = ({ shippingAddress,loadMyAddress }) => {
         gender: user.user.gender,
       });
     }
+    console.log("user exisst now",user)
   }, [user]);
 
   // For changing login values

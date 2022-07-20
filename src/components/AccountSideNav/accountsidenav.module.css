@@ -1,0 +1,49 @@
+.account_section {
+    margin-top: 100px;
+}
+
+.account_section h4 {
+    font-weight: 600;
+}
+
+.account_nav span {
+    padding-top: 5px;
+}
+
+.account_nav .active {
+    opacity: 0.4;
+}
+
+.account_heading {
+
+    margin-left: 12px;
+
+}
+
+.account_section .account_actions {
+    display: block;
+}
+
+@media(max-width:768px) {
+    .account_section .account_actions {
+        display: none;
+    }
+}
+
+@media(max-width:576px) {
+
+    .account_section .account_actions {
+        display: none;
+
+    }
+
+    .account_section {
+        padding-right: 0px !important;
+        padding-left: 0px !important;
+        margin-top: 0px;
+    }
+}
+
+.active {
+    opacity: 0.4;
+}

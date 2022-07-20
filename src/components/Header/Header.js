@@ -193,10 +193,17 @@ function Header() {
                 </>
               ) : (
                 <>
-                  <li>
+                  <li className="display-desktop">
                     {" "}
                     <Link className="nav-link" to="/user/account">
                       My Account
+                    </Link>
+                  </li>
+
+                  <li className="display-mob">
+                    {" "}
+                    <Link className="nav-link" to="/account">
+                    My Account
                     </Link>
                   </li>
                 </>
