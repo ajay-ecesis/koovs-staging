@@ -26,13 +26,24 @@ function FourNotFour() {
   return (
     <>
       <Header />
-      <FourNotFourBody />
+      <>
+      <div className="page-wrap d-flex flex-row align-items-center" style={{minHeight:"100vh",background: "yellow"}}>
+  <div className="container">
+    <div className="row justify-content-center">
+      <div className="col-md-12 text-center">
+        <span className="display-1 d-block">404</span>
+        <div className="mb-4 lead">
+          The page you are looking for was not found.
+        </div>
+        <a href="https://www.totoprayogo.com/#" className="btn btn-link">
+          Back to Home
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
 
-      {/* <ReCaptcha
-        sitekey="6LdSHv0UAAAAACfq2Tk2XQrk1kek189iNpni7nCI"
-        action="signup_actionn"
-        verifyCallback={handleVerify}
-      /> */}
+      </>
       <Footer />
     </>
   );
