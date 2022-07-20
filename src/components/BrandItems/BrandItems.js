@@ -28,7 +28,7 @@ class BrandItems extends React.Component {
     return (
       <section className="BrandItem py-1 d-block d-lg-none">
         <div className="container px-0">
-          <div className="row g-1">
+          <div className="">
             <div className="row" id="carousel-slide">
               <Carousel
                 infinite={true}

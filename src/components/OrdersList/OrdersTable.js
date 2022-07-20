@@ -8,7 +8,7 @@ const OrdersTable = () => {
     return (
         <>
             <section className='col-lg-8 col-xl-8 col-sm-12'>
-                <Table className="row">
+                <Table className="row orders-table-section">
                     <tr className='table-ordercontents' onClick={() => setOrdersview(!ordersview)} >
                        
                         <td className="col-sm-4 col-lg-2 ">10-02-2020</td>
@@ -21,6 +21,7 @@ const OrdersTable = () => {
                         <td className="col-sm-4 col-lg-2"> 10-02-2020</td>
                         <td className="col-sm-4 col-lg-2 ">XH8A1H</td>
                         <td className="col-sm-4 col-lg-2">Order closed</td>
+                      
                     </tr>
                 </Table>
             </section>

@@ -214,9 +214,9 @@ export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
                                       );
                                     })}
                                 </ul>
-                                <div>
+                                {/* <div>
                                   <img src={shoppingbag} alt="cart-icon" className="d-lg-none d-xl-none d-sm-flex d-xs-flex"/>
-                                </div>
+                                </div> */}
                               </div>
                             </div>
                           </div>
@@ -284,12 +284,12 @@ export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
                                 </label>
                               </div>
                               <div className="d-flex flex-column align-items-end">
-                                <LazyLoadImage
+                                {/* <LazyLoadImage
                                   effect="blur"
                                   src={shopimg}
                                   className="img-fluid m-2"
                                   alt="Koovs "
-                                />
+                                /> */}
                                 <div className="preview-color">
                                   {data.mainColor.map((color) => {
                                     return (

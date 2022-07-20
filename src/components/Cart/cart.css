@@ -95,7 +95,7 @@ hr {
 
 .cart .update-cart{
     position: absolute;
-    right: 64px;
+    right: 0;
 }
 
 .cart .checkout-cart{
@@ -108,4 +108,21 @@ hr {
     justify-content: center;
     margin-bottom:20px;
 }
+
+.cart-items{
+    display: block;
+    font-size: 14px;
+    /* text-align: center; */
 }
+}
+
+.cart-items tr{
+    padding-top: 10px;
+}
+.cart-items td{
+
+  padding-top:10px !important;
+}
+
+
+.cart-items input[type=number] {text-align: center;}

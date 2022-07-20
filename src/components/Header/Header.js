@@ -87,14 +87,26 @@ function Header() {
     navigate("/");
   };
 
+  const handleChangeNav=(e)=>{
+let element=document.getElementById("headerchkbox")
+    if (e.currentTarget.checked) {
+      element.classList.add("full-height-menu");
+      document.body.style.overflow = 'hidden';
+    } else {
+      element.classList.remove("full-height-menu");
+      document.body.style.overflow = 'auto';
+    }
+
+  }
+
   return (
     <header id="header">
       <div className="top-nav">
-        <input id="menu-toggle" type="checkbox" />
+        <input id="menu-toggle" type="checkbox" onChange={handleChangeNav}/>
         <label className="menu-button-container" htmlFor="menu-toggle">
           <div className="menu-button" id="clickClose"></div>
         </label>
-        <ul className="menu">
+        <ul className="menu " id="headerchkbox">
           <li className="main-menu d-lg-none">
             <button className="btn btn-outline-dark rounded-0 px-5 mx-auto w-75 ">
               SEARCH

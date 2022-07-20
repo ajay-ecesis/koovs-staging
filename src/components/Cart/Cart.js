@@ -149,15 +149,15 @@ const Cart = () => {
 
             <div className="w-75 mx-auto">
               <div className="row">
-                <div className="col"></div>
-                <div className="col-9">
+                <div className="col display-desktop"></div>
+                <div className="col-xs-12 col-sm-12 col-md-9 col-lg-9">
                   {loading && loadingPlaceHolder()}
                   {cartItems?.length > 0 && (
                     <>
                       <div className="row">
                         {!loading && (
                           <>
-                            <table className="table">
+                            <table className="table cart-items">
                               <thead>
                                 <tr>
                                   <th scope="col">Item</th>
@@ -175,7 +175,7 @@ const Cart = () => {
                                     return (
                                       <>
                                         <tr key={item.total}>
-                                          <th scope="row" className="w-50">
+                                          <td scope="row" className="w-50">
                                             <LazyLoadImage
                                               effect="blur"
                                               src={item?.product?.cartImageUrl}
@@ -192,7 +192,7 @@ const Cart = () => {
                                             <div>
                                               {item?.product?.productName}
                                             </div>
-                                          </th>
+                                          </td>
                                           <td className="w-25">
                                             {" "}
                                             <div className="pt-4">
@@ -303,7 +303,7 @@ const Cart = () => {
                                 <u>Update cart</u>
                               </div>
                             </div>
-                            <div className="pt-3">
+                            <div className="pt-3 " style={{textAlign:"center"}}>
                               <Link
                                 to="/checkout/address"
                                 style={{ textDecoration: "none" }}
@@ -349,7 +349,7 @@ const Cart = () => {
                   )}
                 </div>
 
-                <div className="col"></div>
+                <div className="col display-desktop"></div>
               </div>
             </div>
           </div>
