@@ -340,7 +340,7 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
                     <div>₹ {productDetail.product.discountPrice}</div>
                   </div>
                   <br />
-                  <div className="d-flex align-items-center py-lg-2 py-0">
+                  <div className="size-prod-text d-flex align-items-center py-lg-2 py-0">
                     <div className="w-25">COLOR</div>
                     <div className="preview-color">
                       {/* color mapping from api */}
@@ -366,7 +366,7 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
                       </>
                     </div>
                   </div>
-                  <div className="d-flex align-items-center pb-lg-4 pb-0">
+                  <div className="size-prod-text d-flex align-items-center pb-lg-4 pb-0">
                     <div className="w-25">SIZE</div>
                     <div className="preview-size">
                       <ul className="d-flex align-items-center">
@@ -519,7 +519,7 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
                     DESCRIPTION
                   </span>
                   <span
-                    class="  pt-2"
+                    class="details-product  pt-2"
                     id="v-pills-brand_detail-tab"
                     data-bs-toggle="pill"
                     data-bs-target="#v-pills-brand_detail"
@@ -577,6 +577,7 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
                     aria-labelledby="v-pills-details-tab"
                   >
                     {productDetail.product.styletipSizeFit}
+            
                   </div>
                 </div>
               </div>

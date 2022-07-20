@@ -165,6 +165,7 @@ const Cart = () => {
                                   <th scope="col">Size</th>
                                   <th scope="col">Quantity</th>
                                   <th scope="col">Total</th>
+                                  <th scope="col"></th>
                                 </tr>
                               </thead>
 
@@ -295,10 +296,10 @@ const Cart = () => {
                               <hr className="line" />
                             </div>
                             <div className="d-flex bd-highlight mb-3 cart-total">
-                              <div className="mr-auto p-2 bd-highlight text-bold">
+                              <div className="mr-auto p-2 bd-highlight d-none d-xl-block d-xl-block text-bold">
                                 Continue shopping
                               </div>
-                              <div className="p-2 bd-highlight text-bold">
+                              <div className="p-2 bd-highlight text-bold update-cart">
                                 <u>Update cart</u>
                               </div>
                             </div>
@@ -308,7 +309,11 @@ const Cart = () => {
                                 style={{ textDecoration: "none" }}
                               >
                                 {" "}
-                                <button className="btn btn-dark px-5 rounded-0 mx-auto d-flex">
+
+                                <button type='button' className="continue-shopping px-5 rounded-0 mx-auto d-sm-flex d-lg-none d-xl-none">
+                                  CONTINUE SHOPPING
+                                </button>
+                                <button className="checkout-cart btn btn-dark px-5 rounded-0 mx-auto d-flex">
                                   CHECKOUT
                                 </button>
                               </Link>

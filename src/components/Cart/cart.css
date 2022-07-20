@@ -67,3 +67,45 @@ hr {
         -webkit-mask-position: 120% 0
     }
 }
+
+.cart .checkout-cart{
+
+    width:270px;
+    justify-content: center;
+    align-items:center;
+    height:44px;
+}
+
+@media only screen and (max-width:768px){
+
+
+.cart .continue-shopping{
+
+    border: 1px solid #000;
+    color: #000;
+    justify-content: center;
+    align-items: center;
+    width: 219px;
+    font-weight: 400;
+    height: 30px;
+    font-size: 11px;
+    background: #FFF;
+    margin: 30px auto;
+}
+
+.cart .update-cart{
+    position: absolute;
+    right: 64px;
+}
+
+.cart .checkout-cart{
+
+    width:219px;
+    height:30px;
+    font-size: 11px;
+    font-weight: 400;
+    align-items: center;
+    justify-content: center;
+    margin-bottom:20px;
+}
+}

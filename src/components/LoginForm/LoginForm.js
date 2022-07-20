@@ -111,7 +111,7 @@ const LoginForm = () => {
                   placeholder="Password"
                 />
               </div>
-              <div class="form-group pt-3 ">
+              <div class="form-group  ">
                 {error ? (
                   <>
                     <span className="error_message">*{error}</span>{" "}
@@ -121,12 +121,12 @@ const LoginForm = () => {
                 )}
               </div>
               <div className="forgot-password">
-                <span>Forgot your password.?</span>
+                <span>Forgot your password?</span>
               </div>
 
               <div className="submit-btn pt-5">
                 {!btnLoading ? (
-                  <button type="submit" className="btn w-50 btn-dark rounded-0">
+                  <button type="submit" className="btn submit-sigin btn-dark rounded-0">
                     {" "}
                     SIGN IN
                   </button>

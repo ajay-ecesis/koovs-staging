@@ -186,3 +186,16 @@
 
 
 }
+
+.favourite-products .mob_green_slider{
+  /* left: 10%; */
+position: relative;
+}
+@media(max-width:768px){
+  .favourite-products .green_carousel{
+    padding-left: 73px;
+  }
+  .favourite-products .green_carousel .react-multi-carousel-list {
+    padding: 0;
+  }
+}

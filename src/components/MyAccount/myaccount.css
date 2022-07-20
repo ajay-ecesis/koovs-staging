@@ -42,3 +42,12 @@ text-align: center;
     font-size: 14px;
     color: red;
 }
+
+@media only screen and (max-width:768px){
+
+
+    .myaccount .update-info {
+        width: 71%;
+    }
+
+}

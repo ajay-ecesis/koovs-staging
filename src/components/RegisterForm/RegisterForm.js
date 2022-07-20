@@ -86,7 +86,7 @@ function RegisterForm() {
                 required
                 type="text"
                 class="form-control"
-                placeholder="Full Name"
+                placeholder="Full name*"
                 onChange={handleChange("fullName")}
               />
             </div>
@@ -95,7 +95,7 @@ function RegisterForm() {
                 required
                 type="email"
                 class="form-control"
-                placeholder="Email Address"
+                placeholder="Email address*"
                 onChange={handleChange("email")}
               />
             </div>
@@ -104,7 +104,7 @@ function RegisterForm() {
                 required
                 type="password"
                 class="form-control"
-                placeholder="Password"
+                placeholder="Password*"
                 onChange={handleChange("password")}
               />
             </div>
@@ -113,7 +113,7 @@ function RegisterForm() {
                 type="text"
                 required
                 class="form-control"
-                placeholder="Phone Number"
+                placeholder="Phone Number*"
                 onChange={handleChange("phoneNumber")}
               />
             </div>
@@ -242,7 +242,7 @@ function RegisterForm() {
                 I have read and understood the Terms and Conditions.{" "}
               </label>
             </div>
-            <div className="submit-btn pt-2">
+            <div className="submit-btn pt-4">
               {btnLoading ? (
                 <>
                   {" "}
@@ -254,9 +254,9 @@ function RegisterForm() {
               ) : (
                 <>
                   {" "}
-                  <button type="submit" className="btn btn-dark rounded-0 w-50">
+                  <button type="submit" className="submit-account btn btn-dark rounded-0">
                     {" "}
-                    Create
+                    CREATE
                   </button>
                 </>
               )}

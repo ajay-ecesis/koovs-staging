@@ -96,7 +96,7 @@ function Header() {
         </label>
         <ul className="menu">
           <li className="main-menu d-lg-none">
-            <button className="btn btn-outline-dark rounded-0 px-5 mx-auto">
+            <button className="btn btn-outline-dark rounded-0 px-5 mx-auto w-75 ">
               SEARCH
             </button>
           </li>
@@ -235,7 +235,7 @@ function Header() {
             <img src={koovslogo} alt="Koovs Logo" />
           </Link>
         </div>
-        <div className="d-flex align-items-center gap-4">
+        <div className="d-flex align-items-center  nav-actions">
           <Link to="/search">
             <img
               src={koovsicon}
