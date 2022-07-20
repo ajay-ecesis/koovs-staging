@@ -67,3 +67,16 @@
 
     padding-left: 8px;
 }
+
+.submit-account{
+    width:198px;
+    height:40px;
+}
+
+.register-form input::placeholder{
+
+
+    color:#878787 !important;
+    font-weight: 400;
+    font-size: 11px;
+}

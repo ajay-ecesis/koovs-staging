@@ -100,13 +100,13 @@ const MyAccount = ({ shippingAddress,loadMyAddress }) => {
                     placeholder="Phone Number"
                   ></input>
                 </div>
-                <button
+                {/* <button
                   type="submit"
                   className="btn btn-dark rounded-0 w-25 ph-remove-btn"
                 >
                   {" "}
                   REMOVE
-                </button>
+                </button> */}
               </div>
 
               <div className="submit-btn pt-5">
@@ -142,6 +142,7 @@ const MyAccount = ({ shippingAddress,loadMyAddress }) => {
                         <span className="pt-3">
                           {address.shippingAddress.zip},
                           {address.shippingAddress.city},{" "}
+                          <br />
                           {address.shippingAddress.state}
                           <br />
                           <br />

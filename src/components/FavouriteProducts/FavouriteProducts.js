@@ -4,6 +4,7 @@ import "react-multi-carousel/lib/styles.css";
 import "./favouriteproducts.css";
 import headbandimg from "../../assets/images/headband.png";
 import shopimg from "../../assets/images/Shopping-bag.png";
+import shoppingbag from "../../assets/images/Shopping-bag.png";
 import { Link, useNavigate } from "react-router-dom";
 import {
   getProductByBatchIdAPI,
@@ -37,13 +38,13 @@ export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
     tablet: {
       dots: true,
       breakpoint: { max: 1024, min: 464 },
-      items: 2,
+      items: 4,
       partialVisibilityGutter: 60,
       slidesToSlide: 2, // optional, default to 1.
     },
     mobile: {
       dots: true,
-      breakpoint: { max: 464, min: 0 },
+      breakpoint: { max: 768, min: 0 },
       items: 3,
       partialVisibilityGutter: 15,
       slidesToSlide: 1, // optional, default to 1.
@@ -131,7 +132,7 @@ export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
       {similiarProducts.length !== 0 && (
         <>
           <div className="container-fluid">
-            <div className="row pb-4 pb-lg-0">
+            <div className="row pb-5 pb-lg-0">
               <div className="col-12 col-lg-6">
                 <h5 className="fw-bold pb-4 pt-4 pt-lg-0">
                   Shop the whole outfit{" "}
@@ -187,7 +188,7 @@ export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
                                   );
                                 })}
                               </div>
-                              <div className="preview-size">
+                              <div className="preview-size d-flex justify-content-between">
                                 <ul className="d-flex align-items-center">
                                   {similiarProductSize?.length > 0 &&
                                     similiarProductSize[
@@ -196,13 +197,11 @@ export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
                                       return (
                                         <>
                                           <li
-                                            className={`${
-                                              size.isOutOfStock && "no-stock"
-                                            } ${
-                                              selectedSize == size.id &&
+                                            className={`${size.isOutOfStock && "no-stock"
+                                              } ${selectedSize == size.id &&
                                               selectedVariant == index &&
                                               "list-active"
-                                            }`}
+                                              }`}
                                             onClick={() =>
                                               !size.isOutOfStock &&
                                               selectSize(size.id, index)
@@ -215,6 +214,9 @@ export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
                                       );
                                     })}
                                 </ul>
+                                <div>
+                                  <img src={shoppingbag} alt="cart-icon" className="d-lg-none d-xl-none d-sm-flex d-xs-flex"/>
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -282,12 +284,12 @@ export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
                                 </label>
                               </div>
                               <div className="d-flex flex-column align-items-end">
-                                {/* <LazyLoadImage
+                                <LazyLoadImage
                                   effect="blur"
                                   src={shopimg}
                                   className="img-fluid m-2"
                                   alt="Koovs "
-                                /> */}
+                                />
                                 <div className="preview-color">
                                   {data.mainColor.map((color) => {
                                     return (
@@ -330,9 +332,10 @@ export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
             </div>
             <div className="row d-lg-none bg-green pt-3">
               <div className="d-flex justify-content-between">
-                <h5 className="fw-bold"></h5>
+                <h5 className="fw-bold">Others who bought this also bought</h5>
               </div>
-              <div className="row pe-0" id="carousel-slide">
+              <div className="green_carousel">
+              <div className="row pe-0 mob_green_slider" id="carousel-slide">
                 <Carousel
                   infinite="true"
                   showDots
@@ -376,6 +379,7 @@ export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
                     );
                   })}
                 </Carousel>
+              </div>
               </div>
             </div>
           </div>
