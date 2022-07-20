@@ -7,7 +7,7 @@ import ReturnsTable from './ReturnsTable';
 const OrderCommon = () => {
 
     const [isreturn, setReturn] = useState(false);
-    const [isorder, setOrder] = useState(false);
+    const [isorder, setOrder] = useState(true);
 
     function toggleMenu(menu) {
         if (menu == "orders") {
@@ -43,6 +43,7 @@ const OrderCommon = () => {
                         </tr>
 
                     </Table>
+
                 </div>
             </section>
 

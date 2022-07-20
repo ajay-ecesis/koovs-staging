@@ -357,7 +357,7 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
                                 onChange={() => selectColor(color.id)}
                                 defaultChecked={
                                   productDetail?.product?.colorCode ==
-                                    color.code && true
+                                  color.code && true
                                 }
                               />
                             </>
@@ -375,9 +375,8 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
                           return (
                             <>
                               <li
-                                className={`${
-                                  size.isOutOfStock && "no-stock"
-                                } ${selectedSize == size.id && "list-active"}`}
+                                className={`${size.isOutOfStock && "no-stock"
+                                  } ${selectedSize == size.id && "list-active"}`}
                                 onClick={() =>
                                   !size.isOutOfStock && selectSize(size.id)
                                 }
@@ -393,30 +392,33 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
                   {error && <div style={{ color: "red" }}>*{error}</div>}
                   <br />
 
-                  {btnLoading ? (
-                    <>
-                      <button className="btn w-100 btn-dark rounded-0">
-                        PLEASE WAIT...
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      {addedToCart ? (
+                  <div className="display-desktop">
+                    {btnLoading ? (
+                      <>
                         <button className="btn w-100 btn-dark rounded-0">
-                          ADDED TO CART
+                          PLEASE WAIT...
                         </button>
-                      ) : (
-                        <button
-                          className="btn w-100 btn-dark rounded-0"
-                          onClick={() =>
-                            addProductToCart(productDetail?.product)
-                          }
-                        >
-                          ADD TO CART
-                        </button>
-                      )}
-                    </>
-                  )}
+                      </>
+                    ) : (
+                      <>
+                        {addedToCart ? (
+                          <button className="btn w-100 btn-dark rounded-0">
+                            ADDED TO CART
+                          </button>
+                        ) : (
+                          <button
+                            className="btn w-100 btn-dark rounded-0"
+                            onClick={() =>
+                              addProductToCart(productDetail?.product)
+                            }
+                          >
+                            ADD TO CART
+                          </button>
+                        )}
+                      </>
+                    )}
+                  </div>
+
 
                   <div className="product-desc pt-5 product-desc-desktop">
                     <div className="product-spec-mobile">
@@ -472,6 +474,32 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
           </div>
 
           <div className="product-desc-mobile pt-3">
+            <div>
+              {btnLoading ? (
+                <>
+                  <button className="btn w-100 btn-dark rounded-0">
+                    PLEASE WAIT...
+                  </button>
+                </>
+              ) : (
+                <>
+                  {addedToCart ? (
+                    <button className="btn w-100 btn-dark rounded-0">
+                      ADDED TO CART
+                    </button>
+                  ) : (
+                    <button
+                      className="btn w-100 btn-dark rounded-0"
+                      onClick={() =>
+                        addProductToCart(productDetail?.product)
+                      }
+                    >
+                      ADD TO CART
+                    </button>
+                  )}
+                </>
+              )}
+            </div>
             <div className="product-desc-content">
               <div class="accordion-item">
                 <h2 class="accordion-header" id="headingOne">
@@ -499,7 +527,7 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
               </div>
             </div>
             <div className="product-spec-mobile row container ">
-              <div class="d-flex align-items-start" style={{gap:"3rem"}}>
+              <div class="d-flex align-items-start" style={{ gap: "3rem" }}>
                 <div
                   class="nav flex-column nav-pills me-3"
                   id="v-pills-tab"
@@ -532,7 +560,7 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
                   </span>
 
                   <span
-                                      class="  pt-2"
+                    class="  pt-2"
 
                     id="v-pills-details-tab"
                     data-bs-toggle="pill"
@@ -577,7 +605,7 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
                     aria-labelledby="v-pills-details-tab"
                   >
                     {productDetail.product.styletipSizeFit}
-            
+
                   </div>
                 </div>
               </div>
