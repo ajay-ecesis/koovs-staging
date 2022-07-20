@@ -64,7 +64,6 @@ const LoginForm = () => {
         }
         sku = sku.toString();
         let result = await getProductByBatchIdAPI(sku);
-        console.log("this is result", result);
       };
 
       // dispatches the login state
@@ -91,7 +90,6 @@ const LoginForm = () => {
     setForgotPwdResult(null);
     let forgotEmail = document.getElementById("forgotPwdEmail").value;
     let data = await forgotPasswordApi(forgotEmail);
-    console.log("final data", data);
     if (!data.status) {
       setForgotPwdResult({ ...forgotPwdResult, errorMsg: data.errorMessage });
     } else {

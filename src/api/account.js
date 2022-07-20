@@ -136,7 +136,6 @@ export const forgotPasswordApi = async (email) => {
       { email: email },
       config
     );
-    console.log("resposne", data);
     return data;
   } catch (err) {
     console.log("err", err);
