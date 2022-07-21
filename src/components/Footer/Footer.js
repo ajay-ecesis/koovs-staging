@@ -5,6 +5,7 @@ import instaimg from '../../assets/images/instagram.png';
 import twitterimg from '../../assets/images/twitter.png';
 import youtubeimg from '../../assets/images/youtube.png';
 import cardsimg from '../../assets/images/cards.png';
+import { Link } from "react-router-dom";
 class Footer extends React.Component {
     render()
     {
@@ -21,11 +22,11 @@ class Footer extends React.Component {
                                     <p>ACCOUNT</p>  
                                 </div>
                                 <ul>
-                                    <li><a href="#">Orders and Returns</a></li>
-                                    <li><a href="#">My Information </a></li>
-                                    <li><a href="#">Wishlist </a></li>
-                                    <li><a href="#">Sign In</a></li>
-                                    <li><a href="#">Register</a></li>                                    
+                                    <li><a href="#"><Link to="/orders-and-returns"> Orders and Returns</Link></a></li>
+                                    <li><a href="#"><Link to="/account"> My Information </Link></a></li>
+                                    <li><a href="#"><Link to="/wishlist">Wishlist </Link></a></li>
+                                    <li><a href="#"><Link to="/user/signin">Sign In</Link></a></li>
+                                    <li><a href="#"><Link to="/user/register">Register</Link></a></li>                                    
                                 </ul>
                             </div>
                         </div>
@@ -35,14 +36,14 @@ class Footer extends React.Component {
                                     <p>ONLINE SUPPORT</p>  
                                 </div>
                                 <ul>
-                                    <li><a href="#">Contact </a></li>
-                                    <li><a href="#">Size Guide </a></li>
-                                    <li><a href="#">FAQs </a></li>
-                                    <li><a href="#">Shipping and Return </a></li>
-                                    <li><a href="#">Gift Card </a></li>     
-                                    <li><a href="#">Privacy Policy  </a></li>
-                                    <li><a href="#">Terms and Conditions </a></li>
-                                    <li><a href="#">Cookie Settings </a></li>                                 
+                                    <li><a href="#"><Link to="/contact">Contact </Link></a></li>
+                                    <li><a href="#"><Link to="/size-guide">Size Guide </Link></a></li>
+                                    <li><a href="#"><Link to="/faq">FAQs</Link></a></li>
+                                    <li><a href="#"><Link to="/orders-and-returns">Shipping and Return </Link></a></li>
+                                    <li><a href="#"><Link to="/gift-card">Gift Card</Link> </a></li>     
+                                    <li><a href="#"><Link to="/privacy-policy">Privacy Policy </Link> </a></li>
+                                    <li><a href="#"><Link to="/terms-and-conditions">Terms and Conditions </Link></a></li>
+                                    <li><a href="#"><Link to="/cookie-settings">Cookie Settings</Link> </a></li>                                 
                                 </ul>
                             </div>
                         </div>
@@ -90,10 +91,10 @@ class Footer extends React.Component {
                         </div>
                         <div className="col-xl-4 col-lg-4 col-md-12 order-lg-1">
                             <div className="d-none d-lg-flex gap-3 justify-content-center">
-                                <img src={fbimg} className="img-fluid" alt="Koovs fb image"/>
-                                <img src={instaimg} className="img-fluid" alt="Koovs instagram image"/>
-                                <img src={twitterimg} className="img-fluid" alt="Koovs twitter image"/>
-                                <img src={youtubeimg} className="img-fluid" alt="Koovs youtube image"/>
+                            <a target="_blank" href="https://www.facebook.com/koovs" style={{cursor:"pointer"}}>  <img src={fbimg} className="img-fluid" alt="Koovs fb image"/></a>
+                            <a target="_blank" href="https://www.instagram.com/koovsfashion" style={{cursor:"pointer"}}>    <img src={instaimg} className="img-fluid" alt="Koovs instagram image" style={{cursor:"pointer"}}/></a>
+                            <a target="_blank" href="https://twitter.com/mykoovs" style={{cursor:"pointer"}}>   <img src={twitterimg} className="img-fluid" alt="Koovs twitter image" style={{cursor:"pointer"}}/></a>
+                            <a target="_blank" href="https://www.youtube.com/user/Koovsdotcom" style={{cursor:"pointer"}}>     <img src={youtubeimg} className="img-fluid" alt="Koovs youtube image" style={{cursor:"pointer"}}/></a>
                             </div>
                         </div>
                         <div className="socialmediacards col-xl-4 col-lg-4 col-md-12 order-0 order-lg-2">

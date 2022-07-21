@@ -4,6 +4,7 @@
     height: auto;
     background-color: #CBBFFF;
 }
+
 .LiveMen {
 
     display: flex;
@@ -14,6 +15,9 @@
     margin-left: -279px;
     bottom: 166px;
 }
+
+
+
 .liveinwomen .video-play-button {
     position: absolute;
     z-index: 10;
@@ -72,7 +76,7 @@
 .timing-text {
     font-size: 12px;
     padding: 5px;
-    font-weight:500;
+    font-weight: 500;
 }
 
 .Heading-live {
@@ -115,8 +119,9 @@
     .Live-button {
         margin-bottom: 20px;
     }
+
     .liveinmen {
-        padding: 0!important;
+        padding: 0 !important;
     }
 
 }

@@ -171,7 +171,7 @@
 .bag-item .item-price-wrapper {
     display: flex;
     margin: 12px 0 12px 0;
-    width: 40%;
+    width: 100%;
 
 }
 .checkout-address .color-code{
