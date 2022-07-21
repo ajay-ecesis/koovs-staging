@@ -133,7 +133,7 @@ const App = () => {
                 }
               />
 
-              <Route path="/support " element={<OnlineSupport />} />
+              <Route path="/online-support" element={<OnlineSupport />} />
 
               <Route path="/wishlist" element={<WishlistPage />} />
               <Route

@@ -1,0 +1,72 @@
+.account-section h4 {
+    font-weight: 600;
+}
+
+.account-actions {
+    margin-top: 87px;
+}
+.account-nav{
+    margin-left:12px;
+}
+.account-nav span {
+    padding-top: 5px;
+}
+
+.account-nav .active {
+    opacity: 0.4;
+}
+
+.account-section .account-actions {
+    display: block;
+}
+.account-actions .nav-link{
+    color: #000;
+}
+
+.sidebarlist{
+
+    line-height: 92.4%;
+    cursor: pointer;
+}
+.online-supportmobile{
+
+    margin:25px;
+
+}
+
+@media(max-width:576px) {
+
+    .account-actions {
+        margin-top: 30px;
+    }
+
+    .account-section h4 {
+        font-size: 12px;
+        padding: 8px 32px;
+    }
+
+    .account-section {
+
+        width: 100%;
+    }
+     .online-supportmobile {
+        display: flex;
+        justify-content: center;
+
+    }
+    .onlinesupport-mobileheading {
+        border: 2px solid #000;
+        display:inline-block;
+        font-size: 14px;
+        padding: 7px 36px
+    }
+    .account-nav span {
+        font-size: 14px;
+
+    }
+    .online-hide {
+
+        display: none !important;
+
+    }
+}
