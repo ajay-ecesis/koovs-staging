@@ -1,0 +1,48 @@
+.contact-text{
+
+    margin-top:192px;
+}
+.looking-text{
+
+
+    margin-top:34px;
+}
+.contact-button{
+
+    display: flex;
+    justify-content: center;
+    margin-top:41px;
+  
+}
+.contactusbtn{
+
+    width: 250px;
+    height: 35px;
+    font-size: 15px;
+    background: #000;
+    color: #fff;
+
+
+}
+
+
+@media(max-width:576px){
+
+    .contact-text {
+
+        margin-top:30px;
+    }
+    .contact-mobile{
+
+        margin-top:32px;
+    }
+ 
+    .contactusbtn {
+        width:170px;
+        height:30px;
+        font-size:12px;
+    }
+    .contact{
+        padding:30px;
+    }
+}

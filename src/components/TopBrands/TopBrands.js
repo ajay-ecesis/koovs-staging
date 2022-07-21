@@ -37,13 +37,7 @@ class TopBrands extends React.Component {
             </Link>
 
 
-            <Link
-              to="/category/amon"
-              style={{ color: "white", textDecoration: "none" }}
-            >
-              {" "}
-              AMON,{" "}
-            </Link>
+          
             <Link
               to="/category/attic"
               style={{ color: "white", textDecoration: "none" }}
@@ -130,7 +124,7 @@ class TopBrands extends React.Component {
               style={{ color: "white", textDecoration: "none" }}
             >
               {" "}
-              Peak,{" "}
+              Peak
             </Link>
           </div>
         </div>

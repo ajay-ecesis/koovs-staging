@@ -165,6 +165,7 @@ const SearchProduct = () => {
       loadSearchResultProducts(e.target.value, false, 0);
       setSearchKeyword(e.target.value);
       setSearchKeyword("")
+      setSuggestedKeywords([]);
     }
   };
 

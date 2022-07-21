@@ -20,6 +20,7 @@ import PaymentPage from "./pages/Payment";
 import NotSignedWishlist from "./components/Wishlist/NotSignedWishlist";
 import OrderPage from "./pages/OrderPage";
 import AccountNavMobile from "./pages/AccountNavMobile";
+import OnlineSupport from "./pages/OnlineSupport";
 // component lazy loading begins
 const Home = React.lazy(() => import("./pages/Home"));
 const ProductCart = React.lazy(() => import("./pages/ProductCart"));
@@ -85,22 +86,25 @@ const App = () => {
           <Suspense fallback={<> </>}>
             <Routes>
               <Route exact path="/" element={<Home />} />
-              <Route path="/cart" element={<ProductCart />} />              
+              <Route path="/cart" element={<ProductCart />} />
               <Route path="/orders" element={<OrderPage />} />
               <Route
                 path="/product/:title/:productId/:lineId"
                 element={<ProductDetail />}
               />
-{/* render men and women collection page */}
+              {/* render men and women collection page */}
               <Route path="/collection/:category" element={<CategoryPage />} />
 
-{/* sub category products listing page */}
+              {/* sub category products listing page */}
               <Route
                 path="/category/:category/:subcategory"
                 element={<CategoryMainPage />}
               />
-{/* prdouct listing pages for each categories */}
-              <Route path="/category/:category" element={<CategoryMainPage />} />
+              {/* prdouct listing pages for each categories */}
+              <Route
+                path="/category/:category"
+                element={<CategoryMainPage />}
+              />
 
               <Route path="/:category/tags/:tag" element={<CategoryPage />} />
 
@@ -118,7 +122,7 @@ const App = () => {
               />
 
               {/* mobile account navigation */}
-              
+
               <Route
                 path="/account"
                 element={
@@ -128,6 +132,8 @@ const App = () => {
                   </PrivateRoute>
                 }
               />
+
+              <Route path="/online-support" element={<OnlineSupport />} />
 
               <Route path="/wishlist" element={<WishlistPage />} />
               <Route
