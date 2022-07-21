@@ -1,14 +1,14 @@
 import React from 'react';
+import Footer from '../components/Footer/Footer';
 import FooterSideNav from '../components/FooterSideNav/FooterSideNav'
 import Header from '../components/Header/Header'
 
-const OnlineSupport = () => {
+const OnlineSupport = ({page}) => {
   return (
     <>
     <Header/>
-    <FooterSideNav>
-   
-    </FooterSideNav>
+    <FooterSideNav page={page}/>
+<Footer/>
     </>
   )
 }

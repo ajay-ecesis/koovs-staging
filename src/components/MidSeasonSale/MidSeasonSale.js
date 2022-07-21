@@ -11,7 +11,7 @@ import {
 import { isMobile } from "react-device-detect";
 import { useNavigate } from "react-router-dom";
 
-function MidSeasonSale({categoryName}) {
+function MidSeasonSale({ categoryName }) {
   const navigate = useNavigate();
 
   const responsive = {
@@ -48,14 +48,13 @@ function MidSeasonSale({categoryName}) {
   const loadCategoryItems = async () => {
     let subCategory;
     if (category == "men") {
-      subCategory = "jeans";
+      subCategory = "shirts";
     } else if (category == "women") {
       subCategory = "tops";
     }
     setLoading(true);
     let data;
     if (tag) {
-   
       data = await loadProductsByTag(category, tag, 5, "relevance", 0);
     } else {
       data = await loadProductByCategoryApi(
@@ -85,9 +84,17 @@ function MidSeasonSale({categoryName}) {
           <div className="container-fluid">
             <div className="row">
               <div className="d-flex justify-content-between">
-                <h5 className="fw-bold">{tag?tag:<>Mid season sale </>}</h5>
+                <h5 className="fw-bold">{tag ? tag : <>Mid season sale </>}</h5>
                 <p className="fw-bold">
-                <Link to={`/category/${categoryName}/mid-season-sale`} style={{color:"black"}}> <u>View All</u></Link> 
+                  <Link
+                    to={`/category/${categoryName}/${
+                      categoryName == "women" ? "dresses" : "shirts"
+                    }`}
+                    style={{ color: "black" }}
+                  >
+                    {" "}
+                    <u>View All</u>
+                  </Link>
                 </p>
               </div>
               <div className="row women" id="carousel-mid-season">
