@@ -284,7 +284,7 @@ header .nav-actions {
 
 
   .full-height-menu {
-    height: 100%;
+    height: 100vh;
     justify-content: start;
   }
 }
