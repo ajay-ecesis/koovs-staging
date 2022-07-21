@@ -2,15 +2,21 @@
     background: #1F1F1F;
     color: #fff;
 }
-
-.top-brand-content {
-    font-size: 75px;
+.fs-25{
+    font-size: 25px;
 }
-
-@media only screen and (min-width: 1440px) and (max-width: 2000px) {
+.top-brand-content {
+    font-size: 96px;
+}
+@media(max-width:1440px){
+    .top-brand-content {
+        font-size: 75px;
+    }
+}
+/* @media only screen and (min-width: 1440px) and (max-width: 2000px) {
 .top-brands-heading {
 
     font-weight: 500;
     font-size: 25px;
 }
-}
+} */

@@ -38,7 +38,9 @@
   z-index: 1;
   cursor: pointer;
 }
-
+.category_product_slider .view-all{
+  font-size: 25px;
+}
 .image-color input[type='radio'] {
   -webkit-appearance: none;
   -moz-appearance: none;

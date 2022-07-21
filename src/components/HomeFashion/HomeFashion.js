@@ -156,7 +156,7 @@ function HomeFashion({ category, subCategory, title, link }) {
         <div className="row">
           <div className="d-flex justify-content-between">
             <h5 className="fw-bold">{title}</h5>
-            <p className="fw-bold">
+            <p className="fw-bold view-all">
               <Link
                 to={link}
                 style={{ color: "black", textDecoration: "none" }}
@@ -208,7 +208,7 @@ function HomeFashion({ category, subCategory, title, link }) {
                             alt="Koovs rear product "
                             effect="blur"
                           />
-                          <p className="fw-bold">{item.productName}</p>
+                          <p className="fw-bold pro-name">{item.productName}</p>
                           <p>{item.brandName}</p>
                           <p>{item.price} €</p>
                         </div>
