@@ -181,6 +181,15 @@ const SearchProduct = () => {
     );
   };
 
+  const handleChangeEmpty=()=>{
+
+    setSearchKeyword("")
+    setSuggestedKeywords("")
+    setSearchResult([])
+    document.getElementById("searchProduct").value=""
+    document.getElementById("input-value").value=""
+
+  }
   return (
     <>
       <ReCaptcha
@@ -198,7 +207,7 @@ const SearchProduct = () => {
             className={` ${styles.type_text} d-lg-block d-none`}
             autoComplete="off"
             placeholder="Type to search"
-            id={`${styles.type_text}  `}
+     id="input-value"
             defaultValue={searchKeyword}
             onChange={(e) => {
               loadSearchSuggestion(e);
@@ -207,7 +216,7 @@ const SearchProduct = () => {
           ></input>
           <GrClose
             className={`${styles.closeBtn}`}
-            onClick={() => navigate(-1)}
+            onClick={() =>handleChangeEmpty()}
           />
         </div>
         <div className={`${styles.search_box} d-lg-none d-block`}>
