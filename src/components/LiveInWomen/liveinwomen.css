@@ -15,7 +15,13 @@
     margin-left: -279px;
     bottom: 166px;
 }
-
+@media(min-width:1600px) {
+    .LiveMen {
+        bottom: 342px;
+        font-size: 52px;
+        margin-left: -362px;
+    }
+}
 .liveinwomen .row {
     --bs-gutter-x: 52px;
 }

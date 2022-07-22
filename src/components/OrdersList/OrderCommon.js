@@ -34,16 +34,30 @@ const OrderCommon = () => {
                             <span className={`not-active ${isreturn && "active"} `} onClick={() => toggleMenu("returns")}>Returns</span>
                         </div>
                     </div>
+
+
+                    <div className='col-lg-6 col-md'>
+
                     <Table className="table-order row pt-lg-3 pt-sm-5">
 
-                        <tr className='orderdate-heading'>
-                            <th className=" order-headingtable col-sm-4 col-xl-2 col-lg-2">Order Date</th>
-                            <th className=" order-headingtable  col-sm-4 col-xl-2 col-lg-2">Order Number</th>
-                            <th className=" order-headingtable  col-sm-4 col-xl-2 col-lg-2">Status</th>
-                        </tr>
+<tr className='orderdate-heading'>
+    <th className=" order-headingtable col-sm-4 col-xl-2 col-lg-2">Order Date</th>
+    <th className=" order-headingtable  col-sm-4 col-xl-2 col-lg-2">Order Number</th>
+    <th className=" order-headingtable  col-sm-4 col-xl-2 col-lg-2">Status</th>
+</tr>
 
-                    </Table>
+</Table>
+                    </div>
+                   
+{/* 
+<div className='d-flex'>
 
+<p>Order Date</p>
+
+<p>Order Number</p>
+
+<p>Status</p>
+</div> */}
                 </div>
             </section>
 

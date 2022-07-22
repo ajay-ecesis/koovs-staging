@@ -58,7 +58,9 @@ function MenCategoryProductSlider({
           <h5 className="fw-bold">New in </h5>
           <p className="fw-bold d-none d-lg-block view-all">
             <Link
-              to={`/category/${categoryName}/new-arrivals`}
+              to={`/category/${categoryName}/${
+                categoryName == "women" ? "dresses" : "shirts"
+              }`}
               style={{ textDecoration: "none", color: "black" }}
             >
               {" "}
@@ -87,7 +89,7 @@ function MenCategoryProductSlider({
                               <>
                                 <i
                                   class="fa fa-heart-o"
-                                  style={{ color: "red",cursor:"pointer" }}
+                                  style={{ color: "red", cursor: "pointer" }}
                                   aria-hidden="true"
                                   onClick={() =>
                                     removeWishlist(item.sku, item.lineId)
@@ -99,7 +101,7 @@ function MenCategoryProductSlider({
                                 <i
                                   class="fa fa-heart-o"
                                   aria-hidden="true"
-                                  style={{cursor:"pointer"}}
+                                  style={{ cursor: "pointer" }}
                                   onClick={() =>
                                     addToWishlist(item, item.id, item.lineId)
                                   }
@@ -116,7 +118,6 @@ function MenCategoryProductSlider({
                           className="img-fluid men-products"
                           alt="Koovs product Front image"
                           style={{ cursor: "pointer" }}
-                   
                           effect="blur"
                           onClick={() =>
                             goToProductDetailPage(

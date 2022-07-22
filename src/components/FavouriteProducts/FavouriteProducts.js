@@ -154,7 +154,7 @@ export const FavouriteProducts = ({ skuId, reCaptcha, reloadRecaptcha }) => {
                             <LazyLoadImage
                               effect="blur"
                               src={data.imageSmallUrl}
-                              className="img-fluid proimage"
+                              className="img-fluid "
                               alt="Koovs "
                             />
                           </div>

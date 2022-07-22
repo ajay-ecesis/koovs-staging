@@ -133,8 +133,6 @@ const App = () => {
                 }
               />
 
-              <Route path="/online-support" element={<OnlineSupport />} />
-
               <Route path="/wishlist" element={<WishlistPage />} />
               <Route
                 path="/checkout/address"
@@ -153,6 +151,40 @@ const App = () => {
                   </PrivateRoute>
                 }
               />
+
+              {/* static pages navigation */}
+
+              <Route
+                path="/orders-and-returns"
+                element={<OnlineSupport page={"orders-and-returns"} />}
+              />
+              <Route
+                path="/contact"
+                element={<OnlineSupport page={"contact"} />}
+              />
+              <Route path="/faq" element={<OnlineSupport page={"faq"} />} />
+              <Route
+                path="/privacy-policy"
+                element={<OnlineSupport page={"privacy-policy"} />}
+              />
+              <Route
+                path="/terms-and-conditions"
+                element={<OnlineSupport page={"terms-and-conditions"} />}
+              />
+              <Route
+                path="/gift-card"
+                element={<OnlineSupport page={"gift-card"} />}
+              />
+
+              <Route
+                path="/cookie-settings"
+                element={<OnlineSupport page={"cookie-settings"} />}
+              />
+              <Route
+                path="/size-guide"
+                element={<OnlineSupport page={"size-guide"} />}
+              />
+
               <Route path="*" element={<FourNotFour />} />
             </Routes>
           </Suspense>
