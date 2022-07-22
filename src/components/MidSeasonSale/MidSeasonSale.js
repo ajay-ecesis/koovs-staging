@@ -84,17 +84,15 @@ function MidSeasonSale({ categoryName }) {
           <div className="container-fluid">
             <div className="row">
               <div className="d-flex justify-content-between">
-                <h5 className="fw-bold">{tag ? tag : <>Mid season sale </>}</h5>
-                <p className="fw-bold">
-                  <Link
+
+                <h5 className="fw-bold">{tag?tag:<>Mid season sale </>}</h5>
+                <p className="fw-bold view-all">
+            <Link
                     to={`/category/${categoryName}/${
                       categoryName == "women" ? "dresses" : "shirts"
                     }`}
                     style={{ color: "black" }}
-                  >
-                    {" "}
-                    <u>View All</u>
-                  </Link>
+                  > <u>View All</u></Link> 
                 </p>
               </div>
               <div className="row women" id="carousel-mid-season">
@@ -139,7 +137,7 @@ function MidSeasonSale({ categoryName }) {
                                 alt="Koovs rear product image"
                                 className="rear-img"
                               /> */}
-                              <p className="fw-bold">{item.brandName}</p>
+                              <p className="fw-bold pro-name">{item.brandName}</p>
                               <p>{item.productName}s</p>
                               <p>₹ {item.discountPrice}</p>
                             </div>

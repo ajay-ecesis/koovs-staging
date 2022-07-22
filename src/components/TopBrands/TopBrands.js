@@ -8,8 +8,8 @@ class TopBrands extends React.Component {
       <section className="top_brands pb-5">
         <div className="container-fluid">
           <div className="col-12 d-flex justify-content-between py-4">
-            <div className="">Top Brands</div>
-            <div>
+            <div className="fs-25">Top Brands</div>
+            <div className="fs-25">
               <a>
                 <u>View All</u>
               </a>

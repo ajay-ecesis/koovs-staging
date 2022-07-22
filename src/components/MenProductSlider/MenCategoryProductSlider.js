@@ -56,7 +56,7 @@ function MenCategoryProductSlider({
       <div className="container-fluid">
         <div className="actions d-flex justify-content-between">
           <h5 className="fw-bold">New in </h5>
-          <p className="fw-bold d-none d-lg-block">
+          <p className="fw-bold d-none d-lg-block view-all">
             <Link
               to={`/category/${categoryName}/${
                 categoryName == "women" ? "dresses" : "shirts"

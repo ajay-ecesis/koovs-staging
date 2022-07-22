@@ -18,6 +18,9 @@
     z-index:-1;
     transition: opacity 0.4s ease-out;
 }
+h5{
+    font-size: 25px;
+}
 .mid_season_sale .bg-grey:hover .rear-img{
     opacity: 1;
     z-index: 0;
@@ -33,8 +36,12 @@
 .women .react-multi-carousel-list{
     padding-left:7px;
 }
-
-
+.women-fashion .view-all{
+    font-size: 25px;
+}
+.cards .pro-name{
+    margin-top: 25px;
+}
 @media only screen and (max-width: 768px) {
 .mid_season_sale .bg-grey p{
 

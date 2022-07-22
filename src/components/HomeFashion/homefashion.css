@@ -12,6 +12,9 @@
 .cards img{
     width:100%
 }
+h5{
+    font-size: 25px;
+}
 .cards::before {
     position: absolute;
     content: "";
@@ -22,11 +25,21 @@
     z-index: -1;
     transition: all 0.3s;
 }
+.cards .pro-name{
+    margin-top: 24px;
+}
+.cards p{
+    font-size: 15px;
+    line-height: 23px;
+    color: #000;
+}
 .men .react-multi-carousel-list{
 
     padding-left:8px;
 }
-
+.men-fashion .view-all{
+    font-size: 25px;
+}
 
 .gender_category_slider .react-multi-carousel-list{
     position:relative;
