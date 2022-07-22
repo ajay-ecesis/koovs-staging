@@ -40,6 +40,7 @@ const CategoryMainPage = () => {
 
   useEffect(() => {
     let loadFromUrl = true;
+    
     loadProductItemsBycategory(loadFromUrl);
     if (!subcategory) subcategory = category;
   }, [category, subcategory, sort]);
@@ -77,9 +78,11 @@ const CategoryMainPage = () => {
       );
       if (data)
         if (loadFromUrl) {
+          setLoading(true)
           setProducts(data[0]?.data);
           setFilterTypes(data[1]?.data);
           setResult(data[0]);
+          setLoading(false)
         } else {
           setProducts((previous) => [...previous, ...data[0]?.data]);
         }

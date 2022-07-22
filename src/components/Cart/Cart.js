@@ -15,6 +15,7 @@ import { getProductByBatchIdAPI } from "../../api/commonApi";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
+import toast from "react-hot-toast";
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -103,6 +104,11 @@ const Cart = () => {
 
   //   update single products quantity
   const updateQuantity = async (product, quantity) => {
+    if(quantity>5)
+    {
+      toast.error("Maximum quantity per product is 5")
+      return
+    }
     // get FeDetails, lot , and other meta details from previously stored product data//
     var [temp] = productInDetail.filter((item) => {
       return item.product.sku == product.product.sku;
@@ -214,6 +220,7 @@ const Cart = () => {
                                                 defaultValue={item.qty}
                                                 className="quantity-box"
                                                 min="1"
+                                                max="5"
                                                 autoComplete="off"
                                                 onChange={(e) =>
                                                   updateQuantity(

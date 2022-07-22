@@ -29,6 +29,7 @@ import visaImg from "../../assets/images/visa.png";
 import mastercardImg from "../../assets/images/mastercard.png";
 import amexCardImg from "../../assets/images/amexcard.png";
 import { useSelector } from "react-redux/es/exports";
+import { createOrderApi } from "../../api/payment";
 
 const PaymentSection = ({
   paymentModes,
@@ -36,6 +37,7 @@ const PaymentSection = ({
   checkForActiveOffers,
   setSelectedPaymentGateway,
   selectedPaymentGateway,
+  reCaptcha
 }) => {
   const cartDetails = useSelector((state) => state.cart.cartData); //cart global info
   const [show, setShow] = useState(false);
@@ -72,9 +74,14 @@ const PaymentSection = ({
   const changePaymentTab = (item) => {
     console.log("item", item);
 
-    setSelectedPaymentGateway(item)
+    setSelectedPaymentGateway(item);
     checkForActiveOffers(item);
+  };
 
+  const makePayment = () => {
+    console.log("make a payment", selectedPaymentGateway);
+
+    createOrderApi(selectedPaymentGateway,reCaptcha)
   };
 
   return (
@@ -201,6 +208,7 @@ const PaymentSection = ({
                                     <button
                                       type="button"
                                       className="paynow-btn"
+                                      onClick={() => makePayment()}
                                     >
                                       PAY NOW
                                     </button>
@@ -286,6 +294,7 @@ const PaymentSection = ({
                                     <button
                                       type="button"
                                       className="paynow-btn"
+                                      onClick={() => makePayment()}
                                     >
                                       PAY NOW
                                     </button>
@@ -397,7 +406,11 @@ const PaymentSection = ({
                                       );
                                     })}
                                   </select>
-                                  <button type="button" className="paynow-btn">
+                                  <button
+                                    type="button"
+                                    className="paynow-btn"
+                                    onClick={() => makePayment()}
+                                  >
                                     PAY NOW
                                   </button>
                                 </Tab.Pane>
@@ -467,7 +480,11 @@ const PaymentSection = ({
                                     </label>
                                   </div>
 
-                                  <button type="button" className="paynow-btn">
+                                  <button
+                                    type="button"
+                                    className="paynow-btn"
+                                    onClick={() => makePayment()}
+                                  >
                                     PAY NOW
                                   </button>
                                 </Tab.Pane>
