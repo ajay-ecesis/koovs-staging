@@ -244,22 +244,22 @@
 }
 
 
-@media only screen and (min-device-width: 990px) and (max-device-width: 1300px) {
+@media only screen and (min-device-width: 990px) and (max-device-width: 1450px) {
 
     .jenCellabos-text .centered {
-        width: 420px;
-        font-size: 33px;
+        width: 507px;
+        font-size: 40px;
 
     }
 
 
 }
 
-@media only screen and (min-device-width: 1440px) and (max-device-width: 2000px) {
+@media only screen and (min-device-width: 1560px) and (max-device-width: 2000px) {
 
     .jenCellabos-text .centered {
 
-        width: 813px;
+        width: 726px;
 
     }
 

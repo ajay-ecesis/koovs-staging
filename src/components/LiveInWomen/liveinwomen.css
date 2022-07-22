@@ -184,8 +184,37 @@
     }
 
 }
+@media only screen and (min-device-width: 1400px) and (max-device-width: 1560px) {
 
-@media only screen and (min-device-width: 1440px) and (max-device-width: 2000px) {
+   
+    #coming-soon {
+
+        width: 290px;
+        height: 66px;
+        font-weight: 600;
+        font-size:26px;
+
+    }
+    .coming-soon-button {
+        left:68%;
+    }
+
+    .liveinwomen .video-play-button img {
+        width: 108px;
+    }
+    .liveinwomen .video-play-button {
+      
+        left: 29%;
+    }
+
+
+
+
+
+
+}
+@media only screen and (min-device-width: 1560px) and (max-device-width: 2000px) {
+
     #coming-soon {
 
         width: 367px;
