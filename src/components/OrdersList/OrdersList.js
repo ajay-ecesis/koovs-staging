@@ -41,14 +41,15 @@ function OrdersList() {
                                             <p className="address">Saltholmsvej 6, 5.</p>
                                             <p className="address">DK-2300 København S </p>
                                             <p className="address">Denmark</p>
-
-                                            <div className="d-flex product-decription pt-5">
+<div className="shipping-order-text">
+                                            <div className="d-flex product-decription">
                                                 <p>Shipping Method</p>
                                                 <p className="price">Pickup Point</p>
                                             </div>
                                             <div className="d-flex product-decription">
                                                 <p>Payment Method</p>
                                                 <p className="price">Apple Pay</p>
+                                            </div>
                                             </div>
                                         </div>
                                     </div>

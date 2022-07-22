@@ -31,7 +31,7 @@
 }
 
 .orders-section .order-shipping {
-    padding: 30px;
+    padding: 0px 30px 30px 30px;
     border: none solid;
     background-color: '#E8E8E8';
 
@@ -66,6 +66,7 @@
     justify-content: space-around;
     line-height:56%;
     color:#000;
+    padding-top:5px;
 }
 
 .create-return p{
@@ -83,4 +84,27 @@ bottom:0px;
     color: black;
 }
 
+.order-returned p{
+
+    position: absolute;
+    bottom: 0px;
+    right:24px;
+}
+ @media (max-width:768px)
+{
+    .product-decription{
+        padding-top:0px;
+    }
+    .shipping-order-text
+    {
+                 padding-top:18px;
+    }
+
+    .create-return p{
+        padding-top:12px;
+    }
+    .create-return{
+        padding-top: 26px;
+    }
+}
 
