@@ -28,9 +28,9 @@ function MenCategoryProductSlider({
 
   const loadCategoryItems = async () => {
     let subCategory;
-    if (category == "men") {
+    if (category == "men"||category=="Men") {
       subCategory = "jeans";
-    } else if (category == "women") {
+    } else if (category == "women"||category=="Women") {
       subCategory = "tops";
     }
     setLoading(true);
@@ -59,7 +59,7 @@ function MenCategoryProductSlider({
           <p className="fw-bold d-none d-lg-block view-all">
             <Link
               to={`/category/${categoryName}/${
-                categoryName == "women" ? "dresses" : "shirts"
+                categoryName == "women" ? "dresses" : "jeans"
               }`}
               style={{ textDecoration: "none", color: "black" }}
             >

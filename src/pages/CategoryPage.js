@@ -96,8 +96,8 @@ const CategoryPage = () => {
         )}
 
         <MidSeasonSale tag={tag} categoryName={categoryName}/>
-        <MobileMenBanner />
-        <MenSlider />
+        <MobileMenBanner categoryName={categoryName}/>
+        <MenSlider categoryName={categoryName}/>
         <MenProductSlider addToWishlist={addToWishlist} removeWishlist={removeWishlist} categoryName={categoryName}/>
 
         <LiveInMen />

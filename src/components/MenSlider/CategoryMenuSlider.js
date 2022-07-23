@@ -1,50 +1,100 @@
-import React from 'react'
-import "./categorymenuslider.css"
-function CategoryMenuSlider() {
+import React, { useEffect, useState } from "react";
+import "./categorymenuslider.css";
+function CategoryMenuSlider({ categoryName }) {
+  const menNavigation = [
+    {
+      title: "Shirts",
+      link: "/men/shirts",
+    },
+    {
+      title: "Jeans",
+      link: "/men/jeans",
+    },
+    {
+      title: "Footwear",
+      link: "/men/footwear",
+    },
 
-    return (
-        <section className='category_menu_slider'>
-            <h4 className='text-menu fw-bold d-block d-lg-none'>Where do you want to start?</h4>
-            <div className='category-buttons'>
+    {
+      title: "T-shirts",
+      link: "/men/t-shirts-and-polo-shirts",
+    },
 
-                <div className='btn'>
-                    <button className='text-button'>New In</button>
+    {
+      title: "Accessories",
+      link: "/men/accessories",
+    },
+    {      title: "Hoodies and Sweatshirts",
+    link: "/men/hoodies-and-sweatshirts",
+     
+    },
+    {      title: "Shoes",
+    link: "/men/shoes",
+     
+    }
+  ];
 
+  const womenNavigation = [
+    {
+      title: "Dresses",
+      link: "/women/dresses",
+    },
+    {
+      title: "Shirts",
+      link: "/women/dresses",
+    },
+    {
+      title: "Jeans",
+      link: "/women/jeans",
+    },
+    {
+      title: "Footwear",
+      link: "/women/footwear",
+    },
+
+    {
+      title: "Tops",
+      link: "/women/tops",
+    },
+
+    {
+      title: "Accessories",
+      link: "/women/accessories",
+    },
+  ];
+
+  const [gender, setGender] = useState(false);
+
+  useEffect(() => {
+    if (categoryName=="men"||categoryName=="Men") {
+      setGender(menNavigation);
+    }
+    else if (categoryName=="women"||categoryName=="Women")
+    {
+        setGender(womenNavigation)
+    }
+
+  }, [categoryName]);
+
+  return (
+    <section className="category_menu_slider">
+      <h4 className="text-menu fw-bold d-block d-lg-none">
+        Where do you want to start?
+      </h4>
+
+      <div className="category-buttons">
+        {gender?.length > 0 &&
+          gender.map((item) => {
+            return (
+              <>
+                <div className="btn ">
+                  <button className="text-button">{item.title}</button>
                 </div>
-                <div className='btn '>
-                    <button className='text-button'>Clothing</button>
-
-                </div>
-                <div className='btn '>
-                    <button className='text-button'>Footwear</button>
-
-                </div>
-                <div className='btn '>
-                    <button className='text-button'>Party clothing</button>
-
-                </div>
-                <div className='btn '>
-                    <button className='text-button'>Dresses,Skirts</button>
-
-                </div>
-                <div className='btn'>
-                    <button className='text-button'>Jackets,Coats</button>
-
-                </div>
-                <div className='btn'>
-                    <button className='text-button'>Sneakers</button>
-
-                </div>
-                <div className='btn '>
-                    <button className='text-button'>Footwear</button>
-
-                </div>
-                <div className='btn'>
-                    <button className='text-button'>Party clothing</button>
-
-                </div>
-            </div>
-            {/* <div className='row d-none d-lg-none'>
+              </>
+            );
+          })}
+      </div>
+      {/* <div className='row d-none d-lg-none'>
 
                 
                 <div id="outer">
@@ -60,8 +110,8 @@ function CategoryMenuSlider() {
                     <button class="div">Party clothing</button>
                 </div>
             </div> */}
-        </section>
-    )
+    </section>
+  );
 }
 
-export default CategoryMenuSlider
+export default CategoryMenuSlider;

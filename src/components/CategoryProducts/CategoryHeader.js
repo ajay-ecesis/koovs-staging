@@ -71,7 +71,7 @@ function CategoryHeader({
               </Breadcrumb.Item>
               <Breadcrumb.Item href={`/category/`}>
                 <Link
-                  to={`/category/${category}`}
+                  to={`/collection/${category}`}
                   style={{ textDecoration: "none", color: "black" }}
                 >
                   {" "}

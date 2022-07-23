@@ -260,8 +260,8 @@ function MenCategoryProductSlider({
                                       color: "#000",
                                     }}
                                   >
-                                    <div>{`€${val.min}`}</div>
-                                    <div>{`€${val.max}`}</div>
+                                    <div>{`₹ ${val.min}`}</div>
+                                    <div>{`₹ ${val.max}`}</div>
                                   </div>
                                   <Range
                                     values={values}
