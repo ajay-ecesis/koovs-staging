@@ -28,6 +28,11 @@
     .account_section .account_actions {
         display: none;
     }
+    .account_section .order_children{
+
+        padding:0px 21px;
+
+    }
 }
 
 @media(max-width:576px) {
