@@ -87,3 +87,8 @@
 }
 
 }
+
+.maincategory_menu_slider .text-button.active{
+
+    background-color: #ace7ffbd;
+}

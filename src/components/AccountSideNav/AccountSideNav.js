@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./accountsidenav.module.css";
 const AccountSideNav = ({ children, index }) => {
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const logoutUser = () => {
     dispatch({
@@ -13,7 +13,7 @@ const AccountSideNav = ({ children, index }) => {
     });
     toast.success("successfully logged Out");
     document.getElementById("menu-toggle").checked = false;
-    navigate("/");
+    window.location.href = "/";
   };
   return (
     <>
@@ -62,7 +62,9 @@ const AccountSideNav = ({ children, index }) => {
                   Wishlist
                 </span>{" "}
               </Link>
-              <span style={{cursor:"pointer"}} onClick={() => logoutUser()}>Logout</span>{" "}
+              <span style={{ cursor: "pointer" }} onClick={() => logoutUser()}>
+                Logout
+              </span>{" "}
             </div>
           </div>
         </div>

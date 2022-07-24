@@ -37,7 +37,7 @@ const App = () => {
     checkIfTokenExists();
     loadCartItems();
     loadWishlistItems();
-  }, [user]);
+  }, []);
 
   // checking for authentication tokens
   const checkIfTokenExists = async () => {
@@ -59,7 +59,7 @@ const App = () => {
     }
   };
 
-  const loadCartItems = async () => {
+ const loadCartItems = async () => {
     let result = await getCartItems();
     if (result) {
       dispatch({

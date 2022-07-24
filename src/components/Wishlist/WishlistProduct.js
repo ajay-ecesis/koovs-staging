@@ -122,18 +122,7 @@ const WishlistProduct = ({ products, getWishlistItemsByBatchId, loading }) => {
                     </div>
                   </div>
 
-                  {/* <Dropdown className="dropdown-wishlist d-flex">
-                    <Dropdown.Toggle
-                      className="drop-toggle d-flex"
-                      id="dropdown-autoclose-true"
-                    >
-                     Quantity <IoIosArrowDown className="wishlistarrowicon" />
-                    </Dropdown.Toggle>
 
-                    <Dropdown.Menu className="wishlist-dropitems">
-                      <Dropdown.Item>1</Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown> */}
                   <div className="addtobag-button">
                     {btnLoading == item.product.id ? (
                       <>

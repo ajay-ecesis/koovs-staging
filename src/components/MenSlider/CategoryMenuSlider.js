@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./categorymenuslider.css";
 function CategoryMenuSlider({ categoryName }) {
   const menNavigation = [
@@ -61,6 +62,11 @@ function CategoryMenuSlider({ categoryName }) {
       title: "Accessories",
       link: "/women/accessories",
     },
+    {
+      title: "Trousers and leggings",
+      link: "/women/trousers-and-leggings",
+    },
+ 
   ];
 
   const [gender, setGender] = useState(false);
@@ -88,7 +94,7 @@ function CategoryMenuSlider({ categoryName }) {
             return (
               <>
                 <div className="btn ">
-                  <button className="text-button">{item.title}</button>
+             <Link to={`/category${item.link}`}>    <button className="text-button">{item.title}</button></Link> 
                 </div>
               </>
             );

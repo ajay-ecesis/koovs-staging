@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./categoryheader.module.css";
 import filterIcon from "../../assets/images/filtericon.png";
 import { AiOutlinePlus } from "react-icons/ai";
@@ -26,7 +26,7 @@ function CategoryHeader({
   setPage,
   reloadRecaptcha,
   sortLabel,
-  filterTypes
+  filterTypes,
 }) {
   const [isActive, setActive] = useState(false);
   const [isView, setView] = useState(false);
@@ -51,6 +51,24 @@ function CategoryHeader({
       partialVisibilityGutter: 140,
       slidesToSlide: 1, // optional, default to 1.
     },
+  };
+
+  const [filterOptions, setFilterOptions] = useState([]);
+  const [gender, setGender] = useState(false);
+  const [mainFilterName, setMainFilterName] = useState("");
+  useEffect(() => {
+    if (filterTypes?.length) {
+      getStyleFilter();
+    }
+  }, [filterTypes]);
+
+  const getStyleFilter = () => {
+    let arr = filterTypes.filter((item) => {
+      return item.id == "style_fq";
+    });
+    if (arr?.length >= 0) console.log("arr", arr[0].data);
+    setMainFilterName(arr);
+    setFilterOptions(arr[0]?.data);
   };
 
   return (
@@ -194,37 +212,40 @@ function CategoryHeader({
             <div className={`container ${styles.slider_viewcategory}`}>
               <div className="row">
                 <div className={styles.category_sliderbox}>
-                  {/* <Carousel interval={3000} touch={true} arrows={false} responsive={responsive} renderButtonGroupOutside={true} swipeable={true} draggable={false} autoPlay={true}
-                                        autoPlaySpeed={2000}> */}
-                  <div className={`mx-2 ${styles.ctgry_item}`}>
-                    <div
-                      className={`  ${styles.category_mobilesliderbtn} bg-white p-2 border border-dark text-center`}
-                    >
-                      Denim shirts
-                    </div>
-                  </div>
-                  <div className={`mx-2 ${styles.ctgry_item}`}>
-                    <div
-                      className={`  ${styles.category_mobilesliderbtn} bg-white p-2 border border-dark text-center`}
-                    >
-                      Printed
-                    </div>
-                  </div>
-                  <div className={`mx-2 ${styles.ctgry_item}`}>
-                    <div
-                      className={`  ${styles.category_mobilesliderbtn} bg-white p-2 border border-dark text-center`}
-                    >
-                      Plain Shirts
-                    </div>
-                  </div>
-                  <div className={`mx-2 ${styles.ctgry_item}`}>
-                    <div
-                      className={`  ${styles.category_mobilesliderbtn} bg-white p-2 border border-dark text-center`}
-                    >
-                      striped shirts
-                    </div>
-                  </div>
-                  {/* </Carousel> */}
+                  {filterOptions?.length > 0 &&
+                    filterOptions?.slice(0, 7).map((item) => {
+                      return (
+                        <>
+                          {filterType.style_fq.includes(item.id) ? (
+                            <>
+                              <div className={`mx-2 ${styles.ctgry_item}`}>
+                                <div
+                                  onClick={() =>
+                                    applyFilter(mainFilterName[0].id, item.id)
+                                  }
+                                  className={`  ${styles.category_mobilesliderbtn} ${styles.btn_filter_active} bg-white p-2 border border-dark text-center `}
+                                >
+                                  {item.label}
+                                </div>
+                              </div>
+                            </>
+                          ) : (
+                            <>
+                              <div className={`mx-2 ${styles.ctgry_item}`}>
+                                <div
+                                  onClick={() =>
+                                    applyFilter(mainFilterName[0].id, item.id)
+                                  }
+                                  className={`  ${styles.category_mobilesliderbtn} bg-white p-2 border border-dark text-center `}
+                                >
+                                  {item.label}
+                                </div>
+                              </div>
+                            </>
+                          )}
+                        </>
+                      );
+                    })}
                 </div>
               </div>
             </div>
