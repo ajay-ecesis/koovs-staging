@@ -187,7 +187,7 @@ const ProductDescription = ({ productData, reCaptcha, reLoadCaptchaKey }) => {
                 <Breadcrumb.Item
                   href={`/category/${productDetail.product.gender}`}
                 >
-                  <Link to={`/category/${productDetail.product.gender}`}>
+                  <Link to={`/collection/${productDetail.product.gender}`}>
                     {" "}
                     {productDetail.product.gender}{" "}
                   </Link>

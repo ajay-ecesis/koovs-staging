@@ -18,8 +18,9 @@ const WishlistPage = () => {
   }, [wishlistItems]);
 
   const getWishlistItemsByBatchId = async () => {
+    let arr=wishlistItems
     setLoading(true);
-    let result = wishlistItems.map((item) => item.sku);
+    let result = arr.map((item) => item.sku);
     result = result.toString();
     let data = await loadWishListBySkuIdApi(result);
     if (data) {

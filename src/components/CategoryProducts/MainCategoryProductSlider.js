@@ -42,7 +42,7 @@ function MenCategoryProductSlider({
   });
   // const MAX = 100;
   const [values, setValues] = React.useState([0, 30]);
-  const sortDiv=useRef();
+  const sortDiv = useRef();
 
   useEffect(() => {
     if (filterTypes) {
@@ -73,31 +73,28 @@ function MenCategoryProductSlider({
     return str.split("-")[index];
   }
 
-
-     // For closing menu, whenver we click outside
-     const useOutsideAlerter = (ref) => {
-      useEffect(() => {
-        const handleClickOutside = (event) => {
-          if (ref.current && !ref.current.contains(event.target)) {
-            //setActions(false);
-            if (event.target.id !== "hamb___btn") {
-              setActive(false)
-  
-            }
+  // For closing menu, whenver we click outside
+  const useOutsideAlerter = (ref) => {
+    useEffect(() => {
+      const handleClickOutside = (event) => {
+        if (ref.current && !ref.current.contains(event.target)) {
+          //setActions(false);
+          if (event.target.id !== "hamb___btn") {
+            setActive(false);
           }
-        };
-  
-        // Bind the event listener
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-          // Unbind the event listener on clean up
-          document.removeEventListener("mousedown", handleClickOutside);
-        };
-      }, [ref]);
-    };
-  
-    useOutsideAlerter(sortDiv);
+        }
+      };
 
+      // Bind the event listener
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [ref]);
+  };
+
+  useOutsideAlerter(sortDiv);
 
   return (
     <section className="Maincategory_product_slider">
@@ -142,11 +139,11 @@ function MenCategoryProductSlider({
                                         {filterType.brand_fq.includes(
                                           subItem.id
                                         ) && (
-                                            <i
-                                              class="fa fa-check check-tick"
-                                              aria-hidden="true"
-                                            ></i>
-                                          )}
+                                          <i
+                                            class="fa fa-check check-tick"
+                                            aria-hidden="true"
+                                          ></i>
+                                        )}
                                       </Dropdown.Item>
                                     </>
                                   );
@@ -181,11 +178,11 @@ function MenCategoryProductSlider({
                                       {filterType.color_fq.includes(
                                         subItem.id
                                       ) && (
-                                          <i
-                                            class="fa fa-check check-tick"
-                                            aria-hidden="true"
-                                          ></i>
-                                        )}
+                                        <i
+                                          class="fa fa-check check-tick"
+                                          aria-hidden="true"
+                                        ></i>
+                                      )}
                                       <p>{subItem.label}</p>
                                     </Dropdown.Item>
                                   </>
@@ -220,11 +217,11 @@ function MenCategoryProductSlider({
                                         {filterType.size_fq.includes(
                                           subItem.id
                                         ) && (
-                                            <i
-                                              class="fa fa-check check-tick"
-                                              aria-hidden="true"
-                                            ></i>
-                                          )}
+                                          <i
+                                            class="fa fa-check check-tick"
+                                            aria-hidden="true"
+                                          ></i>
+                                        )}
                                         <p style={{ padding: "0px" }}>
                                           {subItem.label}
                                         </p>
@@ -260,8 +257,8 @@ function MenCategoryProductSlider({
                                       color: "#000",
                                     }}
                                   >
-                                    <div>{`€${val.min}`}</div>
-                                    <div>{`€${val.max}`}</div>
+                                    <div>{`₹ ${val.min}`}</div>
+                                    <div>{`₹ ${val.max}`}</div>
                                   </div>
                                   <Range
                                     values={values}
@@ -313,12 +310,11 @@ function MenCategoryProductSlider({
                                           justifyContent: "center",
                                           alignItems: "center",
                                           backgroundSize: "contain",
-                                          transform: "translate(233px, -16.5px)",
-
+                                          transform:
+                                            "translate(233px, -16.5px)",
                                         }}
                                       ></div>
                                     )}
-
                                   />
                                   <output
                                     style={{ marginTop: "30px" }}
@@ -342,7 +338,11 @@ function MenCategoryProductSlider({
             <p className="fw-bold d-sm-none d-lg-flex filtertext-category">
               Sort by:{" "}
               <u style={{ cursor: "pointer" }}>
-                <p id="newcategory" className="relevance-text" onClick={() => setActive(!isActive)}>
+                <p
+                  id="newcategory"
+                  className="relevance-text"
+                  onClick={() => setActive(!isActive)}
+                >
                   {sortLabel}
                 </p>
               </u>

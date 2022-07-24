@@ -30,6 +30,7 @@ const FourNotFour = React.lazy(() => import("./pages/404"));
 const Signup = React.lazy(() => import("./pages/Signup"));
 
 const App = () => {
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -58,7 +59,7 @@ const App = () => {
     }
   };
 
-  const loadCartItems = async () => {
+ const loadCartItems = async () => {
     let result = await getCartItems();
     if (result) {
       dispatch({

@@ -7,16 +7,12 @@ const PrivateRoute = ({ children }) => {
   const user = useAuth();
 
   function useAuth() {
-    if(localStorage.getItem("userToken"))
-    {
-        return true;
-    }
-    else
-    {
-        return false;
+    if (localStorage.getItem("userToken")) {
+      return true;
+    } else {
+      return false;
     }
   }
-
   return user ? children : <Navigate to="/signup/login" />;
 };
 

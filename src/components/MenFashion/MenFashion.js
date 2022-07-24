@@ -188,7 +188,7 @@ function MenFashion() {
                           />
                           <p className="fw-bold">{item.productName}</p>
                           <p>{item.brandName}</p>
-                          <p>{item.price} €</p>
+                          <p>₹ {item.price}</p>
                         </div>
                       </div>
                     </>
