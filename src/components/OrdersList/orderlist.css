@@ -23,6 +23,8 @@
 
 
 .orders-section .order-items {
+    position: relative;
+    left: 11px;
     padding: 30px;
     border: none solid;
     background-color: '#E8E8E8';

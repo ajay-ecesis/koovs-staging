@@ -206,14 +206,14 @@
 
 
 @media only screen and (min-width: 1440px) and (max-width: 2000px) {
-.header_category {
+    .header_category {
 
 
-    font-size:20px;
+        font-size: 20px;
+    }
+
 }
 
-}
-
-.btn_filter_active{
-    background-color:#ace7ffbd !important ;
+.btn_filter_active {
+    background-color: #ace7ffbd !important;
 }

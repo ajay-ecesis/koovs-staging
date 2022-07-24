@@ -75,7 +75,8 @@ const CategoryMainPage = () => {
         subcategory,
         limit,
         sort,
-        page
+        page,
+        filterType
       );
       if (data)
         if (loadFromUrl) {
