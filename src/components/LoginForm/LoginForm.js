@@ -75,6 +75,7 @@ const LoginForm = () => {
       // navigate("/user/account");
       // window.location.href = "/user/account";
       navigate(-1);
+      
     } else {
       // reloads the recaptcha key with new one
       googleCaptcha.current.execute();
@@ -155,6 +156,7 @@ const LoginForm = () => {
                   onClick={() => {
                     handleShow(true);
                   }}
+                  style={{textDecoration:"underline",cursor:"pointer"}}
                 >
                   Forgot your password.?
                 </span>

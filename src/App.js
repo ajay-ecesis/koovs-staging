@@ -30,13 +30,14 @@ const FourNotFour = React.lazy(() => import("./pages/404"));
 const Signup = React.lazy(() => import("./pages/Signup"));
 
 const App = () => {
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
     checkIfTokenExists();
     loadCartItems();
     loadWishlistItems();
-  }, []);
+  }, [user]);
 
   // checking for authentication tokens
   const checkIfTokenExists = async () => {

@@ -25,8 +25,8 @@ class Footer extends React.Component {
                                     <li><a href="#"><Link to="/orders-and-returns"> Orders and Returns</Link></a></li>
                                     <li><a href="#"><Link to="/account"> My Information </Link></a></li>
                                     <li><a href="#"><Link to="/wishlist">Wishlist </Link></a></li>
-                                    <li><a href="#"><Link to="/user/signin">Sign In</Link></a></li>
-                                    <li><a href="#"><Link to="/user/register">Register</Link></a></li>                                    
+                                    <li><a href="#"><Link to="/signup/login">Sign In</Link></a></li>
+                                    <li><a href="#"><Link to="/signup/register">Register</Link></a></li>                                    
                                 </ul>
                             </div>
                         </div>
