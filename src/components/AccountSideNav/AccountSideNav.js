@@ -67,7 +67,7 @@ const AccountSideNav = ({ children, index }) => {
           </div>
         </div>
 
-        <div className={`col `}>{children}</div>
+        <div className={`${styles.order_children} col`}>{children}</div>
       </section>
     </>
   );

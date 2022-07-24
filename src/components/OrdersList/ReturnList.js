@@ -53,7 +53,7 @@ const ReturnList = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="d-flex justify-content-center">
+                    <div className="order-returned">
                         <p>
                             <u>This Order is returned</u>
                         </p>

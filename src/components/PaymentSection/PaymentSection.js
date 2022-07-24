@@ -143,10 +143,10 @@ const PaymentSection = ({
 
                                       <input
                                         type="text"
-                                        className="no-border"
+                                        className="no-border credit-card-border"
                                         placeholder="XXXX XXXX XXXX XXXX"
                                         onBlur={handleChange("creditCard")}
-                                        style={{ width: "453px" }}
+                                        // style={{ width: "453px" }}
                                       />
                                       <img
                                         src={thumbCardImg}
@@ -161,26 +161,26 @@ const PaymentSection = ({
                                       )}
                                     </div>
                                     <div
-                                      className="d-flex card-img"
-                                      style={{ width: "453px" }}
+                                      className="d-flex card-img credit-card-border"
+                                     
                                     ></div>
                                     <div className="d-flex justify-content-between">
                                       <div className="d-flex flex-column form-details">
                                         <label>Expiry Month</label>
                                         <input
                                           type="text"
-                                          className="no-border"
+                                          className="no-border expiry-month-border"
                                           placeholder="XX"
-                                          style={{ width: "210px" }}
+                                        
                                         ></input>
                                       </div>
                                       <div className="d-flex flex-column expiry-year form-details">
                                         <label>Expiry Year</label>
                                         <input
                                           type="text"
-                                          className="no-border"
+                                          className="no-border expiry-month-border"
                                           placeholder="XXXX"
-                                          style={{ width: "210px" }}
+                                         
                                         ></input>
                                       </div>
                                     </div>
@@ -200,9 +200,9 @@ const PaymentSection = ({
                                     </div>
                                     <input
                                       type="text"
-                                      className="no-border form-details"
+                                      className="no-border form-details credit-card-border"
                                       placeholder="Name on Card"
-                                      style={{ width: "453px" }}
+                                     
                                     />
 
                                     <button
@@ -229,10 +229,10 @@ const PaymentSection = ({
 
                                       <input
                                         type="text"
-                                        className="no-border"
+                                        className="no-border  credit-card-border"
                                         placeholder="XXXX XXXX XXXX XXXX"
                                         onBlur={handleChange("creditCard")}
-                                        style={{ width: "453px" }}
+                                       
                                       />
                                       <img
                                         src={thumbCardImg}
@@ -247,26 +247,26 @@ const PaymentSection = ({
                                       )}
                                     </div>
                                     <div
-                                      className="d-flex card-img"
-                                      style={{ width: "453px" }}
+                                      className="d-flex card-img  credit-card-border"
+                                      
                                     ></div>
                                     <div className="d-flex justify-content-between">
                                       <div className="d-flex flex-column form-details">
                                         <label>Expiry Month</label>
                                         <input
                                           type="text"
-                                          className="no-border"
+                                          className="no-border expiry-month-border"
                                           placeholder="XX"
-                                          style={{ width: "210px" }}
+                                         
                                         ></input>
                                       </div>
                                       <div className="d-flex flex-column expiry-year form-details">
                                         <label>Expiry Year</label>
                                         <input
                                           type="text"
-                                          className="no-border"
+                                          className="no-border expiry-month-border"
                                           placeholder="XXXX"
-                                          style={{ width: "210px" }}
+                                         
                                         ></input>
                                       </div>
                                     </div>
@@ -286,9 +286,9 @@ const PaymentSection = ({
                                     </div>
                                     <input
                                       type="text"
-                                      className="no-border form-details"
+                                      className="no-border form-details  credit-card-border"
                                       placeholder="Name on Card"
-                                      style={{ width: "453px" }}
+                                      
                                     />
 
                                     <button
@@ -388,14 +388,14 @@ const PaymentSection = ({
                                     </label>
                                   </div>
 
-                                  <label className="other-payments">
+                                  <label className="other-payments d-none d-xl-block d-lg-block">
                                     Other banks
                                   </label>
                                   <select
-                                    class="form-select"
+                                    className="form-select"
                                     aria-label="Default select example"
                                   >
-                                    <option selected value="">
+                                    <option   selected value="">
                                       Select Your bank
                                     </option>
                                     {item?.submodes.map((bank) => {

@@ -121,12 +121,12 @@ a {
   height: 100%;
   object-fit: cover;
 }
-@media only screen and (min-width: 1080px) and (max-width: 1400px) {
+/* @media only screen and (min-width: 1080px) and (max-width: 1400px) {
   .product-detail .slick-slider .slick-list {
 
     height: 633px !important;
   }
-}
+} */
 
 /* .slick-slide img {
   max-height: 629px;

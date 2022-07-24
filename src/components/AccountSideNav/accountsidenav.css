@@ -10,9 +10,13 @@
 .account-section .account-actions{
     display: block;
 }
+
+
 @media(max-width:768px)
 {
     .account-section .account-actions{
         display: none;
     }
+
+   
 }
