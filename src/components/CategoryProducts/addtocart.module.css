@@ -1,6 +1,6 @@
 .view_addtocart {
 
-    bottom: 88px;
+    bottom: 0;
     background-color: #fff;
     height: auto;
     width: 100%;
@@ -74,7 +74,7 @@
   
 }
 .added_to_cart{
-    background-color: grey !important;
+    
     border: 2px solid !important;
 }
 

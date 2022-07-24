@@ -11,7 +11,7 @@ class TopBrands extends React.Component {
             <div className="fs-25">Top Brands</div>
             <div className="fs-25">
               <a>
-                <u>View All</u>
+                {/* <u>View All</u> */}
               </a>
             </div>
           </div>

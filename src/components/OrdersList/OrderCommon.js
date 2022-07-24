@@ -36,17 +36,28 @@ const OrderCommon = () => {
                     </div>
 
 
-                    <div className='col-lg-6 col-md'>
+                    <div className='col-lg-9 col-md-8'>
 
-                    <Table className="table-order row pt-lg-3 pt-sm-5">
+                    {/* <Table className="table-order row pt-lg-3 pt-sm-5">
 
 <tr className='orderdate-heading'>
-    <th className=" order-headingtable col-sm-4 col-xl-2 col-lg-2">Order Date</th>
-    <th className=" order-headingtable  col-sm-4 col-xl-2 col-lg-2">Order Number</th>
-    <th className=" order-headingtable  col-sm-4 col-xl-2 col-lg-2">Status</th>
+    <th className=" order-headingtable  col-sm-4 col-xl-2 col-lg-2">Order Date</th>
+    <th className=" order-headingtable order-number col-sm-4 col-xl-2 col-lg-2">Order Number</th>
+    <th className=" order-headingtable order-status  col-sm-4 col-xl-2 col-lg-2">Status</th>
 </tr>
+   {isorder && <OrdersTable />}
 
-</Table>
+</Table> */}
+
+<table className="w-100">
+<tr>
+    <th >Order Date</th>
+    <th >Order Number</th>
+    <th >Status</th>
+</tr>
+   {isorder && <OrdersTable />}
+
+</table>
                     </div>
                    
 {/* 
@@ -61,7 +72,7 @@ const OrderCommon = () => {
                 </div>
             </section>
 
-            {isorder && <OrdersTable />}
+         
             {isreturn && <ReturnsTable />}
 
         </>

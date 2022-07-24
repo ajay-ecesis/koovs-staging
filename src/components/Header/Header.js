@@ -84,7 +84,7 @@ function Header() {
     });
     toast.success("successfully logged Out");
     document.getElementById("menu-toggle").checked = false;
-    navigate("/");
+ window.location.href="/"
   };
 
   const handleChangeNav=(e)=>{

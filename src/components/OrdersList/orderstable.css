@@ -31,16 +31,18 @@ border-top:1px solid ;
         margin: 14px 9px 3px 13px;
         /* display: flex; */
         justify-content: space-between;
+        font-size:12px;
     }
 
     .table-ordercontents td{
-        padding:0 12px;
+        /* padding:0 12px; */
     }
-
-   
+  
 
 }
 
 .orders-table-section{
+
+
     
 }

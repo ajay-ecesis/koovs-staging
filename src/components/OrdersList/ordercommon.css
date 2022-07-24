@@ -34,14 +34,22 @@
     text-decoration: none;
     cursor: pointer;
 }
+.table-section .order-number{
+
+    padding-left: 15px;
+}
+.table-section .order-status{
+
+    padding-left: 23px;
+}
 @media only screen and (max-width: 576px) {
-    .orderdate-heading {
+    /* .orderdate-heading {
 
         display: flex;
         justify-content: space-between;
 
 
-    }
+    } */
 
     .mobile-mainorder {
 
@@ -55,4 +63,8 @@
     .table-section .heading-track {
         padding-top: 15px;
     }
+}
+
+table td, table th {
+    width: 30%;
 }

@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { getProductByBatchIdAPI } from "../../api/commonApi";
 import { Modal, Button } from "react-bootstrap";
 import { forgotPasswordApi } from "../../api/account";
+import { getCartItems, getWishlistItems } from "../../api/cart";
 const LoginForm = () => {
   const cartData = useSelector((state) => state.cart.items);
   const navigate = useNavigate();
@@ -37,6 +38,25 @@ const LoginForm = () => {
   function handleVerify(token) {
     setToken(token);
   }
+
+  // user cart and wishlist loading
+  const loadCartItems = async () => {
+    let result = await getCartItems();
+    if (result) {
+      dispatch({
+        type: "INITIALIZE_CART",
+        payload: result,
+      });
+    }
+  };
+
+  const loadWishlistItems = async () => {
+    let result = await getWishlistItems();
+    dispatch({
+      type: "INITIALIZE_WISHLIST",
+      payload: result.data,
+    });
+  };
 
   // For changing login values
   const handleChange = (name) => (event) => {
@@ -72,8 +92,10 @@ const LoginForm = () => {
         type: "USER_LOGIN",
         payload: userLogin,
       });
-      // navigate("/user/account");
-      // window.location.href = "/user/account";
+
+      loadCartItems()
+      loadWishlistItems()
+
       navigate(-1);
     } else {
       // reloads the recaptcha key with new one
@@ -100,13 +122,13 @@ const LoginForm = () => {
       });
     }
   };
-  const handleClose = () =>{
+  const handleClose = () => {
     setForgotPassword(false);
     setForgotPwdResult({
-      successMsg:null,
-      errorMsg:null
-    })
-  } 
+      successMsg: null,
+      errorMsg: null,
+    });
+  };
   const handleShow = () => setForgotPassword(true);
   return (
     <>
@@ -155,6 +177,7 @@ const LoginForm = () => {
                   onClick={() => {
                     handleShow(true);
                   }}
+                  style={{ textDecoration: "underline", cursor: "pointer" }}
                 >
                   Forgot your password.?
                 </span>
@@ -162,7 +185,10 @@ const LoginForm = () => {
 
               <div className="submit-btn pt-5">
                 {!btnLoading ? (
-                  <button type="submit" className="btn submit-sigin btn-dark rounded-0">
+                  <button
+                    type="submit"
+                    className="btn submit-sigin btn-dark rounded-0"
+                  >
                     {" "}
                     SIGN IN
                   </button>
@@ -213,7 +239,7 @@ const LoginForm = () => {
           <span style={{ color: "red" }}>{forgotPwdResult?.errorMsg}</span>
         </Modal.Body>
         <Modal.Footer>
-          {!forgotPwdResult?.successMsg? (
+          {!forgotPwdResult?.successMsg ? (
             <Button variant="secondary" onClick={submitForgotPassword}>
               Submit
             </Button>

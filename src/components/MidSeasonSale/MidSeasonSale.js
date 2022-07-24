@@ -47,9 +47,9 @@ function MidSeasonSale({ categoryName }) {
 
   const loadCategoryItems = async () => {
     let subCategory;
-    if (category == "men") {
+    if (category == "men"||category=="Men") {
       subCategory = "shirts";
-    } else if (category == "women") {
+    } else if (category == "women"||category=="Women") {
       subCategory = "tops";
     }
     setLoading(true);

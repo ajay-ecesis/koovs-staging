@@ -5,7 +5,7 @@ import 'react-multi-carousel/lib/styles.css';
 import menbannerimg from '../../assets/images/menbannerimg.png';
 import MenBannerimg1 from '../../assets/images/MenBannerimg1.png';
 
-function mobilemenbanner() {
+function mobilemenbanner({categoryName}) {
 
     {
 

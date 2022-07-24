@@ -32,6 +32,7 @@ const CategoryMainPage = () => {
     color_fq: "",
     price_fq: "",
     size_fq: "",
+    style_fq:""
   });
   const [loading, setLoading] = useState(false);
   const [token, setToken] = useState("");
@@ -40,7 +41,7 @@ const CategoryMainPage = () => {
 
   useEffect(() => {
     let loadFromUrl = true;
-    
+
     loadProductItemsBycategory(loadFromUrl);
     if (!subcategory) subcategory = category;
   }, [category, subcategory, sort]);
@@ -78,11 +79,11 @@ const CategoryMainPage = () => {
       );
       if (data)
         if (loadFromUrl) {
-          setLoading(true)
+          setLoading(true);
           setProducts(data[0]?.data);
           setFilterTypes(data[1]?.data);
           setResult(data[0]);
-          setLoading(false)
+          setLoading(false);
         } else {
           setProducts((previous) => [...previous, ...data[0]?.data]);
         }
@@ -96,6 +97,7 @@ const CategoryMainPage = () => {
 
   // apply a new filter
   const applyFilter = (type, val) => {
+    console.log("filterrrr", type, "SUbbb", val);
     if (type == "price_fq") {
       val = val[0] + "-" + val[1];
     }
@@ -132,6 +134,18 @@ const CategoryMainPage = () => {
       }
       newobj[type] = arr;
     }
+
+    if (type == "style_fq") {
+      let arr = newobj?.style_fq || [];
+      var idExists = arr.indexOf(val);
+      if (idExists !== -1) {
+        arr.splice(idExists, 1);
+      } else {
+        arr.push(val);
+      }
+      newobj[type] = arr;
+    }
+
     setFilterType(newobj);
   };
 
@@ -234,7 +248,13 @@ const CategoryMainPage = () => {
         reloadRecaptcha={reloadRecaptcha}
         sortLabel={sortLabel}
       />
-      <CategoryMainMenuSlider products={products} />{" "}
+      <CategoryMainMenuSlider
+        products={products}
+        categoryName={category}
+        filterTypes={filterTypes}
+        applyFilter={applyFilter}
+        filterType={filterType}
+      />{" "}
       {/* shows the btn categories*/}
       <CategoryMainProductSlider
         products={products}

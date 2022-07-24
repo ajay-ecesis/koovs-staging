@@ -210,7 +210,7 @@ function HomeFashion({ category, subCategory, title, link }) {
                           />
                           <p className="fw-bold pro-name">{item.productName}</p>
                           <p>{item.brandName}</p>
-                          <p>{item.price} €</p>
+                          <p>₹ {item.price} </p>
                         </div>
                       </div>
                     </>

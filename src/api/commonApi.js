@@ -230,11 +230,13 @@ export const loadProductsByFilter = async (
   let priceUrl = "",
     colorUrl = "",
     sizeUrl = "",
-    brandUrl = "";
+    brandUrl = "",
+    styleUrl = "";
 
   var color_fq = filter?.color_fq;
   var brand_fq = filter?.brand_fq;
   var size_fq = filter?.size_fq;
+  var style_fq = filter?.style_fq;
   if (color_fq) {
     color_fq = color_fq.join(";");
   }
@@ -243,6 +245,10 @@ export const loadProductsByFilter = async (
   }
   if (size_fq) {
     size_fq = size_fq.join(";");
+  }
+  if (style_fq) {
+    style_fq = style_fq.join(";");
+    console.log("style fqqq", style_fq);
   }
 
   if (filter.price_fq) {
@@ -259,12 +265,15 @@ export const loadProductsByFilter = async (
   if (filter.size_fq) {
     sizeUrl = `&${filter.size_fq !== "" && `filter_size_fq=${size_fq}`}`;
   }
+  if (filter.style_fq) {
+    styleUrl = `&${filter.style_fq !== "" && `filter_style_fq=${style_fq}`}`;
+  }
 
   let masterUrl = `${priceUrl != "&false" && priceUrl}${
     colorUrl != "&false" && colorUrl
   }${priceUrl != "&false" && priceUrl}${brandUrl != "&false" && brandUrl}${
     sizeUrl != "&false" && sizeUrl
-  }`;
+  }${styleUrl != "&false" && styleUrl}`;
 
   try {
     let { data } = await axios.get(
